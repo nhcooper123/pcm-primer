@@ -1,0 +1,7 @@
+# More advanced topics, where next? {#advanced}
+This chapter will introduce how we can harness a range of existing powerful statistical tools to add to our comparative methods toolbox. For example, phylogenetic uncertainty can be accounted for using the same statistics used for meta-analysis; missing data theory is well developed in the statistics literature and many tools exist to help deal with this.
+
+•	Phylogenetic uncertainty (should you trust the phylogeny): how to quantify?
+•	Intraspecific variation: when to average, when to not. 
+•	Missing data: does this matter? 
+•	Making predictions.

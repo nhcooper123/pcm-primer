@@ -1,0 +1,8 @@
+# Testing and evaluating comparative models: is my model good enough? {#evaluating}
+Like all statistical methods, comparative methods have their limitations. The focus in this chapter will be on succinctly explaining the issue in each case, then using practical examples to show how to deal with the problem. This chapter encompasses a set of issues that commonly arise in comparative studies and have not been reviewed before in the comparative literature. 
+
+•	Sample size and power analysis.
+•	Diagnostics for models.
+•	Model adequacy.
+•	When shouldn’t you use PCMs.
+•	Critical evaluation of other PCMs (i.e. phylogenetic eigenvector regression). 

@@ -1,0 +1,10 @@
+# Foundations {#foundations}
+Before we can analyse comparative data, some basic concepts and tools need to be in place. We will begin by introducing the basic concepts required to understand and use phylogenies. Although not a focus, we will briefly review the methods by which phylogenies are obtained. We will then focus on the practical aspects of using phylogenies including phylogenetic uncertainty. Next, we will focus on data – basic data handling, and finally we will introduce basic comparative analyses for looking for phylogenetic signal in data. 
+
+- Phylogenies – basic concepts.
+- How are phylogenies inferred? Brief introduction to key concepts.
+- Reading and using phylogenies. Including phylogenetic uncertainty.
+- Comparative data – basics.
+- Modelling continuous traits – the Brownian Model. What if evolution is non Brownian?
+  - Modelling discrete traits.
+- Testing for an imprint of phylogeny with tests for phylogenetic signal.

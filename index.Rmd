@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "A Primer on Phylogenetic Comparative Methods"
+author: "Natalie Cooper, Robert P. Freckleton"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -8,25 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+colorlinks: yes
+description: "Draft of PCM primer book"
 ---
-
-# Prerequisites
-
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
-
-The **bookdown** package can be installed from CRAN or Github:
-
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -34,3 +18,34 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
+
+# Preface {-}
+
+Book title: Primer on Phylogenetic Comparative Methods
+
+Book subtitle: Comparing species since 1799...
+
+
+## Intended readers {-}
+
+*Primers* are aimed at undergraduate and postgraduate students in the *Life and Environmental Sciences* and also....
+
+
+## How is the book organised? {-}
+
+The content and structure of the book is like this
+
+## Online companion material {-}
+
+## Topics not in *Primer*? {-}
+
+## Boxes {-}
+
+Throughout the book are boxes of text highlighting particularly important issues:
+
+```{block, type="info"}
+**Info** Extra info for interested
+```
+
+
+## Acknowledgements {-}

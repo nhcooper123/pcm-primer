@@ -1,0 +1,11 @@
+# Dealing with phylogenetic non-independence: a practical introduction. {#pseudorep}
+
+This chapter will cover the most common use of phylogenetic comparative methods – dealing with phylogenetic non-independence. The focus here is on the key methods that will be used in practice and encountered in the literature. Practicality will be an overarching theme, with worked examples and links to online resources provided to help with this. We will also try to set the methods within wider, more familiar statistical frameworks (e.g. mixed models, other forms of non-independence) so that users can take advantage of pre-existing statistical understanding. Note that this is designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding.
+
+•	What is phylogenetic non-independence? 
+•	Phylogenetically independent contrasts (PICs) - the historical context of PCMs. 
+•	Phylogenetic generalised least squares (PGLS). 
+•	Related methods e.g. mixed models. 
+•	Links to other kinds of non-independence, e.g. spatial, temporal.  
+•	Emphasising the relationship to familiar statistics, e.g. regression, GLM, mixed models, meta-analysis. 
+•	Online supplement linking to current software packages

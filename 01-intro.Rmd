@@ -1,21 +1,12 @@
-# Introduction {#intro}
+# Introduction to the comparative method {#intro}
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+Here we will lay the conceptual framework for the comparative method. The idea behind the comparative method will be introduced, and examples given of the types of analysis that can be undertaken. The problem of phylogenetic non-independence will be introduced and a range of methodological approaches described in brief. 
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+- Comparison as a method to test hypotheses. 
+- Historical context of the comparative method (i.e. pre Darwin to today). 
+- What questions can we answer? With explicit focus on the biological context in terms of life history/ecological traits etc.
+- The problem of phylogenetic non-independence: understanding the conceptual problem caused by the way evolution occurs, as well as the statistical consequences.
+- Key examples (e.g. early examples; examples where phylogeny makes a difference). 
+- A taxonomy of methods: Table of methods with links to further reading.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
-
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
