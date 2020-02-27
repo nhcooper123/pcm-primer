@@ -42,3 +42,4 @@ vignettes/*.pdf
 _publish.R
 _book
 _bookdown_files
+.Rproj.user
