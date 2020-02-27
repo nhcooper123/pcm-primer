@@ -149,6 +149,9 @@ In this case the observed K is significantly higher than the random values of K 
 
 *Note this is a randomization test so your output here will not be identical to mine.*
 
+```{block, type = "info"}
+Really important that it's phylo signal in residuals not variables we need to fix...
+```
 ## Test yourself
 Answers at the end of the book...
 
