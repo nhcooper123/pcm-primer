@@ -8,3 +8,53 @@ Before we can analyse comparative data, some basic concepts and tools need to be
 - Modelling continuous traits – the Brownian Model. What if evolution is non Brownian?
   - Modelling discrete traits.
 - Testing for an imprint of phylogeny with tests for phylogenetic signal.
+
+
+## Modelling continuous traits - the Brownian Motion model of evolution
+
+![Brownie in motion](images/brownie.jpg)
+
+At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (presence or absence of a tail, growth form). For continuous traits, the most commonly used model is the Brownian motion model, and many more complex models have been built upon it. Therefore we will spend some time discussing it here.
+
+```{block, type = "info"}
+If equations scare you, don't panic! We are going to go through this a bit at a time. Read the full section then go back through it again to check your understanding.
+```
+
+The Brownian model (Cavalli-Sforza and Edwards, 1967; Felsenstein, 1973) is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods (though this assumption is rarely tested; Freckleton and Harvey 2006). It can be fully described using just two parameters $z(0)$ and $\sigma^2$.
+
+$z(0)$ is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait. $\sigma^2$
+
+In the Brownian model, a trait $X$ evolves at random at a rate $\sigma$:
+
+$dX(t) = \sigma dW(t)$
+
+where $W(t)$ is a white noise function and is a random variate drawn from a normal distribution with mean 0 and variance $\sigma^2$. This model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant.
+
+At the core of Brownian motion is the normal distribution. You might know that a normal distribution can be described by two parameters, the mean and variance. Under Brownian motion, changes in trait values over any interval of time are always drawn from a normal distribution with mean 0 and variance proportional to the product of the rate of evolution and the length of time (variance = σ2t). As I will show later, we can simulate change under Brownian motion model by drawing from normal distributions. Another way to say this more simply is that we can always describe how much change to expect under Brownian motion using normal distributions. These normal distributions for expected changes have a mean of zero and get wider as the time interval we consider gets longer.
+
+Before we get into the technical statistical properties of the model, let's 
+
+Brownian motion is the evolutionary rate parameter, σ2. This parameter determines how fast traits will randomly walk through time.
+
+
+
+The Brownian motion model (Cavalli-Sforza and Edwards, 1967; Felsenstein, 1973) is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods (though this assumption is rarely tested; Freckleton and Harvey 2006). 
+In the model, a trait $X$ evolves at random at a rate $\sigma$:
+
+$dX(t) = \sigma dW(t)$
+
+where $W(t)$ is a white noise function and is a random variate drawn from a normal distribution with mean 0 and variance $\sigma^2$. This model assumes that there is no overall drift in the direction of evolution (hence the expectation of $W(t)$ is zero) and that the rate of evolution is constant.
+Because the direction of change in trait values at each step is random, Brownian motion is often described as a “random walk” (note that you can also fit models where $W(t)$ is not zero and there is drift in the direction of evolution. 
+This is known as the drift model, or Brownian motion with a trend. We will not cover this here).
+
+The model assumes the correlation structure among trait values is proportional to the extent of shared ancestry for pairs of species. 
+This means that close relatives will be more similar in their trait values than more distant relatives. 
+It also means that variance in the trait will increase (linearly) in proportion to time.
+The model has two parameters, the Brownian rate parameter, $\sigma^2$ and the state of the root at time zero, $X(0)$. 
+`fitContinuous` estimates $\sigma^2$ and $X(0)$. 
+Note that $\sigma^2$ can be used as a measure of the rate of trait evolution (Cooper and Purvis, 2010; Cooper et al., 2011).
+
+
+
+The Brownian motion model is sometimes thought of as a "null model" of evolution 
+
