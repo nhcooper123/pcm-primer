@@ -3,7 +3,7 @@ title: "A Primer on Phylogenetic Comparative Methods"
 author: "Natalie Cooper, Robert P. Freckleton"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: bookdown::pdfbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
