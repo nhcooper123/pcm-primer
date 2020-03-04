@@ -27,23 +27,40 @@ Some phylogenies only show the *topology*, i.e. the shape of the relationships a
 
 Note that throughout this section for simplicity we refer to "species" at the tips of phylogenies. In some cases, the tips will actually be genera or populations, or other operational taxonomic units (OTUs). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
 
-```{fig}
-Figure of basic phylogeny properties
+```{r basic-tree, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+
+# basic 4 species phylogeny
+
 ```
 
 To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter \@ref(glossary)) if you forget these at any point.
 
 **Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric* where all the branches end at the same place - the present-day. If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric*. A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to be aware of.
 
+
+```{r ultrametric, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+
+# basic 4 species phylogeny
+
+```
+
 **Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy*. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
 
-**Monophyly**
-** Polyphyly**
-** Paraphyly**
-** Clade
+```{r polytomy, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+
+# basic 4 species phylogeny
+
+```
+**Monophyly and clades**. A group of species that all share a common ancestor are referred to as a *monophyletic group* or a *clade*. Often, common taxonomic groupings e.g. mammals, are also monophyletic groups. Sometimes, multiple taxonomic groups are nested within each other in a phylogeny, for example reptiles and birds. Birds are nested within reptiles so that although birds are a monophyletic group, reptiles are a *paraphyletic group*. We can also have *polyphyletic groups* where the group members appear in multiple lineages across a phylogeny, for example in ???. 
+
+```{r phyly, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+
+# basic 4 species phylogeny
+
+```
 
 ### Reading and interpreting phylogenies
-We can read a phylogeny as follows. A and B are each others closest relatives. They share a *common ancestor* at node X. We can think of the branch leading to node X as the shared evolutionary history of A and B. While the branches leading from node X to A and B represents their independent evolution after speciation. A and B form a monophyletic group, or a clade. They are also sister species.
+We can read/interpret a phylogeny as follows. A and B are each others closest relatives. They share a *common ancestor* at node X. We can think of the branch leading to node X as the shared evolutionary history of A and B. While the branches leading from node X to A and B represents their independent evolution after speciation. A and B form a monophyletic group, or clade. They are also sister species. 
 
 ```{r}
 #simple plot of 4 species
@@ -80,22 +97,40 @@ Morphological data is generally in the form of *cladistic matrices* where each c
 
 Once the data have been collected they can be plugged into one of a number of software packages that will apply one or more phylogeny inference methods to output the "best" tree or trees. Here we will just mention the three most common inference methods: parsimony, Maximum Likelihood and Bayesian.
 
-Note that one common feature of all phylogeny inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are 34,459,425 options! If we have 50 trees we have 2.75292 ×10^76 options!!! To put that in context, that's more options than there are stars in the sky, or grains of sand on Earth. That's a lot of trees (equation for number of trees is (2n-3)!/2^n-2 * (n-2)!). This means that no phylogenetic inference method can afford to search all of *tree space*, i.e. the universe of all possible trees given the number of species involved. Instead, each method applies number of analytical tricks to avoid this. 
-
+Note that one common feature of all phylogeny inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are 34,459,425 options! If we have 50 trees we have 2.75292 ×10^76 options!!! To put that in context, that's more options than there are stars in the sky, or grains of sand on Earth. That's a lot of trees (equation for number of trees is (2n-3)!/2^n-2 * (n-2)!). This means that no phylogenetic inference method can afford to search all of *tree space*, i.e. the universe of all possible trees given the number of species involved. Instead, each method applies number of analytical tricks to avoid this, although we will not go into detail about this here. 
 
 #### Parsimony
-Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the *most parsimonious tree(s)* that satisfy that criterion. 
+Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the *most parsimonious phylogeny* or phylogenies that satisfy that criterion. 
 
-
+Ideally, this will result in one most parsimonious tree, but often more than one phylogeny meets this criterion. In these cases it is usual to create a *consensus* tree, an average topology across all the most parsimonious trees. There are several ways to construct these, from *strict consensus* trees that include only relationships shown in all most parsimonious trees, to *majority rule consensus* trees that include all relationships found in at least 50% of the most parsimonious trees. Consensus trees are one way that polytomies can be introduced into phylogenies.
 
 #### Maximum Likelihood (ML)
-Maximum Likelihood uses a model of evolution 
+Maximum Likelihood is a statistical method for estimating the unknown parameters of a model. Likelihood is proportional to the probability of observing the data given the model, *P(data|model)*. The Maximum Likelihood solution is the one that has the highest Likelihood, i.e. the model that best describes the observed data. We will use Maximum Likelihood throughout this book to estimate parameters in many of types of models. 
 
+In the case of phylogenetic inference, our model is the tree and an evolutionary model describing how the trait data (e.g. gene sequences or morphological characters) change. We therefore use Likelihood to calculate the probability of the observed trait data given the phylogeny and evolutionary model. The method selects the tree that best accounts for the data, i.e. the phylogeny or phylogenies with the Maximum Likelihood. 
 
+Maximum Likelihood is considered to be a better phylogenetic inference method than parsimony for genetic data because we can explicitly define the underlying evolutionary model of DNA evolution, rather than just assuming the smallest number of changes gives the best tree. Multiple models of DNA sequence evolution exist, the most common of which are:
 
+- **JC**, Jukes & Cantor (1969): all substitutions are equal and all base frequencies are equal. 
+- **K2P**, Kimura 2 parameter, Kimura (1980): Transitions and transversions have different
+substitution rates, base frequencies are assumed equal.
+- **HKY85**, Hasegawa-Kishino-Yano (1985): Transitions and transversions have different
+substitution rates, base frequencies can vary.
+- **GTR**: General Time Reversible (Lanave et al. 1984) Six classes of substitutions, base
+frequencies vary.
+
+Maximum Likelihood approaches can use any of these models, or any other model we define. It is harder to come up with sensible, simple models of evolution for morphological data, thus Maximum Likelihood approaches are used less often for morphological datasets. 
+
+Maximum Likelihood approaches are very computationally intensive and can be very slow, certainly much slower than parsimony. Like parsimony, often more than one phylogeny has the same Maximum Likelihood so we construct consensus trees.
 
 #### Bayesian
+Bayesian methods calculate the probability of the model given the data, *P(model|data)* (i.e. the reverse of Maximum Likelihood). In the case of Bayesian phylogenetic inference, we calculate the probability of the observed phylogeny given the trait data and the underlying evolutionary model. These models are the same as those used in Maximum Likelihood tree inference. 
 
+The main difference between Bayesian approaches and both Maximum Likelihood and parsimony is that we are no longer searching tree space for the "best" tree or trees. Instead, Bayesian methods output a *posterior distribution* of trees. The Bayesian method searches tree space, saving and outputting all trees it finds at regular intervals. This can result in thousands or even millions of possible trees. The user then specifies how many trees they would like to export as a posterior distribution of trees. This will consist of that number of trees, spread across the variety of trees inferred, but based on their probability. So if your Bayesian method produces tree topologies A-Z, but topologies A-D are most common, the posterior distribution of trees will mirror that with more trees with topologies A-D.
+ 
+The reasoning behind this is that phylogenetic inference is complex, so the probability of there being just one (or a few) trees that best represent the relationships among species is unlikely. With Bayesian approaches it is possible to get a clearer idea of *phylogenetic uncertainty*, and to actually incorporate this into our understanding of species relationships and downstream comparative analyses.
+
+Because of the way posterior distributions are constructed, consensus trees are not appropriate for Bayesian phylogenies. Instead, we tend to run each analysis on the whole posterior distribution of trees, resulting in a posterior distribution of results. This can be a little more difficult to visualise, but gives a much better understanding of the effect of phylogenetic uncertainty on comparative analyses.
 
 ### Where do we get phylogenies from?
 Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
@@ -114,18 +149,16 @@ How do you choose the "best" phylogeny for your group? There is no hard or fast 
 
 Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is due to missing extinct species etc., then your results may not be as robust as you imagine.
 
-```{block, type = "info"}
+```{block, type = "warning"}
 Phylogenies are just **hypotheses** about the way evolution happened. Always bear this in mind when interpreting results from phylogenetic comparative methods.
 ```
 
 ## Comparative data
 
 ### Sources of comparative data and data quality
-We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, and curated databases. The quality of data held in these will vary, so care is needed. 
+We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, and curated databases. Some you might collect from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
 
-morphology data?
-
-A standard data collection protocol for comparative data until recently would be to sit in a library and work through all of their books and journals on your study group looking for the data you needed. Doing this reveals several issues. Some sources will be more up-to-date than others, some will give very accurate values whereas others will give approximations, some will be based on multiple individuals whereas others will be based on only one. These days it is more common to do this using internet searches, but in this case it is important to check the source of any information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
+A standard data collection protocol for comparative data until recently would be to sit in a library and work through all of their books and journals on your study group looking for the data you needed. Doing this reveals several issues. Some sources will be more up-to-date than others, some will give very accurate values whereas others will give approximations, some will be based on multiple individuals whereas others will be based on only one. These days it is more common to do this using internet searches, but in this case it is important to check the source of any information provided. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
 
 Another common issue can be illustrated by the following example. If we are collecting data on chameleon body sizes, a range of sources may record the body length of the same species as 175mm, less than 180cm, up to 180cm, and approximately 180cm. Here we recommend initially recording all of this information (see Scientific Method box below for more detail), along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species.
 
