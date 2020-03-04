@@ -1,14 +1,155 @@
 # Foundations {#foundations}
-Before we can analyse comparative data, some basic concepts and tools need to be in place. We will begin by introducing the basic concepts required to understand and use phylogenies. Although not a focus, we will briefly review the methods by which phylogenies are obtained. We will then focus on the practical aspects of using phylogenies including phylogenetic uncertainty. Next, we will focus on data – basic data handling, and finally we will introduce basic comparative analyses for looking for phylogenetic signal in data. 
 
-- Phylogenies – basic concepts.
-- How are phylogenies inferred? Brief introduction to key concepts.
-- Reading and using phylogenies. Including phylogenetic uncertainty.
-- Comparative data – basics.
-- Modelling continuous traits – the Brownian Model. What if evolution is non Brownian?
-  - Modelling discrete traits.
-- Testing for an imprint of phylogeny with tests for phylogenetic signal.
+%%% At some point need to decide what goes at the start of each chapter %%%
 
+Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:
+
+- Phylogenies.
+    - Basic introduction.
+    - How are phylogenies inferred?
+    - Reading and using phylogenies.
+- Comparative data
+    - basics.
+- Modelling continuous traits –
+    - the Brownian Model. 
+    - What if evolution is non Brownian?
+- Modelling discrete traits.
+    - ARD, ER, SYM
+- Phylogenetic signal.
+
+
+## A basic introduction to phylogenies 
+At its simplest, a *phylogeny* or *phylogenetic tree* is a branching diagram that shows how species are related. The ancestor of all of the species is found at the *root* of the tree, with the species at the *tips*. The rest of the tree is made up of *nodes* and *branches*. Nodes show us where *speciation* events have occurred, i.e. where one species has evolved into two (or more) new species. The branches show the relationships among nodes and tips.
+
+Most phylogenies are *rooted*, meaning that the ancestral node or *root* is identified. Phylogenies are rooted using an *outgroup*. The outgroup can be one or more species, and represents a species or group known to lie outside the group of interest, the *ingroup*. The root lies on the node that joins the outgroup to the ingroup. In an *unrooted* tree, no root is defined, meaning while we can look at the relationships among species, we cannot identify ancestral characteristics or how species change through time. This limits their usefulness, especially for comparative methods. 
+
+Some phylogenies only show the *topology*, i.e. the shape of the relationships among the species. Most phylogenies, however, will have some information about the timing of branching events. In these phylogenies, *branch lengths* can represent absolute or relative time elapsed, or amounts of character change. Most of the phylogenies we use will be *dated phylogenies* (or *cladograms*), where the branch lengths represent divergence times. 
+
+Note that throughout this section for simplicity we refer to "species" at the tips of phylogenies. In some cases, the tips will actually be genera or populations, or other operational taxonomic units (OTUs). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
+
+```{fig}
+Figure of basic phylogeny properties
+```
+
+To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter \@ref(glossary)) if you forget these at any point.
+
+**Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric* where all the branches end at the same place - the present-day. If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric*. A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to be aware of.
+
+**Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy*. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
+
+**Monophyly**
+** Polyphyly**
+** Paraphyly**
+** Clade
+
+### Reading and interpreting phylogenies
+We can read a phylogeny as follows. A and B are each others closest relatives. They share a *common ancestor* at node X. We can think of the branch leading to node X as the shared evolutionary history of A and B. While the branches leading from node X to A and B represents their independent evolution after speciation. A and B form a monophyletic group, or a clade. They are also sister species.
+
+```{r}
+#simple plot of 4 species
+```
+Both A and B are equally closely related to C, as they all share a common ancestor at node Y. Note that B is **not** more closely related to C just because it is next to it at the tips. We could also represent the relationship as shown in the second panel. 
+
+Reading phylogenies should be reasonably straightforward, but it is not always intuitive. Often this is due to how we represent them graphically. For example, each of the phylogenies in Figure \@ref(fig:diff-trees) shows the same relationships among species, but in different ways. By convention we usually present phylogenies with the root at the left or the bottom (like a, b or d in Figure \@ref(fig:diff-trees)). We often use fans (like c in Figure \@ref(fig:diff-trees)) when we have large phylogenies that are hard to fit onto a page.
+
+```{r diff-trees, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+library(caper)
+library(tidyverse)
+data(shorebird)
+
+par(mfrow = c(2, 3))
+plot(shorebird.tree, type = "p", no.margin = TRUE)
+plot(shorebird.tree, type = "c", no.margin = TRUE)
+plot(shorebird.tree, type = "fan", no.margin = TRUE)
+plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "upwards")
+plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "downwards")
+plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "leftwards")
+par(mfrow = c(1, 1))
+```
+
+If you find reading and understanding phylogenies difficult, we highly recommend the Tree Thinking challenge. 
+
+### How do we infer phylogenies?
+We could write a whole book just about inferring phylogenies. In fact, there will be another Primer focusing on this subject if it's something you need/want more details on! Here we will just cover the basics, focusing on the information you'll need to be able to understand the rest of the book.
+
+Note that we **infer** phylogenies. We do not build or create them. 
+
+Most phylogenies are built using genetic or morphological data. Genetic data is usually a gene sequence, with the genes used depending on the question. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting genetic data these days might be as simple as downloading it from GenBank, however, the sequences still need to be aligned which can take more time.
+
+Morphological data is generally in the form of *cladistic matrices* where each character or trait of a species is coded as an integer. For example, a tail might be coded as 0 (absent) or 1 (present). Selecting characters for morphological phylogenies can be tricky, as they need to encompass the *synapomorphies* or unique characters that define clades in the tree, but the characters should also be independent of one another. Careful consideration of how characters should be coded is also needed, and this can vary from study to study.
+
+Once the data have been collected they can be plugged into one of a number of software packages that will apply one or more phylogeny inference methods to output the "best" tree or trees. Here we will just mention the three most common inference methods: parsimony, Maximum Likelihood and Bayesian.
+
+Note that one common feature of all phylogeny inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are 34,459,425 options! If we have 50 trees we have 2.75292 ×10^76 options!!! To put that in context, that's more options than there are stars in the sky, or grains of sand on Earth. That's a lot of trees (equation for number of trees is (2n-3)!/2^n-2 * (n-2)!). This means that no phylogenetic inference method can afford to search all of *tree space*, i.e. the universe of all possible trees given the number of species involved. Instead, each method applies number of analytical tricks to avoid this. 
+
+
+#### Parsimony
+Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the *most parsimonious tree(s)* that satisfy that criterion. 
+
+
+
+#### Maximum Likelihood (ML)
+Maximum Likelihood uses a model of evolution 
+
+
+
+
+#### Bayesian
+
+
+### Where do we get phylogenies from?
+Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
+
+How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you include:
+
+- How many of your species are included in the phylogeny? You can add or remove species easily in R, but if many species are missing it may be better you choose an alternative tree. Note that you can also stitch together multiple trees.
+- What kind of method was used to infer the phylogeny? Does it seem appropriate to you? A phylogeny using genetic data but inferred using parsimony may ring alarm bells...
+- Are the branches of the phylogeny well-supported? 
+- Are there lots of polytomies or is the phylogeny well-resolved?
+- Can you access several different versions of the phylogeny, or a posterior distribution of phylogenies to account for phylogenetic uncertainty?
+- Given your knowledge of the group, does the taxonomy they have used and the characters used to infer the tree make sense? 
+- If you don't know the group well, don't be afraid to ask the opinion of someone who knows more than you! They may save you hours of pain and suffering.
+
+### An important caveat
+
+Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is due to missing extinct species etc., then your results may not be as robust as you imagine.
+
+```{block, type = "info"}
+Phylogenies are just **hypotheses** about the way evolution happened. Always bear this in mind when interpreting results from phylogenetic comparative methods.
+```
+
+## Comparative data
+
+### Sources of comparative data and data quality
+We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, and curated databases. The quality of data held in these will vary, so care is needed. 
+
+morphology data?
+
+A standard data collection protocol for comparative data until recently would be to sit in a library and work through all of their books and journals on your study group looking for the data you needed. Doing this reveals several issues. Some sources will be more up-to-date than others, some will give very accurate values whereas others will give approximations, some will be based on multiple individuals whereas others will be based on only one. These days it is more common to do this using internet searches, but in this case it is important to check the source of any information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
+
+Another common issue can be illustrated by the following example. If we are collecting data on chameleon body sizes, a range of sources may record the body length of the same species as 175mm, less than 180cm, up to 180cm, and approximately 180cm. Here we recommend initially recording all of this information (see Scientific Method box below for more detail), along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species.
+
+Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The exact same issues apply, and it is a good idea to check the data and sources of a database in the same way as for books or internet searches.
+
+Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection.
+
+### Summarising data across species
+
+After collecting your data you'll likely need to summarise these data for each species. 
+
+
+
+```{block, type = "info"}
+Scientific method box. Data handling. 
+
+Species, measure, units, data quality, source
+
+Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. In R the tidyr and dplyr packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case there are any problems. 
+```
+
+```{block, type = "info"}
+The results of comparative analyses are only as good as the data you put into them. 
+```
 
 ## Modelling continuous traits - the Brownian Motion model of evolution
 
@@ -58,3 +199,15 @@ Note that $\sigma^2$ can be used as a measure of the rate of trait evolution (Co
 
 The Brownian motion model is sometimes thought of as a "null model" of evolution 
 
+    - What if evolution is non Brownian?
+
+## Modelling discrete traits - simple models
+    - ARD, ER, SYM
+
+
+## Phylogenetic signal
+Phylogenetic signal is the pattern where close relatives have more similar trait values than more distant relatives (see Kamilar and Cooper 2013). 
+
+
+
+Note that often people will mention that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see Revell 2010). $\lambda$ shown in PGLS models above is the $\lambda$ for the model residuals **not** the individual variables. 
