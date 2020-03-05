@@ -1,6 +1,18 @@
+---
+output:
+  word_document: default
+---
 # Foundations {#foundations}
 
 %%% At some point need to decide what goes at the start of each chapter %%%
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Load libraries (hidden)
+library(ggtree)
+library(ape)
+library(tidyverse)
+library(patchwork)
+```
 
 Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:
 
@@ -27,10 +39,40 @@ Some phylogenies only show the *topology*, i.e. the shape of the relationships a
 
 Note that throughout this section for simplicity we refer to "species" at the tips of phylogenies. In some cases, the tips will actually be genera or populations, or other operational taxonomic units (OTUs). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
 
-```{r basic-tree, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r basic-tree, echo = FALSE, fig.cap='A simple phylogeny demonstrating the key features', out.width='80%', fig.asp=.75, fig.align='center'}
 
-# basic 4 species phylogeny
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
 
+# Plot with images at tips
+ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  # Add points at nodes
+  geom_nodepoint(size = 2) +
+  # Add node labels
+  geom_nodelab(aes(subset = (node == 7), label = "node"), 
+                    nudge_x = 1, nudge_y = 0, size = 5) +
+  geom_nodelab(aes(subset = (node == 6), label = "node"), 
+                    nudge_x = 1, nudge_y = 0, size = 5) +
+  # Add root label
+  geom_nodelab(aes(subset = (node == 5), label = "root"), 
+                    nudge_x = 1, nudge_y = 0, size = 5) +
+  # label outgroup and ingroup
+  geom_cladelabel(node = 6 , label = "ingroup", offset = 5, 
+                  fontsize = 5) +
+  geom_cladelabel(node = 4 , label = "outgroup", offset = 5,
+                  fontsize = 5)
 ```
 
 To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter \@ref(glossary)) if you forget these at any point.
@@ -38,24 +80,117 @@ To use phylogenies we need to understand a few more terms. These are also descri
 **Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric* where all the branches end at the same place - the present-day. If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric*. A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to be aware of.
 
 
-```{r ultrametric, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r ultrametric, echo = FALSE, fig.cap='Ultrametric and non-ultrametric phylogenies', out.width='80%', fig.asp=.75, fig.align='center'}
 
-# basic 4 species phylogeny
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
+# Read in nonultrametric tree
+non <- read.tree("nonultra.tre")
 
+# Plot with images at tips
+p1 <- 
+  ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 4) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  labs(tag = "A")
+
+p2 <- 
+  ggtree(non) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 4) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = FALSE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  labs(tag = "B", size = 2)
+
+p1 + p2
 ```
 
 **Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy*. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
 
-```{r polytomy, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r polytomy, echo = FALSE, fig.cap='Fully resolved phylogeny versus one with a polytomy', out.width='80%', fig.asp=.75, fig.align='center'}
 
-# basic 4 species phylogeny
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
+# Read in polytomy tree
+poly <- read.tree("polytomy.tre")
 
+# Plot with images at tips
+p1 <- 
+  ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 4) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  labs(tag = "A")
+
+p2 <- 
+  ggtree(poly) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 4) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/spider.png",
+                            "images/deer.png",
+                            "images/robin.png",
+                            "images/jellyfish.png",
+                            rep(NA, 2))), 
+              geom = "image", align = FALSE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  labs(tag = "B", size = 2)
+
+p1 + p2
 ```
 **Monophyly and clades**. A group of species that all share a common ancestor are referred to as a *monophyletic group* or a *clade*. Often, common taxonomic groupings e.g. mammals, are also monophyletic groups. Sometimes, multiple taxonomic groups are nested within each other in a phylogeny, for example reptiles and birds. Birds are nested within reptiles so that although birds are a monophyletic group, reptiles are a *paraphyletic group*. We can also have *polyphyletic groups* where the group members appear in multiple lineages across a phylogeny, for example in ???. 
 
 ```{r phyly, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
 
-# basic 4 species phylogeny
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
+
+# Plot with images at tips
+ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 0.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  # Highlight clades
+  geom_hilight(node = 6, fill = "purple") +
+  geom_hilight(node = 7, fill = "gold")
 
 ```
 
@@ -63,25 +198,90 @@ To use phylogenies we need to understand a few more terms. These are also descri
 We can read/interpret a phylogeny as follows. A and B are each others closest relatives. They share a *common ancestor* at node X. We can think of the branch leading to node X as the shared evolutionary history of A and B. While the branches leading from node X to A and B represents their independent evolution after speciation. A and B form a monophyletic group, or clade. They are also sister species. 
 
 ```{r}
-#simple plot of 4 species
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
+
+# Plot with images at tips
+ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 1.5, 
+              linetype = NA, size = c(.12, .15, .09, .15)) +
+  geom_tiplab(aes(label = c("B",
+                            "A",
+                            "C",
+                            "D",
+                            rep(NA, 3))), 
+              geom = "label", align = TRUE, offset = 0.5, 
+              linetype = NA) 
 ```
 Both A and B are equally closely related to C, as they all share a common ancestor at node Y. Note that B is **not** more closely related to C just because it is next to it at the tips. We could also represent the relationship as shown in the second panel. 
 
 Reading phylogenies should be reasonably straightforward, but it is not always intuitive. Often this is due to how we represent them graphically. For example, each of the phylogenies in Figure \@ref(fig:diff-trees) shows the same relationships among species, but in different ways. By convention we usually present phylogenies with the root at the left or the bottom (like a, b or d in Figure \@ref(fig:diff-trees)). We often use fans (like c in Figure \@ref(fig:diff-trees)) when we have large phylogenies that are hard to fit onto a page.
 
 ```{r diff-trees, echo = FALSE, fig.cap='All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align='center'}
-library(caper)
-library(tidyverse)
-data(shorebird)
 
-par(mfrow = c(2, 3))
-plot(shorebird.tree, type = "p", no.margin = TRUE)
-plot(shorebird.tree, type = "c", no.margin = TRUE)
-plot(shorebird.tree, type = "fan", no.margin = TRUE)
-plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "upwards")
-plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "downwards")
-plot(shorebird.tree, type = "p", no.margin = TRUE, direction = "leftwards")
-par(mfrow = c(1, 1))
+# Read in basic 4 species phylogeny
+tree <- read.tree("basic.tre")
+# Rotate tree
+newtree <- rotate(phy = tree, 5)
+
+# Plot with images at tips
+p <- 
+  ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 1.5, 
+              linetype = NA, size = c(.12, .15, .09, .15))
+
+p1 <- 
+  ggtree(tree, layout="slanted") + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 1.5, 
+              linetype = NA, size = c(.12, .15, .09, .15))
+
+p2 <- 
+  ggtree(tree, layout="circular") + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 22) +
+  ylim(0, 5) +
+  # Add tip label pictures
+  geom_tiplab(aes(image = c("images/deer.png",
+                            "images/robin.png",
+                            "images/spider.png",
+                            "images/jellyfish.png",
+                            rep(NA, 3))), 
+              geom = "image", align = TRUE, offset = 1.5, 
+              linetype = NA, size = c(.12, .15, .09, .15))
+
+p + p1 + p2
+
 ```
 
 If you find reading and understanding phylogenies difficult, we highly recommend the Tree Thinking challenge. 
