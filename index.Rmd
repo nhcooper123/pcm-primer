@@ -23,9 +23,6 @@ knitr::write_bib(c(
 
 Book title: Primer on Phylogenetic Comparative Methods
 
-Book subtitle: Comparing species since 1799...
-
-
 ## Intended readers {-}
 
 *Primers* are aimed at undergraduate and postgraduate students in the *Life and Environmental Sciences* and also....
