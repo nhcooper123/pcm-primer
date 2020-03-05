@@ -12,6 +12,7 @@ library(ggtree)
 library(ape)
 library(tidyverse)
 library(patchwork)
+library(ggimage)
 ```
 
 Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:
@@ -270,7 +271,7 @@ p2 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -278,7 +279,7 @@ p2 <-
                             "images/jellyfish.png",
                             rep(NA, 3))), 
               geom = "image", align = TRUE, offset = 1.5, 
-              linetype = NA, size = c(.12, .15, .09, .15))
+              linetype = NA)
 
 p + p1 + p2
 
