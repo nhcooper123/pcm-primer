@@ -43,7 +43,7 @@ Note that throughout this section for simplicity we refer to "species" at the ti
 ```{r basic-tree, echo = FALSE, fig.cap='A simple phylogeny demonstrating the key features', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 
 # Plot with images at tips
 ggtree(tree) + 
@@ -86,9 +86,9 @@ To use phylogenies we need to understand a few more terms. These are also descri
 ```{r ultrametric, echo = FALSE, fig.cap='Ultrametric and non-ultrametric phylogenies', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 # Read in nonultrametric tree
-non <- read.tree("nonultra.tre")
+non <- read.tree("data/nonultra.tre")
 
 # Plot with images at tips
 p1 <- 
@@ -131,9 +131,9 @@ p1 + p2
 ```{r polytomy, echo = FALSE, fig.cap='Fully resolved phylogeny versus one with a polytomy', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 # Read in polytomy tree
-poly <- read.tree("polytomy.tre")
+poly <- read.tree("data/polytomy.tre")
 
 # Plot with images at tips
 p1 <- 
@@ -175,7 +175,7 @@ p1 + p2
 ```{r phyly, echo = FALSE, fig.cap='Monophyly', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 
 # Plot with images at tips
 ggtree(tree) + 
@@ -206,7 +206,7 @@ We can read/interpret a phylogeny as follows. A and B are each others' closest r
 
 ```{r reading, echo = FALSE, fig.cap='How to read a phylogenetic tree', out.width='80%', fig.asp=.75, fig.align='center'}
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 
 # Plot with images at tips
 tree1 <-
@@ -277,7 +277,7 @@ tree2 <-
                     nudge_x = 0.8, nudge_y = 0, size = 5) +
   labs(tag = "B", size = 2)
 
-tree1 + tree2
+tree1 / tree2
 ```
 Both A and B are equally closely related to C, as they all share a common ancestor at node Y. Note that B is **not** more closely related to C just because it is next to it at the tips. We could also represent the relationship as shown in the second panel. 
 
@@ -286,7 +286,7 @@ Reading phylogenies should be reasonably straightforward, but it is not always i
 ```{r diff-trees, echo = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'left'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 # Rotate tree
 newtree <- rotate(phy = tree, 5)
 
@@ -438,7 +438,7 @@ We can also use circular or fan shaped phylogenies (Figure \@ref(fig:fan-tree)) 
 ```{r fan-tree, echo = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'left'}
 
 # Read in basic 4 species phylogeny
-tree <- read.tree("basic.tre")
+tree <- read.tree("data/basic.tre")
 
 # Plot with images at tips
 p <- 
