@@ -512,7 +512,7 @@ plot(shorebird.tree, type = "fan", no.margin = TRUE, show.tip.label = FALSE)
 If you find reading and understanding phylogenies difficult, we highly recommend trying the *Tree Thinking challenge* at https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf [@Baum979], which should help you get the hang of it.
 
 ### How do we infer phylogenies?
-We could write a whole book just about inferring phylogenies. In fact, there already is one (Felsenstein 2004), and there will be another Primer focusing on this subject if it's something you need/want more details on! Here we will just cover the basics, focusing on the information you'll need to be able to understand the rest of the book.
+We could write a whole book just about inferring phylogenies. In fact, there already are several e.g. [@felsenstein2004inferring], and there will be another Primer focusing on this subject if it's something you need/want more details on! Here we will just cover the basics, focusing on the information you'll need to be able to understand the rest of the book.
 
 Note that we **infer** phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of a group.
 
