@@ -34,7 +34,7 @@ Some phylogenies only show the *topology*, i.e. the shape of the relationships a
 
 Note that throughout this section for simplicity we refer to "species" at the tips of phylogenies. In some cases, the tips will actually be genera or populations, or other operational taxonomic units (OTUs). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
 
-```{r basic-tree, echo = FALSE, fig.cap='A simple phylogeny demonstrating the key features', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r basic-tree, echo = FALSE, fig.cap='A simple phylogeny demonstrating the key features all phylogenies share. Tips are images rather than species names.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
