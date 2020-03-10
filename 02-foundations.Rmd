@@ -1,7 +1,3 @@
----
-output:
-  word_document: default
----
 # Foundations {#foundations}
 
 %%% At some point need to decide what goes at the start of each chapter %%%
