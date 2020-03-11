@@ -266,7 +266,7 @@ p <-
 # Add phyly colours
 groupOTU(p, grp, 'Species') + 
   aes(color = Species) +
-  scale_colour_manual(values = c("#fe4a49","#2ab7ca"))
+  scale_colour_manual(values = c("#fe4a49","#2ab7ca")) +
   theme(legend.position = "none")
 
 ```
