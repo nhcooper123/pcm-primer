@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Foundations {#foundations}
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -220,7 +225,7 @@ ggtree(tree) +
 
 ```
 
-```{r phyly, echo = FALSE, fig.cap='Phylogeny showing the relationships among birds, mammals and reptiles. Reptiles forms a paraphyletic group because birds is nested within it. The group formed by birds and mammals is a polyphyletic group.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r paraphyly, echo = FALSE, fig.cap='Phylogeny showing the relationships among birds, mammals and reptiles. Reptiles forms a paraphyletic group because birds is nested within it. The group formed by birds and mammals is a polyphyletic group.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/reptile.tre")
