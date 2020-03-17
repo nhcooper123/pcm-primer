@@ -13,6 +13,8 @@ library(caper)
 library(tidyverse)
 library(patchwork)
 library(ggimage)
+library(knitr)
+library(measurements)
 ```
 
 Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:
@@ -561,22 +563,22 @@ The reasoning behind this is that phylogenetic inference is complex, so the prob
 
 Because of the way posterior distributions are constructed, consensus trees are not appropriate for Bayesian phylogenies. Instead, we tend to run each analysis on the whole posterior distribution of trees, resulting in a posterior distribution of results. This can be a little more difficult to visualise, but gives a much better understanding of the effect of phylogenetic uncertainty on comparative analyses.
 
-### Where do we get phylogenies from?
+### Where do we get phylogenies from for comparative analyses?
 Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
 
-How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you include:
+How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you to the best phylogeny include:
 
-- How many of your species are included in the phylogeny? You can add or remove species easily in R, but if many species are missing it may be better you choose an alternative tree. Note that you can also stitch together multiple trees.
+- Given your knowledge of the group, does the taxonomy they have used and the characters used to infer the tree make sense? This may be particularly important for morphological trees, but it is also important to check they used an appropriate gene if using molecular trees.
+- How many of your species are included in the phylogeny? You can add or remove species easily in R (see **online materials**), but if many species are missing it may be better to choose an alternative tree. You can also stitch together multiple trees (see **online materials**).
 - What kind of method was used to infer the phylogeny? Does it seem appropriate to you? A phylogeny using genetic data but inferred using parsimony may ring alarm bells...
-- Are the branches of the phylogeny well-supported? 
-- Are there lots of polytomies or is the phylogeny well-resolved?
+- Are the branches of the phylogeny well-supported? We didn't talk about branch support above, but you'll often see numbers above the nodes on a phylogeny. These tell you how well supported the relationships are, and generally range from 0-100 or 0-1. Good values will be close to 100 or 1 depending on the method used. 
+- Are there lots of polytomies or is the phylogeny well-resolved? The methods we use in R can cope with polytomies (see **online materials**) but if there are more resolved phylogenies available these will be better.
 - Can you access several different versions of the phylogeny, or a posterior distribution of phylogenies to account for phylogenetic uncertainty?
-- Given your knowledge of the group, does the taxonomy they have used and the characters used to infer the tree make sense? 
-- If you don't know the group well, don't be afraid to ask the opinion of someone who knows more than you! They may save you hours of pain and suffering.
+- If you don't know the group, or phylogenetics, well, don't be afraid to ask the opinion of someone who knows more than you. They may save you hours of pain and indecision!
 
 ### An important caveat
 
-Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is due to missing extinct species etc., then your results may not be as robust as you imagine.
+Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine.
 
 ```{block, type = "warning"}
 Phylogenies are just **hypotheses** about the way evolution happened. Always bear this in mind when interpreting results from phylogenetic comparative methods.
@@ -585,32 +587,134 @@ Phylogenies are just **hypotheses** about the way evolution happened. Always bea
 ## Comparative data
 
 ### Sources of comparative data and data quality
-We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, and curated databases. Some you might collect from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
+We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
 
-A standard data collection protocol for comparative data until recently would be to sit in a library and work through all of their books and journals on your study group looking for the data you needed. Doing this reveals several issues. Some sources will be more up-to-date than others, some will give very accurate values whereas others will give approximations, some will be based on multiple individuals whereas others will be based on only one. These days it is more common to do this using internet searches, but in this case it is important to check the source of any information provided. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
+#### Peer-reviewed literature, books, field guides, and internet searches. 
+The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the internet. It is also possible to do all of this using internet searches instead, but it is important to check the source of any information provided. Journal articles and professional webpages are likely to be fine, but other webpages may not always state the source of their information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
 
-Another common issue can be illustrated by the following example. If we are collecting data on chameleon body sizes, a range of sources may record the body length of the same species as 175mm, less than 180cm, up to 180cm, and approximately 180cm. Here we recommend initially recording all of this information (see Scientific Method box below for more detail), along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species.
+Collecting data manually reveals several issues common to most comparative data collection. It's a sensible idea to decide how you will deal with these issues should they arise. 
 
-Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The exact same issues apply, and it is a good idea to check the data and sources of a database in the same way as for books or internet searches.
+- Some sources will be more up-to-date than others. Should you record all the data from all sources, or just focus on the most recent?
+- Some sources will give actual values whereas others will give approximations. Should you record any data you find, or remove approximations?
+- Some data will be based on multiple individuals whereas others will be based on only one. 
+- Some sources will list values as means, others will list values as maxima or minima. Will you record all of these or choose one?
 
-Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection.
+There are of course many ways to do this, and as long as you **record the decisions you have made** so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. Finally it is extremely important to **record the sources** for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection.
 
-### Summarising data across species
+#### 
+After collecting your data you'll likely need to summarise these data for each species, i.e. take the mean, median, minimum, maximum etc.
 
-After collecting your data you'll likely need to summarise these data for each species. 
+#### Curated databases
+Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or internet searches.
 
+### Scientific method box: Practical data collection
+How do we practically collect and record comparative data?
 
+Let's imagine we have the following three sources of chameleon body size and life history data. 
 
-```{block, type = "info"}
-Scientific method box. Data handling. 
+SOURCE 1: Smith et al 2020. 
+- *Chamaeleo chamaeleon*. 245mm, 80 eggs, sexually dimorphic.
+- *Brookesia minima*. 33mm, 2 eggs, sexually dimorphic.
+- *Calumma parsonii*. 650mm, 50 eggs, sexually dimorphic.
 
-Species, measure, units, data quality, source
+SOURCE 2: Jones et al 2020.
+- *Chamaeleo chamaeleon*. Up to 250cm, Up to 100 eggs.
+- *Brookesia minima*. Up to 34mm, 2 eggs.
+- *Calumma parsonii*. Up to 695mm, Up to 50 eggs.
 
-Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. In R the tidyr and dplyr packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case there are any problems. 
+SOURCE 3: Han et al 2020.
+- *Chamaeleo chamaeleon*. Approximately 10 inches.
+- *Brookesia minima*. Approximately 1 inch.
+- *Calumma parsonii*. Approximately 24 inches.
+
+We would tend to record these data in a table (probably in Excel or another spreadsheet program) like this.
+```{r}
+x <- data.frame("Species" = c(rep("Chamaeleo chamaeleon", 3), 
+                            rep("Brookesia minima", 3),
+                            rep("Calumma parsonii", 3),
+                            rep("Chamaeleo chamaeleon", 2), 
+                            rep("Brookesia minima", 2),
+                            rep("Calumma parsonii", 2),
+                            "Chamaeleo chamaeleon", 
+                            "Brookesia minima",
+                            "Calumma parsonii"),
+                "Measurement" = c(rep(c("length", "clutch size", "dimorphic"), 3),
+                                  rep(c("length", "clutch size"), 3),
+                                  rep("length", 3)),
+                "Value" = c(245, 80, 1, 33, 2, 1, 650, 50, 1,
+                            250, 100, 34, 2, 695, 50,
+                            10, 1, 24),
+                "Data_Type" = c(rep(c("mean", "mean", "truefalse"), 3),
+                           rep(c("max"), 6),
+                           rep("mean", 3)),
+                "Units" = c(rep(c("mm", "eggs", "NA"), 3),
+                            rep(c("mm", "eggs"), 3),
+                            rep("inches", 3)),
+                "Data_Quality" = c(rep("high", 9),
+                             rep("high", 6),
+                             rep("medium", 3)), 
+                "Approximation" = c(rep(FALSE, 15),
+                                    rep(TRUE, 3)),
+                "Source" = c(rep("Jones et al 2020", 9),
+                             rep("Smith et al 2020", 6),
+                             rep("Han et al 2020", 3))
+                             )
+
+# Show whole table
+kable(x, align = 'l')
+```
+We would also record the full reference for each source in a separate table. Recording the data like this makes it easy to enter in Excel, and also makes it easy for us to exclude certain types of data or sources should we decide we don't trust them enough to include in our analyses.
+
+Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. In R, the `tidyr` and `dplyr` packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case you accidentally introduce any errors, and so that you can repeat the data collection and analyses if needed.
+
+To wrangle this data, we would first convert the units to a standard unit for each measurement. Here we have length in mm and inches, so we would convert the inches into mm. The three altered rows are shown below. Note that converting from inches to mm gives us the false impression of precision, i.e. two values are now 25.4 and 609.6, rather than whole numbers making it look like these were measured accurately rather than approximated. It's worth looking out for this in other data, especially curated databases where this kind of conversion is typical.
+
+```{r}
+x2 <-
+  x %>% 
+  # Convert inches into mm
+  mutate(Value = ifelse(Units == "inches", conv_unit(Value, "inch", "mm"), Value)) %>%
+  # Remove units column
+  select(-Units, - Source)
+
+# Just show the last few entries
+kable(tail(x2, n = 3), align = 'l')
 ```
 
-```{block, type = "info"}
-The results of comparative analyses are only as good as the data you put into them. 
+Next we might decide to exclude low quality records, and remove any approximations. We might need to do something more complicated if we only have one record for a species and it is an approximation. In this case we are going to keep the approximations, and use all the data. But you should choose what is sensible for your dataset. 
+
+Finally, we want to summarise the data for each species, to get means/medians and possibly also minima and maxima. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs for example here we might want to extract:
+
+* *Median of mean length values*. This will tell us about the overall **mean** value for length across all sources.
+* *Maximum of maximum length values*. This will tell us about the overall **maximum** value for length across all sources.
+* *Median of mean clutch size values*. This will tell us about the overall **mean** value for clutch size across all sources.
+* *Maximum of maximum clutch size values*. This will tell us about the overall **maximum** value for clutch size across all sources.
+* *Median dimorphism score*. This will tell use whether the species is predominantly considered to be dimorphic or not.
+
+Our final dataset for analyses might look something like this. 
+```{r}
+x3 <-
+  x2 %>%
+  select(-Data_Quality, -Approximation) %>%
+  group_by(Species, Measurement, Data_Type) %>%
+  summarise(median = median(Value),
+                max = max(Value)) %>%
+  pivot_wider(names_from = c(Measurement, Data_Type), values_from = c(median, max)) %>%
+  select(Species, median_length = median_length_mean, max_length = max_length_max,
+         median_clutchsize = `median_clutch size_mean`, max_clutchsize = `max_clutch size_max`,
+         dimorphic = median_dimorphic_truefalse)
+
+kable(x3, align = 'l') 
+```  
+Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to acheive the above can be found in the *online materials*.
+
+
+
+
+
+
+```{block, type = "warning"}
+The results of comparative analyses are only as good as the data you put into them. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material.
 ```
 
 ## Modelling continuous traits - the Brownian Motion model of evolution
