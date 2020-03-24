@@ -34,12 +34,10 @@ Before we use comparative methods, we need to understand some basic concepts abo
     - Reading and using phylogenies.
 - Comparative data
     - basics.
-- Modelling continuous traits –
-    - the Brownian Model. 
-    - What if evolution is non Brownian?
+- Modelling continuous traits.
+    - the Brownian Motion (BM) model of evolution. 
 - Modelling discrete traits.
     - ARD, ER, SYM
-- Phylogenetic signal.
 
 
 ## A basic introduction to phylogenies 
@@ -737,7 +735,7 @@ The results of comparative analyses are only as good as the data you put into th
 ![Brownie in motion](images/brownie.jpg)
 Much of the last few sections has been quite practical, but now we are going to shift gears and think about some of the theory underpinning comparative methods.
 
-At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (presence or absence of a tail, growth form). For continuous traits, the most commonly used model is the Brownian motion model, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of cats!
+At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (e.g. presence or absence of a tail, growth form, number of legs). For continuous traits, the most commonly used model is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of cats!
 
 The Brownian model or BM model (Cavalli-Sforza and Edwards, 1967; Felsenstein, 1973) is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods (though this assumption is rarely tested; Freckleton and Harvey 2006). It can be fully described using just two parameters $z(0)$ and $\sigma^2$.
 
@@ -746,42 +744,42 @@ $z(0)$ is the starting value of the trait we are interested in. This is the mean
 Here's the explanation. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
 
 ```{r, normal, echo = FALSE, fig.cap='Three normal distributions.', out.width='80%', fig.asp=.75, fig.align='center'}
-base <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
+base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
   labs(x = "", y = "") +
   scale_y_continuous(breaks = NULL) +
   theme_cowplot() +
   remove_y +
   geom_vline(xintercept = 0, linetype = "dotted")
 
-p1 <- 
-  base +
+norm_0.1 <- 
+  base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.3162278), color = "gold" )+
   labs(tag = "A", size = 2) +
   annotate("text", label = "variance = 0.1", x = 2.5, y = 1.15, size = 5)
 
-p2 <- 
-  base +
+norm_0.25 <- 
+  base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.5), colour = "cornflowerblue")+
   labs(tag = "B", size = 2) +
   annotate("text", label = "variance = 0.25", x = 2.5, y = 0.75, size = 5)
 
-p3 <- 
-  base +
+norm_1 <- 
+  base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1), colour = "#fe4a49")+
   labs(tag = "C", size = 2) +
   annotate("text", label = "variance = 1", x = 2.5, y = 0.35, size = 5)
 
-(p1 / p2 / p3)
+(norm_0.1 / norm_0.25 / norm_1)
 
 ```
 
 Because the direction of change in trait values at each step is random, Brownian motion is often described as a “random walk”.
 
-Let's run a quick example simulation to see what is going on. Our trait can be any contibous feature of an organism, but for simplicity let's use body mass in cats.
+Let's run a quick example simulation to see what is going on. Our trait can be any continuous feature of an organism, but for simplicity let's use body mass in cats. First let's run one simulation on have the body size of one cat lineage changes through time.
 
 1. At the start, the trait value is $z(0)$. Here we'll start at $time = 0$ with an ancestral cat that weighs 4kg. The rate of evolution, or Brownian rate parameter, $\sigma^2$, is 0.25 (like the normal distribution in Figure \@ref(fig:normal)B).
 
-2. To determine the value for body mass at $time = 1$, we draw a random number from the normal distribution with $mean = 0$ and $\sigma^2 = 0.25$. In this example the value is $-0.1533193$. So the body mass of a cat at $time = 1$ is $4 + -0.1533193 = 3.84668$
+2. To determine the value for body mass at $time = 1$, we draw a random number from the normal distribution with $mean = 0$ and $\sigma^2 = 0.25$. In this example the value is $-0.1533193$. So the body mass of a cat at $time = 1$ is $4 + -0.1533193 = 3.84668$.
 
 3. To determine the value for body mass at $time = 2$, we draw a random number from the normal distribution with $mean = 0$ and $\sigma^2 = 0.25$. In this example the value is $-0.89065422$. So the body mass of a cat at $time = 2$ is $3.84668 + -0.89065422 = 2.95603$, recall that $3.84668$ is the body mass at $time = 1$.
 
@@ -814,7 +812,176 @@ basic +
 
 A few things to note. First, the direction of change is random, there is no trend towards increasing or decreasing body mass. Second, the changes do not depend on the changes that happened previously, i.e. an increase in body size at time 1 does not mean an increase (or decrease) at time 2 is more or less likely. The random nature of trait changes is why the Brownian model is often referred to as a **random walk**. We sometimes describe it as being like a drunk person walking down the road, wobbling about but in no particular direction...
 
-The example above just uses one species, what if we want to model the evolution of all species in a phylogeny? This is usually how we use the Brownian model, and it is very simple to extend. At each time point where there is speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
+```{block, type = "info"}
+Although our examples here use t = 1, t = 2 etc. to illustrate what is happening, Brownian motion is a continuous time process, and so time does not have discrete steps in the model.
+```
+
+The example above includes only one simulation to give you a basic idea of what is going on. To get a better idea of the patterns we expect to see, let's run 100 simulations instead, over a longer time period. Because the Brownian model is a random walk, we expect each simulation to be slightly different depending on the values drawn out of the normal distribution each time.
+```{r, echo = FALSE}
+# Create matrices with values from three BM simulations
+# Define time and number of simulations 
+t <- 1:99
+nsim <- 100
+# Define three different values for sig2
+sig2_0.1 <- 0.1
+sig2_0.25 <- 0.25
+sig2_1 <- 1
+
+# Create three different matrices of numbers drawn from a normal distribution with for different sig2. These will be the trait changes.
+X_0.1 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                       sd = sqrt(sig2_0.1)), nsim, length(t) - 1)
+X_0.25 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                   sd = sqrt(sig2_0.25)), nsim, length(t) - 1)
+X_1 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                      sd = sqrt(sig2_1 )), nsim, length(t) - 1)
+
+# Use cumsum to get the trait values from the trait change matrices
+sim_matrix_0.1 <- cbind(rep(0, nsim), 
+                         t(apply(X_0.1 , 1, cumsum)))
+sim_matrix_0.25 <- cbind(rep(0, nsim), 
+                         t(apply(X_0.25 , 1, cumsum)))
+sim_matrix_1 <- cbind(rep(0, nsim), 
+                        t(apply(X_1 , 1, cumsum)))
+
+# Make matrices into dataframes
+sim_0.1 <- melt(sim_matrix_0.1)
+sim_0.25 <- melt(sim_matrix_0.25)
+sim_1 <- melt(sim_matrix_1)
+
+# Rename variables
+names(sim_0.1) <- c("sim", "time", "trait")
+names(sim_0.25) <- c("sim", "time", "trait")
+names(sim_1) <- c("sim", "time", "trait")
+
+# Select only the tip values for histograms
+sim_0.1_tips <- filter(sim_0.1, time == 99)
+sim_0.25_tips <- filter(sim_0.25, time == 99)
+sim_1_tips <- filter(sim_1, time == 99)
+```
+
+As above, we will start at $time = 0$ with an ancestral cat that weighs 4kg (i.e. $z(0) = 4$), and use $\sigma^2$ of 0.25 as the rate of evolution.
+
+```{r bm100, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
+# Make line plots
+base <-
+  ggplot(sim_0.1, aes(x = time, y = trait, group = sim)) +
+  labs(x = "time", y = "body size (kg)") +
+  theme_cowplot() +
+  scale_y_continuous(breaks = c(-20, 0, 20), limits = c(-30, 30), labels = c(3,4,5) ) +
+  scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
+  expand_limits(x = 0)
+
+# Plot
+  base + geom_line(data = sim_0.25, alpha = 0.25)
+```
+
+Notice how the variance in body size (i.e. the spread of different values of body size) *increases linearly with time* (it's not perfectly linear here, but it would be if we ran more simulations). Meaning that body size variance is greatest over the longest time intervals. In biological terms this means we expect to see more variance in the trait values of groups that have been evolving for longer.
+
+```{r bmvariance, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
+# Make line plots
+p1 <-
+  base +
+  geom_line(data = sim_0.25, alpha = 0.25)
+
+# Extract variances
+vars <- 
+  sim_0.25 %>%
+  group_by(time) %>%
+  summarise(var = var(trait))
+
+# Plot variance through time
+var_plot <-
+  ggplot(vars, aes(x = time, y = var)) +
+  labs(x = "time", y = "variance") +
+  theme_cowplot() +
+  scale_y_continuous(breaks = c(0,10,20), limits = c(0, 25)) +
+  scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
+  expand_limits(x = 0) +
+  geom_line()
+
+p1 / var_plot
+```
+
+If we vary the value of $\sigma^2$ we can look at the effect of changing the rate of evolution on the values of body size we evolve in our cat simulations. If the rate of evolution is lower, then variance in body size accumulates more slowly (Figure \@ref(fig:bmplots)A); if the rate of evolution is higher, then variance in body size accumulates more quickly (Figure \@ref(fig:bmplots)C). The overall variance of the Brownian process is equalt to the rate of evolution multiplied by the amount of time that has elapsed. 
+
+```{r bmplots, message = FALSE, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
+# Make line plots
+plot_0.1 <-
+  base + 
+  geom_line(data = sim_0.1, alpha = 0.25) +
+  labs(y = "")
+
+plot_0.25 <-
+  base + geom_line(data = sim_0.25, alpha = 0.25) +
+  ylab("body size (kg)")
+
+plot_1 <-
+  base + geom_line(data = sim_1, alpha = 0.25) +
+  ylab("")
+
+# Add normal distributions
+norm_0.1 <- 
+  base_norm +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.3162278), color = "gold" )+
+  labs(tag = "A", size = 2) +
+  annotate("text", label = "var = 0.1", x = 2, y = 1.15, size = 5)
+
+norm_0.25 <- 
+  base_norm +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.5), colour = "cornflowerblue")+
+  labs(tag = "B", size = 2) +
+  annotate("text", label = "var = 0.25", x = 2, y = 0.75, size = 5)
+
+norm_1 <- 
+  base_norm +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1), colour = "#fe4a49")+
+  labs(tag = "C", size = 2) +
+  annotate("text", label = "var = 1", x = 2, y = 0.35, size = 5)
+
+(norm_0.1 + plot_0.1)/ 
+  (norm_0.25 + plot_0.25) / 
+  (norm_1 + plot_1)
+```
+
+One final feature to highlight is what the body size values look like at the end of the simulations, i.e. where $t = 100$. If we assume that the present-day is $t = 100$, we can imagine that these values are equivalent to the body size values for the species at the tips of our phylogeny. 
+
+Because trait changes are drawn from a normal distribution with a mean of 0, on average we expect no change in body size through time. So if we run enough simulations, the mean of the trait values at the end of the simulations should be equal to the starting value $z(0)$, in this case 4kg. The rest of the values should be evenly distributed around the mean, so we expect the body size values to be normally distributed. 
+
+As demonstrated above, the variance of these normal distributions of body sizes will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure \@ref(fig:bmhist)) *and* the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure \@ref(fig:bmvariance)). More precisely, we can define the overall variance of the Brownian process as the rate of evolution times the amount of time that has elapsed. 
+
+```{r, echo = FALSE, warning = FALSE}
+# Now create histograms of trait values at tips
+hist_0.1 <-
+  ggplot(sim_0.1_tips, aes(x = trait)) +
+  theme_void() +
+  xlim(-30,30) +
+  ylim(0,65) +
+  geom_histogram(bins = 12, fill = "gold", alpha = 0.8, colour = "black") +
+  coord_flip()
+
+hist_0.25 <-
+  ggplot(sim_0.25_tips, aes(x = trait)) +
+  theme_void() +
+  xlim(-30, 30) +
+  ylim(0, 65) +
+  geom_histogram(bins = 12, fill = "cornflowerblue", alpha = 0.8, colour = "black") +
+  coord_flip()
+
+hist_1 <-
+  ggplot(sim_1_tips, aes(x = trait)) +
+  theme_void() +
+  xlim(-30, 30) +
+  ylim(0, 65) +
+  geom_histogram(bins = 12, fill = "#fe4a49", alpha = 0.8, colour = "black") +
+  coord_flip()
+
+(plot_0.1 + ylab("") + labs(tag = "A", size = 2) + hist_0.1 )/ 
+  (plot_0.25 + ylab("body size") + labs(tag = "B", size = 2) + hist_0.25) / 
+  (plot_1 + ylab("") + labs(tag = "C", size = 2) + hist_1)
+```
+
+
+The examples above ignore the topology of the phylogeny. What if we want to model the evolution of all species in a phylogeny? This is usually how we use the Brownian model, and it is very simple to extend. At each time point where there is speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
 
 ```{r, echo = FALSE}
 # Read in cat phylogeny
@@ -886,154 +1053,45 @@ cattree + all +
   plot_layout(widths = c(1, 2))
 ```
 
-A few more things to note here. 
+A few things to note here. 
 
 First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \ref@(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
 
-Second, we used the same normal distribution throughout to randomly draw our trait change values. This measn that $\sigma^2$ was also the same throughout. This means that the rate of evolution across the tree is constant, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
-
-######### need to finish this bit - see what luke did here
-The final feature of interest in the Brownian model is what happens to the distribution of traits at the tips of the phylogeny. In the cat example, we end up with four cats of size?
-It also means that variance in the trait will increase (linearly) in proportion to time.
-
-```{r, echo = FALSE}
-# Create matrices with values from three BM simulations
-# Define time and number of simulations 
-t <- 0:99
-nsim <- 50
-# Define three different values for sig2
-sig2_0.01 <- 0.01
-sig2_0.05 <- 0.05
-sig2_0.1 <- 0.1
-
-# Create three different matrices of numbers drawn from a normal distribution with for different sig2. These will be the trait changes.
-X_0.01 <- matrix(rnorm(n = nsim * (length(t) - 1), 
-                       sd = sqrt(sig2_0.01)), nsim, length(t) - 1)
-X_0.05 <- matrix(rnorm(n = nsim * (length(t) - 1), 
-                   sd = sqrt(sig2_0.05)), nsim, length(t) - 1)
-X_0.1 <- matrix(rnorm(n = nsim * (length(t) - 1), 
-                      sd = sqrt(sig2_0.1 )), nsim, length(t) - 1)
-
-# Use cumsum to get the trait values from the trait change matrices
-sim_matrix_0.01 <- cbind(rep(0, nsim), 
-                         t(apply(X_0.01 , 1, cumsum)))
-sim_matrix_0.05 <- cbind(rep(0, nsim), 
-                         t(apply(X_0.05 , 1, cumsum)))
-sim_matrix_0.1 <- cbind(rep(0, nsim), 
-                        t(apply(X_0.1 , 1, cumsum)))
-
-# Make matrices into dataframes
-sim_0.01 <- melt(sim_matrix_0.01)
-sim_0.05 <- melt(sim_matrix_0.05)
-sim_0.1 <- melt(sim_matrix_0.1)
-
-# Rename variables
-names(sim_0.01) <- c("sim", "time", "trait")
-names(sim_0.05) <- c("sim", "time", "trait")
-names(sim_0.1) <- c("sim", "time", "trait")
-
-# Make line plots
-base <-
-  ggplot(sim_0.1, aes(x = time, y = trait+10, group = sim)) +
-  labs(x = "time", y = "trait value") +
-  theme_cowplot() +
-  scale_y_continuous(breaks = c(0,10,20), limits = c(0, 20)) +
-  scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
-  expand_limits(x = 0)
-
-plot_0.1 <-
-  base + geom_line()
-
-plot_0.01 <-
-  base + geom_line(data = sim_0.01)
-
-plot_0.05 <-
-  base + geom_line(data = sim_0.05)
-
-# Now create histograms of trait values at tips
-# First select only the tip values
-sim_0.01_tips <- filter(sim_0.01, time == 99)
-sim_0.05_tips <- filter(sim_0.05, time == 99)
-sim_0.1_tips <- filter(sim_0.1, time == 99)
-
-hist_0.01 <-
-  ggplot(sim_0.01_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
-  coord_flip()
-
-hist_0.05 <-
-  ggplot(sim_0.05_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
-  coord_flip()
-
-hist_0.1 <-
-  ggplot(sim_0.1_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
-  coord_flip()
-
-(plot_0.1 + hist_0.1)/ (plot_0.05 + hist_0.05) / (plot_0.01 + hist_0.01)
-```
-```{r}
-hist_0.01 <-
-  ggplot(sim_0.01_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8)
-
-hist_0.05 <-
-  ggplot(sim_0.05_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) 
-
-hist_0.1 <-
-  ggplot(sim_0.1_tips, aes(x = trait+10)) +
-  theme_void() +
-  xlim(0,20) +
-  ylim(0,35) +
-  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) 
-
-(plot_0.1 + hist_0.1)/ (plot_0.05 + hist_0.05) / (plot_0.01 + hist_0.01)
-
-```
-
-
+Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that $\sigma^2$ was also the same throughout. This means that the *rate of evolution across the tree is constant*, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
 ### Brownian Motion model summary
 To summarise the above, the key features of the Brownian motion model are: 
+
 - Traits evolve at random, i.e. by a random walk.
-- There is no overall drift in the direction of evolution, i.e. the direction and magnitude of the change at one time interval is independent of the direction and magnitude of the change at other time intervals.
+- The direction and magnitude of the trait change at one time interval is independent of the direction and magnitude of the trait changes at other time intervals.
+- There is no overall drift in the direction of evolution.
 - Traits evolve at a rate $\sigma^2$.
 - The rate of evolution is constant.
+- Variance in traits increase (linearly) in proportion to time.
+- The overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed. 
+
+In terms of the model parameters:
+
 - The model can be fully described using just two parameters $z(0)$ and $\sigma^2$.
-- Correlation among trait values is proportional to the extent of shared ancestry for pairs of  species, i.e. close relatives are more similar than more distant relatives. 
-- It also means that variance in the trait will increase (linearly) in proportion to time.
-- The Brownian motion model is sometimes thought of as a "null model" of evolution 
 - $z(0)$ is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait.
 -  $\sigma^2$ is the rate at which evolution (i.e. trait change) occurs. It is also referred to as the Brownian rate parameter.
 
+Some biological implications of the model are:
+
+- Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
+- Different lineages evolve at the same rate.
+
+
 ### What if evolution is non Brownian?
 
-Bad luck!
+Already you've probably realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these later in the book.
 
 ## Modelling discrete traits - simple models
     - ARD, ER, SYM
 
 
-## Phylogenetic signal
-Phylogenetic signal is the pattern where close relatives have more similar trait values than more distant relatives (see Kamilar and Cooper 2013). 
+## Summary
 
+Hopefully this chapter has given you a good insight into the foundations unerlying phylogenetic comparative methods. In the next chapter we will do XXX
 
-
-Note that often people will mention that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see Revell 2010). $\lambda$ shown in PGLS models above is the $\lambda$ for the model residuals **not** the individual variables. 
+## Online questions?
