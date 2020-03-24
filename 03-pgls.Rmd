@@ -9,3 +9,14 @@ This chapter will cover the most common use of phylogenetic comparative methods 
 •	Links to other kinds of non-independence, e.g. spatial, temporal.  
 •	Emphasising the relationship to familiar statistics, e.g. regression, GLM, mixed models, meta-analysis. 
 •	Online supplement linking to current software packages
+
+
+
+
+
+## Phylogenetic signal
+Phylogenetic signal is the pattern where close relatives have more similar trait values than more distant relatives (see Kamilar and Cooper 2013). 
+
+
+
+Note that often people will mention that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see Revell 2010). $\lambda$ shown in PGLS models above is the $\lambda$ for the model residuals **not** the individual variables. 
