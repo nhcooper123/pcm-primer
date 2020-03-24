@@ -10,6 +10,7 @@ output:
 library(ggtree)
 library(ape)
 library(caper)
+library(reshape2)
 library(tidyverse)
 library(patchwork)
 library(ggimage)
@@ -815,7 +816,7 @@ A few things to note. First, the direction of change is random, there is no tren
 
 The example above just uses one species, what if we want to model the evolution of all species in a phylogeny? This is usually how we use the Brownian model, and it is very simple to extend. At each time point where there is speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
 
-```{r bmcat, echo = FALSE, fig.cap='Three normal distributions.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, echo = FALSE}
 # Read in cat phylogeny
 tree <- read.tree("data/cat.tre")
 
@@ -846,7 +847,7 @@ ggtree(tree) +
 ```
 
 
-```{r}
+```{r bmcat, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
 # Create BM data for two new lineages
 # Draw from distribution and add to start value
 x2 <- c(18.87007, 0.2277251,  0.3524187,  
@@ -887,7 +888,7 @@ cattree + all +
 
 A few more things to note here. 
 
-First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more siialr to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \ref@(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
+First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \ref@(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
 
 Second, we used the same normal distribution throughout to randomly draw our trait change values. This measn that $\sigma^2$ was also the same throughout. This means that the rate of evolution across the tree is constant, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
@@ -895,12 +896,125 @@ Second, we used the same normal distribution throughout to randomly draw our tra
 The final feature of interest in the Brownian model is what happens to the distribution of traits at the tips of the phylogeny. In the cat example, we end up with four cats of size?
 It also means that variance in the trait will increase (linearly) in proportion to time.
 
+```{r, echo = FALSE}
+# Create matrices with values from three BM simulations
+# Define time and number of simulations 
+t <- 0:99
+nsim <- 50
+# Define three different values for sig2
+sig2_0.01 <- 0.01
+sig2_0.05 <- 0.05
+sig2_0.1 <- 0.1
+
+# Create three different matrices of numbers drawn from a normal distribution with for different sig2. These will be the trait changes.
+X_0.01 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                       sd = sqrt(sig2_0.01)), nsim, length(t) - 1)
+X_0.05 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                   sd = sqrt(sig2_0.05)), nsim, length(t) - 1)
+X_0.1 <- matrix(rnorm(n = nsim * (length(t) - 1), 
+                      sd = sqrt(sig2_0.1 )), nsim, length(t) - 1)
+
+# Use cumsum to get the trait values from the trait change matrices
+sim_matrix_0.01 <- cbind(rep(0, nsim), 
+                         t(apply(X_0.01 , 1, cumsum)))
+sim_matrix_0.05 <- cbind(rep(0, nsim), 
+                         t(apply(X_0.05 , 1, cumsum)))
+sim_matrix_0.1 <- cbind(rep(0, nsim), 
+                        t(apply(X_0.1 , 1, cumsum)))
+
+# Make matrices into dataframes
+sim_0.01 <- melt(sim_matrix_0.01)
+sim_0.05 <- melt(sim_matrix_0.05)
+sim_0.1 <- melt(sim_matrix_0.1)
+
+# Rename variables
+names(sim_0.01) <- c("sim", "time", "trait")
+names(sim_0.05) <- c("sim", "time", "trait")
+names(sim_0.1) <- c("sim", "time", "trait")
+
+# Make line plots
+base <-
+  ggplot(sim_0.1, aes(x = time, y = trait+10, group = sim)) +
+  labs(x = "time", y = "trait value") +
+  theme_cowplot() +
+  scale_y_continuous(breaks = c(0,10,20), limits = c(0, 20)) +
+  scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
+  expand_limits(x = 0)
+
+plot_0.1 <-
+  base + geom_line()
+
+plot_0.01 <-
+  base + geom_line(data = sim_0.01)
+
+plot_0.05 <-
+  base + geom_line(data = sim_0.05)
+
+# Now create histograms of trait values at tips
+# First select only the tip values
+sim_0.01_tips <- filter(sim_0.01, time == 99)
+sim_0.05_tips <- filter(sim_0.05, time == 99)
+sim_0.1_tips <- filter(sim_0.1, time == 99)
+
+hist_0.01 <-
+  ggplot(sim_0.01_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
+  coord_flip()
+
+hist_0.05 <-
+  ggplot(sim_0.05_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
+  coord_flip()
+
+hist_0.1 <-
+  ggplot(sim_0.1_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) +
+  coord_flip()
+
+(plot_0.1 + hist_0.1)/ (plot_0.05 + hist_0.05) / (plot_0.01 + hist_0.01)
+```
+```{r}
+hist_0.01 <-
+  ggplot(sim_0.01_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8)
+
+hist_0.05 <-
+  ggplot(sim_0.05_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) 
+
+hist_0.1 <-
+  ggplot(sim_0.1_tips, aes(x = trait+10)) +
+  theme_void() +
+  xlim(0,20) +
+  ylim(0,35) +
+  geom_histogram(bins = 12, fill = "grey", alpha = 0.8) 
+
+(plot_0.1 + hist_0.1)/ (plot_0.05 + hist_0.05) / (plot_0.01 + hist_0.01)
+
+```
+
+
 
 ### Brownian Motion model summary
 To summarise the above, the key features of the Brownian motion model are: 
 - Traits evolve at random, i.e. by a random walk.
+- There is no overall drift in the direction of evolution, i.e. the direction and magnitude of the change at one time interval is independent of the direction and magnitude of the change at other time intervals.
 - Traits evolve at a rate $\sigma^2$.
-- There is no overall drift in the direction of evolution.
 - The rate of evolution is constant.
 - The model can be fully described using just two parameters $z(0)$ and $\sigma^2$.
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of  species, i.e. close relatives are more similar than more distant relatives. 
