@@ -551,7 +551,7 @@ Maximum Likelihood is a statistical method for estimating the unknown parameters
 
 In the case of phylogenetic inference, our model is the tree and an evolutionary model describing how the trait data (e.g. gene sequences or morphological characters) change. We therefore use Likelihood to calculate the probability of the observed trait data given the phylogeny and evolutionary model. The method selects the tree that best accounts for the data, i.e. the phylogeny or phylogenies with the Maximum Likelihood. 
 
-Maximum Likelihood is considered to be a better phylogenetic inference method than parsimony for genetic data because we can explicitly define the underlying evolutionary model of DNA evolution, rather than just assuming the smallest number of changes gives the best tree. Remember that DNA is made up of four bases (cytosine [C], guanine [G], adenine [A] and thymine [T]), and these can be split into pyrimidines (C and T) and purines (A and G). Changes from C to T (and vice versa), or A to G (and vice versa), are called *transitions*, and these apear to be easier and thus occur at a higher rate than *transversions*, i.e. changes from C to A (and vice versa), or C to G (and vice versa), or T to A (and vice versa), or T to G (and vice versa). The frequencies of bases can also vary. Multiple models of DNA sequence evolution exist that take into account these various factors. The most commonly used are: 
+Maximum Likelihood is considered to be a better phylogenetic inference method than parsimony for genetic data because we can explicitly define the underlying evolutionary model of DNA evolution, rather than just assuming the smallest number of changes gives the best tree. Remember that DNA is made up of four bases (cytosine [C], guanine [G], adenine [A] and thymine [T]), and these can be split into pyrimidines (C and T) and purines (A and G). Changes from C to T (and vice versa), or A to G (and vice versa), are called *transitions*, and these appear to be easier and thus occur at a higher rate than *transversions*, i.e. changes from C to A (and vice versa), or C to G (and vice versa), or T to A (and vice versa), or T to G (and vice versa). The frequencies of bases can also vary. Multiple models of DNA sequence evolution exist that take into account these various factors. The most commonly used are: 
 
 - **JC**. Jukes Cantor [@jukes1969evolution]. This is the simplest model possible. All base changes are equally likely; base frequencies are equal. 
 - **K2P**. Kimura 2 parameter [@kimura1980simple]. Transitions and transversions have different substitution rates; base frequencies are equal.
@@ -565,14 +565,14 @@ Maximum Likelihood approaches are very computationally intensive and can be very
 #### Bayesian
 Bayesian methods calculate the probability of the model given the data, *P(model|data)*, i.e. the reverse of Maximum Likelihood. In the case of Bayesian phylogenetic inference, we calculate the probability of the observed phylogeny given the trait data and the underlying evolutionary model. These models are the same as those used in Maximum Likelihood tree inference. 
 
-The main difference between Bayesian approaches and both Maximum Likelihood and parsimony, is that we are no longer searching tree space for the "best" tree or trees. Instead, Bayesian methods output a *posterior distribution* of trees. The Bayesian method searches tree space, saving and outputting all trees it finds at regular intervals. This can result in thousands or even millions of possible trees. The user then specifies how many trees they would like to export as a posterior distribution of trees. This will consist of that number of trees, spread across the variety of trees inferred, but with the frequency of their occurence being based on their probability. For example, if your Bayesian method produces tree topologies A-Z, but topologies A-D are most common, the posterior distribution of trees will mirror that and will contain more trees with topologies A-D, than those with topologies E-Z.
+The main difference between Bayesian approaches and both Maximum Likelihood and parsimony, is that we are no longer searching tree space for the "best" tree or trees. Instead, Bayesian methods output a *posterior distribution* of trees. The Bayesian method searches tree space, saving and outputting all trees it finds at regular intervals. This can result in thousands or even millions of possible trees. The user then specifies how many trees they would like to export as a posterior distribution of trees. This will consist of that number of trees, spread across the variety of trees inferred, but with the frequency of their occurrence being based on their probability. For example, if your Bayesian method produces tree topologies A-Z, but topologies A-D are most common, the posterior distribution of trees will mirror that and will contain more trees with topologies A-D, than those with topologies E-Z.
  
 The reasoning behind this is that phylogenetic inference is complex, so the probability of there being just one (or a few) trees that best represent the relationships among species is unlikely. With Bayesian approaches it is possible to get a clearer idea of *phylogenetic uncertainty*, and to actually incorporate this into our understanding of species relationships and downstream comparative analyses.
 
 Because of the way posterior distributions are constructed, consensus trees are not appropriate for Bayesian phylogenies. Instead, we tend to run each analysis on the whole posterior distribution of trees, resulting in a posterior distribution of results. This can be a little more difficult to visualise, but gives a much better understanding of the effect of phylogenetic uncertainty on comparative analyses.
 
 ### Where do we get phylogenies from for comparative analyses?
-Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
+Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
 
 How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you to the best phylogeny include:
 
@@ -595,10 +595,10 @@ Phylogenies are just **hypotheses** about the way evolution happened. Always bea
 ## Comparative data
 
 ### Sources of comparative data and data quality
-We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
+We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, Internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
 
 #### Peer-reviewed literature, books, field guides, and internet searches. 
-The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the internet. It is also possible to do all of this using internet searches instead, but it is important to check the source of any information provided. Journal articles and professional webpages are likely to be fine, but other webpages may not always state the source of their information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
+The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the Internet. It is also possible to do all of this using Internet searches instead, but it is important to check the source of any information provided. Journal articles and professional web-pages are likely to be fine, but other web-pages may not always state the source of their information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
 
 Collecting data manually reveals several issues common to most comparative data collection. It's a sensible idea to decide how you will deal with these issues should they arise. 
 
@@ -612,26 +612,26 @@ There are of course many ways to do this, and as long as you **record the decisi
 After collecting your data you'll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (*see Scientific Method box*). This process may seem trivial, but can have a large influence on your results.
 
 #### Curated databases
-Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or internet searches.
+Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
 
 ### Scientific method box: Practical data collection
 How do we practically collect and record comparative data?
 
-Let's imagine we have the following three sources of chameleon body size and life history data. 
+Let's imagine we have the following three sources of chameleon body length and life history data. 
 
-**SOURCE 1: Smith et al 2020.** 
+**SOURCE 1: Smith et al. 2020.** 
 
-- *Chamaeleo chamaeleon*. 245mm, 80 eggs, sexually dimorphic.
-- *Brookesia minima*. 33mm, 2 eggs, sexually dimorphic.
-- *Calumma parsonii*. 650mm, 50 eggs, sexually dimorphic.
+- *Chamaeleo chamaeleon*. 245 mm, 80 eggs, sexually dimorphic.
+- *Brookesia minima*. 33 mm, 2 eggs, sexually dimorphic.
+- *Calumma parsonii*. 650 mm, 50 eggs, sexually dimorphic.
 
-**SOURCE 2: Jones et al 2020.**
+**SOURCE 2: Jones et al. 2020.**
 
-- *Chamaeleo chamaeleon*. Up to 250cm, Up to 100 eggs.
-- *Brookesia minima*. Up to 34mm, 2 eggs.
-- *Calumma parsonii*. Up to 695mm, Up to 50 eggs.
+- *Chamaeleo chamaeleon*. Up to 250 cm, Up to 100 eggs.
+- *Brookesia minima*. Up to 34 mm, 2 eggs.
+- *Calumma parsonii*. Up to 695 mm, Up to 50 eggs.
 
-**SOURCE 3: Han et al 2020.**
+**SOURCE 3: Han et al. 2020.**
 
 - *Chamaeleo chamaeleon*. Approximately 10 inches.
 - *Brookesia minima*. Approximately 1 inch.
@@ -692,7 +692,6 @@ x2 <-
 kable(tail(x2, n = 3), align = 'l')
 ```
 
-
 Next we might decide to exclude low quality records, and remove any approximations. We might need to do something more complicated if we only have one record for a species and it is an approximation. In this case we are going to keep the approximations, and use all the data. But you should choose what is sensible for your dataset. 
 
 Finally, we want to summarise the data for each species, to get means/medians and possibly also minima and maxima. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs for example here we might want to extract:
@@ -719,11 +718,7 @@ x3 <-
 kable(x3, align = 'l') 
 ```  
 
-Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to acheive the above can be found in the *online materials*.
-
-
-
-
+Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to achieve the above can be found in the *online materials*.
 
 
 ```{block, type = "warning"}
@@ -735,7 +730,7 @@ The results of comparative analyses are only as good as the data you put into th
 ![Brownie in motion](images/brownie.jpg)
 Much of the last few sections has been quite practical, but now we are going to shift gears and think about some of the theory underpinning comparative methods.
 
-At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (e.g. presence or absence of a tail, growth form, number of legs). For continuous traits, the most commonly used model is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of cats!
+At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (e.g. presence or absence of a tail, growth form, number of legs). For continuous traits, the most commonly used model is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!
 
 The Brownian model or BM model (Cavalli-Sforza and Edwards, 1967; Felsenstein, 1973) is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods (though this assumption is rarely tested; Freckleton and Harvey 2006). It can be fully described using just two parameters $z(0)$ and $\sigma^2$.
 
@@ -743,7 +738,7 @@ $z(0)$ is the starting value of the trait we are interested in. This is the mean
 
 Here's the explanation. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
 
-```{r, normal, echo = FALSE, fig.cap='Three normal distributions.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r, normal, echo = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
 base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
   labs(x = "", y = "") +
   scale_y_continuous(breaks = NULL) +
@@ -775,9 +770,9 @@ norm_1 <-
 
 Because the direction of change in trait values at each step is random, Brownian motion is often described as a “random walk”.
 
-Let's run a quick example simulation to see what is going on. Our trait can be any continuous feature of an organism, but for simplicity let's use body mass in cats. First let's run one simulation on have the body size of one cat lineage changes through time.
+Let's run a quick example simulation to see what is going on. Our trait can be any continuous feature of an organism, but for simplicity let's use body mass in (imaginary!) cats. First let's run one simulation to show how the body mass of one cat lineage changes through time under the Brownian model.
 
-1. At the start, the trait value is $z(0)$. Here we'll start at $time = 0$ with an ancestral cat that weighs 4kg. The rate of evolution, or Brownian rate parameter, $\sigma^2$, is 0.25 (like the normal distribution in Figure \@ref(fig:normal)B).
+1. At the start, the trait value is $z(0)$. Here we'll start at $time = 0$ with an ancestral cat that weighs 4 kg. The rate of evolution, or Brownian rate parameter, $\sigma^2$, is 0.25 (like the normal distribution in Figure \@ref(fig:normal)B).
 
 2. To determine the value for body mass at $time = 1$, we draw a random number from the normal distribution with $mean = 0$ and $\sigma^2 = 0.25$. In this example the value is $-0.1533193$. So the body mass of a cat at $time = 1$ is $4 + -0.1533193 = 3.84668$.
 
@@ -785,7 +780,7 @@ Let's run a quick example simulation to see what is going on. Our trait can be a
 
 4. If we continue this until we get to $time = 10$ we get a graph that shows the evolution of the trait through time that looks like Figure \@ref(fig:cat1) (the numbers are the body mass values, rounded to two decimal places).
 
-```{r cat1, echo = FALSE, fig.cap='Simple BM simulation.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r cat1, echo = FALSE, fig.cap='A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$.', out.width='80%', fig.asp=.75, fig.align='center'}
 # Create Brownian simulation data
 #x <- c(20, rnorm(mean = 0, sd = 0.5, 10))
 # Here we set the values so it always looks the same:
@@ -810,7 +805,7 @@ basic +
   geom_label(aes(label = round(bmass-16, digits = 2)))
 ```
 
-A few things to note. First, the direction of change is random, there is no trend towards increasing or decreasing body mass. Second, the changes do not depend on the changes that happened previously, i.e. an increase in body size at time 1 does not mean an increase (or decrease) at time 2 is more or less likely. The random nature of trait changes is why the Brownian model is often referred to as a **random walk**. We sometimes describe it as being like a drunk person walking down the road, wobbling about but in no particular direction...
+A few things to note. First, the direction of change is random, there is no trend towards increasing or decreasing body mass. Second, the changes do not depend on the changes that happened previously, i.e. an increase in body mass at time 1 does not mean an increase (or decrease) at time 2 is more or less likely. The random nature of trait changes is why the Brownian model is often referred to as a **random walk**. We sometimes describe it as being like a drunk person walking down the road, wobbling about but in no particular direction...
 
 ```{block, type = "info"}
 Although our examples here use t = 1, t = 2 etc. to illustrate what is happening, Brownian motion is a continuous time process, and so time does not have discrete steps in the model.
@@ -859,29 +854,24 @@ sim_0.25_tips <- filter(sim_0.25, time == 99)
 sim_1_tips <- filter(sim_1, time == 99)
 ```
 
-As above, we will start at $time = 0$ with an ancestral cat that weighs 4kg (i.e. $z(0) = 4$), and use $\sigma^2$ of 0.25 as the rate of evolution.
+As above, we will start at $time = 0$ with an ancestral cat that weighs 4 kg (i.e. $z(0) = 4$), and use $\sigma^2$ of 0.25 as the rate of evolution (Figure \@ref(fig:bm100)A).
 
-```{r bm100, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
-# Make line plots
+```{r bm100, echo = FALSE, fig.cap='100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B).', out.width='80%', fig.asp=.75, fig.align='center'}
+# Create base graph
 base <-
   ggplot(sim_0.1, aes(x = time, y = trait, group = sim)) +
-  labs(x = "time", y = "body size (kg)") +
+  labs(x = "time", y = "body mass (kg)") +
   theme_cowplot() +
   scale_y_continuous(breaks = c(-20, 0, 20), limits = c(-30, 30), labels = c(3,4,5) ) +
   scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
   expand_limits(x = 0)
 
-# Plot
-  base + geom_line(data = sim_0.25, alpha = 0.25)
-```
-
-Notice how the variance in body size (i.e. the spread of different values of body size) *increases linearly with time* (it's not perfectly linear here, but it would be if we ran more simulations). Meaning that body size variance is greatest over the longest time intervals. In biological terms this means we expect to see more variance in the trait values of groups that have been evolving for longer.
-
-```{r bmvariance, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
 # Make line plots
 p1 <-
   base +
-  geom_line(data = sim_0.25, alpha = 0.25)
+  geom_line(data = sim_0.25, alpha = 0.25) +
+  labs(tag = "A", size = 2)
+
 
 # Extract variances
 vars <- 
@@ -897,14 +887,17 @@ var_plot <-
   scale_y_continuous(breaks = c(0,10,20), limits = c(0, 25)) +
   scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
   expand_limits(x = 0) +
-  geom_line()
+  geom_line() +
+  labs(tag = "B", size = 2)
 
 p1 / var_plot
 ```
 
-If we vary the value of $\sigma^2$ we can look at the effect of changing the rate of evolution on the values of body size we evolve in our cat simulations. If the rate of evolution is lower, then variance in body size accumulates more slowly (Figure \@ref(fig:bmplots)A); if the rate of evolution is higher, then variance in body size accumulates more quickly (Figure \@ref(fig:bmplots)C). The overall variance of the Brownian process is equalt to the rate of evolution multiplied by the amount of time that has elapsed. 
+Notice how the variance in body mass (i.e. the spread of different values of body mass) *increases linearly with time* (it's not perfectly linear here, but it would be if we ran more simulations; Figure \@ref(fig:bm100)B). Meaning that body mass variance is greatest over the longest time intervals. In biological terms this means we expect to see more variance in the trait values of groups that have been evolving for longer.
 
-```{r bmplots, message = FALSE, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
+If we vary the value of $\sigma^2$ we can look at the effect of changing the rate of evolution on the values of body mass we evolve in our cat simulations. If the rate of evolution is lower, then variance in body mass accumulates more slowly (Figure \@ref(fig:bmplots)A); if the rate of evolution is higher, then variance in body mass accumulates more quickly (Figure \@ref(fig:bmplots)C). The overall variance of the Brownian process is equal to the rate of evolution multiplied by the amount of time that has elapsed. 
+
+```{r bmplots, message = FALSE, echo = FALSE, fig.cap='100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and (A) $sigma^2 = 0.1$; (B) $sigma^2 = 0.25$; (C) $sigma^2 = 1$.', out.width='80%', fig.asp=.75, fig.align='center'}
 # Make line plots
 plot_0.1 <-
   base + 
@@ -913,7 +906,7 @@ plot_0.1 <-
 
 plot_0.25 <-
   base + geom_line(data = sim_0.25, alpha = 0.25) +
-  ylab("body size (kg)")
+  ylab("body mass (kg)")
 
 plot_1 <-
   base + geom_line(data = sim_1, alpha = 0.25) +
@@ -943,11 +936,11 @@ norm_1 <-
   (norm_1 + plot_1)
 ```
 
-One final feature to highlight is what the body size values look like at the end of the simulations, i.e. where $t = 100$. If we assume that the present-day is $t = 100$, we can imagine that these values are equivalent to the body size values for the species at the tips of our phylogeny. 
+One final feature to highlight is what the body mass values look like at the end of the simulations, i.e. where $t = 100$. If we assume that the present-day is $t = 100$, we can imagine that these values are equivalent to the body mass values for the species at the tips of our phylogeny. 
 
-Because trait changes are drawn from a normal distribution with a mean of 0, on average we expect no change in body size through time. So if we run enough simulations, the mean of the trait values at the end of the simulations should be equal to the starting value $z(0)$, in this case 4kg. The rest of the values should be evenly distributed around the mean, so we expect the body size values to be normally distributed. 
+Because trait changes are drawn from a normal distribution with a mean of 0, on average we expect no change in body mass through time. So if we run enough simulations, the mean of the trait values at the end of the simulations should be equal to the starting value $z(0)$, in this case 4 kg. The rest of the values should be evenly distributed around the mean, so we expect the body mass values to be normally distributed. 
 
-As demonstrated above, the variance of these normal distributions of body sizes will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure \@ref(fig:bmhist)) *and* the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure \@ref(fig:bmvariance)). More precisely, we can define the overall variance of the Brownian process as the rate of evolution times the amount of time that has elapsed. 
+As demonstrated above, the variance of these normal distributions of body masses will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure \@ref(fig:bmhist)) *and* the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure \@ref(fig:bmvariance)). More precisely, we can define the overall variance of the Brownian process as the rate of evolution times the amount of time that has elapsed. 
 
 ```{r, echo = FALSE, warning = FALSE}
 # Now create histograms of trait values at tips
@@ -976,10 +969,9 @@ hist_1 <-
   coord_flip()
 
 (plot_0.1 + ylab("") + labs(tag = "A", size = 2) + hist_0.1 )/ 
-  (plot_0.25 + ylab("body size") + labs(tag = "B", size = 2) + hist_0.25) / 
+  (plot_0.25 + ylab("body mass") + labs(tag = "B", size = 2) + hist_0.25) / 
   (plot_1 + ylab("") + labs(tag = "C", size = 2) + hist_1)
 ```
-
 
 The examples above ignore the topology of the phylogeny. What if we want to model the evolution of all species in a phylogeny? This is usually how we use the Brownian model, and it is very simple to extend. At each time point where there is speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
 
@@ -1014,7 +1006,7 @@ ggtree(tree) +
 ```
 
 
-```{r bmcat, echo = FALSE, fig.cap='Cat tree', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r bmcat, echo = FALSE, fig.cap='A simulation showing how the body mass of four lineages of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A), and the phylogeny of the cats (B). The size of the cats indicates the final body size of the lineage in the simulation.', out.width='80%', fig.asp=.75, fig.align='center'}
 # Create BM data for two new lineages
 # Draw from distribution and add to start value
 x2 <- c(18.87007, 0.2277251,  0.3524187,  
@@ -1059,7 +1051,7 @@ First, when a lineage speciates, the new lineages start at the same trait value,
 
 Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that $\sigma^2$ was also the same throughout. This means that the *rate of evolution across the tree is constant*, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
-### Brownian Motion model summary
+### A summary of the Brownian Motion model of evolution
 To summarise the above, the key features of the Brownian motion model are: 
 
 - Traits evolve at random, i.e. by a random walk.
@@ -1081,7 +1073,6 @@ Some biological implications of the model are:
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
 
-
 ### What if evolution is non Brownian?
 
 Already you've probably realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these later in the book.
@@ -1092,6 +1083,6 @@ Already you've probably realised that evolution is not always going to be Browni
 
 ## Summary
 
-Hopefully this chapter has given you a good insight into the foundations unerlying phylogenetic comparative methods. In the next chapter we will do XXX
+Hopefully this chapter has given you a good insight into the foundations underlying phylogenetic comparative methods. In the next chapter we will do XXX
 
 ## Online questions?
