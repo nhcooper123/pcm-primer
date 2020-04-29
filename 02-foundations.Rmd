@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Foundations {#foundations}
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -114,7 +109,7 @@ ggtree(tree) +
 
 To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter \@ref(glossary)) if you forget these at any point.
 
-**Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric* where all the branches end at the same place - the present-day (Figure \@ref(fig:ultrametric)A). If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric* (Figure \@ref(fig:ultrametric)B). A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to be aware of.
+**Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric* where all the branches end at the same place - the present-day (Figure \@ref(fig:ultrametric)A). If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric* (Figure \@ref(fig:ultrametric)B). A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to consider.
 
 
 ```{r ultrametric, echo = FALSE, fig.cap='Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the deer and spider have gone extinct before the present day.', out.width='80%', fig.asp=.75, fig.align='center'}
@@ -206,7 +201,7 @@ p1 + p2
 ```
 **Monophyly and clades**. A group of species that all share a common ancestor are referred to as a *monophyletic group* or a *clade* (Figure \@ref(fig:phyly)). Often, common taxonomic groupings e.g. mammals, are also monophyletic groups. Sometimes, taxonomic groups are nested within other taxonomic groups in a phylogeny, for example birds are nested within reptiles so that although birds are a monophyletic group, reptiles are a *paraphyletic group* (Figure \@ref(fig:paraphyly)). We can also have *polyphyletic groups* where the group members appear in multiple lineages across a phylogeny, for example the group formed by birds and mammals (Figure \@ref(fig:paraphyly)). 
 
-```{r phyly, echo = FALSE, fig.cap='Phylogeny highlighting the monophyletic groups or clades. A is a clade made up of the deer and the robin. B is the more inclusive clade including the deer, the robin and the spider.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r phyly, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='Phylogeny highlighting the monophyletic groups or clades. A is a clade made up of the deer and the robin. B is the more inclusive clade including the deer, the robin and the spider.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -529,22 +524,20 @@ If you find reading and understanding phylogenies difficult, we highly recommend
 ### How do we infer phylogenies?
 We could write a whole book just about inferring phylogenies. In fact, there already are several e.g. [@felsenstein2004inferring], and there will be another Primer focusing on this subject if it's something you need/want more details on! Here we will just cover the basics, focusing on the information you'll need to be able to understand the rest of the book.
 
-Note that we **infer** phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of a group until someone invents a time machine!.
+Note that we **infer** phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of most groups until someone invents a time machine!
 
 Most phylogenies are built using genetic or morphological data. Genetic data is usually a gene sequence, with the genes used depending on the question. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting genetic data these days might be as simple as downloading it from GenBank, however, the sequences still need to be aligned which can take more time.
 
 Morphological data is generally in the form of *cladistic matrices* where each character or trait of a species is coded as an integer. For example, a tail might be coded as 0 (absent) or 1 (present). Selecting characters for morphological phylogenies can be tricky, as they need to encompass the *synapomorphies* or unique characters that define clades in the tree, but the characters should also be independent of one another. Careful consideration of how characters should be coded is also needed, and this can vary from study to study.
 
-Once the data have been collected they can be plugged into one of a number of software packages that will apply one or more phylogeny inference methods to output the "best" tree or trees. Here we will just mention the three most common inference methods: parsimony, Maximum Likelihood and Bayesian.
+Once the data have been collected they can be plugged into one of a number of software packages that will apply one or more phylogenetic inference methods to output the "best" tree or trees. Here we will just mention the three most used inference methods: parsimony, Maximum Likelihood and Bayesian.
 
-Note that one common feature of all phylogeny inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are $34,459,425$ possible trees! If we have 50 species we have $2.75292 × 10^{76}$ possible trees (if you want to work this out for yourself, the equation used is $N_{trees} = (2n-3)!/2^{n-2} * (n-2)!$; [@felsenstein2004inferring]). To put that in context, that's more trees than there are stars in the sky, or grains of sand on Earth. That's a lot of trees... This means that no phylogenetic inference method can afford to search all of *tree space*, i.e. the universe of all possible trees. Instead, each method applies number of analytical tricks to avoid this, although we will not go into detail about this here. 
+Note that one common feature of all phylogenetic inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are $34,459,425$ possible trees! If we have 50 species we have $2.75292 × 10^{76}$ possible trees (if you want to work this out for yourself, the equation used is $N_{trees} = (2n-3)!/2^{n-2} * (n-2)!$; [@felsenstein2004inferring]). To put that in context, that's more trees than there are stars in the sky, or grains of sand on Earth. That's a lot of possible trees... This means that no phylogenetic inference method can afford to search all of *tree space*, i.e. the universe of all possible trees. Instead, each method applies number of analytical tricks to avoid this, although we will not go into detail about this here. 
 
 #### Parsimony
 Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the *most parsimonious* phylogeny or phylogenies that satisfy that criterion. 
 
 Ideally, this will result in one most parsimonious tree, but often more than one phylogeny meets this criterion. In these cases it is usual to create a *consensus tree*, an average topology across all the most parsimonious trees. There are several ways to construct these, from *strict consensus* trees that include only relationships shown in all most parsimonious trees, to *majority rule consensus* trees that include all relationships found in at least 50% of the most parsimonious trees. Consensus trees are one way that polytomies can be introduced into phylogenies (see Figure @ref(fig:poly)). 
-
-BRANCH SUPPORT?
 
 #### Maximum Likelihood (ML)
 Maximum Likelihood is a statistical method for estimating the unknown parameters of a model. Likelihood is proportional to the probability of observing the data given the model, *P(data|model)*. The Maximum Likelihood solution is the one that has the highest Likelihood, i.e. the model that best describes the observed data. We will use Maximum Likelihood throughout this book to estimate parameters in many different types of models. 
@@ -558,7 +551,7 @@ Maximum Likelihood is considered to be a better phylogenetic inference method th
 - **HKY85**. Hasegawa-Kishino-Yano-85 [@hasegawa1985dating]. Transitions and transversions have different substitution rates; base frequencies can vary.
 - **GTR**. General Time Reversible [@lanave1984new]. All six types of base change (A to C, A to G, A to T, C to G, C to T, and G to T) occur at a different rate, and base frequencies vary.
 
-Maximum Likelihood approaches can use any of these models, or any other model we might want to define. It is harder to come up with sensible, simple models of evolution for morphological data (although they do exist, for example the *Mkv* model; Lewis 2001), thus Maximum Likelihood approaches are used less often for morphological datasets. 
+Maximum Likelihood approaches can use any of these models, or any other model we might want to define. It is harder to come up with sensible, simple models of evolution for morphological data (although they do exist, for example the *Mkv* model; [@lewis2001likelihood]), thus Maximum Likelihood approaches are used less often for morphological datasets. 
 
 Maximum Likelihood approaches are very computationally intensive and can be very slow, certainly much slower than parsimony. Like parsimony, often more than one phylogeny has the same Maximum Likelihood so we construct consensus trees. 
 
@@ -571,8 +564,11 @@ The reasoning behind this is that phylogenetic inference is complex, so the prob
 
 Because of the way posterior distributions are constructed, consensus trees are not appropriate for Bayesian phylogenies. Instead, we tend to run each analysis on the whole posterior distribution of trees, resulting in a posterior distribution of results. This can be a little more difficult to visualise, but gives a much better understanding of the effect of phylogenetic uncertainty on comparative analyses.
 
+#### Branch support
+The trees produced in all three of the methods above may contain measures of *branch support*. These will be shown as numbers above or below the nodes of the phylogeny if you're looking at the published version. Branch support measures tell you how much support there is for a particular branching pattern. There are many ways we can estimate branch support in a phylogeny [@felsenstein2004inferring], but the details are not important here. The key thing to remember is that the higher the branch support value, the more confidence we have in that particular branch. Usually these methods give numbers that range from 0-100 (e.g. bootstrap values), but other measures (e.g. Bremer support values) range from 0-1. It should be obvious whether a 0-100 or 0-1 scale is being used from the range of numbers you can see. It's also common for people to collapse branches with low support leading to polytomies.
+
 ### Where do we get phylogenies from for comparative analyses?
-Above we explain how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
+Above we explained how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
 
 How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you to the best phylogeny include:
 
@@ -676,7 +672,13 @@ kable(x, align = 'l')
 
 We would also record the full reference for each source in a separate table. Recording the data like this makes it easy to enter in Excel, and also makes it easy for us to exclude certain types of data or sources should we decide we don't trust them enough to include in our analyses.
 
-Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. In R, the `tidyr` and `dplyr` packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case you accidentally introduce any errors, and so that you can repeat the data collection and analyses if needed.
+Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. For most analyses, data need to be in a *tidy* format, meaning:
+
+* Each variable must have its own column.
+* Each observation must have its own row.
+* Each value must have its own cell.
+
+In R, the `tidyr` and `dplyr` packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case you accidentally introduce any errors, and so that you can repeat the data collection and analyses if needed. See [https://r4ds.had.co.nz/tidy-data.html](https://r4ds.had.co.nz/tidy-data.html) for more details on what tidy data is and how to do this.
 
 To wrangle this data, we would first convert the units to a standard unit for each measurement. Here we have length in mm and inches, so we would convert the inches into mm. The three altered rows are shown below. Note that converting from inches to mm gives us the false impression of precision, i.e. two values are now 25.4 and 609.6, rather than whole numbers making it look like these were measured accurately rather than approximated. It's worth looking out for this in other data, especially curated databases where this kind of conversion is typical.
 
@@ -731,6 +733,8 @@ The results of comparative analyses are only as good as the data you put into th
 Much of the last few sections has been quite practical, but now we are going to shift gears and think about some of the theory underpinning comparative methods.
 
 At the very simplest level, comparative methods are interested in how traits change through time. The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (e.g. presence or absence of a tail, growth form, number of legs). For continuous traits, the most commonly used model is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!
+
+### An introduction to Brownian Motion
 
 The Brownian model or BM model (Cavalli-Sforza and Edwards, 1967; Felsenstein, 1973) is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods (though this assumption is rarely tested; Freckleton and Harvey 2006). It can be fully described using just two parameters $z(0)$ and $\sigma^2$.
 
@@ -1078,8 +1082,80 @@ Some biological implications of the model are:
 Already you've probably realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these later in the book.
 
 ## Modelling discrete traits - simple models
-    - ARD, ER, SYM
 
+Many traits we are interested in studying are not continuous traits, instead they can be lumped into distinct categories, so we refer to them as discrete traits. Discrete traits have a number of states, and comparative methods can be used to investigate changes between states across a phylogeny. For example, if we are interested in the evolution of flightlessness in birds, we might want to know how many times this has evolved across the phylogeny, whether flying birds are more likely to evolve to be flightless, or whether flightless birds are more likely to evolve to fly, and whether flightless birds can ever evolve to fly again once they have lost the ability. 
+
+In the flightlessness in birds example, we have two states: flying and flightless. We could also have intermediate states, e.g. semi-flightless. Traits can be ordered or unordered. Ordered traits have a set order of state changes, for example flying to semi-flightless to flightless. Unordered traits can change in any way. Traits can also be reversible or non-reversible, for example, if flightless bird lineages can never go on to evolve flight again, the trait is irreversible. The most simple way to model discrete traits is to assume that changes are unordered and reversible, so we will stick to this here. 
+
+We've actually already met some models of discrete trait evolution over trees. Back when we discussed phylogenetic inference we mentioned several models of DNA sequence evolution, including the Jukes Cantor [@jukes1969evolution], and General Time Reversible (GTR) [@lanave1984new] models. The most basic models for discrete character evolution are analogues of these models.
+
+### M*k*/Equal Rates model (ER)
+The simplest model for discrete trait evolution is a direct analogue of the Jukes Cantor model. Except instead of changes in base pairs, we model changes in character states. We call this the M*k* model ([@lewis2001likelihood, @pagel1994detecting]). The M stands for Markov, because the M*k* model assumes states change according to a Markov process, i.e. the probability of changing from one state to another is independent of what has happened previously, it only depends on the current state of the trait. The *k* is there because we generally use *k* to represent the number of parameters in a model. In models of discrete trait evolution, *k* is the number of states. For our flying/flightless example $k = 2$, for the flying/ semi-flightless/flightless example $k = 3$.   
+
+In the M*k* model, all trait changes are equally likely, and all occur at the same rate. Because of this we often call the M*k* model the Equal Rates or ER model.
+
+We can visualize the $Q$ (rate) matrix for an M*k* model of our flightlessness example like this:
+
+-|flying|semi-flightless|flightless
+--|--|--|--
+flying|-|1|1
+semi-flightless|1|-|1
+flightless|1|1|-
+
+The off-diagonals are the transition rates from state 1 to 2, 1 to 3, 2 to 1 and so on (read rows then columns). 
+We typically designate individual transition rates in the form $q_ij$, which means the rate of going from state $i$ to state $j$. 
+Here, the 1 in all off-diagonal elements represents the fact that rates are the same regardless of what state $i$ and $j$ are, and the direction of that change. 
+The diagonal elements $q_ii$ give the rate of not changing and are computed as the negative sum of the non-diagonal row elements. 
+This is so that the rows sum to zero. Here we've just left this as "-". 
+
+### Symmetric rates model (SYM)
+The M*k* model assumes changes between states are equally likely, but we have good reasons for thinking this might not be the case in many biological systems. Some changes in states are likely to be much easier than others, for example losing complex traits like eyes or limbs is likely to be easier than gaining them. The M*k* model can be modified to allow for these more complex situations. The Symmetric rates or SYM model [@paradis2004ape] is one such modification where the rate of change can differ among pairs of states, but within each pair of states the rate of change is the same in both directions. The number of different rates is three for $k = 3$. 
+
+Using our flying/semi-flightless/flightless example, this means that the rate of change from flying to semi-flightless is exactly the same as the rate of change from semi-flightless to flying. However, these rates differ from the rate of change from flying to flightless (and vice versa), and also differ from the rate of change from semi-flightless to flightless (and vice versa). In terms of the DNA evolution models this is analagous to the GTR model [@lanave1984new]. 
+
+The $Q$ matrix for our flying/semi-flightless/flightless example looks like this:
+
+-|flying|semi-flightless|flightless
+--|--|--|--
+flying|-|1|2
+semi-flightless|1|-|3
+flightless|2|3|-
+
+It's worth noting that if you only have two states, i.e. $k = 2$, then the Symmetric model is exactly the same as the M*k*/Equal Rates model.
+
+-|flying|flightless
+--|--|--
+flying|-|1
+flightless|1|-
+
+### All Rates Different (ARD) model
+The final modification of the M*k* model we're going to cover here is the All Rates Different or ARD model [@paradis2004ape]. In this model not only does the rate of change differ among pairs of states, it can also differ within each pair of states depending on the direction of the change. For k states, we get $k^2 - k$ rates, which can be a pretty large number as k increases.
+
+The $Q$ matrix for our flying/semi-flightless/flightless example looks like this:
+
+-|flying|semi-flightless|flightless
+--|--|--|--
+flying|-|1|2
+semi-flightless|3|-|4
+flightless|5|6|-
+
+Biologically, this is a useful model to fit if you think some of your states are not reversible, or very difficult to reverse, for example if you think the rate of evolution from flightless to flying is likely to be close to 0. It often works well for big complex datasets that span a variety of different states. For example, if you had a tree of all vertebrates and wanted to examine transition rates among different dietary strategies, this model would be worth examining.
+
+You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting*, which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
+
+### Scientific method box ########
+Over-fitting occurs where a model has more parameters than can be justified by the data. It can mean the model looks like it beautifully fits the data, but if you were to add additional data it would be useless. 
+
+Imagine you have data on the swimming speed of ten penguins (let's call them Pingu, Pinga, Misha, Wheezy, Chilly Willy, Mumble, Skipper, Kowalski, Rico, Private and Feathers McGraw). You could fit a model (we could use a linear regression here) to see if body mass is correlated with swimming speed, and get a regression with an $r^2$ of 0.5. This suggests around half of the variance in swimming speed is explained by body mass. The other half might be explained by all kinds of things, including specific attributes of the particular penguins or errors in your measurements. We haven't fully explained variation in swimming speed, but it's still a useful model because if we weighed another penguin we'd have a reasonable chance of estimating roughly what its swimming speed might be from its body mass. 
+
+If we wanted to increase the variance explained by the model as much as possible, we can start adding more variables. For example, maybe the faster penguins also have longer flippers so we add in flipper length. This might be sensible, and if we had more penguins in our dataset this would be fine. But what if we also add in a variable that accounts for Wheezy being slow due to his asthma, and another that accounts for Feathers McGraw being faster because he's evil? If we add enough variables, eventually we get to a model with an $r^2$ of 1. This means we can perfectly explain the swimming speed of our ten penguins, but we've got no hope of applying it to any new penguins we find. This is over-fitting, and the model not useful. Visually you can think of it the difference between fitting one line of best fit to a regression of X against Y, compared to joining all the points up.
+
+There's no hard and fast rule about how much data you need to add another variable to your model, but some rules of thumb range from 20-30 data points for each variable. Complex models are always likely to fit data better just because they have more parameters, not necessarily because they mean anything biologically meaningful. You can avoid this problem by thinking very carefully about the models you chose to fit, why you think they are sensible, what you predict you will find, and how you will interpret the results, *before* fitting the model.
+###########
+
+### A quick note about ancestral state estimation
+You often hear about using phylogenies for *ancestral state reconstruction*, along with suggestions that these reconstructions can tell us what the ancestor of a group looked like, how it behaved, what it ate for breakfast etc. Sadly this is not as magical as it seems, and we should refer to this as ancestral state *estimation* NOT *reconstruction*. Ancestral state estimation is probably one of the most over-used and uninformative methods in the phylogenetic comparative methods toolkit. 
+There are many reasons to be highly skeptical of ancestral state estimates and interpretations of macroevolutionary patterns and process that are based on them, not least because we know that phylogenies are only *hypotheses* and will often miss out large chunks of extinct diversity. Ancestral state estimation methods are based on the models we discussed above, meaning that your ancestral states are at best weighted averages of your trait based on branch lengths and the model used. How much trust you would want to put in such a result is up to you, but hopefully you now know enough to be very skeptical! However, certain phylogenetic comparative methods require that you define the state of the ancestor for them to work. We will return to this later in the book.
 
 ## Summary
 
