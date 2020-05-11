@@ -1,5 +1,5 @@
 --- 
-title: "A Primer on Phylogenetic Comparative Methods"
+title: "Phylogenetic Comparative Methods for the Biological Sciences"
 author: "Natalie Cooper, Robert P. Freckleton"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,40 +9,64 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 colorlinks: yes
-description: "Draft of PCM primer book"
+description: "PCM Primer"
 ---
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggtree',
+                'ape', 'caper', 'reshape2', 'tidyverse',
+                'patchwork', 'ggimage', 'knitr', 'measurements', 
+                'cowplot', 'reshape2'), 'packages.bib')
 ```
 
 # Preface {-}
 
-Book title: Primer on Phylogenetic Comparative Methods
+Phylogenetic Comparative Methods for the Biological Sciences.
+Oxford Biology Primer series.
+Primers in Ecology and Evolutionary Biology.
 
-## Intended readers {-}
+## What are comparative methods? {-}
 
-*Primers* are aimed at undergraduate and postgraduate students in the *Life and Environmental Sciences* and also....
+The comparative approach is one of the oldest and most frequently used methods for answering questions in biology. The rationale of this approach is to test biological hypotheses by comparing organisms that differ in their life history, ecology or evolutionary history. Although originally developed in the 18th century as a qualitative approach for describing biological diversity, the modern comparative method is highly quantitative, drawing together methods from phylogenetics, advanced statistics, and computational biology. The comparative method is used in all areas of biology, including ecology, evolutionary biology, behavioural ecology, conservation biology, anthropology, primatology, epidemiology, and physiology.
 
+The modern comparative method recognises that robust tests of biological hypotheses require that we account for the evolutionary relationships among organisms. Closely related species share adaptations and ecological preferences because they inherited them from their common ancestor, not because of independent evolution (phylogenetic non-independence). The outcome of this is that statistical methods that assume that species data are independent may be compromised. For this reason, the past 40 years has seen a huge effort devoted to developing statistical methods that are robust to this problem. 
 
-## How is the book organised? {-}
+Although much of the development of the comparative approach has revolved around statistical tests, more recently the scope of new methods has expanded to consider the mode and nature of evolution. Recognising that the level and nature of phylogenetic non-independence is a function of trait evolution, new methods have been developed that permit the measurement of rates of trait evolution, including time-varying rates, clade dependent evolution and relationships between traits and diversification. 
 
-The content and structure of the book is like this
+## Why did we write this Primer? {-}
+
+For a novice, the field of comparative methods is a potential minefield. There is >40 years of literature, including a great deal of technically intense methods development. Most potential users of comparative methods are familiar with basic statistics and some advanced methods (e.g. generalised linear models; GLMs), however the comparative method can be daunting and difficult to understand, because the methods are statistically advanced, and require some understanding of phylogenetic concepts that many non-specialists will be unfamiliar with. This *Primer* is designed to help new users understand and use comparative methods.
+
+## Who is this Primer for? {-}
+
+This *Primer* is pitched at an audience ranging from advanced undergraduates to early postdoctoral researchers. No previous knowledge of comparative methods is assumed, however we assume a general understanding of evolutionary biology, particularly that we can represent evolutionary relationships as phylogenetic trees. We assume some knowledge of basic statistics such as regressions, and refer to other commonly used statistics, e.g. GLMs, throughout. However, these references are designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding. For those wanting a more thorough coverage of particular methods or models we have included references to further reading. 
+
+## How is this *Primer* organised? {-}
+
+The *Primer* is divided into seven chapters as follows:
+
+* Chapter 1: Introduction to the comparative method.
+* Chapter 2: Foundations.
+* Chapter 3: Dealing with phylogenetic non-independence: a practical introduction. 
+* Chapter 4: Testing and evaluating comparative models: is my model good enough?
+* Chapter 5: More advanced topics, where next? 
+* Chapter 6: Tempo and mode of evolution from comparative data. 
+* Chapter 7: Looking forward, more advanced comparative methods and where next. 
 
 ## Online companion material {-}
 
-## Topics not in *Primer*? {-}
+Each chapter of the *Primer* has associated online companion material. Mostly this consists of practical examples of how to perform each analysis in R. We also include ???
 
 ## Boxes {-}
 
-Throughout the book are boxes of text highlighting particularly important issues:
+Throughout the *Primer* are boxes of text highlighting particularly important issues:
 
 ```{block, type="info"}
 **Info** Extra info for interested
 ```
 
-
 ## Acknowledgements {-}
+
+People who read drafts
