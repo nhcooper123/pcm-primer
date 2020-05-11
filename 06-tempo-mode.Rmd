@@ -5,9 +5,34 @@ The emphasis in the literature is often on using comparative methods to “fix�
 •	More complex Brownian models. 
 •	Non-Brownian trait evolution.
 ●	The SLOUCH family of models
-•	Speciational evolution.
-•	Clade dependent rates.
-•	Trait dependent rates.
-•	Species-interactions.
+•	Speciational evolution.?
+•	Clade dependent rates.?
+•	Trait dependent rates.?
+•	Species-interactions.?
 
-As far as possible we will explain these in the same framework as Chapter 3: i.e. emphasising that a relatively simple statistical framework/understanding is the stepping-off point for understanding a wide range of different models. This overlaps with a recent text (Harmon 2018): however, our target audience will be different, and we see that text as a next step.
+## Brownian motion recap
+
+Remember Brownian motion? If you haven't already read that section of the Foundations chapter, now would be a good time to do so. But if you already feel fairly comfortable, let's just remind ourselves of the summary we produced in that chapter.
+
+The key features of the Brownian motion model are:
+
+- Traits evolve at random, i.e. by a random walk.
+- The direction and magnitude of the trait change at one time interval is independent of the direction and magnitude of the trait changes at other time intervals.
+- There is no overall drift in the direction of evolution.
+- Traits evolve at a rate $\sigma^2$.
+- The rate of evolution is constant.
+- Variance in traits increase (linearly) in proportion to time.
+- The overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed. 
+
+In terms of the model parameters:
+
+- The model can be fully described using just two parameters $z(0)$ and $\sigma^2$.
+- $z(0)$ is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait.
+-  $\sigma^2$ is the rate at which evolution (i.e. trait change) occurs. It is also referred to as the Brownian rate parameter.
+
+Some biological implications of the model are:
+
+- Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
+- Different lineages evolve at the same rate.
+
+Hopefully this recap has also reminded you of some of the constraints of Brownian motion as a model of trai evolution...
