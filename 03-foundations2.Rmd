@@ -520,7 +520,7 @@ Phylogenetic signal is one of the most commonly mentioned concepts in phylogenet
 
 Phylogenetic signal is the pattern where close relatives are more similar than distant relatives [@harvey1991comparative]. Species’ traits can show high or low phylogenetic signal. If phylogenetic signal is high, this means that closely related species have similar trait values, and that trait similarity decreases with phylogenetic distance. If phylogenetic signal is low, then trait values might vary randomly across a phylogeny, with distant relatives sharing similar trait values, and close relatives having different trait values [@kamilar2013phylogenetic]. 
 
-```{block, type = "info"}
+```{block, type = "warning"}
 You may see papers that use different terms to refer to phylogenetic signal, including phylogenetic effects, phylogenetic constraints and phylogenetic inertia. Unfortunately these terms are poorly defined and mean different things to different people. We therefore recommend that these terms are avoided.
 ```
 

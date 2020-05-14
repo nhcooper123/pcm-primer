@@ -65,7 +65,11 @@ Each chapter of the *Primer* has associated online companion material. Mostly th
 Throughout the *Primer* are boxes of text highlighting particularly important issues:
 
 ```{block, type="info"}
-**Info** Extra info for interested
+**Information** These boxes contain extra information that may be of interest to some readers
+```
+
+```{block, type="warning"}
+**Warning** These boxes highlight areas where it is important to be careful and think about what you are doing. The picture is a 1990s style Jurassic Park velociraptor, because a big problem in comparative methods is people doing analyses because they *can* rather than stopping to think about whether or not they *should*, or whether they can really interpret their results in the way they have. We refer to this as the *Jurassic Park caveat*, with thanks to Dr Ian Malcolm and Michael Crichton.
 ```
 
 ## Acknowledgements {-}
