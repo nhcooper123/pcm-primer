@@ -640,7 +640,7 @@ deer|4.7|13.6|3.15|0|
 spider|3.15|3.15|13.6|0|
 jellyfish|0|0|0|13.6|
 
-```{r lambda05, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths in the original tree and a transformed tree where $\lambda$ = 0.5. The root-to-tip distances for each tip taxon are 13.6', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r lambda05, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths in the original tree and a transformed tree where lambda = 0.5. The root-to-tip distances for each tip taxon are 13.6', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
