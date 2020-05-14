@@ -508,7 +508,7 @@ jellyfish|0|0|0|a|
 
 We will use phylogenetic variance–covariance matrices at various points in this *Primer*, including in the next section on phylogenetic signal. Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
 
-```{block = "info"}
+```{block, type = "info"}
 As you may already be aware, variance–covariance matrices are used in many statistical methods, not just phylogenetic comparative methods. The fact that we can represent a phylogeny in this way makes our lives way easier in the next few chapters! 
 ```
 
@@ -520,7 +520,7 @@ Phylogenetic signal is one of the most commonly mentioned concepts in phylogenet
 
 Phylogenetic signal is the pattern where close relatives are more similar than distant relatives [@harvey1991comparative]. Species’ traits can show high or low phylogenetic signal. If phylogenetic signal is high, this means that closely related species have similar trait values, and that trait similarity decreases with phylogenetic distance. If phylogenetic signal is low, then trait values might vary randomly across a phylogeny, with distant relatives sharing similar trait values, and close relatives having different trait values [@kamilar2013phylogenetic]. 
 
-```{block = "info"}
+```{block, type = "info"}
 You may see papers that use different terms to refer to phylogenetic signal, including phylogenetic effects, phylogenetic constraints and phylogenetic inertia. Unfortunately these terms are poorly defined and mean different things to different people. We therefore recommend that these terms are avoided.
 ```
 
@@ -628,7 +628,7 @@ deer|9.4|13.6|6.3|0|
 spider|6.3|6.3|13.6|0|
 jellyfish|0|0|0|13.6|
 
-```{block = "info"}
+```{block, type = "info"}
 Many explanations of Pagel’s $\lambda$ state that the maximum value of $\lambda$ is 1. Actually, it can be bigger than 1 if close relatives are *more* similar than expected under the Brownian motion model of evolution. However, most tools that allow you to estimate $\lambda$ restrict it to a maximum of 1 because covariances cannot exceed variances in a phylogenetic variance–covariance matrix, and this is what would happen if $\lambda$ was bigger than 1.
 ```
 
