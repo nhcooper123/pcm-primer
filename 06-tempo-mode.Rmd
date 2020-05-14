@@ -10,6 +10,10 @@ The emphasis in the literature is often on using comparative methods to “fix�
 •	Trait dependent rates.?
 •	Species-interactions.?
 
+
+- Tree transformations - delta, kappa
+- OUwie BM with a trend, multiple rates, OU, OU with many peaks, (read our OU paper again), EB/ACDC
+
 ## Brownian motion recap
 
 Remember Brownian motion? If you haven't already read that section of the Foundations chapter, now would be a good time to do so. But if you already feel fairly comfortable, let's just remind ourselves of the summary we produced in that chapter.
@@ -35,4 +39,4 @@ Some biological implications of the model are:
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
 
-Hopefully this recap has also reminded you of some of the constraints of Brownian motion as a model of trai evolution...
+Hopefully this recap has also reminded you of some of the constraints of Brownian motion as a model of trait evolution...
