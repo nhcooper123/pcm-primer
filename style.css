@@ -24,7 +24,7 @@ pre code {
 }
 
 .rmdwarning {
-  background-image: url("../images/velociraptor-close-up.jpg");
+  background-image: url("../images/warning.jpg");
 }
 
 
@@ -35,10 +35,10 @@ pre code {
 }
 
 .info {
-  background-image: url("images/info3.png");
+  background-image: url("images/info2.png");
 }
 
 .warning {
-  background-image: url("../images/velociraptor-close-up.jpg");
+  background-image: url("../images/warning2.jpg");
 }
 
