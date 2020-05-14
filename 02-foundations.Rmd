@@ -1,4 +1,4 @@
-# Foundations {#foundations}
+# Foundations 1: introduction to phylogenies and comparative data {#foundations}
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Load libraries (hidden)
@@ -29,11 +29,6 @@ Before we use comparative methods, we need to understand some basic concepts abo
     - Reading and using phylogenies.
 - Comparative data
     - basics.
-- Modelling continuous traits.
-    - the Brownian Motion (BM) model of evolution. 
-- Modelling discrete traits.
-    - ARD, ER, SYM
-
 
 ## A basic introduction to phylogenies 
 At its simplest, a *phylogeny* or *phylogenetic tree* is a branching diagram that shows how species are related. The ancestor of all of the species is found at the *root* of the tree, with the species at the *tips*. The rest of the tree is made up of *nodes* and *branches*. Nodes show us where *speciation* events have occurred, i.e. where one species has evolved into two (or more) new species. The branches show the relationships among nodes and tips (Figure \@ref(fig:basic-tree)).
@@ -733,3 +728,5 @@ The results of comparative analyses are only as good as the data you put into th
 Hopefully this chapter has given you a good insight into the foundations underlying phylogenetic comparative methods. In the next chapter we will do XXX
 
 ## Online questions?
+
+## MCQs?
