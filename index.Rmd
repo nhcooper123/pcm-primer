@@ -48,12 +48,13 @@ This *Primer* is pitched at an audience ranging from advanced undergraduates to 
 The *Primer* is divided into seven chapters as follows:
 
 * Chapter 1: Introduction to the comparative method.
-* Chapter 2: Foundations.
-* Chapter 3: Dealing with phylogenetic non-independence: a practical introduction. 
-* Chapter 4: Testing and evaluating comparative models: is my model good enough?
-* Chapter 5: More advanced topics, where next? 
-* Chapter 6: Tempo and mode of evolution from comparative data. 
-* Chapter 7: Looking forward, more advanced comparative methods and where next. 
+* Chapter 2: Foundations 1: .
+* Chapter 3: Foundations 2:
+* Chapter 4: Dealing with phylogenetic non-independence: a practical introduction. 
+* Chapter 5: Testing and evaluating comparative models: is my model good enough?
+* Chapter 6: More advanced topics, where next? 
+* Chapter 7: Tempo and mode of evolution from comparative data. 
+* Chapter 8: Looking forward, more advanced comparative methods and where next. 
 
 ## Online companion material {-}
 
