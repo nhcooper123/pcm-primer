@@ -49,3 +49,4 @@ _book
 _bookdown_files
 .Rproj.user
 pcm-primer.Rmd
+*.log
