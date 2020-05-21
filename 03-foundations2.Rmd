@@ -752,7 +752,7 @@ We can test whether *K* is significantly different from 0 using randomisation te
 
 #### How do we estimate Blomberg’s *K*? Is this needed? Can it go into a box? 
 
-Let's use a very simple example with just three taxa, A, B and C. For more detail and proper maths see [@blomberg2003phylogenetic].
+Let's use a very simple example with just three taxa, A, B and C. For more detail and proper maths see [@blomberg2003testing].
 
 ```{r Ktree, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths and body size for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
 
