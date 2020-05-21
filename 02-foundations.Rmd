@@ -312,7 +312,7 @@ tree1 <-
   labs(tag = "A", size = 2)
 
 # Rotate tree
-newtree <- rotate(phy = tree, 5)
+newtree <- ape::rotate(phy = tree, 5)
 
 # Plot with images at tips
 tree2 <-
