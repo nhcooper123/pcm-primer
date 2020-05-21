@@ -312,7 +312,7 @@ tree1 <-
   labs(tag = "A", size = 2)
 
 # Rotate tree
-newtree <- ape::rotate(phy = tree, 5)
+newtree <- ape::rotate(tree, 5)
 
 # Plot with images at tips
 tree2 <-
@@ -358,7 +358,7 @@ Reading phylogenies is not always intuitive. Often this is due to how we represe
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
 # Rotate tree
-newtree <- rotate(phy = tree, 5)
+newtree <- ape::rotate(tree, 5)
 
 # Plot with images at tips
 p <- 
