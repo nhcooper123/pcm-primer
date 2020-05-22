@@ -1,16 +1,16 @@
 # Tempo and mode of evolution from comparative data. {#tempo-mode}
 
-The emphasis in the literature is often on using comparative methods to “fix” statistical tests so that p-values are valid (see Chapter 3). For the past 15 years, however, the cutting-edge of methods development has been on using comparative methods to infer the nature of the evolutionary process: evolution is the reason that we see phylogenetic signal in comparative data, so it makes sense that we should be able to use phylogenies and comparative data to infer the evolutionary process. Here we distinguish the mode (i.e. models of evolution, with discrete and continuous data) and tempo (i.e. rates of evolution) of evolution. The issues we will cover include:
+**NC currently writing**
 
-•	More complex Brownian models. 
-•	Non-Brownian trait evolution.
-●	The SLOUCH family of models
-•	Speciational evolution.?
-•	Clade dependent rates.?
-•	Trait dependent rates.?
-•	Species-interactions.?
+The emphasis in the literature is often on using comparative methods to “fix” statistical tests so that p-values are valid (see Chapter 4). For the past 15 years, however, the cutting-edge of methods development has been on using comparative methods to infer the nature of the evolutionary process: evolution is the reason that we see phylogenetic signal in comparative data, so it makes sense that we should be able to use phylogenies and comparative data to infer the evolutionary process. Here we distinguish the mode (i.e. models of evolution, with discrete and continuous data) and tempo (i.e. rates of evolution) of evolution. The issues we will cover include:
 
-
+- More complex Brownian models. 
+- Non-Brownian trait evolution.
+- The SLOUCH family of models
+- Speciational evolution.?
+- Clade dependent rates.?
+- Trait dependent rates.?
+- Species-interactions.?
 - Tree transformations - delta, kappa
 - OUwie BM with a trend, multiple rates, OU, OU with many peaks, (read our OU paper again), EB/ACDC
 

@@ -1,5 +1,8 @@
 # Looking forward, more advanced comparative methods and where next. {#summary}  
+
+**To write at the end**
+
 Here we will briefly describe additional methods we do not cover in the Primer and give interested readers places to go for more information, e.g. diversification analyses. 
 
-•	A list of more advanced topics, e.g. diversification analyses.
-•	An overview of current literature and where to look next
+- A list of more advanced topics, e.g. diversification analyses.
+- An overview of current literature and where to look next
