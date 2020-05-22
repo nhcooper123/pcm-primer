@@ -1,12 +1,12 @@
 # Introduction to the comparative method {#intro}
 
+** RPF is writing this at present **
+
 Here we will lay the conceptual framework for the comparative method. The idea behind the comparative method will be introduced, and examples given of the types of analysis that can be undertaken. The problem of phylogenetic non-independence will be introduced and a range of methodological approaches described in brief. 
 
 - Comparison as a method to test hypotheses. 
 - Historical context of the comparative method (i.e. pre Darwin to today). 
-- What questions can we answer? With explicit focus on the biological context in terms of life history/ecological traits etc.
+- What questions can we answer? 
 - The problem of phylogenetic non-independence: understanding the conceptual problem caused by the way evolution occurs, as well as the statistical consequences.
 - Key examples (e.g. early examples; examples where phylogeny makes a difference). 
 - A taxonomy of methods: Table of methods with links to further reading.
-
-
