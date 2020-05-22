@@ -1,5 +1,6 @@
 --- 
-title: "Phylogenetic Comparative Methods for the Biological Sciences"
+title: "Primer on Phylogenetic Comparative Methods for the Biological Sciences"
+subtitle: "Oxford Biology Primer series. Primers in Ecology and Evolutionary Biology."
 author: "Natalie Cooper, Robert P. Freckleton"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -22,10 +23,6 @@ knitr::write_bib(c(
 ```
 
 # Preface {-}
-
-Phylogenetic Comparative Methods for the Biological Sciences.
-Oxford Biology Primer series.
-Primers in Ecology and Evolutionary Biology.
 
 ## What are comparative methods? {-}
 
@@ -69,9 +66,9 @@ Throughout the *Primer* are boxes of text highlighting particularly important is
 ```
 
 ```{block, type="warning"}
-**Warning** These boxes highlight areas where it is important to be careful and think about what you are doing. The picture is a 1990s style Jurassic Park velociraptor, because a big problem in comparative methods is people doing analyses because they *can* rather than stopping to think about whether or not they *should*, or whether they can really interpret their results in the way they have. We refer to this as the *Jurassic Park caveat*, with thanks to Dr Ian Malcolm and Michael Crichton.
+**Warning** These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image used here is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should*. Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. With thanks to Dr Ian Malcolm and Dr Michael Crichton.
 ```
 
 ## Acknowledgements {-}
 
-People who read drafts
+People who read drafts etc etc.
