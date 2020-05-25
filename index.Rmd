@@ -3,8 +3,12 @@ title: "Primer on Phylogenetic Comparative Methods for the Biological Sciences"
 subtitle: "Oxford Biology Primer series. Primers in Ecology and Evolutionary Biology."
 author: "Natalie Cooper, Robert P. Freckleton"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-output: bookdown::pdfbook
+output: 
+  bookdown::pdf_book:
+    toc: true
+    includes:
+      in_header: latex/preamble.tex
+      before_body: latex/before_body.tex
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -41,8 +45,8 @@ For a novice, the field of comparative methods is a potential minefield. There i
 This *Primer* is pitched at an audience ranging from advanced undergraduates to early postdoctoral researchers. No previous knowledge of comparative methods is assumed, however we assume a general understanding of evolutionary biology, particularly that we can represent evolutionary relationships as phylogenetic trees. We assume some knowledge of basic statistics such as regressions, and refer to other commonly used statistics, e.g. GLMs, throughout. However, these references are designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding. For those wanting a more thorough coverage of particular methods or models we have included references to further reading. 
 
 ## How is this *Primer* organised? {-}
-
-The *Primer* is divided into seven chapters as follows:
+[TO BE COMPLETED]
+The *Primer* is divided into eight chapters as follows:
 
 * Chapter 1: Introduction to the comparative method.
 * Chapter 2: Foundations 1: .
@@ -54,19 +58,26 @@ The *Primer* is divided into seven chapters as follows:
 * Chapter 8: Looking forward, more advanced comparative methods and where next. 
 
 ## Online companion material {-}
-
-Each chapter of the *Primer* has associated online companion material. Mostly this consists of practical examples of how to perform each analysis in R. We also include ???
+[TO BE COMPLETED]
+Each chapter of the *Primer* has associated online companion material. This consists of 
+1. An online book with practical examples of how to perform each analysis in R. 
+2. Multiple choice questions for each chapter so you can test your understanding.
+3. Short videos.
 
 ## Boxes {-}
 
 Throughout the *Primer* are boxes of text highlighting particularly important issues:
 
 ```{block, type="info"}
-**Information** These boxes contain extra information that may be of interest to some readers
+**FYI** boxes. These boxes highlight important details that we don't want you to miss!
+```
+
+```{block, type="detail"}
+**Extra details** boxes. These boxes contain detailed explanations of things for readers who like to fully understand the complexities of what they are doing, for example fully worked through examples, or technical details that we have not explained in detail in the text.
 ```
 
 ```{block, type="warning"}
-**Warning** These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image used here is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should*. Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. With thanks to Dr Ian Malcolm and Dr Michael Crichton.
+**Caveats/Velociraptor** boxes. These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should* (thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. 
 ```
 
 ## Acknowledgements {-}
