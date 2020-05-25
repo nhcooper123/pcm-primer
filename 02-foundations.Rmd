@@ -21,6 +21,8 @@ remove_y <-
         axis.ticks.y = element_blank())
 ```
 
+[CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY]
+
 Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:
 
 - Phylogenies.
@@ -37,9 +39,11 @@ Most phylogenies are *rooted*, meaning that the ancestral node or *root* is iden
 
 Some phylogenies only show the *topology*, i.e. the shape of the relationships among the species. Most phylogenies, however, will have some information about the timing of branching events. In these phylogenies, *branch lengths* can represent absolute or relative time elapsed, or amounts of character change. Most of the phylogenies we use will be *dated phylogenies* (or *cladograms*), where the branch lengths represent divergence times. 
 
-Note that throughout this section for simplicity we refer to "species" at the tips of phylogenies. In some cases, the tips will actually be genera or populations, or other operational taxonomic units (OTUs). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
+```{block, type = "info"}
+Note that throughout the *Primer* for simplicity we generally refer to "species" at the tips of phylogenies. In some cases, the tips will actually be *genera* or *populations*, or other operational taxonomic units (*OTUs*). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
+```
 
-```{r basic-tree, echo = FALSE, fig.cap='A simple phylogeny demonstrating the key features of phylogenetic trees.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r basic-tree, echo = FALSE, warning = FALSE, fig.cap='A simple phylogeny demonstrating the key features of phylogenetic trees.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -505,7 +509,7 @@ p1xxx <-
 
 We can also use circular or fan shaped phylogenies (Figure \@ref(fig:fan-tree)) when we have large phylogenies that are hard to fit onto a page.
 
-```{r fan-tree, echo = FALSE, fig.cap = 'An example of a fan or circular phylogeny. Tip labels have been omitted.', out.width='80%', fig.asp=.75, fig.align = 'left'}
+```{r fan-tree, echo = FALSE, fig.cap = 'An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree.', out.width='80%', fig.asp=.75, fig.align = 'left'}
 
 # Read 
 data(shorebird)
@@ -514,12 +518,16 @@ data(shorebird)
 plot(shorebird.tree, type = "fan", no.margin = TRUE, show.tip.label = FALSE)
 ```
 
+```{block, type = "info"}
 If you find reading and understanding phylogenies difficult, we highly recommend trying the *Tree Thinking challenge* at https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf [@Baum979], which should help you get the hang of it.
+```
 
 ### How do we infer phylogenies?
 We could write a whole book just about inferring phylogenies. In fact, there already are several e.g. [@felsenstein2004inferring], and there will be another Primer focusing on this subject if it's something you need/want more details on! Here we will just cover the basics, focusing on the information you'll need to be able to understand the rest of the book.
 
+```{block, type = "warning"}
 Note that we **infer** phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of most groups until someone invents a time machine!
+```
 
 Most phylogenies are built using genetic or morphological data. Genetic data is usually a gene sequence, with the genes used depending on the question. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting genetic data these days might be as simple as downloading it from GenBank, however, the sequences still need to be aligned which can take more time.
 
@@ -532,7 +540,7 @@ Note that one common feature of all phylogenetic inference methods is that they 
 #### Parsimony
 Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the *most parsimonious* phylogeny or phylogenies that satisfy that criterion. 
 
-Ideally, this will result in one most parsimonious tree, but often more than one phylogeny meets this criterion. In these cases it is usual to create a *consensus tree*, an average topology across all the most parsimonious trees. There are several ways to construct these, from *strict consensus* trees that include only relationships shown in all most parsimonious trees, to *majority rule consensus* trees that include all relationships found in at least 50% of the most parsimonious trees. Consensus trees are one way that polytomies can be introduced into phylogenies (see Figure @ref(fig:poly)). 
+Ideally, this will result in one most parsimonious tree, but often more than one phylogeny meets this criterion. In these cases it is usual to create a *consensus tree*, an average topology across all the most parsimonious trees. There are several ways to construct these, from *strict consensus* trees that include only relationships shown in all most parsimonious trees, to *majority rule consensus* trees that include all relationships found in at least 50% of the most parsimonious trees. Consensus trees are one way that polytomies can be introduced into phylogenies (see Figure \@ref(fig:polytomy)). 
 
 #### Maximum Likelihood (ML)
 Maximum Likelihood is a statistical method for estimating the unknown parameters of a model. Likelihood is proportional to the probability of observing the data given the model, *P(data|model)*. The Maximum Likelihood solution is the one that has the highest Likelihood, i.e. the model that best describes the observed data. We will use Maximum Likelihood throughout this book to estimate parameters in many different types of models. 
@@ -575,18 +583,18 @@ How do you choose the "best" phylogeny for your group? There is no hard or fast 
 - Can you access several different versions of the phylogeny, or a posterior distribution of phylogenies to account for phylogenetic uncertainty?
 - If you don't know the group, or phylogenetics, well, don't be afraid to ask the opinion of someone who knows more than you. They may save you hours of pain and indecision!
 
-### An important caveat
-
-Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine.
-
 ```{block, type = "warning"}
-Phylogenies are just **hypotheses** about the way evolution happened. Always bear this in mind when interpreting results from phylogenetic comparative methods.
+**An important caveat.** Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine. Always bear this in mind when interpreting results from phylogenetic comparative methods.
 ```
 
 ## Comparative data
 
 ### Sources of comparative data and data quality
 We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, Internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
+
+```{block, type = "warning"}
+The results of comparative analyses are *only as good as the data you put into them*. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material. Always bear this in mind when interpreting the results of comparative analyses.
+```
 
 #### Peer-reviewed literature, books, field guides, and internet searches. 
 The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the Internet. It is also possible to do all of this using Internet searches instead, but it is important to check the source of any information provided. Journal articles and professional web-pages are likely to be fine, but other web-pages may not always state the source of their information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
@@ -605,10 +613,10 @@ After collecting your data you'll likely need to summarise these data for each s
 #### Curated databases
 Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
 
-### Scientific method box: Practical data collection
-How do we practically collect and record comparative data?
+```{block, type = "detail"}
+### Practicalities of comparative data collection
 
-Let's imagine we have the following three sources of chameleon body length and life history data. 
+How do we practically collect and record comparative data? Let's imagine we have the following three sources of chameleon body length and life history data. 
 
 **SOURCE 1: Smith et al. 2020.** 
 
@@ -629,42 +637,16 @@ Let's imagine we have the following three sources of chameleon body length and l
 - *Calumma parsonii*. Approximately 24 inches.
 
 We would tend to record these data in a table (probably in Excel or another spreadsheet program) like this.
-```{r, echo = FALSE}
-x <- data.frame("Species" = c(rep("Chamaeleo chamaeleon", 3), 
-                            rep("Brookesia minima", 3),
-                            rep("Calumma parsonii", 3),
-                            rep("Chamaeleo chamaeleon", 2), 
-                            rep("Brookesia minima", 2),
-                            rep("Calumma parsonii", 2),
-                            "Chamaeleo chamaeleon", 
-                            "Brookesia minima",
-                            "Calumma parsonii"),
-                "Measurement" = c(rep(c("length", "clutch size", "dimorphic"), 3),
-                                  rep(c("length", "clutch size"), 3),
-                                  rep("length", 3)),
-                "Value" = c(245, 80, 1, 33, 2, 1, 650, 50, 1,
-                            250, 100, 34, 2, 695, 50,
-                            10, 1, 24),
-                "Data_Type" = c(rep(c("mean", "mean", "truefalse"), 3),
-                           rep(c("max"), 6),
-                           rep("mean", 3)),
-                "Units" = c(rep(c("mm", "eggs", "NA"), 3),
-                            rep(c("mm", "eggs"), 3),
-                            rep("inches", 3)),
-                "Data_Quality" = c(rep("high", 9),
-                             rep("high", 6),
-                             rep("medium", 3)), 
-                "Approximation" = c(rep(FALSE, 15),
-                                    rep(TRUE, 3)),
-                "Source" = c(rep("Jones et al 2020", 9),
-                             rep("Smith et al 2020", 6),
-                             rep("Han et al 2020", 3))
-                             )
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+x <- read_csv("data/chameleon-data-raw.csv")
 
 # Show whole table
 kable(x, align = 'l')
 ```
 
+```{block, type = "detail"}
 We would also record the full reference for each source in a separate table. Recording the data like this makes it easy to enter in Excel, and also makes it easy for us to exclude certain types of data or sources should we decide we don't trust them enough to include in our analyses.
 
 Note that this will not be the ideal format for using the data in R, so you will need to manipulate or *wrangle* the data first. For most analyses, data need to be in a *tidy* format, meaning:
@@ -676,6 +658,7 @@ Note that this will not be the ideal format for using the data in R, so you will
 In R, the `tidyr` and `dplyr` packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case you accidentally introduce any errors, and so that you can repeat the data collection and analyses if needed. See [https://r4ds.had.co.nz/tidy-data.html](https://r4ds.had.co.nz/tidy-data.html) for more details on what tidy data is and how to do this.
 
 To wrangle this data, we would first convert the units to a standard unit for each measurement. Here we have length in mm and inches, so we would convert the inches into mm. The three altered rows are shown below. Note that converting from inches to mm gives us the false impression of precision, i.e. two values are now 25.4 and 609.6, rather than whole numbers making it look like these were measured accurately rather than approximated. It's worth looking out for this in other data, especially curated databases where this kind of conversion is typical.
+```
 
 ```{r, echo = FALSE}
 x2 <-
@@ -689,6 +672,7 @@ x2 <-
 kable(tail(x2, n = 3), align = 'l')
 ```
 
+```{block, type = "detail"}
 Next we might decide to exclude low quality records, and remove any approximations. We might need to do something more complicated if we only have one record for a species and it is an approximation. In this case we are going to keep the approximations, and use all the data. But you should choose what is sensible for your dataset. 
 
 Finally, we want to summarise the data for each species, to get means/medians and possibly also minima and maxima. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs for example here we might want to extract:
@@ -700,6 +684,8 @@ Finally, we want to summarise the data for each species, to get means/medians an
 * *Median dimorphism score*. This will tell use whether the species is predominantly considered to be dimorphic or not.
 
 Our final dataset for analyses might look something like this. 
+```
+
 ```{r, echo = FALSE}
 x3 <-
   x2 %>%
@@ -715,18 +701,15 @@ x3 <-
 kable(x3, align = 'l') 
 ```  
 
+```{block, type = "detail"}
 Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to achieve the above can be found in the *online materials*.
-
-
-```{block, type = "warning"}
-The results of comparative analyses are only as good as the data you put into them. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material.
 ```
 
-
+[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
 ## Summary
 
 Hopefully this chapter has given you a good insight into the foundations underlying phylogenetic comparative methods. In the next chapter we will do XXX
 
-## Online questions?
+## Online stuff
 
-## MCQs?
+## MCQs
