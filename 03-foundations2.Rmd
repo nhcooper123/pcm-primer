@@ -468,7 +468,7 @@ You often hear about using phylogenies for *ancestral state reconstruction*, alo
 
 There are many reasons to be highly skeptical of ancestral state estimates and interpretations of macroevolutionary patterns and process that are based on them, not least because we know that phylogenies are only *hypotheses* and will often miss out large chunks of extinct diversity. Ancestral state estimation methods are based on the models we discussed above, meaning that your ancestral states are at best weighted averages of your trait based on branch lengths and the model used. How much trust you would want to put in such a result is up to you, but hopefully you now know enough to be very skeptical! However, certain phylogenetic comparative methods require that you define the state of the ancestor for them to work. We will return to this later in the book.
 
-```{block, type = warning}
+```{block, type = "warning"}
 Ancestral state estimates (**not** reconstructions) are, at best, weighted averages of your trait based on branch lengths of the phylogeny and the model of evolution used. If your phylogeny or traits or model have error (and they always will) then your ancestral state estimates should be viewed with careful skepticism.
 ```
 
@@ -913,12 +913,12 @@ As we explored in *Chapter 2*, phylogenies are just hypotheses about how species
 
 Trait measurements are also likely to include errors, especially when we use species averages taken from a number of sources (see *Chapter 2*). Simulations have shown that measurement error substantially decreases the power to detect significant phylogenetic signal using *K*, and also decreases values of *K* [@hardy2012assessing, @blomberg2003testing].
 
-```{block, typ = "warning"}
+```{block, type = "warning"}
 #### "Correcting" for phylogeny
 One final common misconception about phylogenetic signal involves analyses that account for the phylogenetic non-independence of species (see *Chapter 1*). We explore these methods in detail in the next *Chapter 4*, but it's useful to mention this here as well while we are talking about phylogenetic signal. People will sometimes say that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see [@revell2010phylogenetic]). Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
 ```
 
-```{block, typ = "detail"}
+```{block, type = "detail"}
 **Correcting for phylogeny**. It is common to come across the term "correcting for phylogeny". However, some feel that by saying that we are "correcting" for phylogeny, we are suggesting that phylogeny is a bad thing that needs to be fixed. In reality, phylogenetic comparative methods take phylogenetic relationships into account, and allow us to incorporate information about the way evolution happens into our models, thus making them more realistic and more useful. Thus we aren't correcting anything. Depending on the company you're in, avoiding the phrase "correcting for phylogeny" is either seen as pedantic, or extremely important. We tend to avoid it, but recognise that for people from certain statistical backgrounds, thinking of phylogenetic non-independence as error to be corrected is very natural and aids their understanding.
 ```
 
