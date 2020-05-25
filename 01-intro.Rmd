@@ -1,6 +1,8 @@
 # Introduction to the comparative method {#intro}
 
+```{block, type = "info"}
 ** RPF is writing this at present **
+```
 
 Here we will lay the conceptual framework for the comparative method. The idea behind the comparative method will be introduced, and examples given of the types of analysis that can be undertaken. The problem of phylogenetic non-independence will be introduced and a range of methodological approaches described in brief. 
 

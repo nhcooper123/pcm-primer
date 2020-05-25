@@ -1,6 +1,8 @@
 # Glossary {#glossary}
 
-**To finish at the end**
+```{block, type = "info"}
+**To write at the end**
+```
 
 - **phylogeny**
 - **Root**
