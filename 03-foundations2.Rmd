@@ -20,7 +20,9 @@ remove_y <-
         axis.ticks.y = element_blank())
 ```
 
-The previous chapter introduced you to the basic building blocks of comparative methods: phylogenies and trait data. We are now going to shift gears and think about some of the theory underpinning comparative methods.
+[CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY]
+
+The previous chapter introduced you to the basic building blocks of comparative methods; phylogenies and trait data. We are now going to shift gears and think about some of the theory and models underpinning comparative methods.
 
 At the very simplest level, comparative methods are interested in how traits are distributed across trees, and how these traits change through time. Are there clusters in the tree where traits of the species at the tips are similar or identical? Or are traits spread evenly across the tree? How quickly do trait values change through time? etc.
 
@@ -38,7 +40,6 @@ This chapter will introduce you to the basic ways we work with traits and trees.
 
 ## Modelling continuous traits - the Brownian Motion model of evolution
 
-![Brownie in motion](images/brownie.jpg)
 For continuous traits, the most commonly used model of trait evolution is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!
 
 ### An introduction to Brownian Motion
@@ -49,7 +50,7 @@ $z(0)$ is the starting value of the trait we are interested in. This is the mean
 
 Here's the explanation. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
 
-```{r, normal, echo = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r normal, echo = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
 base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
   labs(x = "", y = "") +
   scale_y_continuous(breaks = NULL) +
@@ -167,7 +168,7 @@ sim_1_tips <- filter(sim_1, time == 99)
 
 As above, we will start at $time = 0$ with an ancestral cat that weighs 4 kg (i.e. $z(0) = 4$), and use $\sigma^2$ of 0.25 as the rate of evolution (Figure \@ref(fig:bm100)A).
 
-```{r bm100, echo = FALSE, fig.cap='100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B).', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r bm100, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B).', out.width='80%', fig.asp=.75, fig.align='center'}
 # Create base graph
 base <-
   ggplot(sim_0.1, aes(x = time, y = trait, group = sim)) +
@@ -251,9 +252,9 @@ One final feature to highlight is what the body mass values look like at the end
 
 Because trait changes are drawn from a normal distribution with a mean of 0, on average we expect no change in body mass through time. So if we run enough simulations, the mean of the trait values at the end of the simulations should be equal to the starting value $z(0)$, in this case 4 kg. The rest of the values should be evenly distributed around the mean, so we expect the body mass values to be normally distributed. 
 
-As demonstrated above, the variance of these normal distributions of body masses will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure \@ref(fig:bmhist)) *and* the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure \@ref(fig:bmvariance)). More precisely, we can define the overall variance of the Brownian process as the rate of evolution times the amount of time that has elapsed. 
+As demonstrated above, the variance of these normal distributions of body masses will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure \@ref(fig:bmhist)) *and* the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure \@ref(fig:bm100)). More precisely, we can define the overall variance of the Brownian process as the rate of evolution multiplied by the amount of time that has elapsed. 
 
-```{r, echo = FALSE, warning = FALSE}
+```{r bmhist, echo = FALSE, warning = FALSE, fig.cap='Three Brownian motion simulations (left) with different values of sigma (A = 0.1, B = 0.25, C = 1) and the resulting trait distributions at the end of the simulation (right).', out.width='80%', fig.asp=.75, fig.align='center'}
 # Now create histograms of trait values at tips
 hist_0.1 <-
   ggplot(sim_0.1_tips, aes(x = trait)) +
@@ -358,7 +359,7 @@ cattree + all +
 
 A few things to note here. 
 
-First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \ref@(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
+First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \@ref(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
 
 Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that $\sigma^2$ was also the same throughout. This means that the *rate of evolution across the tree is constant*, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
@@ -383,6 +384,8 @@ Some biological implications of the model are:
 
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
+
+
 
 ### What if evolution is non Brownian?
 
@@ -448,21 +451,26 @@ flightless|5|6|-
 
 Biologically, this is a useful model to fit if you think some of your states are not reversible, or very difficult to reverse, for example if you think the rate of evolution from flightless to flying is likely to be close to 0. It often works well for big complex datasets that span a variety of different states. For example, if you had a tree of all vertebrates and wanted to examine transition rates among different dietary strategies, this model would be worth examining.
 
-You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting*, which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
+You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting* (see below), which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
 
-### Scientific method box ########
-Over-fitting occurs where a model has more parameters than can be justified by the data. It can mean the model looks like it beautifully fits the data, but if you were to add additional data it would be useless. 
+```{block, type = "detail"}
+**Over-fitting** occurs where a model has more parameters than can be justified by the data. It can mean the model looks like it beautifully fits the data, but if you were to add additional data it would be useless. 
 
 Imagine you have data on the swimming speed of ten penguins (let's call them Pingu, Pinga, Misha, Wheezy, Chilly Willy, Mumble, Skipper, Kowalski, Rico, Private and Feathers McGraw). You could fit a model (we could use a linear regression here) to see if body mass is correlated with swimming speed, and get a regression with an $r^2$ of 0.5. This suggests around half of the variance in swimming speed is explained by body mass. The other half might be explained by all kinds of things, including specific attributes of the particular penguins or errors in your measurements. We haven't fully explained variation in swimming speed, but it's still a useful model because if we weighed another penguin we'd have a reasonable chance of estimating roughly what its swimming speed might be from its body mass. 
 
 If we wanted to increase the variance explained by the model as much as possible, we can start adding more variables. For example, maybe the faster penguins also have longer flippers so we add in flipper length. This might be sensible, and if we had more penguins in our dataset this would be fine. But what if we also add in a variable that accounts for Wheezy being slow due to his asthma, and another that accounts for Feathers McGraw being faster because he's evil? If we add enough variables, eventually we get to a model with an $r^2$ of 1. This means we can perfectly explain the swimming speed of our ten penguins, but we've got no hope of applying it to any new penguins we find. This is over-fitting, and the model not useful. Visually you can think of it the difference between fitting one line of best fit to a regression of X against Y, compared to joining all the points up.
 
 There's no hard and fast rule about how much data you need to add another variable to your model, but some rules of thumb range from 20-30 data points for each variable. Complex models are always likely to fit data better just because they have more parameters, not necessarily because they mean anything biologically meaningful. You can avoid this problem by thinking very carefully about the models you chose to fit, why you think they are sensible, what you predict you will find, and how you will interpret the results, *before* fitting the model.
-###########
+```
 
 ### A quick note about ancestral state estimation
 You often hear about using phylogenies for *ancestral state reconstruction*, along with suggestions that these reconstructions can tell us what the ancestor of a group looked like, how it behaved, what it ate for breakfast etc. Sadly this is not as magical as it seems, and we should refer to this as ancestral state *estimation* NOT *reconstruction*. Ancestral state estimation is probably one of the most over-used and uninformative methods in the phylogenetic comparative methods toolkit. 
+
 There are many reasons to be highly skeptical of ancestral state estimates and interpretations of macroevolutionary patterns and process that are based on them, not least because we know that phylogenies are only *hypotheses* and will often miss out large chunks of extinct diversity. Ancestral state estimation methods are based on the models we discussed above, meaning that your ancestral states are at best weighted averages of your trait based on branch lengths and the model used. How much trust you would want to put in such a result is up to you, but hopefully you now know enough to be very skeptical! However, certain phylogenetic comparative methods require that you define the state of the ancestor for them to work. We will return to this later in the book.
+
+```{block, type = warning}
+Ancestral state estimates (**not** reconstructions) are, at best, weighted averages of your trait based on branch lengths of the phylogeny and the model of evolution used. If your phylogeny or traits or model have error (and they always will) then your ancestral state estimates should be viewed with careful skepticism.
+```
 
 ## Phylogenetic variance-covariance matrices
 
@@ -527,7 +535,7 @@ jellyfish|0|0|0|a|
 We will use phylogenetic variance–covariance matrices at various points in this *Primer*, including in the next section on phylogenetic signal. Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
 
 ```{block, type = "info"}
-As you may already be aware, variance–covariance matrices are used in many statistical methods, not just phylogenetic comparative methods. The fact that we can represent a phylogeny in this way makes our lives way easier in the next few chapters! 
+As you may already be aware, variance–covariance matrices are used in many statistical methods, not just phylogenetic comparative methods. The fact that we can represent a phylogeny in this way will make our lives way easier in the next few chapters! 
 ```
 
 ## Phylogenetic signal
@@ -599,21 +607,21 @@ tree <- read.tree("data/basic.tre")
 
 Note that the root-to-tip distance for each species sums to 13.6. This is the variance, or diagonal of our phylogenetic variance–covariance matrix. The covariances, or off-diagonals, are the shared branch lengths between pairs of species. The shared branch length between the robin and the deer is 6.3 + 3.1 = 9.4. The shared branch length between the robin and the spider (and the deer and the spider) is 6.3. The shared branch length between the robin/deer/spider and the jellyfish is zero (see section above if this is not clear). Therefore, the phylogenetic variance–covariance matrix for this phylogeny is:
 
--|robin|deer|spider|jellyfish|
-robin|13.6|9.4|6.3|0|
-deer|9.4|13.6|6.3|0|
-spider|6.3|6.3|13.6|0|
-jellyfish|0|0|0|13.6|
+-|robin|deer|spider|jellyfish
+robin|13.6|9.4|6.3|0
+deer|9.4|13.6|6.3|0
+spider|6.3|6.3|13.6|0
+jellyfish|0|0|0|13.6
 
 $\lambda$ can be any number between 0 and 1. $\lambda$ of 0 indicates that there is no phylogenetic signal in the trait, i.e. that the trait has evolved independently of phylogeny and thus close relatives are not more similar on average than distant relatives. If $\lambda$ is 1 this indicates that there is strong phylogenetic signal, and the trait has evolved according to the Brownian motion model of evolution. What do these values do to the phylogenetic variance–covariance matrix and the phylogeny?
 
 When $\lambda$ is 0, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are also 0 (any number multiplied by zero is equal to zero). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this:
 
--|robin|deer|spider|jellyfish|
-robin|13.6|0|0|0|
-deer|0|13.6|0|0|
-spider|0|0|13.6|0|
-jellyfish|0|0|0|13.6|
+-|robin|deer|spider|jellyfish
+robin|13.6|0|0|0
+deer|0|13.6|0|0
+spider|0|0|13.6|0
+jellyfish|0|0|0|13.6
 
 This means all the internal branches now have a length of zero. This produces a tree which is just one big polytomy, also refered to as a *star phylogeny* (Figure \@ref(fig:star)).
 
@@ -640,11 +648,11 @@ tree <- read.tree("data/star.tre")
 
 When $\lambda$ is 1, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are exactly the same (any number multiplied by 1 remains unchanged). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this, i.e. the same as before the $\lambda$ transformation. The tree also stays the same as in Figure \@ref(fig:vcv).
 
--|robin|deer|spider|jellyfish|
-robin|13.6|9.4|6.3|0|
-deer|9.4|13.6|6.3|0|
-spider|6.3|6.3|13.6|0|
-jellyfish|0|0|0|13.6|
+-|robin|deer|spider|jellyfish
+robin|13.6|9.4|6.3|0
+deer|9.4|13.6|6.3|0
+spider|6.3|6.3|13.6|0
+jellyfish|0|0|0|13.6
 
 ```{block, type = "info"}
 Many explanations of Pagel's $\lambda$ state that the maximum value of $\lambda$ is 1. Actually, it can be bigger than 1 if close relatives are *more* similar than expected under the Brownian motion model of evolution. However, most tools that allow you to estimate $\lambda$ restrict it to a maximum of 1 because covariances cannot exceed variances in a phylogenetic variance–covariance matrix, and this is what would happen if $\lambda$ was bigger than 1.
@@ -750,9 +758,11 @@ $MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylo
 
 We can test whether *K* is significantly different from 0 using randomisation tests. These work by randomizing the trait data across the phylogeny, calculating *K*, and then repeating this 1000 times. If we have phylogenetic signal in our data we expect these random *K* values to have lower values than our value of *K*. We can get a p value for the randomisations by counting how many times the randomised trait data gives a higher value of *K* than our observed value, and then dividing this by the total number of randomisations. For example, if 10 randomised *K* values are higher than the observed *K* then p = 10/100 = 0.01. 
 
-#### How do we estimate Blomberg’s *K*? Is this needed? Can it go into a box? 
+```{block, type = "detail"}
+#### How do we estimate Blomberg’s *K*?
 
 Let's use a very simple example with just three taxa, A, B and C. For more detail and proper maths see [@blomberg2003testing].
+```
 
 ```{r Ktree, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths and body size for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
 
@@ -780,7 +790,13 @@ tree <- read.tree("data/Ktree.tre")
                     nudge_x = -1.5, nudge_y = 0.25, size = 5, col = "#2ab7ca")
 ```
 
+```{block, type = "detail"}
 As we noted above the equation for Blomberg’s *K* is: 
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation} 
 
 $observed (MSE_0 / MSE) / expected (MSE_0 / MSE)$
 
@@ -823,20 +839,21 @@ Finally, to make values of K comparable among different phylogenies, the observe
 $(1/n-1) * (\Sigma V_{diag} - n/ \Sigma V^{-1})$
 
 $V$ is the phylogenetic variance covariance matrix, and $V^{-1}$ is the inverse of the phylogenetic variance covariance matrix. For our simple example these look like this:
-
-```{r, echo = FALSE}
-vcv(tree)
 ```
 
 ```{r, echo = FALSE}
-solve(vcv(tree))
+kable(vcv(tree))
 ```
 
+```{r, echo = FALSE}
+kable(solve(vcv(tree)))
+```
+
+```{block, type = "detail"}
 In the equation, $\Sigma V_{diag}$ is the sum of diagonal elements of $V$, i.e. $5.5 + 5.5 + 5.5 = 16.5$. $\Sigma V^{-1}$ is the sum of all elements of the inverse matrix of $V$, i.e. $0.3055556 + -0.1944444 + 0 + -0.1944444 + 0.3055556 + 0 + 0 + 0 + 0.1818182 = 0.4040404$ So our final value for expected $MSE_0 / MSE$ is $1/(3-1) * 16.5 - 3/0.4040404 = 4.5375$. 
 
-So overall our *K* value for this simple example is
-
-$6.389189 / 4.5375 = 1.408086$
+So overall our *K* value for this simple example is $6.389189 / 4.5375 = 1.408086$
+```
 
 ### Phylogenetic signal for categorical traits
 
@@ -868,6 +885,10 @@ We can also use $d_{rand}$ and $d_{BM}$ to determine the significance of $d_{obs
 
 Although people will often refer to 'high' or 'low' phylogenetic signal, what people mean by 'high' and 'low' varies widely. For example, in different studies $\lambda$ of 0.5 might be called low, intermediate or high! This can make interpreting phylogenetic signal problematic. Additionally, as we noted at the start of this section, phylogenetic signal is a *pattern*. Many people however, use it as a way to provide information about evolutionary *process*. Interpreting underlying process from pattern should be done with care, and is often inappropriate.
 
+```{block, type = "warning"}
+Phylogenetic signal is a *pattern*, not a *process*. Always be very careful when interpreting underlying process from a pattern.
+```
+
 Traditionally, 'low' phylogenetic signal has been interpreted as evolutionary lability or plasticity [@blomberg2003testing], or as the result of high rates of trait evolution leading to large differences among close relatives. Adaptive radiations are expected to be characterized by low phylogenetic signal in ecological niche traits because in adaptive radiations close relatives rapidly diversify to fill new niches. Similarly groups with lots of convergent evolution in a trait are expected to have low phylogenetic signal. 
 
 'High' phylogenetic signal is interpreted as genetic drift or neutral evolution, because these processes should approximate a Brownian motion model of evolution (see section above). 'Very high' phylogenetic signal is often interpreted as evolutionary or phylogenetic conservatism [@losos2008phylogenetic], where close relatives have extremely similar trait values. The point at which phylogenetic signal is considered high enough to be phylogenetic conservatism varies among authors (e.g. $\lambda$ or *K* $>$ 1, [@losos2008phylogenetic]; $\lambda$ or *K* $=$ 1, [@cooper2010phylogenetic]). Explanations for phylogenetic conservatism also vary, for example it may occur because species survival requires specific trait values (e.g. traits related to drought tolerance in desert plants are likely to be highly conserved), or because of other mechanisms such as stabilizing selection, pleiotropy, high levels of gene flow, limited genetic variation, low rates of evolution, physiological constraints or various biotic interactions (e.g. competition) restricting the evolution of new phenotypes [@blomberg2002tempo, @losos2008phylogenetic]. 
@@ -885,23 +906,26 @@ Small sample sizes tend to have lower *power* to detect significant results. Wha
 
 In the context of phylogenetic signal, *K* is able to detect significant phylogenetic signal when sample sizes are greater than 20 [@blomberg2003testing], i.e. it has good power when there are more than 20 tips in the tree. For $\lambda$, power is only good for sample sizes greater than 30 [@freckleton2002phylogenetic]. As the number of tips in the tree increases, the ability to detect significant levels of phylogenetic signal also increases. 
 
-For large sample sizes, it may be more useful to focus on the value of $\lambda$ or *K*, rather than placing too much emphasis on the significance or non-significance of p-values. For small sample sizes, finding $\lambda$ or *K* that is not significantly different from 0
-should not be taken to mean that there is no phylogenetic signal in the variable without close examination of the data [@kamilar2013phylogenetic]. 
+For large sample sizes, it may be more useful to focus on the value of $\lambda$ or *K*, rather than placing too much emphasis on the significance or non-significance of p-values. For small sample sizes, finding $\lambda$ or *K* that is not significantly different from 0 should not be taken to mean that there is no phylogenetic signal in the variable without close examination of the data [@kamilar2013phylogenetic]. 
 
 #### Error in the phylogeny and the trait
 As we explored in *Chapter 2*, phylogenies are just hypotheses about how species are related, not the truth. Thus all phylogenies contain error. Luckily it seems that missing branch length information has negligible effects on estimates for $\lambda$ or *K* [@munkemuller2012measure], however, phylogenetic signal may be inflated when using *K* if the tree has polytomies (this is not a problem for $\lambda$) [@molina2017revisiting]. 
 
 Trait measurements are also likely to include errors, especially when we use species averages taken from a number of sources (see *Chapter 2*). Simulations have shown that measurement error substantially decreases the power to detect significant phylogenetic signal using *K*, and also decreases values of *K* [@hardy2012assessing, @blomberg2003testing].
 
+```{block, typ = "warning"}
 #### "Correcting" for phylogeny
-One final common misconception about phylogenetic signal involves analyses that account for the phylogenetic non-independence of species (see *Chapter 1*). We explore these methods in detail in the next *Chapter*, but it's useful to mention this here as well while we are talking about phylogenetic signal. 
+One final common misconception about phylogenetic signal involves analyses that account for the phylogenetic non-independence of species (see *Chapter 1*). We explore these methods in detail in the next *Chapter 4*, but it's useful to mention this here as well while we are talking about phylogenetic signal. People will sometimes say that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see [@revell2010phylogenetic]). Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
+```
 
-People will sometimes say that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see [@revell2010phylogenetic]). Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
+```{block, typ = "detail"}
+**Correcting for phylogeny**. It is common to come across the term "correcting for phylogeny". However, some feel that by saying that we are "correcting" for phylogeny, we are suggesting that phylogeny is a bad thing that needs to be fixed. In reality, phylogenetic comparative methods take phylogenetic relationships into account, and allow us to incorporate information about the way evolution happens into our models, thus making them more realistic and more useful. Thus we aren't correcting anything. Depending on the company you're in, avoiding the phrase "correcting for phylogeny" is either seen as pedantic, or extremely important. We tend to avoid it, but recognise that for people from certain statistical backgrounds, thinking of phylogenetic non-independence as error to be corrected is very natural and aids their understanding.
+```
 
+
+[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
 ## Summary
 
-
 ## Online stuff
-
 
 ## MCQs?
