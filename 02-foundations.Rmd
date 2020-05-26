@@ -584,7 +584,7 @@ How do you choose the "best" phylogeny for your group? There is no hard or fast 
 - If you don't know the group, or phylogenetics, well, don't be afraid to ask the opinion of someone who knows more than you. They may save you hours of pain and indecision!
 
 ```{block, type = "warning"}
-**An important caveat.** Hopefully this brief overview has revealed something important - inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead we can more accurately think of phylogenies as **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine. Always bear this in mind when interpreting results from phylogenetic comparative methods.
+Inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the "true" evolutionary history of a group. Instead phylogenies are **hypotheses** about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine.
 ```
 
 ## Comparative data
@@ -593,7 +593,7 @@ How do you choose the "best" phylogeny for your group? There is no hard or fast 
 We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, Internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed. 
 
 ```{block, type = "warning"}
-The results of comparative analyses are *only as good as the data you put into them*. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material. Always bear this in mind when interpreting the results of comparative analyses.
+The results of comparative analyses are *only as good as the data you put into them*. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material.
 ```
 
 #### Peer-reviewed literature, books, field guides, and internet searches. 
@@ -608,7 +608,7 @@ Collecting data manually reveals several issues common to most comparative data 
 
 There are of course many ways to do this, and as long as you **record the decisions you have made** so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don't forget to record the **units** for each measurement. Finally it is extremely important to **record the sources** for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection.
 
-After collecting your data you'll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (*see Scientific Method box*). This process may seem trivial, but can have a large influence on your results.
+After collecting your data you'll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results.
 
 #### Curated databases
 Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
@@ -706,9 +706,8 @@ Note that each variable is now its own column. This will help us when using the 
 ```
 
 [CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
-## Summary
 
-Hopefully this chapter has given you a good insight into the foundations underlying phylogenetic comparative methods. In the next chapter we will do XXX
+## Summary
 
 ## Online stuff
 
