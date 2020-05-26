@@ -69,7 +69,7 @@ Each chapter of the *Primer* has associated online companion material. This cons
 Throughout the *Primer* are boxes of text highlighting particularly important issues:
 
 ```{block, type="info"}
-**FYI** boxes. These boxes highlight important details that we don't want you to miss!
+**Note** boxes. These boxes highlight important details that we don't want you to miss!
 ```
 
 ```{block, type="detail"}
@@ -77,7 +77,7 @@ Throughout the *Primer* are boxes of text highlighting particularly important is
 ```
 
 ```{block, type="warning"}
-**Caveats/Velociraptor** boxes. These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should* (thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. 
+**Caveats** boxes. These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should* (thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. 
 ```
 
 ## Acknowledgements {-}
