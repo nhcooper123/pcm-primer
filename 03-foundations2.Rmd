@@ -28,8 +28,6 @@ At the very simplest level, comparative methods are interested in how traits are
 
 The models we use to describe how traits change will vary depending on whether our traits are continuous (e.g. body size, leaf area) or discrete (e.g. presence or absence of a tail, growth form, number of legs). 
 
-Some real world examples?
-
 This chapter will introduce you to the basic ways we work with traits and trees. It will cover:
 
 - Modelling continuous traits.
@@ -363,7 +361,7 @@ First, when a lineage speciates, the new lineages start at the same trait value,
 
 Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that $\sigma^2$ was also the same throughout. This means that the *rate of evolution across the tree is constant*, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
-### A summary of the Brownian Motion model of evolution
+```{block, type = "info"}
 To summarise the above, the key features of the Brownian motion model are: 
 
 - Traits evolve at random, i.e. by a random walk.
@@ -384,12 +382,12 @@ Some biological implications of the model are:
 
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
+```
 
-
-
-### What if evolution is non Brownian?
-
-Already you've probably realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these later in the book.
+```{block, type = "detail"}
+**What if evolution is non Brownian?**
+You've probably already realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these in *Chapter 7*.
+```
 
 ## Modelling discrete traits - simple models
 
@@ -469,7 +467,7 @@ You often hear about using phylogenies for *ancestral state reconstruction*, alo
 There are many reasons to be highly skeptical of ancestral state estimates and interpretations of macroevolutionary patterns and process that are based on them, not least because we know that phylogenies are only *hypotheses* and will often miss out large chunks of extinct diversity. Ancestral state estimation methods are based on the models we discussed above, meaning that your ancestral states are at best weighted averages of your trait based on branch lengths and the model used. How much trust you would want to put in such a result is up to you, but hopefully you now know enough to be very skeptical! However, certain phylogenetic comparative methods require that you define the state of the ancestor for them to work. We will return to this later in the book.
 
 ```{block, type = "warning"}
-Ancestral state estimates (**not** reconstructions) are, at best, weighted averages of your trait based on branch lengths of the phylogeny and the model of evolution used. If your phylogeny or traits or model have error (and they always will) then your ancestral state estimates should be viewed with careful skepticism.
+Ancestral state estimates (**not** reconstructions) are, at best, weighted averages of your trait based on branch lengths of the phylogeny and the model of evolution used. If your phylogeny or traits or model have error (and they always will) then your ancestral state estimates should be interpretted with care.
 ```
 
 ## Phylogenetic variance-covariance matrices
@@ -607,21 +605,24 @@ tree <- read.tree("data/basic.tre")
 
 Note that the root-to-tip distance for each species sums to 13.6. This is the variance, or diagonal of our phylogenetic variance–covariance matrix. The covariances, or off-diagonals, are the shared branch lengths between pairs of species. The shared branch length between the robin and the deer is 6.3 + 3.1 = 9.4. The shared branch length between the robin and the spider (and the deer and the spider) is 6.3. The shared branch length between the robin/deer/spider and the jellyfish is zero (see section above if this is not clear). Therefore, the phylogenetic variance–covariance matrix for this phylogeny is:
 
--|robin|deer|spider|jellyfish
-robin|13.6|9.4|6.3|0
-deer|9.4|13.6|6.3|0
-spider|6.3|6.3|13.6|0
-jellyfish|0|0|0|13.6
+```{r, echo = FALSE}
+kable(vcv(tree))
+```
 
-$\lambda$ can be any number between 0 and 1. $\lambda$ of 0 indicates that there is no phylogenetic signal in the trait, i.e. that the trait has evolved independently of phylogeny and thus close relatives are not more similar on average than distant relatives. If $\lambda$ is 1 this indicates that there is strong phylogenetic signal, and the trait has evolved according to the Brownian motion model of evolution. What do these values do to the phylogenetic variance–covariance matrix and the phylogeny?
+```{block, type = "info"}
+$\lambda$ can be any number between 0 and 1. $\lambda$ of 0 indicates that there is no phylogenetic signal in the trait, i.e. that the trait has evolved independently of phylogeny and thus close relatives are not more similar on average than distant relatives. If $\lambda$ is 1 this indicates that there is strong phylogenetic signal, and the trait has evolved according to the Brownian motion model of evolution. 
+```
+
+What do $\lambda$ values of 0, 1 and anything in between, do to the phylogenetic variance–covariance matrix and the phylogeny?
 
 When $\lambda$ is 0, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are also 0 (any number multiplied by zero is equal to zero). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this:
 
--|robin|deer|spider|jellyfish
-robin|13.6|0|0|0
-deer|0|13.6|0|0
-spider|0|0|13.6|0
-jellyfish|0|0|0|13.6
+```{r, echo = FALSE}
+m1 <- matrix(c(13.6, 0, 0, 0, 0, 13.6, 0, 0, 0, 0, 13.6, 0, 0, 0, 0, 13.6), nrow = 4)
+colnames(m1) <- c("robin","deer", "spider", "jellyfish")
+rownames(m1) <- c("robin","deer", "spider", "jellyfish")
+kable(m1)
+```
 
 This means all the internal branches now have a length of zero. This produces a tree which is just one big polytomy, also refered to as a *star phylogeny* (Figure \@ref(fig:star)).
 
@@ -648,23 +649,23 @@ tree <- read.tree("data/star.tre")
 
 When $\lambda$ is 1, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are exactly the same (any number multiplied by 1 remains unchanged). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this, i.e. the same as before the $\lambda$ transformation. The tree also stays the same as in Figure \@ref(fig:vcv).
 
--|robin|deer|spider|jellyfish
-robin|13.6|9.4|6.3|0
-deer|9.4|13.6|6.3|0
-spider|6.3|6.3|13.6|0
-jellyfish|0|0|0|13.6
+```{r, echo = FALSE}
+kable(vcv(tree))
+```
 
-```{block, type = "info"}
+```{block, type = "detail"}
 Many explanations of Pagel's $\lambda$ state that the maximum value of $\lambda$ is 1. Actually, it can be bigger than 1 if close relatives are *more* similar than expected under the Brownian motion model of evolution. However, most tools that allow you to estimate $\lambda$ restrict it to a maximum of 1 because covariances cannot exceed variances in a phylogenetic variance–covariance matrix, and this is what would happen if $\lambda$ was bigger than 1.
 ```
 
 Values of $\lambda$ between 0 and 1 indicate that although there is phylogenetic signal in the trait, it has evolved according to a process other than pure Brownian motion [@freckleton2002phylogenetic]. We'll discuss how to interpret phylogenetic signal in more detail later in this section. But to show you how this affects the phylogenetic variance–covariance matrix and the tree, let's assume a $\lambda$ of 0.5. This will multiply all the off-diagonal elements of the phylogenetic variance–covariance matrix by 0.5 resulting in a tree as shown in Figure \@ref(fig:lambda05), and a matrix like this:
 
--|robin|deer|spider|jellyfish|
-robin|13.6|4.7|3.15|0|
-deer|4.7|13.6|3.15|0|
-spider|3.15|3.15|13.6|0|
-jellyfish|0|0|0|13.6|
+```{r, echo = FALSE}
+m2 <- matrix(c(13.6, 4.7, 3.15, 0, 4.7, 13.6, 3.15, 0, 3.15, 3.15, 13.6, 0, 0, 0, 0, 13.6), nrow = 4)
+colnames(m2) <- c("robin","deer", "spider", "jellyfish")
+rownames(m2) <- c("robin","deer", "spider", "jellyfish")
+kable(m2)
+```
+
 
 ```{r lambda05, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths in the original tree and a transformed tree where lambda = 0.5. The root-to-tip distances for each tip taxon are 13.6', out.width='80%', fig.asp=.75, fig.align='center'}
 
@@ -746,22 +747,27 @@ Rather than transforming the tree like $\lambda$, Blomberg’s *K* instead measu
 
 The equation for Blomberg’s *K* is:
 
-$observed (MSE_0 / MSE) / expected (MSE_0 / MSE)$
+\begin{equation} 
+  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
+  (\#eq:K)
+\end{equation} 
 
-$MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylogenetic mean of the data. $MSE$ is the mean squared error  of the tip data in relation to the phylogenetic variance covariance matrix. We explain both of these in more detail below. The important points to take away are:
+The important part of the equation to think about initially is the $observed \frac{MSE_0}{MSE}$ part. $MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylogenetic mean of the data. $MSE$ is the mean squared error  of the tip data in relation to the phylogenetic variance covariance matrix. We explain both of these in more detail below. The important points to take away are:
 
 - if trait similarities are well explained by the phylogeny, observed $MSE$ will be *small* so the ratio of observed $MSE_0$ to $MSE$ will be *large*, and so will *K*. 
 - if trait similarities are *not* well explained by the phylogeny, observed $MSE$ will be *large* so the ratio of observed $MSE_0$ to $MSE$ will be *small*, and so will *K*. 
-- the $observed (MSE_0 / MSE)$ is divided by the expected value under Brownian motion to standardise it because $observed (MSE_0 / MSE)$ will vary depending on the trait and the tree.
+- the $observed \frac{MSE_0}{MSE}$ is divided by the expected value under Brownian motion to standardise it because $observed \frac{MSE_0}{MSE}$ will vary depending on the trait and the tree.
 
+```{block, type = "info"}
 *K* varies continuously from zero to infinity. When *K* is 0, this indicates that there is no phylogenetic signal in the trait (i.e. close relatives are not more similar on average than distant relatives). This is the equivalent of $\lambda = 0$. When *K* is 1, this indicates that the trait has evolved according to the Brownian motion model of evolution, just like when $\lambda$ is 1. Finally, where where K is greater than 1 this indicates that close relatives are more similar than expected under a Brownian motion model of trait evolution (see interpretation notes below). The maximum value of *K* will vary depending on the trait and the tree involved. 
+```
 
 We can test whether *K* is significantly different from 0 using randomisation tests. These work by randomizing the trait data across the phylogeny, calculating *K*, and then repeating this 1000 times. If we have phylogenetic signal in our data we expect these random *K* values to have lower values than our value of *K*. We can get a p value for the randomisations by counting how many times the randomised trait data gives a higher value of *K* than our observed value, and then dividing this by the total number of randomisations. For example, if 10 randomised *K* values are higher than the observed *K* then p = 10/100 = 0.01. 
 
 ```{block, type = "detail"}
 #### How do we estimate Blomberg’s *K*?
 
-Let's use a very simple example with just three taxa, A, B and C. For more detail and proper maths see [@blomberg2003testing].
+Let's use a very simple example with just three taxa, A, B and C. For more details and proper maths (!) see [@blomberg2003testing].
 ```
 
 ```{r Ktree, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths and body size for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
@@ -794,49 +800,56 @@ tree <- read.tree("data/Ktree.tre")
 As we noted above the equation for Blomberg’s *K* is: 
 
 \begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  (\#eq:binom)
+  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
 \end{equation} 
 
-$observed (MSE_0 / MSE) / expected (MSE_0 / MSE)$
-
-Before we think about the equation we should remind ourselves what we mean by *mean squared error (MSE)*. MSE is a way of looking at how far away the data are from the mean. If we have five species with body sizes of 5, 10, 15, 20, 25, the mean body size will be 15 ($5 + 10 + 15 + 20 + 25) / 5$). The *error* (E) is how far from the mean the observed values are (this is equivalent to the residuals in a model). Here the errors will be -10 (i.e. $5 - 15$), -5, 0, 5 and 10. If we sum all of these we end up with 0 as the negative and positive numbers cancel each other out, so to solve this problem we *square* (S) them to give 100, 25, 0, 25 and 100. Finally we take the *mean* (M) of this number to get 50. That's the MSE! If the values are clustered around the mean the MSE will be low. If they are spread out the MSE will be high.
+Before we think about the equation we should remind ourselves what we mean by *mean squared error (MSE)*. MSE is a way of looking at how far away the data are from the mean. If we have five species with body sizes of 5, 10, 15, 20, 25, the mean body size will be 15 ($\frac{5 + 10 + 15 + 20 + 25}{5}$). The *error* (E) is how far from the mean the observed values are (this is equivalent to the residuals in a model). Here the errors will be -10 (i.e. $5 - 15$), -5, 0, 5 and 10. If we sum all of these we end up with 0 as the negative and positive numbers cancel each other out, so to solve this problem we *square* (S) them to give 100, 25, 0, 25 and 100. Finally we take the *mean* (M) of this number to get 50. That's the MSE! If the values are clustered around the mean the MSE will be low. If they are spread out the MSE will be high.
 
 This calculation might seem familiar, and that's because it's the same way we estimate variance! 
 
 Note that above when we calculated the mean part of MSE/variance we divided by $n$, where $n$ is the number of observations. However, this is only valid where we are looking at the whole population. If instead, as is common in phylogenetic comparative methods, we are looking at a *sample* of the whole population, we instead divide by $n - 1$. Why do we do this? In simple terms, if we are looking at a sample rather than the whole population, the MSE/variance we calculate will contain a little bit of bias. Subtracting 1 from the sample size corrects this bias, so you’ll usually get a more accurate answer if you use $n - 1$ instead of $n$ (if you want more details this is known as Bessel’s correction).
 
-Now let's consider just the observed $MSE_0 / MSE$ part of the equation for *K*. 
+Now let's consider just the observed $\frac{MSE_0}{MSE}$ part of the equation for *K*. 
 
 $MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylogenetic mean of the data. This is exactly the same as the MSE described above, but instead of using the mean calculated in the normal way, we use the phylogenetic mean, i.e. the mean value if we account for shared evolutionary history of the species involved. A simplified equation for this is as follows, where $X$ is the trait data, $a$ is the phylogenetic mean, and $n$ is the sample size.
 
-$MSE_0 = \Sigma(X - a)^2 / n - 1$
+\begin{equation} 
+  MSE_0 = \frac{\Sigma(X - a)^2}{n - 1}
+\end{equation} 
 
 The phylogenetic mean of the data is equivalent to the estimated trait value at the root, so we can obtain this using ancestral state estimation. See *Chapter 4* and the online materials for more information on how this works. 
 
 For our example, the phylogenetic mean $a$ is 6.6 kg. Values of $X$ are 2, 4 and 11 kg, and $n$ is 3. This means that our $MSE_0$ is 23.64:
 
-$MSE_0 = ((2 - 6.6)^2 + (4 - 6.6)^2 + (11 - 6.6)^2) / (3 - 1) = 23.64$
+\begin{equation} 
+  MSE_0 = \frac{(2 - 6.6)^2 + (4 - 6.6)^2 + (11 - 6.6)^2}{3 - 1} = 23.64
+\end{equation} 
 
 $MSE_0$ will vary in magnitude depending on how far the data are from the phylogenetic mean. But in a situation where close relatives tend to be more similar than distant relatives, i.e. the phylogeny gives us some information about the covariances among species trait values, it will be larger than $MSE$.
 
 $MSE$ is the mean squared error extracted from a phylogenetic generalized least-squares (PGLS) model that uses the phylogenetic variance–covariance matrix in its error structure. We cover PGLS models in *Chapter 4*, but for now it's enough to know that rather than using $X$ we use $U$ which is the trait values transformed according to the phylogenetic variance–covariance matrix.
 
-$MSE = \Sigma(U - a)^2 / n - 1$
+\begin{equation} 
+  MSE = \frac{\Sigma(U - a)^2}{n - 1}
+\end{equation}
 
 In a PGLS context, $(U - a)$ are equivalent to the phylogenetic residuals from a PGLS model. 
 
 Here the values of $U$ are 7.219543, 4.902944 and 8.633757. $a$ is still 6.6, and $n$ is still 3, thus
 
-$MSE = ((7.219543 - 6.6)^2 + (4.902944 - 6.6)^2 + (8.633757 - 6.6)^2)/ (3 - 1) = 3.7$
+\begin{equation} 
+  MSE = \frac{(7.219543 - 6.6)^2 + (4.902944 - 6.6)^2 + (8.633757 - 6.6)^2}{3 - 1} = 3.7
+\end{equation} 
 
 As predicted, $MSE$ is much smaller than $MSE_0$ because it includes the information about the phylogeny.
 
-We can now calculate observed $MSE_0 / MSE = 23.64/3.7 = 6.389189$ 
+We can now calculate observed $\frac{MSE_0}{MSE} = \frac{23.64}{3.7} = 6.389189$ 
 
 Finally, to make values of K comparable among different phylogenies, the observed $MSE_0$ to $MSE$ ratio is standardized by dividing it by the expected mean squared error ratio under Brownian motion. It is not possible to separately extract expected $MSE_0$ and expected $MSE$, but we can get the overall value using the following equation:
 
-$(1/n-1) * (\Sigma V_{diag} - n/ \Sigma V^{-1})$
+\begin{equation} 
+  expected \frac{MSE_0}{MSE} = \frac{1}{n-1} * (\Sigma V_{diag} - \frac{n}{\Sigma V^{-1}})
+\end{equation}
 
 $V$ is the phylogenetic variance covariance matrix, and $V^{-1}$ is the inverse of the phylogenetic variance covariance matrix. For our simple example these look like this:
 ```
@@ -850,9 +863,31 @@ kable(solve(vcv(tree)))
 ```
 
 ```{block, type = "detail"}
-In the equation, $\Sigma V_{diag}$ is the sum of diagonal elements of $V$, i.e. $5.5 + 5.5 + 5.5 = 16.5$. $\Sigma V^{-1}$ is the sum of all elements of the inverse matrix of $V$, i.e. $0.3055556 + -0.1944444 + 0 + -0.1944444 + 0.3055556 + 0 + 0 + 0 + 0.1818182 = 0.4040404$ So our final value for expected $MSE_0 / MSE$ is $1/(3-1) * 16.5 - 3/0.4040404 = 4.5375$. 
+In the equation, $\Sigma V_{diag}$ is the sum of diagonal elements of $V$:
 
-So overall our *K* value for this simple example is $6.389189 / 4.5375 = 1.408086$
+\begin{equation} 
+  \Sigma V_{diag} = 5.5 + 5.5 + 5.5 = 16.5
+  (\#eq:Vdiageg)
+\end{equation}
+
+$\Sigma V^{-1}$ is the sum of all elements of the inverse matrix of $V$: 
+
+\begin{equation} 
+  \Sigma V^{-1} = 0.3055556 + -0.1944444 + -0.1944444 + 0.3055556 + 0.1818182 = 0.4040406
+\end{equation}
+
+Therefore... 
+
+\begin{equation} 
+  expected \frac{MSE_0}{MSE} = \frac{1}{3-1} * (16.5 - \frac{3}{0.4040406}) = 4.537502
+\end{equation}
+
+So overall our *K* value for this simple example is 
+
+\begin{equation} 
+K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}} = \frac{6.389189}{4.537502} = 1.408085
+  (\#eq:Kcalceg)
+\end{equation}
 ```
 
 ### Phylogenetic signal for categorical traits
@@ -873,11 +908,15 @@ There are a couple of, more or less satisfying, solutions...
 
 The D statistic [@fritz2010selectivity] is calculated as follows:
 
-$D = (d_{obs} – mean(d_{BM}))/(mean(d_{rand}) - mean(d_{BM}))$
+\begin{equation}
+D = \frac{(d_{obs} – mean(d_{BM}))}{(mean(d_{rand}) - mean(d_{BM}))}$
+\end{equation}
 
 $d_{obs}$ is the number of character state changes $d$ (from 0 to 1 or 1 to 0) required to obtain the observed distribution of character states at the tips of the phylogeny. The value of $d_{obs}$ will depend on the phylogenetic signal in the variable, but also on the size of the phylogeny and the relative proportion of 0s and 1s. So that we can compare results across datasets and trees, we therefore standardise $d_{obs}$ using two different null models. The first is a *phylogenetic randomness* null model where trait values are randomly assigned to the tips of the phylogeny and then d is calculated. This is repeated 1000 times to produce $d_{rand}$, the expected distribution of $d$ values if character states are randomly distributed among species without respect to phylogeny. The second null model is a *Brownian threshold* model where we simulate a continuous trait along the phylogeny then define the character state at each tip according to some threshold value of the continuous trait. The threshold is chosen to ensure that the number of tips with each character state remains the same as in the observed data. $d$ is then calculated and the process is repeated 1000 times to get $d_{BM}$, the expected distribution of $d$ values if character states are distributed among species under the expectations of Brownian motion model of evolution.
- 
+
+```{block, type = "info"}
 Where *D* is 1 this indicates that the distribution of the binary trait is random with respect to phylogeny, i.e. there is no phylogenetic signal. This is equivalent to $\lambda$ or *K* of 0 in continuous traits. Conversely, where *D* is 0 this indicates that the binary trait is distributed as expected under the Brownian motion model of evolution, i.e. equivalent to $\lambda$ or *K* of 1. *D* can also be less than 0 and greater than 1; where *D* is less than 0 it indicates that close relatives are more similar than the Brownian motion expectation (equivalent to *K* $> 1$) and the trait is clustered across the tree, and where *D* is greater than 1 it indicates close relatives are even more different than the random expectation, and the trait is overdispersed across the tree. 
+```
 
 We can also use $d_{rand}$ and $d_{BM}$ to determine the significance of $d_{obs}$ values. If $d_{obs}$ is *higher* than over 950 of the 1000 $d$ values in $d_{rand}$ ($p < 0.05$), then the trait is significantly more overdispersed across the tree than expected at random. Alternatively, if $d_{obs}$ is *lower* than over 950 of the 1000 $d$ values in $d_{BM}$ ($p < 0.05$), then the trait is significantly more clustered across the tree than expected under Brownian motion.
 
@@ -886,7 +925,7 @@ We can also use $d_{rand}$ and $d_{BM}$ to determine the significance of $d_{obs
 Although people will often refer to 'high' or 'low' phylogenetic signal, what people mean by 'high' and 'low' varies widely. For example, in different studies $\lambda$ of 0.5 might be called low, intermediate or high! This can make interpreting phylogenetic signal problematic. Additionally, as we noted at the start of this section, phylogenetic signal is a *pattern*. Many people however, use it as a way to provide information about evolutionary *process*. Interpreting underlying process from pattern should be done with care, and is often inappropriate.
 
 ```{block, type = "warning"}
-Phylogenetic signal is a *pattern*, not a *process*. Always be very careful when interpreting underlying process from a pattern.
+Phylogenetic signal is a *pattern*, not a *process*. Always be very careful when interpreting underlying process from a pattern. Different evolutionary processes can produce similar values for phylogenetic signal metrics. Phylogenetic signal is also context dependent, and may be influenced by sample size, and error in the tree or trait (see details below).
 ```
 
 Traditionally, 'low' phylogenetic signal has been interpreted as evolutionary lability or plasticity [@blomberg2003testing], or as the result of high rates of trait evolution leading to large differences among close relatives. Adaptive radiations are expected to be characterized by low phylogenetic signal in ecological niche traits because in adaptive radiations close relatives rapidly diversify to fill new niches. Similarly groups with lots of convergent evolution in a trait are expected to have low phylogenetic signal. 
@@ -914,8 +953,7 @@ As we explored in *Chapter 2*, phylogenies are just hypotheses about how species
 Trait measurements are also likely to include errors, especially when we use species averages taken from a number of sources (see *Chapter 2*). Simulations have shown that measurement error substantially decreases the power to detect significant phylogenetic signal using *K*, and also decreases values of *K* [@hardy2012assessing, @blomberg2003testing].
 
 ```{block, type = "warning"}
-#### "Correcting" for phylogeny
-One final common misconception about phylogenetic signal involves analyses that account for the phylogenetic non-independence of species (see *Chapter 1*). We explore these methods in detail in the next *Chapter 4*, but it's useful to mention this here as well while we are talking about phylogenetic signal. People will sometimes say that they "corrected for phylogeny" because of the phylogenetic signal in their variables. However, we **do not** correct for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see [@revell2010phylogenetic]). Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
+People will sometimes say that they accounted or "corrected" for phylogeny (see *Chapter 1* and *Chapter 4*) because of the phylogenetic signal in their variables. We **do not**, however, account for phylogeny because our variables show phylogenetic signal. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal (see [@revell2010phylogenetic]). Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
 ```
 
 ```{block, type = "detail"}
@@ -928,4 +966,4 @@ One final common misconception about phylogenetic signal involves analyses that 
 
 ## Online stuff
 
-## MCQs?
+## MCQs
