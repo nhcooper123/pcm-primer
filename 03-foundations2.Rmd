@@ -967,3 +967,29 @@ People will sometimes say that they accounted or "corrected" for phylogeny (see 
 ## Online stuff
 
 ## MCQs
+
+-----
+
+## BOXES
+
+## Case study
+
+### Is there phylogenetic signal in how *Rhododendron* species respond to climate change?
+
+[This could have a nice picture of some Rhododendrons on a mountainside?]
+
+One consequence of the global climate crisis is that the timing of biological events (known as phenology) is changing. You may have seen anecdotal evidence of this in your local area with spring flowers emerging earlier or birds migrating later. This can have serious consequences for the individuals involved. For example, if flowers emerge at a different time to their pollinators they may not get pollinated. Equally, if birds delay their migrations they may miss out on vital food resources or nesting sites.
+
+Shifts in the timing of reproduction have been documented across the globe for diverse plant communities, but not all plants are affected in the same ways. Some plants are reproducing earlier, some later, and others have not changed. Researchers think this may be related to the evolutionary history of the plant species studied. They hypothesise that because the timing of reproduction is controlled by a large range of genetic and physiological factors, it is likely that close relatives will be similarly affected by changes in climate, i.e. we expect to see phylogenetic signal in plant responses to climatic changes.
+
+@basnett2019phenology investigated this in 10 species of *Rhododendron* in the Himalayas, using various reproductive phenology traits including budding, flowering, and fruiting times. As data, they used the three‐year mean day of the year that the phenological event first happened in each species, or the duration of the event. They estimated phylogenetic signal using both Pagel's $\lambda$ and Blomberg's *K*, and tested whether these values were significantly different from zero using likelihood ratio tests ($\lambda$) or randomisation tests (*K*). 
+
+For the timing of phenological events, values of Pagel's $\lambda$ ranged from 0 to 0.954, and Blomberg's *K* ranged from 0.251 to 0.893 (see their Table 1; @basnett2019phenology). Early events such as first budding ($\lambda = 0.954, p < 0.05; K = 0.893, p < 0.01$), first flowering ($\lambda = 0.913, p < 0.05; K = 0.853, p < 0.01$) and first initial fruiting ($\lambda = 0.901, p < 0.05; K = 0.862, p < 0.01$) exhibited stronger phylogenetic signal, whereas later events such as first immature fruiting ($\lambda = 0, p > 0.05; K = 0.386, p > 0.05$), mature fruiting ($\lambda = 0, p > 0.05; K = 0.251, p > 0.05$), and fruit dehiscence, i.e. fruit splitting to release its contents ($\lambda = 0.511, p > 0.05; K = 0.551, p < 0.05$), showed weaker phylogenetic signal. 
+
+For the duration of events, Pagel's $\lambda$ ranged from 0.00 to 0.885, and Blomberg's *K* ranged from 0.256 to 1.080. Only fruit dehiscence duration showed a significant phylogenetic signal for both metrics ($\lambda = 0.885, p < 0.01; K = 1.080, p < 0.01$) and the duration of flowering and fruiting showed a significant phylogenetic signal only for Blomberg's *K* (flowering: $\lambda = 0.567, p > 0.05; K = 0.588, p < 0.05$; fruiting: $\lambda = 0.606, p > 0.05; K = 0.588, p < 0.05$). There was no significant phylogenetic signal in durations of other phenological events (see their Table 1; @basnett2019phenology).
+
+In summary, @basnett2019phenology found that there was phylogenetic signal in budding, flowering, and initial fruiting times in *Rhododendron* species, i.e. these traits were more similar in closely-related species than distantly related species. This was not the case for later events in the reproductive cycle including immature fruiting, mature fruiting, and fruit dehiscence. The results suggest that early events are constrained by evolved physiological factors, whereas later events are more flexible and may be more closely related to the environment. What does this mean for *Rhododendron* species in the face of global change? It suggests that *Rhododendron* species might be more easily able to adapt the later stages of their phenology to changes in temperature etc. than their budding, flowering, and initial fruiting times. This could be problematic if flowering fails to match up with pollinator emergence
+
+## Bigger picture
+
+Is the Brownian motion model of evolution a realistic model of evolution?
