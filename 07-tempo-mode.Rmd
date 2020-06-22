@@ -4,8 +4,32 @@
 **NC currently writing**
 ```
 
-The emphasis in the literature is often on using comparative methods to “fix” statistical tests so that p-values are valid (see Chapter 4). For the past 15 years, however, the cutting-edge of methods development has been on using comparative methods to infer the nature of the evolutionary process: evolution is the reason that we see phylogenetic signal in comparative data, so it makes sense that we should be able to use phylogenies and comparative data to infer the evolutionary process. Here we distinguish the mode (i.e. models of evolution, with discrete and continuous data) and tempo (i.e. rates of evolution) of evolution. The issues we will cover include:
+Up to now we've focussed on using phylogenetic comparative methods to account for phylogenetic non-independence in our analyses. But phylogenetic comparative methods can do far more than this. We can use comparative methods to infer the nature of the evolutionary process, and to ask exciting and fundamental questions about the way evolution happened, and what implications this has for our understanding of Life on Earth. 
 
+This area of phylogenetic comparative methods has seen a real explosion in literature and methods since the mid 2000s (e.g. cite gavin 2006, o'meara 2006, harmon 2010). Naturally we can't cover all of these methods here, so we focus on methods that build on ideas we have met in earlier chapters and that have simple implementations in R (see *online materials*). Hopefully this will provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature. We will also direct you to some of these methods in *Chapter 8*.
+
+This chapter covers:
+
+- Continuous traits
+    - Brownian motion
+        - Brownian motion recap
+        - Brownian motion with multiple rates
+    - OU models
+        - SSP
+        - Multiple peak
+        - Multi peak multi rate
+- Discrete traits
+    - Recap on simple models
+    - Beyond Mk
+    - Stochastic character mapping
+- Fitting and assessing models of evolution
+    - Model selection with AIC
+    - Model adequacy
+    - Model detection? Ane paper/OUwie?
+    
+
+```{block, type = info}
+This is what the proposal says we will cover
 - More complex Brownian models. 
 - Non-Brownian trait evolution.
 - The SLOUCH family of models
@@ -13,12 +37,20 @@ The emphasis in the literature is often on using comparative methods to “fix�
 - Clade dependent rates.?
 - Trait dependent rates.?
 - Species-interactions.?
-- Tree transformations - delta, kappa
-- OUwie BM with a trend, multiple rates, OU, OU with many peaks, (read our OU paper again), EB/ACDC
+- Tree transformations - delta, kappa? [i added this]
+```
+
+We can distinguish between the mode of evolution (i.e. how did evolution happen?) and the tempo or rate of evolution (i.e. how fast did evolution happen?). 
+
+Different methods exist for continuous and discrete data so we deal with these separately. 
+
+```{block, warning}
+This is a key point to remember the "Jurassic Park caveat"; just because we *can* fit all of these models to our data doesn't mean that we *should*. Before applying any of the models we discuss below, think very carefully. What questions are you trying to answer? What would a result one way or the other tell you about evolution in your study group? It is often tempting to just fit all of these models, then tell a "just so" story about why one model fits best. But without a clear question and a prediction about what you might find, at best the results might not tell you anything interesting about evolution in your group, and at worst the results may be nonsensical. This is especially true when sample sizes are low, and/or we expect there is error in our data or our phylogeny. Pay close attention to the caveats discussed below.
+```
 
 ## Brownian motion recap
 
-Remember Brownian motion? If you haven't already read that section of the Foundations chapter, now would be a good time to do so. But if you already feel fairly comfortable, let's just remind ourselves of the summary we produced in that chapter.
+Until now the model of evolution we've been using is the Brownian motion model of evolution. If you haven't already read the section on Brownian motion in *Chapter 3*, now would be a good time to do so. But if you already feel fairly comfortable, let's just remind ourselves of the summary we produced in that chapter.
 
 The key features of the Brownian motion model are:
 
@@ -41,4 +73,111 @@ Some biological implications of the model are:
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
 
-Hopefully this recap has also reminded you of some of the constraints of Brownian motion as a model of trait evolution...
+Hopefully this recap has reminded you of some of the constraints of Brownian motion as a model of trait evolution. In the next few sections of this chapter we will discuss some of the models of evolution we can use to deal with some of these problems.
+
+```{block, type = "info"}
+Brownian issues
+
+
+```
+
+## Multi-rate Brownian motion
+
+As noted above, one major limitation of Brownian motion is that all lineages must have the same rate of evolution ($\sigma^2$). But we have pretty good biological reasons for thinking this is not true! EXAMPLES.
+
+
+```{block, type = "detail"}
+There a many other ways of doing this - o'meara, venditti, models in harmon book
+
+```
+
+## The Ornstein-Uhlenbeck (OU) model
+
+Another limitation of Brownian motion is that traits evolve at random, i.e. by a random walk, and there is no overall drift in the direction of evolution.
+
+### Single stationary peak (SSP)
+
+### Multi peak
+
+```{block, type = detail}
+We can't possible cover every possible model in this *Primer*, so we have aimed to introduce you to the most commonly used models. It is possible to fit multiple nested models of evolution to trees (Puttick 2018) etc......
+```
+
+
+
+```{block, type = "warning"}
+Remember that your results are only as good as your phylogeny and your data. Phylogenies are only hypotheses about the way evolution happened, and generally miss out lots of extinct species. Always consider this when interpreting the results of models of evolution.
+```
+
+## Fitting and assessing models of evolution
+
+Now we've introduced you to some of the different models of trait evolution that are available, we can think more about applying these to our own datasets. Generally, people apply several models to a dataset, so we need to think carefully about the following questions.
+
+1. Do I have sensible biological reasons to fit these models? 
+
+We warned you near the start of the chapter that it can be tempting to just fit all possible models to a dataset and see what comes out as the best. But without a biological question to guide the choice of models, this can just produce a lot of noise and results that make little sense biologically. Carefully consider whether each model is appropriate before fitting it. Note that it is sensible to compare any model to the null model of Brownian motion, but merely rejecting the null model doesn't tell us much biologically, as we already know Brownian motion is a poor fit to evolutionary process. This is instead done to check that ????  
+
+2. Which model(s) fit best?
+
+When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use maximum likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analagous to AIC, BUT XXXXX
+
+```{block, type = "info"}
+No model selection procedure can tell you what the "best" model is, all it can tell you is *which of the models you are comparing best fits the data* (i.e. the trait data and the tree). It is important to remember that model selection methods will still select a "best" model, even if all the models you are comparing are bad fits to the data. Be wary of this when interpreting your results.
+```
+
+3. Are my models adequate? 
+
+In *Chapter 5* we talked about model adequacy. This is equally important for models of trait evolution.... Carl's paper, Matt's paper.
+
+4. Are the parameters of my models biologically reasonable? 
+
+Finally, it is really important to actually look at the parameter values. We highlighted this in the model sections but want to reiterate it now. OU with alpha of 0.1 is not much different from BM. Do rates make sense or are they nonsensical given the age of teh clade. Given the stuff we know about fossils do ACE make sense? Do not blindly accept models.
+
+
+### Model selection with AIC
+
+We can use the Akaike Information Criterion (AIC) to select the best fitting model from a set of models (Burnham and Anderson 2002; Omeara 2006). We often refer to AIC as a *penalised likelihood*, because AIC tells us how good the fit of the model is given the number of parameters in the model. Why does the number of parameters matter? The more parameters in a model, the better the fit of the model will be XXXX
+
+The equation for AIC is:
+
+\begin{equation}
+  AIC = -2(ln(likelihood)) + 2k
+\end{equation}
+
+where $likelihood$ is the probability of the data given the model and $k$ is the number of free parameters in the model. The best model is the model which has a good fit to the truth with few parameters, i.e. the model with the *lowest AIC*. 
+If we don't have many taxa in the model, i.e. sample size is small, we can use *AICc* instead of AIC. AICc increases the relative penalty for high numbers of parameters with small datasets by multiplying the AIC by $\frac{n}{n - k - 1}$ as shown below, where $n$ is the sample size.
+
+\begin{equation}
+  AICc = -2(ln(likelihood)) + 2k \frac{n}{n - k - 1}
+\end{equation}
+
+As $n$ gets bigger, $\frac{n}{n - k - 1}$ gets closer to 1, e.g. if $n = 2000$ and $k = 2$, $\frac{n}{n - k - 1} = 1.002$, so AIC and AICc are almost identical. Therefore, if you have any doubt about whether you have a small sample size or not, it's worth choosing to use AICc to be on the safe side. If your sample size is large enough AICc will be virtually identical to AIC anyway.
+
+AIC and AICc scores can also be shown as *$\Delta$AIC scores*. These indicate the difference between the AIC/AICc of the best model, i.e the one with the smallest AIC, and the AIC/AICc of each model. This means that the best model has a $\Delta$AIC of zero. This doesn't change the results in any way, it just makes it easier to quickly identify the best model.
+
+Finally, you may also see people using *Akaike weights* or AIC$_w$ to compare models. These represent the relative likelihood of a model. The AIC_w for a given model is the relative likelihood of the model $e^{-0.5 \Delta AIC_i}$, divided by the sum of relative likelihood values across all models, i.e.
+
+\begin{equation}
+AIC_w_i\frac{e^{-0.5 \Delta AIC_i}}{\Sigma(e^{-0.5 \Delta AIC})}
+\end{equation}
+
+The best model will have the *highest AIC$_w$*. The AIC$_w$ scores for all the models should add to one, so this can give you an idea of how much support there is for models other than the best model.  
+
+Which should you report? It's a matter of personal preference, but it's usual to report AIC or AICc at the minimum, plus if comparing many models it can be useful to also report one of either $\Delta$AIC or AIC$_w$ as it is easier to quickly read these in a table.
+
+```{block, type = "info"}
+Remember: For AIC or AICc the best model is the one with the *lowest value of AIC*. For $\Delta$AIC the best model is the one with one with *$\Delta$AIC of zero*. For Akaike weights the best model is the one with the *highest AIC_w*, i.e. closest to one. 
+```
+
+### Model adequacy with models of trait evolution.
+
+
+
+## Modelling discrete traits
+
+Simple models reminder
+
+Stochastic mapping
+
+
+Burnham, K. P., and D. R. Anderson. 2002. Model selection and multimodel inference : a practical information-theoretic approach. Springer, New York.
