@@ -712,3 +712,9 @@ Note that each variable is now its own column. This will help us when using the 
 ## Online stuff
 
 ## MCQs
+
+## BOXES
+
+## Bigger picture panel
+
+Something about data quality? Choosing the best tree? Could one of these bits be repurposed as a box here?
