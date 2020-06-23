@@ -932,7 +932,7 @@ Traditionally, 'low' phylogenetic signal has been interpreted as evolutionary la
 
 'High' phylogenetic signal is interpreted as genetic drift or neutral evolution, because these processes should approximate a Brownian motion model of evolution (see section above). 'Very high' phylogenetic signal is often interpreted as evolutionary or phylogenetic conservatism [@losos2008phylogenetic], where close relatives have extremely similar trait values. The point at which phylogenetic signal is considered high enough to be phylogenetic conservatism varies among authors (e.g. $\lambda$ or *K* $>$ 1, [@losos2008phylogenetic]; $\lambda$ or *K* $=$ 1, [@cooper2010phylogenetic]). Explanations for phylogenetic conservatism also vary, for example it may occur because species survival requires specific trait values (e.g. traits related to drought tolerance in desert plants are likely to be highly conserved), or because of other mechanisms such as stabilizing selection, pleiotropy, high levels of gene flow, limited genetic variation, low rates of evolution, physiological constraints or various biotic interactions (e.g. competition) restricting the evolution of new phenotypes [@blomberg2002tempo, @losos2008phylogenetic]. 
 
-Unfortunately, as you may already have gathered, interpreting phylogenetic signal is not as simple as low values equals trait lability and high values equals trait conservatism. Different evolutionary processes can produce similar values for phylogenetic signal metrics, for example, $\lambda$ or *K* of 1 may be the result of neutral genetic drift, but the same pattern of traits at the tips of the phylogeny can also be achieved by (1) a model in which traits are evolving to an optimum which itself evolves according to a Brownian process (i.e. the Ornstein–Uhlenbeck model of evolution; see *Chapter 6*); (2) a model  where traits are evolving under natural selection that randomly fluctuates; or (3) a model where selective pressures themselves exhibit strong phylogenetic signal, thus producing strong phylogenetic signal in the trait(s) on which these selection pressures are acting [@revell2008phylogenetic, hansen2008comparative]. There is also no relationship between measures of phylogenetic signal and evolutionary rate under simple evolutionary models [@revell2008phylogenetic].
+Unfortunately, as you may already have gathered, interpreting phylogenetic signal is not as simple as low values equals trait lability and high values equals trait conservatism. Different evolutionary processes can produce similar values for phylogenetic signal metrics, for example, $\lambda$ or *K* of 1 may be the result of neutral genetic drift, but the same pattern of traits at the tips of the phylogeny can also be achieved by (1) a model in which traits are evolving to an optimum which itself evolves according to a Brownian process (i.e. the Ornstein–Uhlenbeck model of evolution; see *Chapter 6*); (2) a model where traits are evolving under natural selection that randomly fluctuates; or (3) a model where selective pressures themselves exhibit strong phylogenetic signal, thus producing strong phylogenetic signal in the trait(s) on which these selection pressures are acting [@revell2008phylogenetic, hansen2008comparative]. There is also no relationship between measures of phylogenetic signal and evolutionary rate under simple evolutionary models [@revell2008phylogenetic].
 
 Phylogenetic signal is also context (i.e. trait data and phylogeny) dependent. The phylogenetic signal in a trait will not be the same at all phylogenetic/taxonomic scales. For example, a trait may have high phylogenetic signal at the family level but this pattern may break down at higher or lower taxonomic levels. Phylogenetic signal can also be influenced by convergent evolution, taxonomic inflation and cryptic species [@losos2008phylogenetic]. Because of this, using $\lambda$ or *K* (or any other measure of phylogenetic signal) to infer evolutionary processes or rates must be performed with consideration of the traits involved, the hypotheses to be tested and any available external information [@cooper2010phylogenetic, @kamilar2013phylogenetic]. 
 
@@ -964,7 +964,11 @@ People will sometimes say that they accounted or "corrected" for phylogeny (see 
 [CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
 ## Summary
 
-## Online stuff
+## Online materials
+
+Online materials for this chapter are:
+  - Preparing your tree and data for PCMs in R
+  - Phylogenetic Signal in R
 
 ## MCQs
 
@@ -972,11 +976,11 @@ People will sometimes say that they accounted or "corrected" for phylogeny (see 
 
 ## BOXES
 
-## Case study
+## Case study box
 
 ### Is there phylogenetic signal in how *Rhododendron* species respond to climate change?
 
-[This could have a nice picture of some Rhododendrons on a mountainside?]
+![rhodos](images/rhododendrons.jpg)
 
 One consequence of the global climate crisis is that the timing of biological events (known as phenology) is changing. You may have seen anecdotal evidence of this in your local area with spring flowers emerging earlier or birds migrating later. This can have serious consequences for the individuals involved. For example, if flowers emerge at a different time to their pollinators they may not get pollinated. Equally, if birds delay their migrations they may miss out on vital food resources or nesting sites.
 
@@ -988,8 +992,10 @@ For the timing of phenological events, values of Pagel's $\lambda$ ranged from 0
 
 For the duration of events, Pagel's $\lambda$ ranged from 0.00 to 0.885, and Blomberg's *K* ranged from 0.256 to 1.080. Only fruit dehiscence duration showed a significant phylogenetic signal for both metrics ($\lambda = 0.885, p < 0.01; K = 1.080, p < 0.01$) and the duration of flowering and fruiting showed a significant phylogenetic signal only for Blomberg's *K* (flowering: $\lambda = 0.567, p > 0.05; K = 0.588, p < 0.05$; fruiting: $\lambda = 0.606, p > 0.05; K = 0.588, p < 0.05$). There was no significant phylogenetic signal in durations of other phenological events (see their Table 1; @basnett2019phenology).
 
-In summary, @basnett2019phenology found that there was phylogenetic signal in budding, flowering, and initial fruiting times in *Rhododendron* species, i.e. these traits were more similar in closely-related species than distantly related species. This was not the case for later events in the reproductive cycle including immature fruiting, mature fruiting, and fruit dehiscence. The results suggest that early events are constrained by evolved physiological factors, whereas later events are more flexible and may be more closely related to the environment. What does this mean for *Rhododendron* species in the face of global change? It suggests that *Rhododendron* species might be more easily able to adapt the later stages of their phenology to changes in temperature etc. than their budding, flowering, and initial fruiting times. This could be problematic if flowering fails to match up with pollinator emergence
+In summary, @basnett2019phenology found that there was phylogenetic signal in budding, flowering, and initial fruiting times in *Rhododendron* species, i.e. these traits were more similar in closely-related species than distantly related species. This was not the case for later events in the reproductive cycle including immature fruiting, mature fruiting, and fruit dehiscence. What does this mean for *Rhododendron* species in the face of global change? The paper does some extra analyses looking at correlations with altitude, day length etc. But from purely the phylogenetic signal results, we can't say much more than that within the 10 species studied here, closely-related *Rhododendron* species are more similar to one another in terms of how their budding, flowering, and initial fruiting times vary with climate change than more distantly-related *Rhododendron* species. See "How do we interpret phylogenetic signal?" section above for more details.
 
-## Bigger picture
+## Bigger picture box
 
-Is the Brownian motion model of evolution a realistic model of evolution?
+### Is the Brownian motion model of evolution a realistic model of evolution?
+
+In this chapter we put a lot of effort into describing and explaining the Brownian model of evolution. But is it a realistic model of evolution? Before moving on, take some time to think about this. Two biological implications of the model are that (1) close relatives are more similar than more distant relatives; and (2) different species and lineages evolve at the same rate. Are these statements always true? Can you think of biological examples where this might not be the case? Think about adaptive radiations, key innovations, convergent evolution - do you expect evolution in these scenarios to be Brownian? What sorts of scenarios might be well modelled by Brownian motion? Note that there are a number of other models of evolution, and we will return to these in *Chapter 7*.
