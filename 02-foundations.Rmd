@@ -709,7 +709,11 @@ Note that each variable is now its own column. This will help us when using the 
 
 ## Summary
 
-## Online stuff
+## Online materials
+
+Online materials for this chapter are:
+  - Data wrangling comparative data in R
+  - Understanding, plotting and manipulating phylogenies in R
 
 ## MCQs
 
