@@ -26,7 +26,8 @@ This chapter covers:
     - Model selection with AIC
     - Model adequacy
     - Model detection? Ane paper/OUwie?
-    
+  
+The title of this chapter mentions "tempo and mode" because we can distinguish between the mode of evolution (i.e. how did evolution happen?) and the tempo or rate of evolution (i.e. how fast did evolution happen?). Most methods, however, allow us to investigate both aspects simulataneously, so we don't separate them in this chapter. Different methods exist for continuous and discrete data so we deal with these separately, starting with continous data. 
 
 ```{block, type = info}
 This is what the proposal says we will cover
@@ -40,9 +41,6 @@ This is what the proposal says we will cover
 - Tree transformations - delta, kappa? [i added this]
 ```
 
-We can distinguish between the mode of evolution (i.e. how did evolution happen?) and the tempo or rate of evolution (i.e. how fast did evolution happen?). 
-
-Different methods exist for continuous and discrete data so we deal with these separately. 
 
 ```{block, warning}
 This is a key point to remember the "Jurassic Park caveat"; just because we *can* fit all of these models to our data doesn't mean that we *should*. Before applying any of the models we discuss below, think very carefully. What questions are you trying to answer? What would a result one way or the other tell you about evolution in your study group? It is often tempting to just fit all of these models, then tell a "just so" story about why one model fits best. But without a clear question and a prediction about what you might find, at best the results might not tell you anything interesting about evolution in your group, and at worst the results may be nonsensical. This is especially true when sample sizes are low, and/or we expect there is error in our data or our phylogeny. Pay close attention to the caveats discussed below.
@@ -61,7 +59,6 @@ The key features of the Brownian motion model are:
 - The rate of evolution is constant.
 - Variance in traits increase (linearly) in proportion to time.
 - The overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed. 
-
 In terms of the model parameters:
 
 - The model can be fully described using just two parameters $z(0)$ and $\sigma^2$.
@@ -73,31 +70,122 @@ Some biological implications of the model are:
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
 
-Hopefully this recap has reminded you of some of the constraints of Brownian motion as a model of trait evolution. In the next few sections of this chapter we will discuss some of the models of evolution we can use to deal with some of these problems.
+### Why is Brownian motion a poor model of trait evolution? 
 
-```{block, type = "info"}
-Brownian issues
+In *Chapter 3* we asked you to think about why Brownian motion might not be a very realistic model of trait evolution. Hopefully you came up with some of your own ideas and examples, but some major issues are as follows.
 
+1. Close relatives should be more similar than more distant relatives. This may not always be the case. For example, when convergent evolution occurs among distant relatives adapting to the same selection pressures (e.g. bats and birds both have wings but aren't close relatives), or when species are rapidly evolving to fill different niches in an adaptive radiation (e.g. Darwin's finches are closely related but have very different beak adaptations). 
 
-```
+2. All species and all lineages evolve at the same rate ($\sigma^2$). Lots of evolutionary theories are based on certain groups evolving quickly in response to novel selection pressures, or to the availability of new niches. We also often discuss how particular traits, so called "key innovations", like flight might allow increased rates of evolution for species with that trait. So a single rate of evolution across the whole phylogeny is probably a major oversimplification. 
 
-## Multi-rate Brownian motion
+3. Traits evolve at random, and with no trend in direction. This should mean that all values of a trait are possible, but we generally don't see this in nature. 
 
-As noted above, one major limitation of Brownian motion is that all lineages must have the same rate of evolution ($\sigma^2$). But we have pretty good biological reasons for thinking this is not true! EXAMPLES.
+In the next few sections of this chapter we will discuss some ways we can deal with some of these problems.
+
+## Multi-rate Brownian motion models
+
+As noted above, one major limitation of Brownian motion is that all lineages must have the same rate of evolution ($\sigma^2$). But we have pretty good biological reasons for thinking this is not true! Several methods exist that modify the Brownian motion model so that different rates (i.e. different values of $\sigma^2$) are possible for different lineages. There a many other ways of doing this - o'meara, venditti, models in harmon book
 
 
 ```{block, type = "detail"}
-There a many other ways of doing this - o'meara, venditti, models in harmon book
+How do we fit Brownian motion models, and the other models discussed in this chapter?
 
 ```
 
+## Brownian motion with a trend
+
+Another limitation of Brownian motion noted above is that traits evolve at random, i.e. by a random walk, and there is no overall drift in the direction of evolution. One solution to this problem is to use Brownian with a trend.
+
+(note that you can also fit models where $W(t)$ is not zero and there is drift in the direction of evolution. 
+This is known as the drift model, or Brownian motion with a trend. We will not cover this here).
+
+
+
 ## The Ornstein-Uhlenbeck (OU) model
 
-Another limitation of Brownian motion is that traits evolve at random, i.e. by a random walk, and there is no overall drift in the direction of evolution.
+Another limitation of Brownian motion noted above is that traits evolve at random, i.e. by a random walk, and there is no overall drift in the direction of evolution. One solution to this problem is to use another model of evolution, the Ornstein-Uhlenbeck or OU model (Hansen, 1997; Butler & King,2004). 
 
-### Single stationary peak (SSP)
+The OU model is a random walk in which trait values revert back towards some ‘optimal’ value, $\mu$ (also called $\theta$ in some papers), with an attraction strength proportional to the parameter $\alpha$. 
 
-### Multi peak
+Note that this model has four parameters. The first two are the same as those found in the Brownian motion model, $z(0)$, the starting value of the trait we are interested in, and $\sigma^2$, the rate of evolution. The OU model has two additional parameters: $\alpha$ and $\mu$. The parameter $\mu$ is a long-term mean, and it is assumed that species trait values evolve around this value. $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. $\alpha$ is sometimes referred to as the “rubber band” parameter because of the way it pulls traits back towards $\mu$.
+
+```{block, type = "detail"}
+Not all implementations of the OU model actually estimate $\mu$. In some implementations, including in the R package GEIGER (see *online materials*), $\mu$ is equivalent to $z(0)$, the starting value of the trait. 
+```
+
+To help with understanding how these models are linked let's look at the equations for trait change under the Brownian motion and OU models.
+
+In the Brownian motion model, trait $X$ evolves at a rate $\sigma$ as follows:
+
+$dX(t) = \sigma dW(t)$
+
+We can read this equation as the change ($d$ or $\delta$ or $\Delta$ often represent change in equations) in trait $X$ over time $t$ is equal to a random value drawn from a normal distribution with mean 0 and variance $\sigma^2 * t$ (we use $W$ because this can also be called a white noise function). In *Chapter 3* we investigated how changing $\sigma^2$ affects the change in $X$, with low values leading to small changes in $X$ and high values leading to big changes in $X$. The variance of $X$ at the tips will be equal to $\sigma^2 * time elapsed$.
+
+The equation for how traits change according to the OU model is:
+
+$dX(t) = -\alpha(X(t) - \mu) + \sigma dW(t)$
+
+Notice anything familiar? The second term after the $+$ is exactly the same as the equation for Brownian motion, i.e. $\sigma dW(t)$! So the OU model can be thought of as a modification of the Brownian model (or the Brownian model is a special case of the OU model). In fact, if $\alpha$ is zero then the first half of the equation is cancelled out, meaning that when $\alpha$ is zero the OU model and the Brownian model are identical.
+
+What about when $\alpha$ is not zero? The $-\alpha(X(t) - \mu)$ part of the equation then becomes important. This reflects the change toward the long-term mean. If the value of $X$ is close to the long-term mean, then $X(t) - \mu$ will be small (it can be positive or negative depending on whether $X$ is bigger or smaller than $\mu$). If the value of $X$ is a long way from the long-term mean, then $X(t) - \mu$ will be large. This means that changes in $X$ in an OU model will be bigger when $X$ is further from the long-term mean. The value of $\alpha$ modifies this so that when $\alpha$ is large there is a greater "pull" towards $\mu$. When $\alpha$ is small, the pull towards $\mu$ is much weaker and the model will look a lot like Brownian motion.
+
+Let's have a look at some simulated data to see what this looks like. We'll imagine we have a dataset of 50 species of crab. We can simulate claw length data for each species using Brownian motion and OU. Figure \@ref(fig:crab1) shows how the outputs of these simulations differ. In both simulations, $z(0) = 20 mm$ and $sigma^2 = 0.1$, but in the OU model we also specify the long-term mean $\mu = 20 mm$, and the "rubber band" parameter $\alpha = 0.1$. Notice that while the values for claw size are spreading out in the Brownian simulation, in the OU simulation these values are all fairly close to $\mu = 20 mm$ because they are being drawn back towards $\mu$. This looks a lot like something approaching an equilibrium, and indeed the OU model is an equilibrium model.
+
+```{r crab1, echo = FALSE, fig.cap='Simulations showing how the claw size of crabs changes through time under a Brownian model with $z(0) = 20 mm$ and $sigma^2 = 0.1$ (black lines) and an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.1$ (red lines), out.width='80%', fig.asp=.75, fig.align='center'}
+
+# Simulate tree
+crabs <- rcoal(50, br = 5)
+
+# Create Brownian and OU simulation data
+bmdata <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE)
+oudata1 <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE,
+                 theta = 20,  alpha = 0.1)
+
+phenogram(crabs, bmdata, ylab = "claw size (mm)", 
+          ftype = "off", ylim = c(10, 35), lwd = 0.5)
+phenogram(crabs, oudata1, ylab = "claw size (mm)", 
+                 ftype = "off", lwd = 0.5,
+                 add = TRUE, col = "red1")
+```
+
+We can also investigate what happens as we increase $\alpha$, as shown in \@ref(fig:crab2). As $\alpha$ gets bigger the trait is more closely evolving around $\mu$. You might remember that the variance of trait values at the tips of the tree for Brownian motion is expected to be $sigma^2$ multiplied by the time elapsed. For OU models the variance is $sigma^2$ *divided* by $2\alpha$, so the variance at the tips will get smaller as the pull towards the long-term mean increases. 
+
+We can also change the value of $\mu$ so it is not the same as $z(0)$, as shown in \@ref(fig:crab2). You can see that the triat very rapidly evolves from the starting value and towards the long-term mean.
+
+```{r crab2, echo = FALSE, fig.cap='Simulations showing how the claw size of crabs changes through time under a) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.1$; b) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.5$; and c) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.25$, $\mu = 30 mm$ and $\alpha = 0.1$', out.width='80%', fig.asp=.75, fig.align='center'}
+
+# Create OU simulation data
+oudata1 <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE,
+                 theta = 20,  alpha = 0.1)
+oudata2 <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE,
+                 theta = 20,  alpha = 0.5)
+oudata3 <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE,
+                 theta = 25,  alpha = 0.1)
+
+par(mfrow = c(1,3))
+#par(mar = c(3,4,1,0))
+phenogram(crabs, oudata1, ylab = "claw size (mm)", 
+                 ftype = "off", ylim = c(15, 30), lwd = 0.5)
+phenogram(crabs, oudata2, ylab = "claw size (mm)", 
+                 ftype = "off", ylim = c(15, 30), lwd = 0.5)
+phenogram(crabs, oudata3, ylab = "claw size (mm)", 
+                 ftype = "off", ylim = c(15, 30), lwd = 0.5)
+```
+
+### Single stationary peak (SSP) versus multi-peak OU models
+
+For the most part, when people talk about OU models in evolutionary biology they are talking about single stationary peak (SSP) models, where there is a single long-term mean or $\mu$. However, there are sensible biological reasons to expect that, at least in larger phylogenies, it is unlikely that there is a single "optimum" trait value. 
+
+In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that $\sigma^2$ is constant. We can however, improve on this by fitting OU models with different $\sigma^2$ for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$)
+
+[do multi peak have different alphas and z0???]
+
+### A bit of caution about OU models...
+
+
+
+
+
 
 ```{block, type = detail}
 We can't possible cover every possible model in this *Primer*, so we have aimed to introduce you to the most commonly used models. It is possible to fit multiple nested models of evolution to trees (Puttick 2018) etc......
@@ -122,7 +210,7 @@ We warned you near the start of the chapter that it can be tempting to just fit 
 When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use maximum likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analagous to AIC, BUT XXXXX
 
 ```{block, type = "info"}
-No model selection procedure can tell you what the "best" model is, all it can tell you is *which of the models you are comparing best fits the data* (i.e. the trait data and the tree). It is important to remember that model selection methods will still select a "best" model, even if all the models you are comparing are bad fits to the data. Be wary of this when interpreting your results.
+Remember that all models are wrong, but some are useful! No model selection procedure can tell you what the "best" model is, all it can tell you is *which of the models you are comparing best fits the data* (i.e. the trait data and the tree). It is important to remember that model selection methods will still select a "best" model, even if all the models you are comparing are bad fits to the data. Be wary of this when interpreting your results.
 ```
 
 3. Are my models adequate? 
