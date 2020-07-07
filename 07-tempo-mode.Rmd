@@ -8,6 +8,11 @@ Up to now we've focussed on using phylogenetic comparative methods to account fo
 
 This area of phylogenetic comparative methods has seen a real explosion in literature and methods since the mid 2000s (e.g. cite gavin 2006, o'meara 2006, harmon 2010). Naturally we can't cover all of these methods here, so we focus on methods that build on ideas we have met in earlier chapters and that have simple implementations in R (see *online materials*). Hopefully this will provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature. We will also direct you to some of these methods in *Chapter 8*.
 
+```{block, type = detail}
+We can't possible cover every possible model in this *Primer*, so we have aimed to introduce you to the most commonly used models. It is possible to fit multiple nested models of evolution to trees (Puttick 2018) etc......
+```
+
+
 This chapter covers:
 
 - Continuous traits
@@ -92,14 +97,14 @@ How do we fit Brownian motion models, and the other models discussed in this cha
 
 ```
 
-## Brownian motion with a trend
+## Brownian motion with a trend [????]
 
 Another limitation of Brownian motion noted above is that traits evolve at random, i.e. by a random walk, and there is no overall drift in the direction of evolution. One solution to this problem is to use Brownian with a trend.
 
 (note that you can also fit models where $W(t)$ is not zero and there is drift in the direction of evolution. 
 This is known as the drift model, or Brownian motion with a trend. We will not cover this here).
 
-
+(but note that in the special case of a single peak OU model with X (0) ≠ μ, when μ is zero, evolution approximates Brownian motion with a trend; Hansen, 1997; Benson et al ., 2014), 
 
 ## The Ornstein-Uhlenbeck (OU) model
 
@@ -107,13 +112,17 @@ Another limitation of Brownian motion noted above is that traits evolve at rando
 
 The OU model is a random walk in which trait values revert back towards some ‘optimal’ value, $\mu$ (also called $\theta$ in some papers), with an attraction strength proportional to the parameter $\alpha$. 
 
-Note that this model has four parameters. The first two are the same as those found in the Brownian motion model, $z(0)$, the starting value of the trait we are interested in, and $\sigma^2$, the rate of evolution. The OU model has two additional parameters: $\alpha$ and $\mu$. The parameter $\mu$ is a long-term mean, and it is assumed that species trait values evolve around this value. $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. $\alpha$ is sometimes referred to as the “rubber band” parameter because of the way it pulls traits back towards $\mu$.
+```{block, type = "warning"}
+You'll often see $\mu$ referred to as the *long-term mean* rather than the optimal value, and we'll use this terminology here because it's more accurate. Calling $\mu$ the optimal (or best) value for a trait is misleading, because we don't actually know what the optimum would look like, and it is likely to be influenced by far more factors than we are able to investigate in these simple models. Be very wary of any paper that claims to have identified trait optima from OU models.
+```
+
+The OU model has four parameters. The first two are the same as those found in the Brownian motion model, $z(0)$, the starting value of the trait we are interested in, and $\sigma^2$, the rate of evolution. The OU model has two additional parameters: $\alpha$ and $\mu$ (or $\theta$). The parameter $\mu$ is a long-term mean, and it is assumed that species trait values evolve around this value. $\alpha$ is the strength of evolutionary force that returns traits back towards the long-term mean if they evolve away from it. $\alpha$ is sometimes referred to as the “rubber band” parameter because of the way it pulls traits back towards $\mu$.
 
 ```{block, type = "detail"}
 Not all implementations of the OU model actually estimate $\mu$. In some implementations, including in the R package GEIGER (see *online materials*), $\mu$ is equivalent to $z(0)$, the starting value of the trait. 
 ```
 
-To help with understanding how these models are linked let's look at the equations for trait change under the Brownian motion and OU models.
+To help with understanding how the Brownian motion and OU models are linked let's look at the equations for trait change under each model.
 
 In the Brownian motion model, trait $X$ evolves at a rate $\sigma$ as follows:
 
@@ -125,9 +134,9 @@ The equation for how traits change according to the OU model is:
 
 $dX(t) = -\alpha(X(t) - \mu) + \sigma dW(t)$
 
-Notice anything familiar? The second term after the $+$ is exactly the same as the equation for Brownian motion, i.e. $\sigma dW(t)$! So the OU model can be thought of as a modification of the Brownian model (or the Brownian model is a special case of the OU model). In fact, if $\alpha$ is zero then the first half of the equation is cancelled out, meaning that when $\alpha$ is zero the OU model and the Brownian model are identical.
+Notice anything familiar? The second term after the $+$ is exactly the same as the equation for Brownian motion, i.e. $\sigma dW(t)$! So the OU model can be thought of as a modification of the Brownian model (or more accurately, the Brownian model is a special case of the OU model). In fact, if $\alpha$ is zero then the first half of the equation is cancelled out, meaning that when $\alpha$ is zero the OU model and the Brownian model are identical.
 
-What about when $\alpha$ is not zero? The $-\alpha(X(t) - \mu)$ part of the equation then becomes important. This reflects the change toward the long-term mean. If the value of $X$ is close to the long-term mean, then $X(t) - \mu$ will be small (it can be positive or negative depending on whether $X$ is bigger or smaller than $\mu$). If the value of $X$ is a long way from the long-term mean, then $X(t) - \mu$ will be large. This means that changes in $X$ in an OU model will be bigger when $X$ is further from the long-term mean. The value of $\alpha$ modifies this so that when $\alpha$ is large there is a greater "pull" towards $\mu$. When $\alpha$ is small, the pull towards $\mu$ is much weaker and the model will look a lot like Brownian motion.
+What about when $\alpha$ is not zero? The $-\alpha(X(t) - \mu)$ part of the equation then becomes important. This reflects the change toward the long-term mean, $\mu$. If the value of $X$ is close to the long-term mean, then $X(t) - \mu$ will be small (it can be positive or negative depending on whether $X$ is bigger or smaller than $\mu$). If the value of $X$ is a long way from the long-term mean, then $X(t) - \mu$ will be large. This means that changes in $X$ in an OU model will be bigger when $X$ is further from the long-term mean. The value of $\alpha$ modifies this so that when $\alpha$ is large there is a greater "pull" towards $\mu$. When $\alpha$ is small, the pull towards $\mu$ is much weaker and the model will look a lot like Brownian motion.
 
 Let's have a look at some simulated data to see what this looks like. We'll imagine we have a dataset of 50 species of crab. We can simulate claw length data for each species using Brownian motion and OU. Figure \@ref(fig:crab1) shows how the outputs of these simulations differ. In both simulations, $z(0) = 20 mm$ and $sigma^2 = 0.1$, but in the OU model we also specify the long-term mean $\mu = 20 mm$, and the "rubber band" parameter $\alpha = 0.1$. Notice that while the values for claw size are spreading out in the Brownian simulation, in the OU simulation these values are all fairly close to $\mu = 20 mm$ because they are being drawn back towards $\mu$. This looks a lot like something approaching an equilibrium, and indeed the OU model is an equilibrium model.
 
@@ -148,7 +157,7 @@ phenogram(crabs, oudata1, ylab = "claw size (mm)",
                  add = TRUE, col = "red1")
 ```
 
-We can also investigate what happens as we increase $\alpha$, as shown in \@ref(fig:crab2). As $\alpha$ gets bigger the trait is more closely evolving around $\mu$. You might remember that the variance of trait values at the tips of the tree for Brownian motion is expected to be $sigma^2$ multiplied by the time elapsed. For OU models the variance is $sigma^2$ *divided* by $2\alpha$, so the variance at the tips will get smaller as the pull towards the long-term mean increases. 
+We can also investigate what happens as we increase $\alpha$, as shown in \@ref(fig:crab2). As $\alpha$ gets bigger the trait is more closely evolving around $\mu$. You might remember that the variance of trait values at the tips of the tree for Brownian motion is expected to be $sigma^2$ multiplied by the time elapsed. For OU models the variance is $sigma^2$ *divided* by $2\alpha$, so the variance at the tips will get smaller as the pull towards the long-term mean increases. When $\alpha$ gets really large, all imprint of history is lost and the trait evolution is essentially a rapid burst at the present (for more information on what we mean by "large" and "small" $\alpha$ values see the next section).
 
 We can also change the value of $\mu$ so it is not the same as $z(0)$, as shown in \@ref(fig:crab2). You can see that the trait very rapidly evolves from the starting value and towards the long-term mean.
           
@@ -172,26 +181,59 @@ phenogram(crabs, oudata3, ylab = "claw size (mm)",
                  ftype = "off", ylim = c(15, 30), lwd = 0.5)
 ```
 
+### How stretchy is your "rubber band" parameter?
+
+A thorny issue with OU models is interpreting the $\alpha$ value. $\alpha$ can range from 0 to infinity (although most implementations set an upper bound, e.g. in GEIGER; Harmon et al ., 2008) which makes it hard to interpret unless $\alpha$ is zero. Above you'll notice we refer to "small" and "large" values, without giving any cut-offs. One reason for this is that values of $\alpha$ vary with tree height, i.e. the maximum distance from the root of the tree to the tips. All else being equal, taller trees have lower $\alpha$ values than smaller trees, because in a taller tree there is more time for traits to return to the long-term mean value so $\alpha$ doesn't need to pull the traits back toward the long-term mean as strongly. So if we are interpreting whether $\alpha$ is small or large, we need to do this relative to the height of the tree. The simplest solution, especially if you are comparing across different trees, is to scale tree heights so they are equal to 1 (Ives & Garland, 2010). 
+
+Determining what we mean by small and large is still somewhat arbitrary, but there are two suggestions in the literature.
+
+1. Rescaled $log(\alpha)$. Rather than using raw $\alpha$ values, we interpret $log(\alpha)$ after rescaling trees to a height of 1. In this case, $–log(\alpha) = 4$ represents a very low, almost Brownian, value and $–log(\alpha) = −4$ represents a very high value (Ives & Garland 2010). 
+
+2. Phylogenetic half‐life. The phylogenetic half‐life ($t_{\frac{1}{2}}$) of a trait is the time it takes for a species entering a new niche to evolve halfway toward its new expected long-term mean (Hansen, 1997). We can estimate this as:
+
+$t_{\frac{1}{2}} = \frac{ln(2)}{\alpha}$
+
+If $t_{\frac{1}{2}}$ is short relative to the branch lengths of the phylogeny, evolution towards the long-term mean is fast and there is little influence of the past on trait values (Hansen, 1997). Conversely, if $t_{\frac{1}{2}}$ is extremely large relative to tree height, it suggests that if an OU process is acting, it is extremely weak and should not be interpreted as evidence of any kind of process.  $t_{\frac{1}{2}}$ equal to the height of the phylogeny is a moderate value suggesting some pull towards the long-term mean (Hansen & Bartoszek, 2012). 
+
+This sounds a bit confusing, but hopefully it is clearer if we think about this in terms of our crab example above. This crab clade has been around for about 250 million years. If the phylogenetic half-life is 5 million years, i.e very short compared to the 250 million years the crab clade has been around, then claw size would very rapidly evolve to the long-term mean value, and just fluctuate around that for millions of years. All crabs in the clade would have a very similar claw size at the tips of the tree, but we wouldn't expect closely related crabs to be that much more similar to one another than more distantly related crabs, because their claw sizes will all be somewhere close to the long-term mean value. This is what we mean when we say there is little or no influence, or imprint, of the past when $t_{\frac{1}{2}}$ very low or when $\alpha$ is very high.
+
+At the other end of the scale, if the phylogenetic half-life is 500 million years, i.e very long compared to the 250 million years the crab clade has been around, then claw size *might* be very slowly evolving towards the long-term mean, but it won't get there in the 250 million years the crab clade has existed. So although we might find that an OU model fits the data pretty well, we shouldn't overinterpret this as evolution towards an optimum value of claw size, because plenty of other things could be going on.
+
+As a further note of caution, it is important to recognize that biases in the estimation of $\alpha$ lead to similar biases in $t_{\frac{1}{2}}$. We discuss these biases in more detail below.
+
 ### Single stationary peak (SSP) versus multi-peak OU models
 
 For the most part, when people talk about OU models in evolutionary biology they are talking about single stationary peak (SSP) models, where there is a single long-term mean or $\mu$. However, there are sensible biological reasons to expect that, at least in larger phylogenies, it is unlikely that there is a single "optimum" trait value. 
 
-In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that $\sigma^2$ is constant. We can however, improve on this by fitting OU models with different $\sigma^2$ for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$)
+In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that the rate of evolution, $\sigma^2$, is constant across the tree. We can however, improve on this by fitting OU models with different $\sigma^2$ values for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$)
 
 [do multi peak have different alphas and z0???]
 
-### A bit of caution about OU models...
+### Here be dragons...things to be aware of when fitting OU models
 
+The OU model is an attractive model of evolution for a number of reasons. People assume it better represents the evolutionary process, because evolution towards some sort of optimal trait value is what we might expect under natural selection. It's also pretty easy to fit using various implementations in R (see *online materials*) and other programs. These has led to the OU model being used a lot in recent years.
 
+The model, however, has some limitations that you should consider before using it in your own work. You should also think *very carefully* about the biological interpretation of the model.
 
+We return to this later in this chapter, but often when people investgiate models of evolution they fit multiple models and compare them, and then select the "best" model (see below). Often in these scenarios, OU is favoured. For example, Harmon et al (2010) looked at XX phylogenies and found XX% favoured the OU model (over Brownian and Early burst models; see below). When we do this, however, the OU model may actually be favoured for non-biological reasons. The two most important issues are: 
 
+1. Type I error rates are high when sample size is low, i.e. when you have a small dataset, the likelihood of recovering an OU model when actually it's not a very good fit is pretty high. Simulations of single stationary peak OU models indicate that trees with $> 200$ tips are necessary to obtain acceptable Type I error rates (Cooper et al 2016), and this is likely exacerbated when fitting multi-peak models. We are, however, unwilling to recommend a minimum tree size because the performance of the OU model may vary among datasets for reasons other than tree size including measurement error...
 
+2. Measurement error increases Type I error rates, i.e. when you have errors in your data, the likelihood of incorrectly recovering an OU model increases. The effects of measurement error become more severe with increasing tree size, hence our hesitance to recommend a minimum tree size for fitting OU models. 
 
-```{block, type = detail}
-We can't possible cover every possible model in this *Primer*, so we have aimed to introduce you to the most commonly used models. It is possible to fit multiple nested models of evolution to trees (Puttick 2018) etc......
+What can we do to solve these problems? 
+
+From a more biological perspective, the first thing to do is consider plausible alternative hypotheses, especially if $\alpha$ is close to zero, or the phylogenetic half-life is very high. Because the OU model was proposed with evolutionary processes in mind, alternative and arguably more sensibel explanations for favouring OU models are often overlooked. Many issues of misinterpretation can be solved by carefully inspecting the α parameter when an OU model is favoured. Often, when Likelihood ratio tests suggest the OU model should be favoured over the Brownian model, estimates of α are actually very small and biologically indistinguishable from Brownian (e.g. examples in Harmon et al. 2010). In these circumstances, it is likely that measurement error, intraspecific variation or phylogenetic uncertainty are generating noise that is more effectively modelled by the extra parameters in the OU model than by the Brownian model alone. Thus, this does not reflect any kind of OU process underlying the data. The similarity between Brownian and OU models with small α is demonstrated in Fig. 4. At the other extreme, as values of α become larger, the effects of changing α on model predictions are increasingly small and large values of α are indistinguishable from white‐noise.
+
+We suggest using simulations to assess the model fit. Simulating data under the Brownian model will generate null distributions (e.g. Boettiger et al ., 2012) and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. Boettiger et al . (2012) discuss this at length and other papers use similar approaches (e.g. Martins & Garland, 1991; Freckleton, Harvey & Pagel, 2002).
+
+One good strategy for data exploration would be to simulate data under Brownian and the favoured OU model to generate distributions of parameters under known values. These can then be compared with results for your dataset (see Slater, 2014; Slater & Pennell, 2014; for a related approach). This is important because we have shown that the shape of a phylogeny has consequences for parameter biases and hypothesis tests. Any given tree will therefore generate unique parameter estimates. Generating data under the favoured OU model will allow an assessment of whether it is possible to retrieve known values, or whether there is evidence of bias.
+
+3. If possible, include ancillary data . If data on fossils are available then these could be incorporated into the analysis (Slater, Harmon & Alfaro, 2012). Indeed, if fossil taxa can be reliably placed in the phylogeny then they may improve model accuracy and a strong case can be made that fossils should be included. On the other hand, if there is substantial uncertainty in fossil placement then they should be treated cautiously. Placement of fossil taxa is implemented in GEIGER (Harmon et al ., 2008) and BayesTraits (Pagel & Meade, 2013). A caution here is that the OU model for non‐ultrametric trees has to be carefully parameterized because for non‐ultrametric trees the co‐variances depend on both the shared distances between species and the distance of a node to the nearest tip (see eqn A6). This creates potential problems in parameterization and in interpretation because the variance–covariance matrix is no longer tree‐like; for example, related species can effectively become more similar to one another than to themselves – an inherently non tree‐like pattern (Slater, 2014). Some current implementations of the OU model are based on transforming the tree directly, rather than transforming the variance–covariance matrix (e.g. MOTMOT; Thomas & Freckleton, 2011). These implementations should not be used with fossil data.
+
+```{block, type = "warning"}
+The problems that we discuss here are not limited to OU models. Any model of trait evolution that attempts to account for non‐Brownian components of trait variation is susceptible to being misled by measurement error, and in some scenarios measurement error can also incorrectly favour Brownian motion over the true model. The fundamental problem is that **rejection of the Brownian model in favour of another model does not necessarily say anything about evolutionary process**. This problem can be helped a little if model comparisons are set in a solid hypothesis‐testing framework where alternative hypotheses make clear predictions about the resulting patterns that can be unambiguously associated with particular models. We should not use any statistical model without thinking carefully about the limits of the data we are using and the biological interpretation of the model and its outputs.
 ```
-
-
 
 ```{block, type = "warning"}
 Remember that your results are only as good as your phylogeny and your data. Phylogenies are only hypotheses about the way evolution happened, and generally miss out lots of extinct species. Always consider this when interpreting the results of models of evolution.
@@ -203,11 +245,11 @@ Now we've introduced you to some of the different models of trait evolution that
 
 1. Do I have sensible biological reasons to fit these models? 
 
-We warned you near the start of the chapter that it can be tempting to just fit all possible models to a dataset and see what comes out as the best. But without a biological question to guide the choice of models, this can just produce a lot of noise and results that make little sense biologically. Carefully consider whether each model is appropriate before fitting it. Note that it is sensible to compare any model to the null model of Brownian motion, but merely rejecting the null model doesn't tell us much biologically, as we already know Brownian motion is a poor fit to evolutionary process. This is instead done to check that ????  
+We warned you near the start of the chapter that it can be tempting to just fit all possible models to a dataset and see what comes out as the "best". But without a biological question to guide the choice of models, this can just produce a lot of noise and results that make little sense biologically. Carefully consider whether each model is appropriate before fitting it. Note that it is sensible to compare any model to the null model of Brownian motion, but merely rejecting the null model doesn't tell us much biologically, as we already know Brownian motion is a poor fit to evolutionary process.
 
 2. Which model(s) fit best?
 
-When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use maximum likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analagous to AIC, BUT XXXXX
+When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use Maximum Likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analagous to AIC.
 
 ```{block, type = "info"}
 Remember that all models are wrong, but some are useful! No model selection procedure can tell you what the "best" model is, all it can tell you is *which of the models you are comparing best fits the data* (i.e. the trait data and the tree). It is important to remember that model selection methods will still select a "best" model, even if all the models you are comparing are bad fits to the data. Be wary of this when interpreting your results.
@@ -219,7 +261,7 @@ In *Chapter 5* we talked about model adequacy. This is equally important for mod
 
 4. Are the parameters of my models biologically reasonable? 
 
-Finally, it is really important to actually look at the parameter values. We highlighted this in the model sections but want to reiterate it now. OU with alpha of 0.1 is not much different from BM. Do rates make sense or are they nonsensical given the age of teh clade. Given the stuff we know about fossils do ACE make sense? Do not blindly accept models.
+Finally, it is really important to actually *look at the parameter values* of your model outputs. We highlighted this earlier in the chapter, but want to reiterate it now. An OU model with alpha of 0.1 is not much different from BM. Do rates make sense or are they nonsensical given the age of the clade. Given the stuff we know about fossils do ACE make sense? Do not blindly accept models.
 
 
 ### Model selection with AIC
