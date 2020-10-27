@@ -9,3 +9,10 @@ Here we will briefly describe additional methods we do not cover in the Primer a
 
 - A list of more advanced topics, e.g. diversification analyses.
 - An overview of current literature and where to look next
+
+
+- Diversification analyses
+What are they?
+
+- Mass extinctions from phylogenies?
+
