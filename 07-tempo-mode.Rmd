@@ -4,6 +4,21 @@
 **NC currently writing**
 ```
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Load libraries (hidden)
+library(ggtree)
+library(ape)
+library(caper)
+library(reshape2)
+library(tidyverse)
+library(patchwork)
+library(ggimage)
+library(knitr)
+library(measurements)
+library(cowplot)
+library(phytools)
+```
+
 Up to now we've focussed on using phylogenetic comparative methods to account for phylogenetic non-independence in our analyses. But phylogenetic comparative methods can do far more than this. We can use comparative methods to infer the nature of the evolutionary process, and to ask exciting and fundamental questions about the way evolution happened, and what implications this has for our understanding of Life on Earth. 
 
 This area of phylogenetic comparative methods has seen a real explosion in literature and methods since the mid 2000s (e.g. cite gavin 2006, o'meara 2006, harmon 2010). Naturally we can't cover all of these methods here, so we focus on methods that build on ideas we have met in earlier chapters and that have simple implementations in R (see *online materials*). Hopefully this will provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature. We will also direct you to some of these methods in *Chapter 8*.
@@ -64,6 +79,7 @@ The key features of the Brownian motion model are:
 - The rate of evolution is constant.
 - Variance in traits increase (linearly) in proportion to time.
 - The overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed. 
+
 In terms of the model parameters:
 
 - The model can be fully described using just two parameters $z(0)$ and $\sigma^2$.
@@ -75,11 +91,37 @@ Some biological implications of the model are:
 - Correlation among trait values is proportional to the extent of shared ancestry for pairs of species, i.e. close relatives are more similar than more distant relatives. 
 - Different lineages evolve at the same rate.
 
+```{block, type = "detail"}
+**How do we fit Brownian motion models, and the other models discussed in this chapter?**
+
+Most of the models we talk about in this book are fitted using Maximum Likelihood. But what exactly does that mean? Likelihood can be thought of as the probability of your model, and is generally expressed as an equation. As a silly example, the likelihood of my desire to eat cake is a function of how long it has been since I ate some cake (tcake) and how delicious the cake looks (D). So the likelihood could be expressed as desire = tcake + D. The Maximum Likelihood will be when the cake looks really delicious and it's been ages since I last had some cake. Each different model will have its own likelihood function or equation. These are often quite complicated. 
+
+To get the Maximum Likelihood for a model, we need to find the values of the parameters that maximise the likelihood function. A simple way to do this would be to pick every possible combination of parameter values, and then to calculate what the likelihood would be for each combination. You can then easily pick the best value. However, this is quite inefficient and time consuming! Instead we tend to use some kind of *optimisation* procedure to get the best value without having to try every possible combination. 
+
+Optimisations are often described in terms of hills and valleys. If you're in the mountains looking for the highest peak, you could wander around the whole area, recording the height at each point, and then at the end of the survey pick the highest point (this is often called an exhaustive search, and would definitely be exhausting using this mountain analogy). Instead, we can make the process faster by always walking towards higher ground. If we did this we'd spend less time in the valleys and more time climbing towards the highest peaks. This is optimisation. Most optimisation procedures also allow for the fact that this might leave you stranded on *a* high peak, but not *the highest* peak, so allow for magically jumping between peaks from time to time. When we fit models the computer does all of this hard work for us. 
+```
+
+
+
+The expected distribution of the tips & nodes of the tree under
+Brownian motion is multivariate normal with variancecovariance
+matrix
+
+One thing we didn't explore in that chapter was the likelihood function for Brownian motion. It's not completely necessary for understanding the model, but we should consider it for completeness.
+
+### IS this in chater 3?
+We know that under a Brownian motion model, the data at the tips are drawn from a multivariate normal distribution with a variance-covariance matrix, C, that is calculated using the phylogeny (see *Chapter 3*). Therefore, we can calculate the likelihood of our data given the Brownian model (remember likelihood is proportional to the probability of observing the data given the model, *P(data|model)*) using a standard formula for the likelihood of drawing numbers from a multivariate normal distribution.
+
+![BMLik](images/BMLikelihood.png)
+
+This looks horribly complicated, which is why we avoided it in *Chapter 3*, but the important thing is to notice that when we fit these models, all the computer is doing is plugging the values of our model parameters, $z(0)$ and $\sigma^2$, and the variance covariance matrix generated from the phylogeny (C), and the tip values (x) into the equation and extracting the likelihood. This is then optimised to get the Maximum Likelihood. The parameter values used to get the Maximum Likelihood are the ones the reported to us by the computer.
+
+
 ### Why is Brownian motion a poor model of trait evolution? 
 
 In *Chapter 3* we asked you to think about why Brownian motion might not be a very realistic model of trait evolution. Hopefully you came up with some of your own ideas and examples, but some major issues are as follows.
 
-1. Close relatives should be more similar than more distant relatives. This may not always be the case. For example, when convergent evolution occurs among distant relatives adapting to the same selection pressures (e.g. bats and birds both have wings but aren't close relatives), or when species are rapidly evolving to fill different niches in an adaptive radiation (e.g. Darwin's finches are closely related but have very different beak adaptations). 
+1. Close relatives should be more similar than more distant relatives. This may not always be the case. For example, when convergent evolution occurs among distant relatives adapting to the same selection pressures (e.g. bats and birds both have wings but aren't close relatives), or when species are rapidly evolving to fill different niches in an adaptive radiation (e.g. Darwin's finches are closely related but have very different beaks). 
 
 2. All species and all lineages evolve at the same rate ($\sigma^2$). Lots of evolutionary theories are based on certain groups evolving quickly in response to novel selection pressures, or to the availability of new niches. We also often discuss how particular traits, so called "key innovations", like flight might allow increased rates of evolution for species with that trait. So a single rate of evolution across the whole phylogeny is probably a major oversimplification. 
 
@@ -89,13 +131,17 @@ In the next few sections of this chapter we will discuss some ways we can deal w
 
 ## Multi-rate Brownian motion models
 
-As noted above, one major limitation of Brownian motion is that all lineages must have the same rate of evolution ($\sigma^2$). But we have pretty good biological reasons for thinking this is not true! Several methods exist that modify the Brownian motion model so that different rates (i.e. different values of $\sigma^2$) are possible for different lineages. There a many other ways of doing this - o'meara, venditti, models in harmon book
+As noted above, one major limitation of Brownian motion is that all lineages must have the same rate of evolution ($\sigma^2$). But we have pretty good biological reasons for thinking this is not true! Several methods exist that modify the Brownian motion model so that different rates (i.e. different values of $\sigma^2$) are possible for different lineages. There are several ways of doing this, so we will just focus on the simplest below (O'Meara et al 2006, Thomas et al 2006). 
 
+Let's imagine we are working on a group of insects where most species are carnivorous, but one highly morphologically diverse group is herbivorous. We might suspect that the rate of evolution of the herbivorous species is higher than than of the carnivorous species. To investigate this we can estimate the Brownian rate parameter $\sigma^2$ for just the herbivorous species, and for just the carnivorous species. This uses a simple modification of the likelihood function for Brownian motion, but rather than having one value for the variance covariance matrix (C) we instead construct separate variance covariance matrices for each group ($C_1$ and $C_2$), and each has a different $\sigma^2$ ($\sigma^2_1$ and $\sigma^2_2$; O'Meara et al 2006). Therefore when the likelihood is estimated $\sigma^2_1$ and $\sigma^2_2$ are optimised (O'Meara et al 2006). A similar method was proposed by Thomas et al (2006), but this allows both $\sigma^2$ and $z(0)$ to vary among groups. In both cases, the full method involves also fitting a standard Brownian motion model where there is only one $\sigma^2$ (and $z(0)$), and then comparing the AIC (see below) values for the model with and without the rate variation (O'Meara et al 2006, Thomas et al 2006).
 
-```{block, type = "detail"}
-How do we fit Brownian motion models, and the other models discussed in this chapter?
+The one slightly tricky thing for both of these methods is deciding what to do with the branch where we think the change in rate occurred. Should it be included in the group we think has a rate of evolution of $\sigma^2_1$ or the group that we think has a rate of evolution of $\sigma^2_2$? Or neither? O'Meara et al (2006) suggest two approaches; (i) the "noncensored" approach which assigns the branch to one of the rate parameters; and (ii) the "censored" approach, where the branch is omitted from the calculations. Note that the method of Thomas et al (2006) is equivalent to the censored approach.
 
-```
+Variation in rates of ecvolution across clades - not includes?
+Rate tests using phylogenetic independent contrasts
+Rate tests using Bayesian MCMC
+Bayou (SURFACE but bayesian)
+
 
 ## Brownian motion with a trend [????]
 
@@ -140,7 +186,7 @@ What about when $\alpha$ is not zero? The $-\alpha(X(t) - \mu)$ part of the equa
 
 Let's have a look at some simulated data to see what this looks like. We'll imagine we have a dataset of 50 species of crab. We can simulate claw length data for each species using Brownian motion and OU. Figure \@ref(fig:crab1) shows how the outputs of these simulations differ. In both simulations, $z(0) = 20 mm$ and $sigma^2 = 0.1$, but in the OU model we also specify the long-term mean $\mu = 20 mm$, and the "rubber band" parameter $\alpha = 0.1$. Notice that while the values for claw size are spreading out in the Brownian simulation, in the OU simulation these values are all fairly close to $\mu = 20 mm$ because they are being drawn back towards $\mu$. This looks a lot like something approaching an equilibrium, and indeed the OU model is an equilibrium model.
 
-```{r crab1, echo = FALSE, fig.cap='Simulations showing how the claw size of crabs changes through time under a Brownian model with $z(0) = 20 mm$ and $sigma^2 = 0.1$ (black lines) and an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.1$ (red lines), out.width='80%', fig.asp=.75, fig.align='center'}
+```{r crab1, echo = FALSE, fig.cap="Simulations showing how the claw size of crabs changes through time under a Brownian model with z(0) = 20 mm and sigma2 = 0.1 (black lines) and an OU model with z(0) = 20 mm, sigma2 = 0.1, mu = 20 mm and alpha = 0.1 (red lines)", out.width='80%', fig.asp=".75", fig.align='center'}
 
 # Simulate tree
 crabs <- rcoal(50, br = 5)
@@ -161,7 +207,7 @@ We can also investigate what happens as we increase $\alpha$, as shown in \@ref(
 
 We can also change the value of $\mu$ so it is not the same as $z(0)$, as shown in \@ref(fig:crab2). You can see that the trait very rapidly evolves from the starting value and towards the long-term mean.
           
-```{r crab2, echo = FALSE, fig.cap='Simulations showing how the claw size of crabs changes through time under a) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.1$; b) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.1$, $\mu = 20 mm$ and $\alpha = 0.5$; and c) an OU model with $z(0) = 20 mm$, $sigma^2 = 0.25$, $\mu = 30 mm$ and $\alpha = 0.1$', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r crab2, echo = FALSE, fig.cap='Simulations showing how the claw size of crabs changes #through time under a) an OU model with z(0) = 20 mm, sigma2 = 0.1, mu = 20 mm and alpha = 0.1; b) an OU model with z(0) = 20 mm, sigma2 = 0.1$, mu = 20 mm and alpha = 0.5; and c) an OU model with z(0) = 20 mm, sigma2 = 0.25$, mu = 30 mm and alpha = 0.1', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Create OU simulation data
 oudata1 <- fastBM(crabs, sig2 = 0.1, a = 20, internal = TRUE,
@@ -206,6 +252,8 @@ As a further note of caution, it is important to recognize that biases in the es
 For the most part, when people talk about OU models in evolutionary biology they are talking about single stationary peak (SSP) models, where there is a single long-term mean or $\mu$. However, there are sensible biological reasons to expect that, at least in larger phylogenies, it is unlikely that there is a single "optimum" trait value. 
 
 In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that the rate of evolution, $\sigma^2$, is constant across the tree. We can however, improve on this by fitting OU models with different $\sigma^2$ values for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$)
+
+### finish this
 
 [do multi peak have different alphas and z0???]
 
@@ -304,5 +352,3 @@ Simple models reminder
 
 Stochastic mapping
 
-
-Burnham, K. P., and D. R. Anderson. 2002. Model selection and multimodel inference : a practical information-theoretic approach. Springer, New York.
