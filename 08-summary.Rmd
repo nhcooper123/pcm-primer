@@ -16,3 +16,8 @@ What are they?
 
 - Mass extinctions from phylogenies?
 
+### How to assess whether a comparatvie method is good or not!!!
+
+You've probably realised by now that phylgoenetic comparatvie methods is a diverse and fast moving field. New methods are released on what feels like a weekly basis, making it very hard to know exactly what to put into a Primer like this! In the previous chapters we have therefore focussed on teh core methods used in the filed, and especially on the concepts you need to understand to be able to use more complex methods.
+
+In this final chapter we are first going to briefly introdue you to diversification analyses. Most introductory courses cover this at least briefly, but a lot of the nuance lies beyond the scope of this book. Secondly, we are going to talk more generally about critically evaluating models.
