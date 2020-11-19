@@ -1,9 +1,5 @@
 # Tempo and mode of evolution from comparative data. {#tempo-mode}
 
-```{block, type = "info"}
-**NC currently writing**
-```
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Load libraries (hidden)
 library(ggtree)
@@ -30,18 +26,14 @@ We can't possible cover every possible model in this *Primer*, so we have aimed 
 
 This chapter covers:
 
-- Continuous traits
-    - Brownian motion
+- Brownian motion
         - Brownian motion recap
         - Brownian motion with multiple rates
-    - OU models
+- OU models
         - SSP
         - Multiple peak
         - Multi peak multi rate
-- Discrete traits
-    - Recap on simple models
-    - Beyond Mk
-    - Stochastic character mapping
+
 - Fitting and assessing models of evolution
     - Model selection with AIC
     - Model adequacy
@@ -51,14 +43,13 @@ The title of this chapter mentions "tempo and mode" because we can distinguish b
 
 ```{block, type = info}
 This is what the proposal says we will cover
-- More complex Brownian models. 
-- Non-Brownian trait evolution.
-- The SLOUCH family of models
+- More complex Brownian models. yes
+- Non-Brownian trait evolution. yes
+- The SLOUCH family of models yes
 - Speciational evolution.?
 - Clade dependent rates.?
 - Trait dependent rates.?
 - Species-interactions.?
-- Tree transformations - delta, kappa? [i added this]
 ```
 
 
@@ -251,11 +242,19 @@ As a further note of caution, it is important to recognize that biases in the es
 
 For the most part, when people talk about OU models in evolutionary biology they are talking about single stationary peak (SSP) models, where there is a single long-term mean or $\mu$. However, there are sensible biological reasons to expect that, at least in larger phylogenies, it is unlikely that there is a single "optimum" trait value. 
 
-In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that the rate of evolution, $\sigma^2$, is constant across the tree. We can however, improve on this by fitting OU models with different $\sigma^2$ values for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$)
+In addition, although OU models improve upon Brownian models by having traits evolve in more realistic directions, they suffer from the same problem that the rate of evolution, $\sigma^2$, is constant across the tree. We can however, improve on this by fitting OU models with different $\sigma^2$ values for each value of $\mu$. Take care here of overfitting (see *Chapter 3*)! Even a modest number of groups will increase the number of parameters you are fitting considerably, for example a single stationary peak model has 4 parameters ($z(0)$, $\sigma^2$, $\mu$ and $\alpha$); a multi peak model with three groups has $\sigma^2$, $\mu$ and $\alpha$ for each group.
 
 ### finish this
 
 [do multi peak have different alphas and z0???]
+
+```{block, type = "warning"}
+It's important to stop and think carefully before interpreting these "optima" or long-term means. Do they make sense in terms of what we know about head shape in these snake ecomorphs? I think it looks pretty sensible given where they plot (see DEEPAK) but it's always good to check there's nothing weird going on.
+```
+
+```{block, type = "warning"}
+Above I included code for all of the complex models discussed in the *Primer*. However, it is likely that the complexity of some of these models is greater than the information contained within the data. As a result one or more parameters may be poorly estimated. **Always check parameter estimates** from your models to ensure that they make biological sense. If you don't check, you might unknowingly pick a poor model with incorrect biological interpretations. The more complex your models the more likely this is. Beware!
+```
 
 ### Here be dragons...things to be aware of when fitting OU models
 
@@ -346,9 +345,18 @@ Remember: For AIC or AICc the best model is the one with the *lowest value of AI
 
 
 
-## Modelling discrete traits
+[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
+## Summary
 
-Simple models reminder
+## Online materials
 
-Stochastic mapping
+Online materials for this chapter are:
+ - Diversification analyses
+
+## MCQs
+
+-----
+
+## BOXES
+
 
