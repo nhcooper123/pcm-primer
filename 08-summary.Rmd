@@ -4,6 +4,18 @@ As we've mentioned several times already in this *Primer*, the field of phylogen
 
 In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in (Dark side paper).
 
+```{block, type = "info"}
+Just a few of the methods we haven't cover in the primer:
+Rate tests using phylogenetic independent contrasts
+Rate tests using Bayesian MCMC
+SURFACE
+Bayou (SURFACE but bayesian)
+Tests for mass extinctions
+TreePar 
+TESS
+Puttick's nested models
+```
+
 ## Factors to consider before using a new phylogenetic comparative method
 Many new phylogenetic comparative methods come with code or an R package or similar that allows you to jump straight in to using it. But this is not a great idea, unless playing with the code is the first step in a larger exploration of the method. At a minimum, you should read the original papers describing a method, plus any recent updates, and look carefully for assumptions and caveats that may affect your analyses based on the unique properties of your data and tree. 
 
