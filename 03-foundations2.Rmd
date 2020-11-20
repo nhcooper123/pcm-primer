@@ -92,7 +92,7 @@ Let's run a quick example simulation to see what is going on. Our trait can be a
 4. If we continue this until we get to $time = 10$ we get a graph that shows the evolution of the trait through time that looks like Figure \@ref(fig:cat1) (the numbers are the body mass values, rounded to two decimal places).
 
 ```{block, type = "detail"}
-Hang on, where are we getting these random numbers from? We are just using R to extract numbers from a normal distribution with mean of 0 and variance of 0.25. If you want to try this out got to R and type in `rnorm(1, mean = 0, sd = sqrt(0.01))`. sd is standard deviation, which is the square root of variance. Note that these numbers are drawn at random so will not be the same as the values used above.
+Hang on, where are we getting these random numbers from? We are just using R to extract numbers from a normal distribution with mean of 0 and variance of 0.25. If you want to try this out got to R and type in `rnorm(1, mean = 0, sd = sqrt(0.01))`. `sd` is standard deviation, which is the square root of variance. Note that these numbers are drawn at random so will not be the same as the values used above.
 ```
 
 ```{r cat1, echo = FALSE, fig.cap='A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$.', out.width='80%', fig.asp=.75, fig.align='center'}
@@ -366,7 +366,7 @@ First, when a lineage speciates, the new lineages start at the same trait value,
 
 Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that $\sigma^2$ was also the same throughout. This means that the *rate of evolution across the tree is constant*, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an adaptive radiation). We will return to this later in the book.
 
-Finally, it's rare to see such simple examples of Brownian motion across trees as we've shown here. You're much more likely to see something like Figure \@ref(fig:phytools), drawn using the phytools R package. We also don't fit the models using the simple maths we've shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don't worry about this for now as we will return to it later in the book.
+Finally, it's rare to see such simple examples of Brownian motion across trees as we've shown here. You're much more likely to see something like Figure \@ref(fig:phytools), drawn using the `phytools` R package. 
 
 ```{r phytools, echo = FALSE, fig.cap='A more complex simulation using 50 species, where z0 = 20, and sigma2 = 0.1.', out.width='80%', fig.asp=.75, fig.align='center'}
 
@@ -378,6 +378,10 @@ x <- fastBM(treex, sig2 = 0.1, a = 20,
 # Plot on the phenogram, without tip labels
 phenogram(treex, x, ftype = "off", ylim = c(0,30))
 ```
+
+What do the body mass values look like at the end of the simulations when we add the phylogeny? The expected distribution of the tips and nodes of the tree under Brownian motion is a __multivariate normal__ distribution with a __variance covariance matrix__, C, that is calculated using the phylogeny (see Section above on variance covariance matrices). This is a really useful result, because it means that if we want to simulate data along a phylogeny under the Brownian motion model we don't need to do it along the branches as we demonstrated above. We can just sample data from the  multivariate normal distribution defined using the starting value, $z0$, $\sigma^2$, and the variance covariance matrix taken from the phylogeny. This speeds things up substantially.
+
+We also don't fit the models using the simple maths we've shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don't worry about this for now as we will return to it later in the book (see *Chapter 7*).
 
 ```{block, type = "info"}
 To summarise the above, the key features of the Brownian motion model are: 
