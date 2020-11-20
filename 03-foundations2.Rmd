@@ -991,6 +991,8 @@ People will sometimes say that they accounted or "corrected" for phylogeny (see 
 Online materials for this chapter are:
   - Preparing your tree and data for PCMs in R
   - Phylogenetic Signal in R
+  - Models of evolution for continuous traits (also *Chapter 7*)
+  - Models of evolution for discrete traits (also *Chapter 7*)
 
 ## MCQs
 
