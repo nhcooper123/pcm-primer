@@ -31,8 +31,7 @@ This chapter covers:
 
 - Fitting and assessing models of evolution
     - Model selection with AIC
-    - Model adequacy
-    - Model detection? Ane paper/OUwie?
+    - Model adequacy [STILL TO DO]
   
 The title of this chapter mentions "tempo and mode" because we can distinguish between the mode of evolution (i.e. how did evolution happen?) and the tempo or rate of evolution (i.e. how fast did evolution happen?). Most methods, however, allow us to investigate both aspects simultaneously, so we don't separate them in this chapter. 
 
@@ -267,7 +266,7 @@ We warned you near the start of the chapter that it can be tempting to just fit 
 
 2. Which model(s) fit best?
 
-When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use Maximum Likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analagous to AIC.
+When fitting multiple models we often want to know which is the "best" model, by which we mean which model best fits the data, i.e the tree and trait data. For models that use Maximum Likelihood we usually do this using some version of Akaike Information Criterion (AIC), see section below for more details. Bayesian methods sometimes use the Deviance Information Criterion (DIC) which is analogous to AIC.
 
 ```{block, type = "info"}
 Remember that all models are wrong, but some are useful! No model selection procedure can tell you what the "best" model is, all it can tell you is *which of the models you are comparing best fits the data* (i.e. the trait data and the tree). It is important to remember that model selection methods will still select a "best" model, even if all the models you are comparing are bad fits to the data. Be wary of this when interpreting your results.
@@ -275,19 +274,19 @@ Remember that all models are wrong, but some are useful! No model selection proc
 
 3. Are my models adequate? 
 
-In *Chapter 5* we talked about model adequacy. This is equally important for models of trait evolution.... Carl's paper, Matt's paper.Simulating data under the Brownian model will generate null distributions (e.g. Boettiger et al ., 2012) and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. Boettiger et al . (2012) discuss this at length and other papers use similar approaches (e.g. Martins & Garland, 1991; Freckleton, Harvey & Pagel, 2002).
+In *Chapter 5* we talked about model adequacy. This is equally important for models of trait evolution.... Carl's paper, Matt's paper. Simulating data under the Brownian model will generate null distributions [e.g. @boettiger2012your] and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. @boettiger2012your discuss this at length and other papers use similar approaches [e.g. @martins1991phylogenetic, @freckleton2002phylogenetic].
 
 4. Are the parameters of my models biologically reasonable? 
 
-Finally, it is really important to actually *look at the parameter values* of your model outputs. We highlighted this earlier in the chapter, but want to reiterate it now. An OU model with alpha of 0.1 is not much different from BM. Do rates make sense or are they nonsensical given the age of the clade. Given the stuff we know about fossils do ACE make sense? Do not blindly accept models.
+Finally, it is really important to actually *look at the parameter values* of your model outputs. We highlighted this earlier in the chapter, but want to reiterate it now. An OU model with alpha of 0.1 is not much different from Brownian motion. Do the evolutionary rates make sense or are they nonsensical given the age of the clade? Given what we know about extinct members of the group, do starting trait values make sense? Do not blindly accept the outputs of your models.
 
 ```{block, type = "warning"}
-Remember that your results are only as good as your phylogeny and your data. Phylogenies are only hypotheses about the way evolution happened, and generally miss out lots of extinct species. Always consider this when interpreting the results of models of evolution.
+Remember that your results are **only as good as your phylogeny and your data**. Phylogenies are hypotheses about the way evolution happened, and generally miss out lots of extinct species. Always consider this when interpreting the results of models of evolution, and indeed any phylogenetic comparative analysis.
 ```
 
 ### Model selection with AIC
 
-We can use the Akaike Information Criterion (AIC) to select the best fitting model from a set of models (@burnham2002book; @o2006testing). We often refer to AIC as a *penalised likelihood*, because AIC tells us how good the fit of the model is given the number of parameters in the model. Why does the number of parameters matter? The more parameters in a model, the better the fit of the model will be XXXX
+We can use the Akaike Information Criterion (AIC) to select the best fitting model from a set of models (@burnham2002book; @o2006testing). We often refer to AIC as a *penalised likelihood*, because AIC tells us how good the fit of the model is given the number of parameters in the model. Why does the number of parameters matter? The more parameters in a model, the better the fit of the model will be (see discussion of over-fitting in *Chapter 3*). But we want to know if there is a clear improvement in model fit by adding parameters, rather than an incremental increase in fit which is expected. 
 
 The equation for AIC is:
 
@@ -295,14 +294,13 @@ The equation for AIC is:
   AIC = -2(ln(likelihood)) + 2k
 \end{equation}
 
-where $likelihood$ is the probability of the data given the model and $k$ is the number of free parameters in the model. The best model is the model which has a good fit to the truth with few parameters, i.e. the model with the *lowest AIC*. 
-If we don't have many taxa in the model, i.e. sample size is small, we can use *AICc* instead of AIC. AICc increases the relative penalty for high numbers of parameters with small datasets by multiplying the AIC by $\frac{n}{n - k - 1}$ as shown below, where $n$ is the sample size.
+Where $likelihood$ is the probability of the data given the model and $k$ is the number of free parameters in the model. The best model is the model which has a good fit to the truth with few parameters, i.e. the model with the *lowest AIC*. If we don't have many taxa in the model, i.e. sample size is small, we can use *AICc* instead of AIC. AICc increases the relative penalty for high numbers of parameters with small datasets by multiplying the AIC by $\frac{n}{n - k - 1}$ as shown below, where $n$ is the sample size.
 
 \begin{equation}
   AICc = -2(ln(likelihood)) + 2k \frac{n}{n - k - 1}
 \end{equation}
 
-As $n$ gets bigger, $\frac{n}{n - k - 1}$ gets closer to 1, e.g. if $n = 2000$ and $k = 2$, $\frac{n}{n - k - 1} = 1.002$, so AIC and AICc are almost identical. Therefore, if you have any doubt about whether you have a small sample size or not, it's worth choosing to use AICc to be on the safe side. If your sample size is large enough AICc will be virtually identical to AIC anyway.
+As $n$ gets bigger, $\frac{n}{n - k - 1}$ gets closer to 1, e.g. if $n = 2000$ and $k = 2$, $\frac{n}{n - k - 1} = 1.002$, so AIC and AICc are almost identical. Therefore, if you have any doubt about whether you have a small sample size or not, it's worth using AICc to be on the safe side. If your sample size is large enough AICc will be virtually identical to AIC anyway.
 
 AIC and AICc scores can also be shown as *$\Delta$AIC scores*. These indicate the difference between the AIC/AICc of the best model, i.e the one with the smallest AIC, and the AIC/AICc of each model. This means that the best model has a $\Delta$AIC of zero. This doesn't change the results in any way, it just makes it easier to quickly identify the best model.
 
@@ -330,7 +328,9 @@ Remember: For AIC or AICc the best model is the one with the *lowest value of AI
 ## Online materials
 
 Online materials for this chapter are:
- - Diversification analyses
+  - Models of evolution for continuous traits
+  - Models of evolution for discrete traits
+  - Beyond simple macroevolutionary models
 
 ## MCQs
 
