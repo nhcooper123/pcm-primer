@@ -263,7 +263,7 @@ hist_0.1 <-
   ggplot(sim_0.1_tips, aes(x = trait)) +
   theme_void() +
   xlim(-30,30) +
-  ylim(0,65) +
+  #ylim(0,65) +
   geom_histogram(bins = 12, fill = "gold", alpha = 0.8, colour = "black") +
   coord_flip()
 
@@ -271,7 +271,7 @@ hist_0.25 <-
   ggplot(sim_0.25_tips, aes(x = trait)) +
   theme_void() +
   xlim(-30, 30) +
-  ylim(0, 65) +
+  #ylim(0, 65) +
   geom_histogram(bins = 12, fill = "cornflowerblue", alpha = 0.8, colour = "black") +
   coord_flip()
 
@@ -279,7 +279,7 @@ hist_1 <-
   ggplot(sim_1_tips, aes(x = trait)) +
   theme_void() +
   xlim(-30, 30) +
-  ylim(0, 65) +
+  #ylim(0, 65) +
   geom_histogram(bins = 12, fill = "#fe4a49", alpha = 0.8, colour = "black") +
   coord_flip()
 
@@ -300,7 +300,7 @@ ggtree(tree) +
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   geom_tiplab(aes(label = c("D",
                             "C",
                             "B",
@@ -510,7 +510,7 @@ tree <- read.tree("data/basic.tre")
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -593,7 +593,7 @@ tree <- read.tree("data/basic.tre")
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -658,7 +658,7 @@ tree <- read.tree("data/star.tre")
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 1.5) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -700,7 +700,7 @@ original <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -732,7 +732,7 @@ lambda05 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -802,7 +802,7 @@ tree <- read.tree("data/Ktree.tre")
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 10) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(label = c("B = 4 kg", "A = 2 kg", "C = 11 kg", NA, NA)), 
               geom = "text", align = TRUE, offset = 1, size = 6,
@@ -989,6 +989,7 @@ People will sometimes say that they accounted or "corrected" for phylogeny (see 
 ## Online materials
 
 Online materials for this chapter are:
+
   - Preparing your tree and data for PCMs in R
   - Phylogenetic Signal in R
   - Models of evolution for continuous traits (also *Chapter 7*)
