@@ -53,7 +53,7 @@ ggtree(tree) +
   theme_tree() +
   # Change limits so labels fit
   xlim(-2, 22) +
-  ylim(0, 5) +
+  ##ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -124,7 +124,7 @@ p1 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 4) +
+  #ylim(0, 4) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -140,7 +140,7 @@ p2 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 4) +
+  #ylim(0, 4) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -169,7 +169,7 @@ p1 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 4) +
+  #ylim(0, 4) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -185,7 +185,7 @@ p2 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 4) +
+  #ylim(0, 4) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/spider.png",
                             "images/deer.png",
@@ -210,7 +210,7 @@ ggtree(tree) +
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -246,7 +246,7 @@ p <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 25) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/crocodile.png",
                             "images/robin.png",
@@ -288,7 +288,7 @@ tree1 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -324,7 +324,7 @@ tree2 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/robin.png",
                             "images/deer.png",
@@ -370,7 +370,7 @@ p <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -386,7 +386,7 @@ px <-
   theme_tree() +
   scale_x_reverse(limits = c(22, 0)) +
   # Change limits so labels fit
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -403,7 +403,7 @@ pxx <-
   coord_flip() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -422,7 +422,7 @@ pxxx <-
   coord_flip() +
   scale_x_reverse(limits = c(22, 0)) +
   # Change limits so labels fit
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -439,7 +439,7 @@ p1 <-
   theme_tree() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -455,7 +455,7 @@ p1x <-
   theme_tree() +
   scale_x_reverse(limits = c(22, 0)) +
   # Change limits so labels fit
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -472,7 +472,7 @@ p1xx <-
   coord_flip() +
   # Change limits so labels fit
   xlim(0, 22) +
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -490,7 +490,7 @@ p1xxx <-
   coord_flip() +
   scale_x_reverse(limits = c(22, 0)) +
   # Change limits so labels fit
-  ylim(0, 5) +
+  #ylim(0, 5) +
   # Add tip label pictures
   geom_tiplab(aes(image = c("images/deer.png",
                             "images/robin.png",
@@ -708,7 +708,7 @@ x3 <-
   select(-Data_Quality, -Approximation) %>%
   group_by(Species, Measurement, Data_Type) %>%
   summarise(median = median(Value),
-                max = max(Value)) %>%
+                max = max(Value), .groups = 'drop') %>%
   pivot_wider(names_from = c(Measurement, Data_Type), values_from = c(median, max)) %>%
   select(Species, median_length = median_length_mean, max_length = max_length_max,
          median_clutchsize = `median_clutch size_mean`, max_clutchsize = `max_clutch size_max`,
