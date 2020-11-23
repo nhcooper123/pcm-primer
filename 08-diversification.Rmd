@@ -1,6 +1,30 @@
 # A very brief introduction to diversification analyses
 
-In this chapter we are going to very briefly introduce you to diversification analyses. Most introductory phylogenetic comparative methods courses cover this at least briefly, but a lot of the nuance lies beyond the scope of this *Primer*. If you need to use these kinds of methods for your analyses this should be a starting point for further reading and exploration. An excellent introduction can be found in Luke Harmon's book https://lukejharmon.github.io/pcm/chapters/.
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Load libraries (hidden)
+library(ggtree)
+library(ape)
+library(tidyverse)
+library(patchwork)
+library(ggimage)
+library(phytools)
+
+# Helper functions for plotting
+remove_y <- 
+  theme(axis.line.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+# Helper functions for plotting
+remove_x <- 
+  theme(axis.line.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+```
+
+In this chapter we are going to very briefly introduce you to diversification analyses. Most introductory phylogenetic comparative methods courses cover this at least briefly, but a lot of the nuance lies beyond the scope of this *Primer*. If you need to use these kinds of methods for your analyses this should be a starting point for further reading and exploration. An excellent introduction can be found in @harmonbook.
 
 ## Why do we study species diversity?
 Diversity, or species richness, is not evenly spread across the Tree of Life. Some groups have lots of species, while others have very few. A classic example is that of the animal phyla, where one single phylum, Arthropoda, has over 1 million species, while other phyla, for example Micrognathozoa (https://en.wikipedia.org/wiki/Limnognathia), have only one or a few species. This uneven diversity is found at all taxonomic levels; whether we look at species in phyla, or genera in families etc., we tend to see the same pattern. Some groups are more diverse than others. This has led to many biologists over the years trying to find out why this pattern exists. Is there something special about groups with lots of species? 
@@ -14,41 +38,138 @@ There are many ways to test these kinds of hypotheses using phylogenetic compara
 ## Phylogenetic tree imbalance 
 Although early investigations of diversity looked at how species were divided taxonomically, it's clear that species don't just spontaneously appear. Species evolve from other species, so accounting for phylogenetic relationships is really important. One of the easiest ways to investigate diversity on a phylogeny is to look at phylogenetic imbalance.
 
-Phylogenetic imbalance occurs where sister clades on a phylogeny have different numbers of species. Phylogenies can vary from completely imbalanced (Fig 1 a) where one sister clade has one species and all the others are in the other clade, and fully balanced, where the two clades have an equal number of species (Fig 1 b). Some degree of imbalance is expected by chance in real phylogenies, so to measure how imbalanced a tree is we can compare it to a simulated trees with the same number of species.
+Phylogenetic imbalance occurs where sister clades on a phylogeny have different numbers of species. Phylogenies can vary from completely imbalanced (Figure \@ref(fig:imbalance))  where one sister clade has one species and all the others are in the other clade, and fully balanced, where the two clades have an equal number of species (Figure \@ref(fig:imbalance)). Some degree of imbalance is expected in real phylogenies, so to measure how imbalanced a tree is we can compare it to a simulated trees with the same number of species.
 
-####ADD FIGURE
+```{r imbalance, echo = FALSE, fig.cap = 'XXX', out.width='80%', fig.asp=.75, fig.align = 'center'}
 
-There are a bunch of metrics for measuring phylogenetic imbalance reviewed Mooers and Heard 1997 which we won't expand on here.
+# Read in balanced and imbalanced species phylogenies
+tree <- read.tree("data/balanced.tre")
+tree2 <- read.tree("data/imbalanced.tre")
+# Plot 
+p <- 
+  ggtree(tree) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 10) +
+  labs(title = "Balanced", size = 2)
+
+p1 <- 
+  ggtree(tree2) + 
+  theme_tree() +
+  # Change limits so labels fit
+  xlim(0, 10) +
+  labs(title = "Imbalanced", size = 2)
+
+p + p1
+```
+
+There are a bunch of metrics for measuring phylogenetic imbalance reviewed in @mooers1997inferring which we won't expand on here.
 
 ## Birth death models and diversification rates
-In recent years, rather than looking at tree shape to investigate uneven diversity across clades, it has become more common to look at diversification rates. Diversification is the rate of speciation minus the rate of extinction. Phylogenies give us an idea about both of these processes, though they're better at showing speciation than extinction in most cases (rabosky).
+In recent years, rather than looking at tree shape to investigate uneven diversity across clades, it has become more common to look at diversification rates. Diversification is the rate of speciation minus the rate of extinction. Phylogenies give us an idea about both of these processes, though they're better at showing speciation than extinction in most cases [@rabosky2010extinction].
 
-The simplest models for looking at this are birth death models, where the rate of speciation (birth; $\lambda$) and rate of extinction (death, $\mu$) combine to get a rate of diversification. We won't talk about these in detail here, but if you're interested there is an excellent introduction in https://lukejharmon.github.io/pcm/chapter10_birthdeath/. If diversification rates are high we tend to find phylogenies with lots of species. We often use a pure-birth model, i.e. a model where there is no extinction, just speciation, as a null model in diversification analyses. Under a pure-birth model we expect an exponential increase in the number of species through time. If there are interesting increases or decreases in diversification rate over time, our results should not fit the pure-birth null.
+The simplest models for looking at this are birth death models, where the rate of speciation (birth; $\lambda$) and rate of extinction (death, $\mu$) combine to get a rate of diversification. We won't talk about these in detail here, but if you're interested there is an excellent introduction in @harmonbook. If diversification rates are high we tend to find phylogenies with lots of species. We often use a pure-birth model, i.e. a model where there is no extinction, just speciation, as a null model in diversification analyses. Under a pure-birth model we expect an exponential increase in the number of species through time. If there are interesting increases or decreases in diversification rate over time, our results should not fit the pure-birth null.
 
 ```{block, type = "info"}
 Biologists love to reuse the same Greek letters over and over. $\lambda$ here is speciation rate. This is **not** the same as Pagel's $\lambda$.
 ```
 
 ## Lineage through time plots and the $\gamma$ statistic
-One simple way to investigate diversification rates is to look at *lineage through time* or LTT plots. These show the number of lineages in a phylogeny at a given time on the y-axis, and the time on the x-axis. By convention we log transform the y-axis because under a pure-birth (i.e. no extinction) model the number of lineages should increase exponentially over time, so if we log this it gives us a nice straight line. LTT plots can be used to investigate changes in diversification rate in a phylogeny. If the plotted relationship is a straight line this indicates that lineage diversification is occurring at a constant rate through time (Fig a). Alternatively, an exponential curve suggests that diversification rates are increasing through time (fig b), and an asymptote suggests diversification rates are decreasing through time (fig c). Generally we'd compare these curves to simulated LTT plots assuming a pure-birth model to check whether the pattern we are seeing is significantly different to a pure-birth null model.
+One simple way to investigate diversification rates is to look at *lineage through time* or LTT plots. These show the number of lineages in a phylogeny at a given time on the y-axis, and the time on the x-axis. By convention we log transform the y-axis because under a pure-birth (i.e. no extinction) model the number of lineages should increase exponentially over time, so if we log this it gives us a nice straight line. LTT plots can be used to investigate changes in diversification rate in a phylogeny. If the plotted relationship is a straight line this indicates that lineage diversification is occurring at a constant rate through time (Figure \@ref(fig:ltt)). Alternatively, an exponential curve suggests that diversification rates are increasing through time (Figure \@ref(fig:ltt)), and an asymptote suggests diversification rates are decreasing through time (Figure \@ref(fig:ltt)). Generally we'd compare these curves to simulated LTT plots assuming a pure-birth model to check whether the pattern we are seeing is significantly different to a pure-birth null model.
 
-#### FIGURE
+```{r ltt, echo = FALSE, fig.cap = 'YYY', out.width='80%', fig.asp=.75, fig.align = 'left'}
 
-Rather than relying on an interpretation of these plots, Pybus and Harvey 2001 proposed using the $\gamma$ statistic instead. 
+# Read in phylogenies
+tree1 <- read.tree("data/constant-rate.tre")
+tree2 <- read.tree("data/increase-rate.tre")
+tree3 <- read.tree("data/decrease-rate.tre")
 
-#### HOW DOES GAMMA WORK?
+plot(tree1)
+# Plot trees
+t1 <- 
+  ggtree(tree1) + 
+  theme_tree() +
+  labs(title= "Constant rate", size = 2)
 
-Similarly to other methods discussed in this chapter, the observed $\gamma$ statistic is compared to values obtained from pure-birth simulations. Significance is determined by seeing where the observed value falls within the distribution of values from the simulations. Significantly negative values of the $\gamma$ statistic suggest that rates of diversification have decreased through time, whereas the significantly positive values suggest that rates of diversification have increased through time.
+t2 <- 
+  ggtree(tree2) + 
+  theme_tree() +
+  labs(title = "Increasing rate", size = 2)
 
-More recently developed methods along a similar vein include TESS (Hoehna et al 2013) and TreePar (Stadler 2011).
+t3 <- 
+  ggtree(tree3) + 
+  theme_tree() +
+  labs(title = "Decreasing rate", size = 2)
+
+t1 + t2 + t3
+
+# LTT plots
+lt1 <- ltt(tree1, gamma = FALSE, plot = FALSE)
+lt2 <- ltt(tree2, gamma = FALSE, plot = FALSE)
+lt3 <- ltt(tree3, gamma = FALSE, plot = FALSE)
+
+# Make dataframes
+lt1 <- data.frame(times = c(1,2,4,6,8), ltt = c(2,3,8,16,32))
+lt2 <- data.frame(times = lt2$times, ltt = lt2$ltt)
+lt3 <- data.frame(times = lt3$times, ltt = lt3$ltt)
+
+plotlt1 <-
+  ggplot(lt1, aes(x = times, y = log(ltt))) +
+  geom_line() +
+  theme_classic(base_size = 14) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  labs(y = "log(lineages)", x = "time")
+
+plotlt2 <-
+  ggplot(lt2, aes(x = times, y = log(ltt))) +
+  geom_line() +
+  theme_classic(base_size = 14) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  labs(y = "log(lineages)", x = "time")
+
+plotlt3 <-
+  ggplot(lt3, aes(x = times, y = log(ltt))) +
+  geom_line() +
+  theme_classic(base_size = 14) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  labs(y = "log(lineages)", x = "time")
+
+(t1 + t2 + t3)/
+(plotlt1 + plotlt2 + plotlt3)
+
+```
+
+In Figure \@ref(fig:ltt) we used simulated data to get our LTT plots, but in reality these plots are rarely quite so straightforward to interpret. Figure \@ref(fig:ltt-real) shows the real LTT plot for a phylogeny of natricine snakes [DEEPAK; see *online materials*), where it is much less obvious to tell what is going on than in our simulated data.
+
+```{r ltt-real, echo = FALSE, fig.cap = 'YYY', out.width='80%', fig.asp=.75, fig.align = 'left'}
+
+# Read in phylogenies
+tree1 <- read.tree("data/constant-rate.tre")
+
+```
+
+Rather than relying on an interpretation of these plots, we can use the $\gamma$ statistic [@pybus2000testing]. The $\gamma$ statistic is based on the *internode distances* in a phylogeny, i.e. the distances between the nodes. If the internal nodes are closer to the root than expected under a pure birth model, then $\gamma < 0$. Conversely, if the internal nodes are closer to the tips than expected under a pure birth model, then $\gamma > 0$. 
+
+Similarly to other methods discussed in this chapter, the observed $\gamma$ statistic is compared to values obtained from pure-birth simulations. Significance is determined by seeing where the observed value falls within the distribution of values from the simulations. Significantly negative values of the $\gamma$ statistic suggest that rates of diversification have decreased through time, whereas the significantly positive values suggest that rates of diversification have increased through time. In the natricine example, $\gamma = ???$, so we interpret this as increasing rates of evolution.
+
+More recently developed methods along a similar theme include TESS [@hohna2016tess] and TreePar [@stadler2011mammalian]
 
 ## Diversification rate variation across branches
 The methods above look across whole phylogenies, but many of the questions we have revolve around individual groups/clades within phylogenies. These simple models also estimate a single rate of speciation and extinction across a whole tree. Obviously this is a huge oversimplification; we expect lots of changes in rates, or **rate heterogeneity**, through time, especially across fairly large trees.
 
-A large variety of methods have been developed that attempt to deal with this problem including MEDUSA (Alfaro et al. 2009), various methods in BayesTraits (ref), BAMM, and RevBayes. The method you are most likely to come across in the literature is BAMM, so we will briefly outline this here.
+A large variety of methods have been developed that attempt to deal with this problem including MEDUSA [@alfaro2009nine], various methods in BayesTraits [@pagel2007bayestraits], BAMM [@rabosky2014automatic], and RevBayes [@hohna2016revebayes]. The method you are most likely to come across in the literature is BAMM, so we will briefly outline this here.
 
 ### BAMM!
-BAMM (Bayesian Analysis of Macroevolutionary Mixtures; Rabosky et al 2014ab, Rabosky 2014) identifies discrete shifts in diversification rates at nodes of a tree (it can also investigate trait evolution but we will focus on diversification rates here), i.e places where diversification rates speed up or slow down. BAMM looks for rate shifts across the whole tree, so it can find 1, 2, 3 or more shifts. It does this using *reversible jump Markov Chain Monte Carlo* (i.e. Bayesian) methods to automatically explore a vast universe of possible models. It is biased towards simpler models (a common tactic in most evolutionary models - remember parsimony?) so rarely results in lots of rate shifts. 
+BAMM (Bayesian Analysis of Macroevolutionary Mixtures; @rabosky2014automatic, @rabosky2014bamm) identifies discrete shifts in diversification rates at nodes of a tree (it can also investigate trait evolution but we will focus on diversification rates here), i.e places where diversification rates speed up or slow down. BAMM looks for rate shifts across the whole tree, so it can find 1, 2, 3 or more shifts. It does this using *reversible jump Markov Chain Monte Carlo* (i.e. Bayesian) methods to automatically explore a vast universe of possible models. It is biased towards simpler models (a common tactic in most evolutionary models - remember parsimony?) so rarely results in lots of rate shifts. 
 
 For each MCMC run (generally over 1 million iterations are run in these analyses), BAMM simulates speciation and extinction along the tree, extracts the number of rate shifts, and then works out the probability of that particular combination of rate shifts occurring. The results BAMM outputs are a sample of all possible combinations across all models, in proportion to their posterior probability. The posterior, or distribution of results, from BAMM will thus contain lots of different combinations of rates and rate shifts, but will have those that occur more often across all the models appearing more often, than those that occur rarely appearing less often.
 
