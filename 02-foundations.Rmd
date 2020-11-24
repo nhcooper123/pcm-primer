@@ -597,7 +597,7 @@ The results of comparative analyses are *only as good as the data you put into t
 ```
 
 #### Peer-reviewed literature, books, field guides, and internet searches. 
-The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the Internet. It is also possible to do all of this using Internet searches instead, but it is important to check the source of any information provided. Journal articles and professional web-pages are likely to be fine, but other web-pages may not always state the source of their information. You should be prepared to make judgment calls about whether you trust a particular source and want to include it in your dataset.
+The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the Internet. It is also possible to do all of this using Internet searches instead, but it is important to check the source of any information provided. Journal articles and professional web-pages are likely to be fine, but other web-pages may not always state the source of their information. You should be prepared to make judgement calls about whether you trust a particular source and want to include it in your dataset.
 
 Collecting data manually reveals several issues common to most comparative data collection. It's a sensible idea to decide how you will deal with these issues should they arise. 
 
@@ -626,7 +626,7 @@ There are detailed rules about how and why scientific names change, and what the
 For the most part this is fairly easy to fix. The first step is to decide what taxonomy, or list of accepted names, you want to use for your analyses. We'd recommend asking someone who knows a bit about the group, or seeing what other people have done in published papers. Well-studied groups like [mammals](https://www.departments.bucknell.edu/biology/resources/msw3/), [birds](https://www.worldbirdnames.org/), [amphibians](https://amphibiansoftheworld.amnh.org/) and [reptiles](http://www.reptile-database.org/) have standardised lists that you can easily access online. For other groups you might have to trawl through PDFs.  
 
 
-Then correct the taxonomy of the species in your data and phylogeny so they match the species in the taxonomy you've chosen to use. If the species name you are using is out of date, you'll normally find it under the *synonyms* for a species. Synomyms are other names that are used to refer to the species. The name you want is the accepted name that your species name is the synonym of.  
+Then correct the taxonomy of the species in your data and phylogeny so they match the species in the taxonomy you've chosen to use. If the species name you are using is out of date, you'll normally find it under the *synonyms* for a species. Synonyms are other names that are used to refer to the species. The name you want is the accepted name that your species name is the synonym of.  
 
 
 ```{block, type = "detail"}
@@ -728,6 +728,7 @@ Note that each variable is now its own column. This will help us when using the 
 ## Online materials
 
 Online materials for this chapter are:
+
   - Data wrangling comparative data in R
   - Understanding, plotting and manipulating phylogenies in R
 
