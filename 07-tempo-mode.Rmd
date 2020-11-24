@@ -274,7 +274,7 @@ Remember that all models are wrong, but some are useful! No model selection proc
 
 3. Are my models adequate? 
 
-In *Chapter 5* we talked about model adequacy. This is equally important for models of trait evolution.... Carl's paper, Matt's paper. Simulating data under the Brownian model will generate null distributions [e.g. @boettiger2012your] and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. @boettiger2012your discuss this at length and other papers use similar approaches [e.g. @martins1991phylogenetic, @freckleton2002phylogenetic].
+In *Chapter 5* we talked about model adequacy. This is equally important for models of trait evolution.... Carl's paper, Matt's paper. Simulating data under the Brownian model will generate null distributions [e.g. @boettiger2012your] and allow straightforward assessment of model fit, for example by generating appropriate critical values for Likelihood ratio tests. @boettiger2012your discuss this at length and other papers use similar approaches (e.g. @martins1991phylogenetic, @freckleton2002phylogenetic).
 
 4. Are the parameters of my models biologically reasonable? 
 
@@ -319,10 +319,11 @@ Remember: For AIC or AICc the best model is the one with the *lowest value of AI
 ```
 
 ### Model adequacy with models of trait evolution.
-
+STILL TO DO
 
 
 [CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
+
 ## Summary
 
 ## Online materials
