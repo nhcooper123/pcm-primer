@@ -25,7 +25,7 @@
 ### Diversification models
 - $\lambda$
 - $\mu$
-
+- $\gamma$ statistic
 
 
 
@@ -116,5 +116,15 @@
 - **False positive (Type I) error rates**
 - **Measurement error**
 - **Akaike Information Criterion (AIC)**
+- **Phylogenetic imbalance**
+- **balanced tree**
+- **imbalanced tree**
+- **birth death models**
+- **pure-birth models**
+- **lineage through time**
+- **rate heterogeneity**
+- **reversible jump Markov Chain Monte Carlo**
+- **trait‐dependent diversification**
+- **species selection**
 
 
