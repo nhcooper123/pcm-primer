@@ -2,19 +2,26 @@
 
 As we've mentioned several times already in this *Primer*, the field of phylogenetic comparative methods is diverse and fast moving. New methods are being published all the time, and if we wanted to cover all of them we'd need a (much) bigger *Primer*! We have focussed on helping you get a good grasp on the foundations of the methods, and on discussing methods with simple implementations in R (see *online materials*). Hopefully this will provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature and newest methods. 
 
-In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in (Dark side paper).
-
 ```{block, type = "info"}
-Just a few of the methods we haven't cover in the primer:
-Rate tests using phylogenetic independent contrasts
-Rate tests using Bayesian MCMC
-SURFACE
-Bayou (SURFACE but bayesian)
-Tests for mass extinctions
-TreePar 
-TESS
-Puttick's nested models
+Just a few of the methods we haven't cover in the *Primer* include:
+
+- Rate tests using phylogenetic independent contrasts
+- Rate tests using Bayesian MCMC
+- SURFACE
+- Bayou (SURFACE but bayesian)
+- Tests for mass extinctions
+- TreePar 
+- TESS
+- Puttick's nested models
+- hidden rates/Markov models
+- SECSEE
+- ratematrix
+- covariance
+- stochastic mapping
+- density dependence
 ```
+
+In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in (Dark side paper).
 
 ## Factors to consider before using a new phylogenetic comparative method
 Many new phylogenetic comparative methods come with code or an R package or similar that allows you to jump straight in to using it. But this is not a great idea, unless playing with the code is the first step in a larger exploration of the method. At a minimum, you should read the original papers describing a method, plus any recent updates, and look carefully for assumptions and caveats that may affect your analyses based on the unique properties of your data and tree. 
@@ -32,7 +39,7 @@ When reading any paper it's worth having a check list in your head of things to 
 
 It's worth remembering that not everything you see in a paper is an author's fault or choice. In some cases, editors and reviewers may suggest using PCMs where they are not appropriate. Glamour journals like Nature and Science will also often encourage authors to oversell their results. And of course we all make mistakes or change our minds from time to time. So remember to be gentle and kind to people at the same time as being brutal and cynical with papers!
 
-### Logic/interpretation
+### Logic/interpretation {-}
 
 * What questions does the paper address?
 * Do the analyses/data actually answer the questions the paper is meant to be asking, or do they answer a different question?
@@ -42,7 +49,7 @@ It's worth remembering that not everything you see in a paper is an author's fau
 * Are there any flaws in the logic of the paper?
 * Do you agree with how the results have been interpretted?
 
-### Data
+### Data {-}
 
 * What's the sample size? Is it large enough to support the conclusions of the paper?
 * How many species are missing from the analysis? Does this worry you? 
@@ -57,7 +64,7 @@ It's worth remembering that not everything you see in a paper is an author's fau
 * Do you think the data quality is high enough?
 * Would other data have been better to answer this question?
 
-### Methods
+### Methods {-}
 
 * Check the text carefully for caveats. These may appear in the introduction, methods, results or discussion. Were these dealt with or just mentioned?
 * What are the assumptions/limitations of the method being used? These may be mentioned in the text, or you may need to dig into the literature to find them.
@@ -65,7 +72,7 @@ It's worth remembering that not everything you see in a paper is an author's fau
 * Be aware that some older methods may have been superseded by better methods.
 * Be aware that sometimes there is debate in a community about the best method to use (e.g. the BAMM debate).
 
-### Moving forwards
+### Moving forwards {-}
 
 * What are the good things in the paper? Make sure that you don't ignore the positive in your hunt for the negative!
 * Do these ideas have other applications or extensions that the authors might not have thought of? 
