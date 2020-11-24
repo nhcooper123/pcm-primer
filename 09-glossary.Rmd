@@ -4,6 +4,34 @@
 **To write at the end**
 ```
 
+## Parameters
+
+### Models of trait evolution
+- $\sigma^2$
+- $\alpha$
+- $\mu$
+- $\theta$
+- $z0$
+- $d$ or $\delta$ or $\Delta$
+- $t$
+- $X$
+- $W$
+
+### Phylogenetic signal
+- $\lambda$
+- *K*
+- *D*
+
+### Diversification models
+- $\lambda$
+- $\mu$
+
+
+
+
+
+## Terms
+
 - **phylogeny**
 - **Root**
 - **Branch**
@@ -15,6 +43,7 @@
 - **Extinction**
 - **Diversification**
 - **Polytomy**
+- **Hard and soft polytomy**
 - **sister species**
 - **Clade**
 - **Monophyly**
@@ -22,4 +51,70 @@
 - **Cladogram**
 - **Ultrametric**
 - **Total evidence trees**
+- **common ancestor**
+- **cladistic matrics**
+- **synapomorphy**
+- **tree space**
+- **parsimony**
+- **consensus tree - strict, majority rule**
+- **Maximum Likelihood**
+- **likelihood**
+- **Bayesian**
+- **MCMC**
+- **transitions** in DNA and states
+- **transversions**
+- **posterior distribution**
+- **phylogenetic uncertainty**
+- **branch support**
+- **synonym**
+- **splitting and lumping**
+- **tidy data**
+- **data wrangling**
+- **continuous trait**
+- **discrete trait**
+- **Brownian motion model**
+- **Brownian rate parameter**
+- **random walk**
+- **lineage**
+- **speciation**
+- **extinction**
+- **diversification**
+- **adaptive radiation**
+- **ancestral state reconstruction**
+- **ancestral state estimation**
+- **variance**
+- **covariance**
+- **matrix**
+- **diagonals and off-diagonals**
+- **phylogenetic variance–covariance matrix**
+- **root-to-tip distance**
+- **phylogenetic signal**
+- **Pagel’s $\lambda$**
+- **Blomberg’s *K* **
+- **star phylogeny**
+- **phylogenetic generalized least-squares**
+- **stabilizing selection**
+- **pleiotropy**
+- **physiological constraints**
+- **biotic interactions**
+- **phenotype**
+- **trait**
+- **evolutionary lability or plasticity**
+- **evolutionary or phylogenetic conservatism**
+- **tempo and mode of evolution**
+- **optimisation**
+- **Convergent evolution**
+- **selection pressures**
+- **selective regime**
+- **key innovations**
+- **Ornstein-Uhlenbeck (OU) model**
+- **upper bound, lower bound, bounds**
+- **over-fitting**
+- **phylogenetic half‐life**
+- **single stationary peak (SSP) models**
+- **multi-peak OU models**
+- **False positive (Type I) error rates**
+- **Measurement error**
+- **Akaike Information Criterion (AIC)**
+
 
