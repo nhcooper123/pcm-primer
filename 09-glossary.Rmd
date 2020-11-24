@@ -26,7 +26,8 @@
 - $\lambda$
 - $\mu$
 - $\gamma$ statistic
-
+- $q_{10}$
+- $q_{01}$
 
 
 
