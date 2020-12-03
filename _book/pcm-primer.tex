@@ -1,0 +1,2889 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\usepackage[unicode=true]{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{
+            pdftitle={Primer on Phylogenetic Comparative Methods for the Biological Sciences},
+            pdfauthor={Natalie Cooper, Robert P. Freckleton},
+            colorlinks=true,
+            linkcolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[bf,singlelinecheck=off]{caption}
+
+
+\usepackage{framed,color}
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\renewenvironment{quote}{\begin{VF}}{\end{VF}}
+\let\oldhref\href
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+\ifxetex
+  \usepackage{letltxmacro}
+  \setlength{\XeTeXLinkMargin}{1pt}
+  \LetLtxMacro\SavedIncludeGraphics\includegraphics
+  \def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
+    \IncludeGraphicsAux{#1}%
+  }%
+  \newcommand*{\IncludeGraphicsAux}[2]{%
+    \XeTeXLinkBox{%
+      \SavedIncludeGraphics#1{#2}%
+    }%
+  }%
+\fi
+
+\makeatletter
+\newenvironment{kframe}{%
+\medskip{}
+\setlength{\fboxsep}{.8em}
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\makeatletter
+\@ifundefined{Shaded}{
+}{\renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}}
+\makeatother
+
+\newenvironment{rmdblock}[1]
+  {
+  \begin{itemize}
+  \renewcommand{\labelitemi}{
+    \raisebox{-.7\height}[0pt][0pt]{
+      {\setkeys{Gin}{width=3em,keepaspectratio}\includegraphics{images/#1}}
+    }
+  }
+  \setlength{\fboxsep}{1em}
+  \begin{kframe}
+  \item
+  }
+  {
+  \end{kframe}
+  \end{itemize}
+  }
+  
+\newenvironment{detail}
+  {\begin{rmdblock}{detail}}
+  {\end{rmdblock}}
+\newenvironment{warning}
+  {\begin{rmdblock}{warning}}
+  {\end{rmdblock}}
+\newenvironment{info}
+  {\begin{rmdblock}{info}}
+  {\end{rmdblock}}
+\newenvironment{rmddetail}
+  {\begin{rmdblock}{detail}}
+  {\end{rmdblock}}
+\newenvironment{rmdwarning}
+  {\begin{rmdblock}{warning}}
+  {\end{rmdblock}}
+\newenvironment{rmdinfo}
+  {\begin{rmdblock}{info}}
+  {\end{rmdblock}}
+
+
+\usepackage{makeidx}
+\makeindex
+
+\urlstyle{tt}
+
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\frontmatter
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+
+\title{Primer on Phylogenetic Comparative Methods for the Biological Sciences}
+\providecommand{\subtitle}[1]{}
+\subtitle{Oxford Biology Primer series. Primers in Ecology and Evolutionary
+Biology.}
+\author{Natalie Cooper, Robert P. Freckleton}
+\date{2020-05-26}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{arabic}
+
+\mainmatter
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{Preface}\label{preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\section*{What are comparative
+methods?}\label{what-are-comparative-methods}
+\addcontentsline{toc}{section}{What are comparative methods?}
+
+The comparative approach is one of the oldest and most frequently used
+methods for answering questions in biology. The rationale of this
+approach is to test biological hypotheses by comparing organisms that
+differ in their life history, ecology or evolutionary history. Although
+originally developed in the 18th century as a qualitative approach for
+describing biological diversity, the modern comparative method is highly
+quantitative, drawing together methods from phylogenetics, advanced
+statistics, and computational biology. The comparative method is used in
+all areas of biology, including ecology, evolutionary biology,
+behavioural ecology, conservation biology, anthropology, primatology,
+epidemiology, and physiology.
+
+The modern comparative method recognises that robust tests of biological
+hypotheses require that we account for the evolutionary relationships
+among organisms. Closely related species share adaptations and
+ecological preferences because they inherited them from their common
+ancestor, not because of independent evolution (phylogenetic
+non-independence). The outcome of this is that statistical methods that
+assume that species data are independent may be compromised. For this
+reason, the past 40 years has seen a huge effort devoted to developing
+statistical methods that are robust to this problem.
+
+Although much of the development of the comparative approach has
+revolved around statistical tests, more recently the scope of new
+methods has expanded to consider the mode and nature of evolution.
+Recognising that the level and nature of phylogenetic non-independence
+is a function of trait evolution, new methods have been developed that
+permit the measurement of rates of trait evolution, including
+time-varying rates, clade dependent evolution and relationships between
+traits and diversification.
+
+\section*{Why did we write this
+Primer?}\label{why-did-we-write-this-primer}
+\addcontentsline{toc}{section}{Why did we write this Primer?}
+
+For a novice, the field of comparative methods is a potential minefield.
+There is \textgreater{}40 years of literature, including a great deal of
+technically intense methods development. Most potential users of
+comparative methods are familiar with basic statistics and some advanced
+methods (e.g.~generalised linear models; GLMs), however the comparative
+method can be daunting and difficult to understand, because the methods
+are statistically advanced, and require some understanding of
+phylogenetic concepts that many non-specialists will be unfamiliar with.
+This \emph{Primer} is designed to help new users understand and use
+comparative methods.
+
+\section*{Who is this Primer for?}\label{who-is-this-primer-for}
+\addcontentsline{toc}{section}{Who is this Primer for?}
+
+This \emph{Primer} is pitched at an audience ranging from advanced
+undergraduates to early postdoctoral researchers. No previous knowledge
+of comparative methods is assumed, however we assume a general
+understanding of evolutionary biology, particularly that we can
+represent evolutionary relationships as phylogenetic trees. We assume
+some knowledge of basic statistics such as regressions, and refer to
+other commonly used statistics, e.g.~GLMs, throughout. However, these
+references are designed to aid readers familiar with these techniques;
+if readers are unfamiliar with them it will not substantially reduce
+their understanding. For those wanting a more thorough coverage of
+particular methods or models we have included references to further
+reading.
+
+\section*{\texorpdfstring{How is this \emph{Primer}
+organised?}{How is this Primer organised?}}\label{how-is-this-primer-organised}
+\addcontentsline{toc}{section}{How is this \emph{Primer} organised?}
+
+{[}TO BE COMPLETED{]} The \emph{Primer} is divided into eight chapters
+as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  Chapter 1: Introduction to the comparative method.
+\item
+  Chapter 2: Foundations 1: .
+\item
+  Chapter 3: Foundations 2:
+\item
+  Chapter 4: Dealing with phylogenetic non-independence: a practical
+  introduction.
+\item
+  Chapter 5: Testing and evaluating comparative models: is my model good
+  enough?
+\item
+  Chapter 6: More advanced topics, where next?
+\item
+  Chapter 7: Tempo and mode of evolution from comparative data.
+\item
+  Chapter 8: Looking forward, more advanced comparative methods and
+  where next.
+\end{itemize}
+
+\section*{Online companion material}\label{online-companion-material}
+\addcontentsline{toc}{section}{Online companion material}
+
+{[}TO BE COMPLETED{]} Each chapter of the \emph{Primer} has associated
+online companion material. This consists of 1. An online book with
+practical examples of how to perform each analysis in R. 2. Multiple
+choice questions for each chapter so you can test your understanding. 3.
+Short videos.
+
+\section*{Boxes}\label{boxes}
+\addcontentsline{toc}{section}{Boxes}
+
+Throughout the \emph{Primer} are boxes of text highlighting particularly
+important issues:
+
+\begin{info}
+\textbf{Note} boxes. These boxes highlight important details that we
+don't want you to miss!
+\end{info}
+
+\begin{detail}
+\textbf{Extra details} boxes. These boxes contain detailed explanations
+of things for readers who like to fully understand the complexities of
+what they are doing, for example fully worked through examples, or
+technical details that we have not explained in detail in the text.
+\end{detail}
+
+\begin{warning}
+\textbf{Caveats} boxes. These boxes highlight important points that need
+to be considered when working through your own analyses. They reveal
+areas where it is important to be careful and think about what you are
+doing and \textbf{why}. The image is a Jurassic Park era velociraptor to
+remind you of the ``Jurassic Park caveat'', i.e.~that just because you
+\emph{can} perform an analysis in R doesn't mean that you \emph{should}
+(thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the
+question at hand, your study group, and the quality of the data you are
+using before embarking on a new comparative analysis.
+\end{warning}
+
+\section*{Acknowledgements}\label{acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+People who read drafts etc etc.
+
+\chapter{Introduction to the comparative method}\label{intro}
+
+\begin{info}
+** RPF is writing this at present **
+\end{info}
+
+Here we will lay the conceptual framework for the comparative method.
+The idea behind the comparative method will be introduced, and examples
+given of the types of analysis that can be undertaken. The problem of
+phylogenetic non-independence will be introduced and a range of
+methodological approaches described in brief.
+
+\begin{itemize}
+\tightlist
+\item
+  Comparison as a method to test hypotheses.
+\item
+  Historical context of the comparative method (i.e.~pre Darwin to
+  today).
+\item
+  What questions can we answer?
+\item
+  The problem of phylogenetic non-independence: understanding the
+  conceptual problem caused by the way evolution occurs, as well as the
+  statistical consequences.
+\item
+  Key examples (e.g.~early examples; examples where phylogeny makes a
+  difference).
+\item
+  A taxonomy of methods: Table of methods with links to further reading.
+\end{itemize}
+
+\chapter{Foundations 1: introduction to phylogenies and comparative
+data}\label{foundations}
+
+{[}CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS
+CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY{]}
+
+Before we use comparative methods, we need to understand some basic
+concepts about phylogenies, comparative data, and the models underlying
+them. In this chapter we will cover:
+
+\begin{itemize}
+\tightlist
+\item
+  Phylogenies.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Basic introduction.
+  \item
+    How are phylogenies inferred?
+  \item
+    Reading and using phylogenies.
+  \end{itemize}
+\item
+  Comparative data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    basics.
+  \end{itemize}
+\end{itemize}
+
+\section{A basic introduction to
+phylogenies}\label{a-basic-introduction-to-phylogenies}
+
+At its simplest, a \emph{phylogeny} or \emph{phylogenetic tree} is a
+branching diagram that shows how species are related. The ancestor of
+all of the species is found at the \emph{root} of the tree, with the
+species at the \emph{tips}. The rest of the tree is made up of
+\emph{nodes} and \emph{branches}. Nodes show us where \emph{speciation}
+events have occurred, i.e.~where one species has evolved into two (or
+more) new species. The branches show the relationships among nodes and
+tips (Figure \ref{fig:basic-tree}).
+
+Most phylogenies are \emph{rooted}, meaning that the ancestral node or
+\emph{root} is identified. Phylogenies are rooted using an
+\emph{outgroup}. The outgroup can be one or more species, and represents
+a species or group known to lie outside the group of interest, the
+\emph{ingroup}. The root lies on the node that joins the outgroup to the
+ingroup. In an \emph{unrooted} tree, no root is defined, meaning while
+we can look at the relationships among species, we cannot identify
+ancestral characteristics or how species change through time. This
+limits their usefulness, especially for comparative methods.
+
+Some phylogenies only show the \emph{topology}, i.e.~the shape of the
+relationships among the species. Most phylogenies, however, will have
+some information about the timing of branching events. In these
+phylogenies, \emph{branch lengths} can represent absolute or relative
+time elapsed, or amounts of character change. Most of the phylogenies we
+use will be \emph{dated phylogenies} (or \emph{cladograms}), where the
+branch lengths represent divergence times.
+
+\begin{info}
+Note that throughout the \emph{Primer} for simplicity we generally refer
+to ``species'' at the tips of phylogenies. In some cases, the tips will
+actually be \emph{genera} or \emph{populations}, or other operational
+taxonomic units (\emph{OTUs}). Before beginning a comparative study,
+remember to check what the tips are in the phylogeny you are using.
+\end{info}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/basic-tree-1} 
+
+}
+
+\caption{A simple phylogeny demonstrating the key features of phylogenetic trees.}\label{fig:basic-tree}
+\end{figure}
+
+To use phylogenies we need to understand a few more terms. These are
+also described in the Glossary (Chapter \ref{glossary}) if you forget
+these at any point.
+
+\textbf{Ultrametric}. Most of the phylogenies we will use in this book
+are \emph{ultrametric} where all the branches end at the same place -
+the present-day (Figure \ref{fig:ultrametric}A). If you are using
+phylogenies containing extinct species then the phylogeny will usually
+be \emph{non-ultrametric} (Figure \ref{fig:ultrametric}B). A key thing
+to remember when using phylogenies, especially ultrametric phylogenies
+of living species only, is that extinct species are missing. Exactly how
+large a problem this might be for comparative methods is unclear,
+because we can never know how many extinct species we are missing due to
+the patchiness of the fossil record. But it something we need to
+consider.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/ultrametric-1} 
+
+}
+
+\caption{Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the deer and spider have gone extinct before the present day.}\label{fig:ultrametric}
+\end{figure}
+
+\textbf{Polytomies}. The phylogenies we will use in this book will be
+\emph{fully resolved}, i.e.~each node will lead to two branches. This
+might not always be the case, however. When more than two branches
+originate from a node we call this a \emph{polytomy} (Figure
+\ref{fig:polytomy}B). Polytomies can be hard or soft. \emph{Hard
+polytomies} represent the true evolutionary history of a group, often
+occurring where there has been rapid evolution. \emph{Soft polytomies},
+on the other hand, represent problems in phylogenetic inference (see
+below) where the methods cannot resolve the relationships among the
+species at that point.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/polytomy-1} 
+
+}
+
+\caption{A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the deer, the robin and the spider are unresolved.}\label{fig:polytomy}
+\end{figure}
+
+\textbf{Monophyly and clades}. A group of species that all share a
+common ancestor are referred to as a \emph{monophyletic group} or a
+\emph{clade} (Figure \ref{fig:phyly}). Often, common taxonomic groupings
+e.g.~mammals, are also monophyletic groups. Sometimes, taxonomic groups
+are nested within other taxonomic groups in a phylogeny, for example
+birds are nested within reptiles so that although birds are a
+monophyletic group, reptiles are a \emph{paraphyletic group} (Figure
+\ref{fig:paraphyly}). We can also have \emph{polyphyletic groups} where
+the group members appear in multiple lineages across a phylogeny, for
+example the group formed by birds and mammals (Figure
+\ref{fig:paraphyly}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/phyly-1} 
+
+}
+
+\caption{Phylogeny highlighting the monophyletic groups or clades. A is a clade made up of the deer and the robin. B is the more inclusive clade including the deer, the robin and the spider.}\label{fig:phyly}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/paraphyly-1} 
+
+}
+
+\caption{Phylogeny showing the relationships among birds, mammals and reptiles. Reptiles forms a paraphyletic group because birds is nested within it. The group formed by birds and mammals is a polyphyletic group.}\label{fig:paraphyly}
+\end{figure}
+
+\subsection{Reading and interpreting
+phylogenies}\label{reading-and-interpreting-phylogenies}
+
+We can read/interpret the phylogeny in Figure \ref{fig:reading} as
+follows. \textbf{A} and \textbf{B} are each others' closest relatives.
+They share a \emph{common ancestor} at node \textbf{X}. We can think of
+the branch leading to node X as the shared evolutionary history of A and
+B, while the branches leading from node \textbf{X} to \textbf{A} and
+\textbf{B} represents their independent evolution after speciation.
+\textbf{A} and \textbf{B} form a monophyletic group, or clade. They are
+also \emph{sister species}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/reading-1} 
+
+}
+
+\caption{How to read a phylogenetic tree}\label{fig:reading}
+\end{figure}
+
+Both \textbf{A} and \textbf{B} are equally closely related to
+\textbf{C}, as they all share a common ancestor at node \textbf{Y}. Note
+that \textbf{B} is \textbf{not} more closely related to \textbf{C} just
+because it is next to it at the tips. We could also represent the
+relationship as shown in the second panel with the branch leading to
+\textbf{B} and \textbf{A} rotated.
+
+Reading phylogenies is not always intuitive. Often this is due to how we
+represent them graphically. For example, each of the phylogenies in
+Figure \ref{fig:diff-trees} shows the same relationships among species,
+but in different ways. By convention we usually present phylogenies with
+the \textbf{root at the left or the base of the phylogeny} (like A, C,
+E, or G in Figure \ref{fig:diff-trees}).
+
+\begin{figure}
+
+\includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/diff-trees-1} \hfill{}
+
+\caption{All of these phylogenies show the same species relationships, they are just presented in different ways}\label{fig:diff-trees}
+\end{figure}
+
+We can also use circular or fan shaped phylogenies (Figure
+\ref{fig:fan-tree}) when we have large phylogenies that are hard to fit
+onto a page.
+
+\begin{figure}
+
+\includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/fan-tree-1} \hfill{}
+
+\caption{An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree.}\label{fig:fan-tree}
+\end{figure}
+
+\begin{info}
+If you find reading and understanding phylogenies difficult, we highly
+recommend trying the \emph{Tree Thinking challenge} at
+\url{https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf}
+{[}@Baum979{]}, which should help you get the hang of it.
+\end{info}
+
+\subsection{How do we infer
+phylogenies?}\label{how-do-we-infer-phylogenies}
+
+We could write a whole book just about inferring phylogenies. In fact,
+there already are several e.g. \citep{felsenstein2004inferring}, and
+there will be another Primer focusing on this subject if it's something
+you need/want more details on! Here we will just cover the basics,
+focusing on the information you'll need to be able to understand the
+rest of the book.
+
+\begin{warning}
+Note that we \textbf{infer} phylogenies. We do not build or create them.
+This is because whatever clever methods we use, we can never truly know
+the evolutionary history of most groups until someone invents a time
+machine!
+\end{warning}
+
+Most phylogenies are built using genetic or morphological data. Genetic
+data is usually a gene sequence, with the genes used depending on the
+question. For distinguishing relationships among close relatives,
+fast-evolving genes such as those in mitochondria or chloroplasts might
+be used, whereas protein-coding genes or whole genomes might be more
+appropriate for looking at relationships among ancient lineages.
+Collecting genetic data these days might be as simple as downloading it
+from GenBank, however, the sequences still need to be aligned which can
+take more time.
+
+Morphological data is generally in the form of \emph{cladistic matrices}
+where each character or trait of a species is coded as an integer. For
+example, a tail might be coded as 0 (absent) or 1 (present). Selecting
+characters for morphological phylogenies can be tricky, as they need to
+encompass the \emph{synapomorphies} or unique characters that define
+clades in the tree, but the characters should also be independent of one
+another. Careful consideration of how characters should be coded is also
+needed, and this can vary from study to study.
+
+Once the data have been collected they can be plugged into one of a
+number of software packages that will apply one or more phylogenetic
+inference methods to output the ``best'' tree or trees. Here we will
+just mention the three most used inference methods: parsimony, Maximum
+Likelihood and Bayesian.
+
+Note that one common feature of all phylogenetic inference methods is
+that they are computationally intensive. Why? If you have three species,
+there are three possible ways those three species could be related in a
+fully-resolved tree. If we have ten species there are \(34,459,425\)
+possible trees! If we have 50 species we have \(2.75292 × 10^{76}\)
+possible trees (if you want to work this out for yourself, the equation
+used is \(N_{trees} = (2n-3)!/2^{n-2} * (n-2)!\);
+\citep{felsenstein2004inferring}). To put that in context, that's more
+trees than there are stars in the sky, or grains of sand on Earth.
+That's a lot of possible trees\ldots{} This means that no phylogenetic
+inference method can afford to search all of \emph{tree space}, i.e.~the
+universe of all possible trees. Instead, each method applies number of
+analytical tricks to avoid this, although we will not go into detail
+about this here.
+
+\subsubsection{Parsimony}\label{parsimony}
+
+Parsimony has fallen out of favour as a method of phylogeny building in
+recent years, but it is still probably the best, and fastest, way to
+build phylogenies using morphological data. Parsimony works on the basis
+that the simplest solution is best, so the algorithms select the tree
+that accounts for the data with the fewest changes in character states
+across the tree, and outputs the \emph{most parsimonious} phylogeny or
+phylogenies that satisfy that criterion.
+
+Ideally, this will result in one most parsimonious tree, but often more
+than one phylogeny meets this criterion. In these cases it is usual to
+create a \emph{consensus tree}, an average topology across all the most
+parsimonious trees. There are several ways to construct these, from
+\emph{strict consensus} trees that include only relationships shown in
+all most parsimonious trees, to \emph{majority rule consensus} trees
+that include all relationships found in at least 50\% of the most
+parsimonious trees. Consensus trees are one way that polytomies can be
+introduced into phylogenies (see Figure \ref{fig:polytomy}).
+
+\subsubsection{Maximum Likelihood (ML)}\label{maximum-likelihood-ml}
+
+Maximum Likelihood is a statistical method for estimating the unknown
+parameters of a model. Likelihood is proportional to the probability of
+observing the data given the model, \emph{P(data\textbar{}model)}. The
+Maximum Likelihood solution is the one that has the highest Likelihood,
+i.e.~the model that best describes the observed data. We will use
+Maximum Likelihood throughout this book to estimate parameters in many
+different types of models.
+
+In the case of phylogenetic inference, our model is the tree and an
+evolutionary model describing how the trait data (e.g.~gene sequences or
+morphological characters) change. We therefore use Likelihood to
+calculate the probability of the observed trait data given the phylogeny
+and evolutionary model. The method selects the tree that best accounts
+for the data, i.e.~the phylogeny or phylogenies with the Maximum
+Likelihood.
+
+Maximum Likelihood is considered to be a better phylogenetic inference
+method than parsimony for genetic data because we can explicitly define
+the underlying evolutionary model of DNA evolution, rather than just
+assuming the smallest number of changes gives the best tree. Remember
+that DNA is made up of four bases (cytosine {[}C{]}, guanine {[}G{]},
+adenine {[}A{]} and thymine {[}T{]}), and these can be split into
+pyrimidines (C and T) and purines (A and G). Changes from C to T (and
+vice versa), or A to G (and vice versa), are called \emph{transitions},
+and these appear to be easier and thus occur at a higher rate than
+\emph{transversions}, i.e.~changes from C to A (and vice versa), or C to
+G (and vice versa), or T to A (and vice versa), or T to G (and vice
+versa). The frequencies of bases can also vary. Multiple models of DNA
+sequence evolution exist that take into account these various factors.
+The most commonly used are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{JC}. Jukes Cantor \citep{jukes1969evolution}. This is the
+  simplest model possible. All base changes are equally likely; base
+  frequencies are equal.
+\item
+  \textbf{K2P}. Kimura 2 parameter \citep{kimura1980simple}. Transitions
+  and transversions have different substitution rates; base frequencies
+  are equal.
+\item
+  \textbf{HKY85}. Hasegawa-Kishino-Yano-85 \citep{hasegawa1985dating}.
+  Transitions and transversions have different substitution rates; base
+  frequencies can vary.
+\item
+  \textbf{GTR}. General Time Reversible \citep{lanave1984new}. All six
+  types of base change (A to C, A to G, A to T, C to G, C to T, and G to
+  T) occur at a different rate, and base frequencies vary.
+\end{itemize}
+
+Maximum Likelihood approaches can use any of these models, or any other
+model we might want to define. It is harder to come up with sensible,
+simple models of evolution for morphological data (although they do
+exist, for example the \emph{Mkv} model; \citep{lewis2001likelihood}),
+thus Maximum Likelihood approaches are used less often for morphological
+datasets.
+
+Maximum Likelihood approaches are very computationally intensive and can
+be very slow, certainly much slower than parsimony. Like parsimony,
+often more than one phylogeny has the same Maximum Likelihood so we
+construct consensus trees.
+
+\subsubsection{Bayesian}\label{bayesian}
+
+Bayesian methods calculate the probability of the model given the data,
+\emph{P(model\textbar{}data)}, i.e.~the reverse of Maximum Likelihood.
+In the case of Bayesian phylogenetic inference, we calculate the
+probability of the observed phylogeny given the trait data and the
+underlying evolutionary model. These models are the same as those used
+in Maximum Likelihood tree inference.
+
+The main difference between Bayesian approaches and both Maximum
+Likelihood and parsimony, is that we are no longer searching tree space
+for the ``best'' tree or trees. Instead, Bayesian methods output a
+\emph{posterior distribution} of trees. The Bayesian method searches
+tree space, saving and outputting all trees it finds at regular
+intervals. This can result in thousands or even millions of possible
+trees. The user then specifies how many trees they would like to export
+as a posterior distribution of trees. This will consist of that number
+of trees, spread across the variety of trees inferred, but with the
+frequency of their occurrence being based on their probability. For
+example, if your Bayesian method produces tree topologies A-Z, but
+topologies A-D are most common, the posterior distribution of trees will
+mirror that and will contain more trees with topologies A-D, than those
+with topologies E-Z.
+
+The reasoning behind this is that phylogenetic inference is complex, so
+the probability of there being just one (or a few) trees that best
+represent the relationships among species is unlikely. With Bayesian
+approaches it is possible to get a clearer idea of \emph{phylogenetic
+uncertainty}, and to actually incorporate this into our understanding of
+species relationships and downstream comparative analyses.
+
+Because of the way posterior distributions are constructed, consensus
+trees are not appropriate for Bayesian phylogenies. Instead, we tend to
+run each analysis on the whole posterior distribution of trees,
+resulting in a posterior distribution of results. This can be a little
+more difficult to visualise, but gives a much better understanding of
+the effect of phylogenetic uncertainty on comparative analyses.
+
+\subsubsection{Branch support}\label{branch-support}
+
+The trees produced in all three of the methods above may contain
+measures of \emph{branch support}. These will be shown as numbers above
+or below the nodes of the phylogeny if you're looking at the published
+version. Branch support measures tell you how much support there is for
+a particular branching pattern. There are many ways we can estimate
+branch support in a phylogeny \citep{felsenstein2004inferring}, but the
+details are not important here. The key thing to remember is that the
+higher the branch support value, the more confidence we have in that
+particular branch. Usually these methods give numbers that range from
+0-100 (e.g.~bootstrap values), but other measures (e.g.~Bremer support
+values) range from 0-1. It should be obvious whether a 0-100 or 0-1
+scale is being used from the range of numbers you can see. It's also
+common for people to collapse branches with low support leading to
+polytomies.
+
+\subsection{Where do we get phylogenies from for comparative
+analyses?}\label{where-do-we-get-phylogenies-from-for-comparative-analyses}
+
+Above we explained how phylogenies are inferred, but you have probably
+gathered by now that we are not experts in phylogenetic inference! So
+where do we get phylogenies from for comparative methods? The simple
+answer is the Internet! Less flippantly, we get them from the published
+literature. Generally people publishing phylogenies will provide a NEXUS
+or Newick file containing their phylogeny as part of their supplementary
+materials. This is often a file ending in \texttt{.nex} or
+\texttt{.tre}. In the \textbf{online materials} we show you how to read
+these files into R, and explain more about how these files are
+structured. If an author has not provided their phylogeny in a format
+you can read into R (for example they may just have provided a PDF of
+the topology) you can email them and see if they are willing/able to
+give you a copy. Some researchers also store phylogenies in online
+databases such as \href{https://www.treebase.org/}{Treebase}.
+
+How do you choose the ``best'' phylogeny for your group? There is no
+hard or fast rule here, but we do recommend taking some time to think
+about this carefully. In some taxonomic groups you will have no choice
+as there may only be one existing phylogeny. In other groups you may be
+spoiled for choice. How you make the decision will also depend on how
+much you already know about the group in question. Some questions to ask
+that may guide you to the best phylogeny include:
+
+\begin{itemize}
+\tightlist
+\item
+  Given your knowledge of the group, does the taxonomy they have used
+  and the characters used to infer the tree make sense? This may be
+  particularly important for morphological trees, but it is also
+  important to check they used an appropriate gene if using molecular
+  trees.
+\item
+  How many of your species are included in the phylogeny? You can add or
+  remove species easily in R (see \textbf{online materials}), but if
+  many species are missing it may be better to choose an alternative
+  tree. You can also stitch together multiple trees (see \textbf{online
+  materials}).
+\item
+  What kind of method was used to infer the phylogeny? Does it seem
+  appropriate to you? A phylogeny using genetic data but inferred using
+  parsimony may ring alarm bells\ldots{}
+\item
+  Are the branches of the phylogeny well-supported? We didn't talk about
+  branch support above, but you'll often see numbers above the nodes on
+  a phylogeny. These tell you how well supported the relationships are,
+  and generally range from 0-100 or 0-1. Good values will be close to
+  100 or 1 depending on the method used.
+\item
+  Are there lots of polytomies or is the phylogeny well-resolved? The
+  methods we use in R can cope with polytomies (see \textbf{online
+  materials}) but if there are more resolved phylogenies available these
+  will be better.
+\item
+  Can you access several different versions of the phylogeny, or a
+  posterior distribution of phylogenies to account for phylogenetic
+  uncertainty?
+\item
+  If you don't know the group, or phylogenetics, well, don't be afraid
+  to ask the opinion of someone who knows more than you. They may save
+  you hours of pain and indecision!
+\end{itemize}
+
+\begin{warning}
+Inferring phylogenies is really difficult. We make many assumptions and
+choices at each stage of the process, from data collection to building
+consensus trees. As such, phylogenies are unlikely to give us the
+``true'' evolutionary history of a group. Instead phylogenies are
+\textbf{hypotheses} about the way evolution happened. It is crucial to
+remember this when applying and interpreting comparative methods. Even
+if your comparative method is perfect in every way, you are still basing
+your analysis on a hypothesis about how species evolved. If this is
+incorrect, and it almost certainly is (due to missing extinct species
+etc.), then your results may not be as robust as you imagine.
+\end{warning}
+
+\section{Comparative data}\label{comparative-data}
+
+\subsection{Sources of comparative data and data
+quality}\label{sources-of-comparative-data-and-data-quality}
+
+We have talked above about where we get phylogenies from, but what about
+the comparative data itself? There are a number of options and these
+will vary depending on your question and the data availability for your
+study group. Most comparative data will come from a range of sources,
+including peer-reviewed literature, books, field guides, Internet
+searches, and curated databases. You can also collect some data from
+species in the field (e.g.~behavioural data) or from museum specimens
+(e.g.~morphological data). The quality of data from these different
+sources will vary, so care is needed.
+
+\begin{warning}
+The results of comparative analyses are \emph{only as good as the data
+you put into them}. Any choices you make in summarising the data need to
+be recorded and reported in your paper/thesis/report/supplementary
+material.
+\end{warning}
+
+\subsubsection{Peer-reviewed literature, books, field guides, and
+internet
+searches.}\label{peer-reviewed-literature-books-field-guides-and-internet-searches.}
+
+The easiest way to collect comparative data is to sit in a library and
+work through all of the books and journals on your study group looking
+for the data you need. This is often a robust technique, as you can be
+fairly confident in the legitimacy of these sources, and for some groups
+these data have not yet been uploaded to the Internet. It is also
+possible to do all of this using Internet searches instead, but it is
+important to check the source of any information provided. Journal
+articles and professional web-pages are likely to be fine, but other
+web-pages may not always state the source of their information. You
+should be prepared to make judgment calls about whether you trust a
+particular source and want to include it in your dataset.
+
+Collecting data manually reveals several issues common to most
+comparative data collection. It's a sensible idea to decide how you will
+deal with these issues should they arise.
+
+\begin{itemize}
+\tightlist
+\item
+  Some sources will be more up-to-date than others. Should you record
+  all the data from all sources, or just focus on the most recent?
+\item
+  Some sources will give actual values whereas others will give
+  approximations. Should you record any data you find, or remove
+  approximations?
+\item
+  Some data will be based on multiple individuals whereas others will be
+  based on only one.
+\item
+  Some sources will list values as means, others will list values as
+  maxima or minima. Will you record all of these or choose one?
+\end{itemize}
+
+There are of course many ways to do this, and as long as you
+\textbf{record the decisions you have made} so that someone could repeat
+the process if necessary, this is not a problem. Our recommendation is
+to record all data initially, along with some measure of data quality
+(low, medium or high is sufficient). You can still include this data
+either by incorporating measures of data quality into your analyses, or
+by excluding data below a certain data quality threshold when
+calculating summary data for the species. And don't forget to record the
+\textbf{units} for each measurement. Finally it is extremely important
+to \textbf{record the sources} for each datum you add to your dataset,
+so that you are able to repeat the process if needed. This also allows
+you to remove data from any sources you later decide not to trust, and
+allows you to check individual data points if there are any issues, for
+example if one species appears as a large outlier in your comparative
+analyses this may reflect an error in data collection.
+
+After collecting your data you'll likely need to summarise these data
+for each species or taxon, i.e.~take the mean, median, minimum, maximum
+etc. It is up to you whether you use means or medians. Often we choose
+the median because it is less influenced by outliers. The summary data
+you use and how you calculate it will vary depending on your inputs, for
+example, if we have maximum values for a variable, we might want to take
+the overall maximum for the species, but if we have mean values, we
+might want to take the median for the species (see below). This process
+may seem trivial, but can have a large influence on your results.
+
+\subsubsection{Curated databases}\label{curated-databases}
+
+Curated databases are popular sources of comparative data. Some will be
+constantly added to as more data become available e.g.~GBIF. Others are
+static, often because they were released as part of a published paper
+e.g.~Meiri reptile dataset. These sources are popular because you can
+rapidly download data for a large number of species, making it much
+faster than going through books and literature manually. But just
+because a value is published in a database does not mean that it is
+reliable. The issues noted above still apply, and it is a good idea to
+check the data and sources of a database in the same way as for books or
+Internet searches.
+
+\begin{detail}
+\subsubsection{Practicalities of comparative data
+collection}\label{practicalities-of-comparative-data-collection}
+
+How do we practically collect and record comparative data? Let's imagine
+we have the following three sources of chameleon body length and life
+history data.
+
+\textbf{SOURCE 1: Smith et al. 2020.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Chamaeleo chamaeleon}. 245 mm, 80 eggs, sexually dimorphic.
+\item
+  \emph{Brookesia minima}. 33 mm, 2 eggs, sexually dimorphic.
+\item
+  \emph{Calumma parsonii}. 650 mm, 50 eggs, sexually dimorphic.
+\end{itemize}
+
+\textbf{SOURCE 2: Jones et al. 2020.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Chamaeleo chamaeleon}. Up to 250 cm, Up to 100 eggs.
+\item
+  \emph{Brookesia minima}. Up to 34 mm, 2 eggs.
+\item
+  \emph{Calumma parsonii}. Up to 695 mm, Up to 50 eggs.
+\end{itemize}
+
+\textbf{SOURCE 3: Han et al. 2020.}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Chamaeleo chamaeleon}. Approximately 10 inches.
+\item
+  \emph{Brookesia minima}. Approximately 1 inch.
+\item
+  \emph{Calumma parsonii}. Approximately 24 inches.
+\end{itemize}
+
+We would tend to record these data in a table (probably in Excel or
+another spreadsheet program) like this.
+\end{detail}
+
+\begin{tabular}{l|l|l|l|l|l|l|l}
+\hline
+Species & Measurement & Value & Data\_Type & Units & Data\_Quality & Approximation & Source\\
+\hline
+Chamaeleo chamaeleon & length & 245 & mean & mm & high & FALSE & Jones et al 2020\\
+\hline
+Chamaeleo chamaeleon & clutch size & 80 & mean & eggs & high & FALSE & Jones et al 2020\\
+\hline
+Chamaeleo chamaeleon & dimorphic & 1 & truefalse & NA & high & FALSE & Jones et al 2020\\
+\hline
+Brookesia minima & length & 33 & mean & mm & high & FALSE & Jones et al 2020\\
+\hline
+Brookesia minima & clutch size & 2 & mean & eggs & high & FALSE & Jones et al 2020\\
+\hline
+Brookesia minima & dimorphic & 1 & truefalse & NA & high & FALSE & Jones et al 2020\\
+\hline
+Calumma parsonii & length & 650 & mean & mm & high & FALSE & Jones et al 2020\\
+\hline
+Calumma parsonii & clutch size & 50 & mean & eggs & high & FALSE & Jones et al 2020\\
+\hline
+Calumma parsonii & dimorphic & 1 & truefalse & NA & high & FALSE & Jones et al 2020\\
+\hline
+Chamaeleo chamaeleon & length & 250 & max & mm & high & FALSE & Smith et al 2020\\
+\hline
+Chamaeleo chamaeleon & clutch size & 100 & max & eggs & high & FALSE & Smith et al 2020\\
+\hline
+Brookesia minima & length & 34 & max & mm & high & FALSE & Smith et al 2020\\
+\hline
+Brookesia minima & clutch size & 2 & max & eggs & high & FALSE & Smith et al 2020\\
+\hline
+Calumma parsonii & length & 695 & max & mm & high & FALSE & Smith et al 2020\\
+\hline
+Calumma parsonii & clutch size & 50 & max & eggs & high & FALSE & Smith et al 2020\\
+\hline
+Chamaeleo chamaeleon & length & 10 & mean & inches & medium & TRUE & Han et al 2020\\
+\hline
+Brookesia minima & length & 1 & mean & inches & medium & TRUE & Han et al 2020\\
+\hline
+Calumma parsonii & length & 24 & mean & inches & medium & TRUE & Han et al 2020\\
+\hline
+\end{tabular}
+
+\begin{detail}
+We would also record the full reference for each source in a separate
+table. Recording the data like this makes it easy to enter in Excel, and
+also makes it easy for us to exclude certain types of data or sources
+should we decide we don't trust them enough to include in our analyses.
+
+Note that this will not be the ideal format for using the data in R, so
+you will need to manipulate or \emph{wrangle} the data first. For most
+analyses, data need to be in a \emph{tidy} format, meaning:
+
+\begin{itemize}
+\tightlist
+\item
+  Each variable must have its own column.
+\item
+  Each observation must have its own row.
+\item
+  Each value must have its own cell.
+\end{itemize}
+
+In R, the \texttt{tidyr} and \texttt{dplyr} packages are useful for
+doing this. Or you could use something like Excel if you are less
+confident with R. Make sure to keep the raw data too in case you
+accidentally introduce any errors, and so that you can repeat the data
+collection and analyses if needed. See
+\url{https://r4ds.had.co.nz/tidy-data.html} for more details on what
+tidy data is and how to do this.
+
+To wrangle this data, we would first convert the units to a standard
+unit for each measurement. Here we have length in mm and inches, so we
+would convert the inches into mm. The three altered rows are shown
+below. Note that converting from inches to mm gives us the false
+impression of precision, i.e.~two values are now 25.4 and 609.6, rather
+than whole numbers making it look like these were measured accurately
+rather than approximated. It's worth looking out for this in other data,
+especially curated databases where this kind of conversion is typical.
+\end{detail}
+
+\begin{tabular}{l|l|l|l|l|l}
+\hline
+Species & Measurement & Value & Data\_Type & Data\_Quality & Approximation\\
+\hline
+Chamaeleo chamaeleon & length & 254.0 & mean & medium & TRUE\\
+\hline
+Brookesia minima & length & 25.4 & mean & medium & TRUE\\
+\hline
+Calumma parsonii & length & 609.6 & mean & medium & TRUE\\
+\hline
+\end{tabular}
+
+\begin{detail}
+Next we might decide to exclude low quality records, and remove any
+approximations. We might need to do something more complicated if we
+only have one record for a species and it is an approximation. In this
+case we are going to keep the approximations, and use all the data. But
+you should choose what is sensible for your dataset.
+
+Finally, we want to summarise the data for each species, to get
+means/medians and possibly also minima and maxima. It is up to you
+whether you use means or medians. Often we choose the median because it
+is less influenced by outliers. The summary data you use and how you
+calculate it will vary depending on your inputs for example here we
+might want to extract:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Median of mean length values}. This will tell us about the
+  overall \textbf{mean} value for length across all sources.
+\item
+  \emph{Maximum of maximum length values}. This will tell us about the
+  overall \textbf{maximum} value for length across all sources.
+\item
+  \emph{Median of mean clutch size values}. This will tell us about the
+  overall \textbf{mean} value for clutch size across all sources.
+\item
+  \emph{Maximum of maximum clutch size values}. This will tell us about
+  the overall \textbf{maximum} value for clutch size across all sources.
+\item
+  \emph{Median dimorphism score}. This will tell use whether the species
+  is predominantly considered to be dimorphic or not.
+\end{itemize}
+
+Our final dataset for analyses might look something like this.
+\end{detail}
+
+\begin{tabular}{l|l|l|l|l|l}
+\hline
+Species & median\_length & max\_length & median\_clutchsize & max\_clutchsize & dimorphic\\
+\hline
+Brookesia minima & 29.2 & 34 & 2 & 2 & NA\\
+\hline
+Calumma parsonii & 629.8 & 695 & 50 & 50 & NA\\
+\hline
+Chamaeleo chamaeleon & 249.5 & 250 & 80 & 100 & NA\\
+\hline
+\end{tabular}
+
+\begin{detail}
+Note that each variable is now its own column. This will help us when
+using the data in analysis programs like R. R code to achieve the above
+can be found in the \emph{online materials}.
+\end{detail}
+
+{[}CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS
+THE BOOK{]}
+
+\section{Summary}\label{summary}
+
+\section{Online stuff}\label{online-stuff}
+
+\section{MCQs}\label{mcqs}
+
+\chapter{Foundations 2: Introduction to models of trait evolution and
+phylogenetic signal}\label{foundations2}
+
+{[}CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS
+CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY{]}
+
+The previous chapter introduced you to the basic building blocks of
+comparative methods; phylogenies and trait data. We are now going to
+shift gears and think about some of the theory and models underpinning
+comparative methods.
+
+At the very simplest level, comparative methods are interested in how
+traits are distributed across trees, and how these traits change through
+time. Are there clusters in the tree where traits of the species at the
+tips are similar or identical? Or are traits spread evenly across the
+tree? How quickly do trait values change through time? etc.
+
+The models we use to describe how traits change will vary depending on
+whether our traits are continuous (e.g.~body size, leaf area) or
+discrete (e.g.~presence or absence of a tail, growth form, number of
+legs).
+
+This chapter will introduce you to the basic ways we work with traits
+and trees. It will cover:
+
+\begin{itemize}
+\tightlist
+\item
+  Modelling continuous traits.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the Brownian Motion (BM) model of evolution.
+  \end{itemize}
+\item
+  Modelling discrete traits.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ARD, ER, SYM
+  \end{itemize}
+\item
+  Phylogenetic signal
+\end{itemize}
+
+\section{Modelling continuous traits - the Brownian Motion model of
+evolution}\label{modelling-continuous-traits---the-brownian-motion-model-of-evolution}
+
+For continuous traits, the most commonly used model of trait evolution
+is the \emph{Brownian motion model}, and many more complex models have
+been built upon it. Therefore we will spend some time discussing it
+here. If you're already familiar with the Brownian model you might want
+to skip to the summary at the end of the section just to check that you
+recall all the key features of the model. Otherwise, join me on an
+exploration of imaginary cats!
+
+\subsection{An introduction to Brownian
+Motion}\label{an-introduction-to-brownian-motion}
+
+The Brownian model or BM model (Cavalli-Sforza and Edwards, 1967;
+Felsenstein, 1973) is assumed to be the underlying mode of evolution in
+the majority of phylogenetic comparative methods (though this assumption
+is rarely tested; Freckleton and Harvey 2006). It can be fully described
+using just two parameters \(z(0)\) and \(\sigma^2\).
+
+\(z(0)\) is the starting value of the trait we are interested in. This
+is the mean value for the trait seen in the ancestral population before
+there have been any changes to the trait. \(\sigma^2\) is the rate at
+which evolution (i.e.~trait change) occurs. Some of you might already be
+wondering why we use \(\sigma^2\) here, as \(\sigma^2\) is usually used
+to signify \emph{variance}. And you'd be right, it is a variance! But
+how and why?
+
+Here's the explanation. At the core of Brownian motion is the normal
+distribution (Figure \ref{fig:normal}). In the Brownian motion model of
+evolution, the amount that a trait changes over any time interval is
+drawn at random from a normal distribution with a \textbf{mean of 0} and
+a \textbf{variance of \(\sigma^2\)}. Because the mean is 0, we can draw
+positive numbers causing the trait to increase, we can draw negative
+numbers causing the trait to decrease, and we expect the mean change in
+the trait over time to also be 0. How large these changes are depends on
+the value of \(\sigma^2\). In Figure \ref{fig:normal} you can see that
+as \(\sigma^2\) gets larger, so does the spread of the normal
+distribution, meaning that large values are more likely to get drawn
+from the distribution as \(\sigma^2\) increases, leading to larger
+increases or decreases in the value of the trait. This means evolution
+will be faster when \(\sigma^2\) is larger. Because of this,
+\(\sigma^2\) represents the \emph{rate of evolution}, and is referred to
+as the \emph{Brownian rate parameter}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/normal-1} 
+
+}
+
+\caption{Three normal distributions with the same mean (0) but different variances.}\label{fig:normal}
+\end{figure}
+
+Because the direction of change in trait values at each step is random,
+Brownian motion is often described as a ``random walk''.
+
+Let's run a quick example simulation to see what is going on. Our trait
+can be any continuous feature of an organism, but for simplicity let's
+use body mass in (imaginary!) cats. First let's run one simulation to
+show how the body mass of one cat lineage changes through time under the
+Brownian model.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  At the start, the trait value is \(z(0)\). Here we'll start at
+  \(time = 0\) with an ancestral cat that weighs 4 kg. The rate of
+  evolution, or Brownian rate parameter, \(\sigma^2\), is 0.25 (like the
+  normal distribution in Figure \ref{fig:normal}B).
+\item
+  To determine the value for body mass at \(time = 1\), we draw a random
+  number from the normal distribution with \(mean = 0\) and
+  \(\sigma^2 = 0.25\). In this example the value is \(-0.1533193\). So
+  the body mass of a cat at \(time = 1\) is
+  \(4 + -0.1533193 = 3.84668\).
+\item
+  To determine the value for body mass at \(time = 2\), we draw a random
+  number from the normal distribution with \(mean = 0\) and
+  \(\sigma^2 = 0.25\). In this example the value is \(-0.89065422\). So
+  the body mass of a cat at \(time = 2\) is
+  \(3.84668 + -0.89065422 = 2.95603\), recall that \(3.84668\) is the
+  body mass at \(time = 1\).
+\item
+  If we continue this until we get to \(time = 10\) we get a graph that
+  shows the evolution of the trait through time that looks like Figure
+  \ref{fig:cat1} (the numbers are the body mass values, rounded to two
+  decimal places).
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/cat1-1} 
+
+}
+
+\caption{A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$.}\label{fig:cat1}
+\end{figure}
+
+A few things to note. First, the direction of change is random, there is
+no trend towards increasing or decreasing body mass. Second, the changes
+do not depend on the changes that happened previously, i.e.~an increase
+in body mass at time 1 does not mean an increase (or decrease) at time 2
+is more or less likely. The random nature of trait changes is why the
+Brownian model is often referred to as a \textbf{random walk}. We
+sometimes describe it as being like a drunk person walking down the
+road, wobbling about but in no particular direction\ldots{}
+
+\begin{info}
+Although our examples here use t = 1, t = 2 etc. to illustrate what is
+happening, Brownian motion is a continuous time process, and so time
+does not have discrete steps in the model.
+\end{info}
+
+The example above includes only one simulation to give you a basic idea
+of what is going on. To get a better idea of the patterns we expect to
+see, let's run 100 simulations instead, over a longer time period.
+Because the Brownian model is a random walk, we expect each simulation
+to be slightly different depending on the values drawn out of the normal
+distribution each time.
+
+As above, we will start at \(time = 0\) with an ancestral cat that
+weighs 4 kg (i.e. \(z(0) = 4\)), and use \(\sigma^2\) of 0.25 as the
+rate of evolution (Figure \ref{fig:bm100}A).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/bm100-1} 
+
+}
+
+\caption{100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B).}\label{fig:bm100}
+\end{figure}
+
+Notice how the variance in body mass (i.e.~the spread of different
+values of body mass) \emph{increases linearly with time} (it's not
+perfectly linear here, but it would be if we ran more simulations;
+Figure \ref{fig:bm100}B). Meaning that body mass variance is greatest
+over the longest time intervals. In biological terms this means we
+expect to see more variance in the trait values of groups that have been
+evolving for longer.
+
+If we vary the value of \(\sigma^2\) we can look at the effect of
+changing the rate of evolution on the values of body mass we evolve in
+our cat simulations. If the rate of evolution is lower, then variance in
+body mass accumulates more slowly (Figure \ref{fig:bmplots}A); if the
+rate of evolution is higher, then variance in body mass accumulates more
+quickly (Figure \ref{fig:bmplots}C). The overall variance of the
+Brownian process is equal to the rate of evolution multiplied by the
+amount of time that has elapsed.
+
+\begin{verbatim}
+## Warning: Removed 5 row(s) containing missing values (geom_path).
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/bmplots-1} 
+
+}
+
+\caption{100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and (A) $sigma^2 = 0.1$; (B) $sigma^2 = 0.25$; (C) $sigma^2 = 1$.}\label{fig:bmplots}
+\end{figure}
+
+One final feature to highlight is what the body mass values look like at
+the end of the simulations, i.e.~where \(t = 100\). If we assume that
+the present-day is \(t = 100\), we can imagine that these values are
+equivalent to the body mass values for the species at the tips of our
+phylogeny.
+
+Because trait changes are drawn from a normal distribution with a mean
+of 0, on average we expect no change in body mass through time. So if we
+run enough simulations, the mean of the trait values at the end of the
+simulations should be equal to the starting value \(z(0)\), in this case
+4 kg. The rest of the values should be evenly distributed around the
+mean, so we expect the body mass values to be normally distributed.
+
+As demonstrated above, the variance of these normal distributions of
+body masses will depend on the rate of evolution (low rates result in
+smaller variances; high rates result in larger variances; Figure
+\ref{fig:bmhist}) \emph{and} the time elapsed (shorter times result in
+smaller variances; greater times result in larger variances; Figure
+\ref{fig:bm100}). More precisely, we can define the overall variance of
+the Brownian process as the rate of evolution multiplied by the amount
+of time that has elapsed.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/bmhist-1} 
+
+}
+
+\caption{Three Brownian motion simulations (left) with different values of sigma (A = 0.1, B = 0.25, C = 1) and the resulting trait distributions at the end of the simulation (right).}\label{fig:bmhist}
+\end{figure}
+
+The examples above ignore the topology of the phylogeny. What if we want
+to model the evolution of all species in a phylogeny? This is usually
+how we use the Brownian model, and it is very simple to extend. At each
+time point where there is speciation event, we simply start a new
+Brownian simulation for the two new species. Let's do this with the cat
+example, assuming there are speciation events at time 3, 5, and 7,
+creating a phylogeny like the one in Figure \ref{fig:bmcat}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/bmcat-1} 
+
+}
+
+\caption{A simulation showing how the body mass of four lineages of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A), and the phylogeny of the cats (B). The size of the cats indicates the final body size of the lineage in the simulation.}\label{fig:bmcat}
+\end{figure}
+
+A few things to note here.
+
+First, when a lineage speciates, the new lineages start at the same
+trait value, and over time they can evolve away from each other. This
+means that close relatives will be more similar in their trait values
+than more distant relatives, and differences in trait values between
+species will depend on how long ago they diverged from a common
+ancestor. For example, here we expect cat A and cat B to be more similar
+to one another than they are to cat C and cat D, and that cat A and cat
+B should be more similar to one another than cat C and cat D are to one
+another, because cat A and cat B diverged more recently than cat C and
+cat D (Figure \ref{fig:bmcat}). More precisely, the correlation among
+trait values is proportional to the extent of shared ancestry for pairs
+of species.
+
+Second, we used the same normal distribution throughout to randomly draw
+our trait change values. This means that \(\sigma^2\) was also the same
+throughout. This means that the \emph{rate of evolution across the tree
+is constant}, i.e.~it is the same for all the lineages. This is a big
+assumption of the Brownian model, and it is often broken in real life
+scenarios (for example the rapid evolution of clades in an adaptive
+radiation). We will return to this later in the book.
+
+\begin{info}
+To summarise the above, the key features of the Brownian motion model
+are:
+
+\begin{itemize}
+\tightlist
+\item
+  Traits evolve at random, i.e.~by a random walk.
+\item
+  The direction and magnitude of the trait change at one time interval
+  is independent of the direction and magnitude of the trait changes at
+  other time intervals.
+\item
+  There is no overall drift in the direction of evolution.
+\item
+  Traits evolve at a rate \(\sigma^2\).
+\item
+  The rate of evolution is constant.
+\item
+  Variance in traits increase (linearly) in proportion to time.
+\item
+  The overall variance of the Brownian process is the rate of evolution
+  times the amount of time that has elapsed.
+\end{itemize}
+
+In terms of the model parameters:
+
+\begin{itemize}
+\tightlist
+\item
+  The model can be fully described using just two parameters \(z(0)\)
+  and \(\sigma^2\).
+\item
+  \(z(0)\) is the starting value of the trait we are interested in. This
+  is the mean value for the trait seen in the ancestral population
+  before there have been any changes to the trait.
+\item
+  \(\sigma^2\) is the rate at which evolution (i.e.~trait change)
+  occurs. It is also referred to as the Brownian rate parameter.
+\end{itemize}
+
+Some biological implications of the model are:
+
+\begin{itemize}
+\tightlist
+\item
+  Correlation among trait values is proportional to the extent of shared
+  ancestry for pairs of species, i.e.~close relatives are more similar
+  than more distant relatives.
+\item
+  Different lineages evolve at the same rate.
+\end{itemize}
+\end{info}
+
+\begin{detail}
+\textbf{What if evolution is non Brownian?} You've probably already
+realised that evolution is not always going to be Brownian. There are a
+number of other models of evolution, and we will return to these in
+\emph{Chapter 7}.
+\end{detail}
+
+\section{Modelling discrete traits - simple
+models}\label{modelling-discrete-traits---simple-models}
+
+Many traits we are interested in studying are not continuous traits,
+instead they can be lumped into distinct categories, so we refer to them
+as discrete traits. Discrete traits have a number of states, and
+comparative methods can be used to investigate changes between states
+across a phylogeny. For example, if we are interested in the evolution
+of flightlessness in birds, we might want to know how many times this
+has evolved across the phylogeny, whether flying birds are more likely
+to evolve to be flightless, or whether flightless birds are more likely
+to evolve to fly, and whether flightless birds can ever evolve to fly
+again once they have lost the ability.
+
+In the flightlessness in birds example, we have two states: flying and
+flightless. We could also have intermediate states,
+e.g.~semi-flightless. Traits can be ordered or unordered. Ordered traits
+have a set order of state changes, for example flying to semi-flightless
+to flightless. Unordered traits can change in any way. Traits can also
+be reversible or non-reversible, for example, if flightless bird
+lineages can never go on to evolve flight again, the trait is
+irreversible. The most simple way to model discrete traits is to assume
+that changes are unordered and reversible, so we will stick to this
+here.
+
+We've actually already met some models of discrete trait evolution over
+trees. Back when we discussed phylogenetic inference we mentioned
+several models of DNA sequence evolution, including the Jukes Cantor
+\citep{jukes1969evolution}, and General Time Reversible (GTR)
+\citep{lanave1984new} models. The most basic models for discrete
+character evolution are analogues of these models.
+
+\subsection{\texorpdfstring{M\emph{k}/Equal Rates model
+(ER)}{Mk/Equal Rates model (ER)}}\label{mkequal-rates-model-er}
+
+The simplest model for discrete trait evolution is a direct analogue of
+the Jukes Cantor model. Except instead of changes in base pairs, we
+model changes in character states. We call this the M\emph{k} model
+(\citep[\citet{pagel1994detecting}]{lewis2001likelihood}). The M stands
+for Markov, because the M\emph{k} model assumes states change according
+to a Markov process, i.e.~the probability of changing from one state to
+another is independent of what has happened previously, it only depends
+on the current state of the trait. The \emph{k} is there because we
+generally use \emph{k} to represent the number of parameters in a model.
+In models of discrete trait evolution, \emph{k} is the number of states.
+For our flying/flightless example \(k = 2\), for the flying/
+semi-flightless/flightless example \(k = 3\).
+
+In the M\emph{k} model, all trait changes are equally likely, and all
+occur at the same rate. Because of this we often call the M\emph{k}
+model the Equal Rates or ER model.
+
+We can visualize the \(Q\) (rate) matrix for an M\emph{k} model of our
+flightlessness example like this:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+- & flying & semi-flightless & flightless\tabularnewline
+\midrule
+\endhead
+flying & - & 1 & 1\tabularnewline
+semi-flightless & 1 & - & 1\tabularnewline
+flightless & 1 & 1 & -\tabularnewline
+\bottomrule
+\end{longtable}
+
+The off-diagonals are the transition rates from state 1 to 2, 1 to 3, 2
+to 1 and so on (read rows then columns). We typically designate
+individual transition rates in the form \(q_ij\), which means the rate
+of going from state \(i\) to state \(j\). Here, the 1 in all
+off-diagonal elements represents the fact that rates are the same
+regardless of what state \(i\) and \(j\) are, and the direction of that
+change. The diagonal elements \(q_ii\) give the rate of not changing and
+are computed as the negative sum of the non-diagonal row elements. This
+is so that the rows sum to zero. Here we've just left this as ``-''.
+
+\subsection{Symmetric rates model
+(SYM)}\label{symmetric-rates-model-sym}
+
+The M\emph{k} model assumes changes between states are equally likely,
+but we have good reasons for thinking this might not be the case in many
+biological systems. Some changes in states are likely to be much easier
+than others, for example losing complex traits like eyes or limbs is
+likely to be easier than gaining them. The M\emph{k} model can be
+modified to allow for these more complex situations. The Symmetric rates
+or SYM model \citep{paradis2004ape} is one such modification where the
+rate of change can differ among pairs of states, but within each pair of
+states the rate of change is the same in both directions. The number of
+different rates is three for \(k = 3\).
+
+Using our flying/semi-flightless/flightless example, this means that the
+rate of change from flying to semi-flightless is exactly the same as the
+rate of change from semi-flightless to flying. However, these rates
+differ from the rate of change from flying to flightless (and vice
+versa), and also differ from the rate of change from semi-flightless to
+flightless (and vice versa). In terms of the DNA evolution models this
+is analagous to the GTR model \citep{lanave1984new}.
+
+The \(Q\) matrix for our flying/semi-flightless/flightless example looks
+like this:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+- & flying & semi-flightless & flightless\tabularnewline
+\midrule
+\endhead
+flying & - & 1 & 2\tabularnewline
+semi-flightless & 1 & - & 3\tabularnewline
+flightless & 2 & 3 & -\tabularnewline
+\bottomrule
+\end{longtable}
+
+It's worth noting that if you only have two states, i.e. \(k = 2\), then
+the Symmetric model is exactly the same as the M\emph{k}/Equal Rates
+model.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+- & flying & flightless\tabularnewline
+\midrule
+\endhead
+flying & - & 1\tabularnewline
+flightless & 1 & -\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{All Rates Different (ARD)
+model}\label{all-rates-different-ard-model}
+
+The final modification of the M\emph{k} model we're going to cover here
+is the All Rates Different or ARD model \citep{paradis2004ape}. In this
+model not only does the rate of change differ among pairs of states, it
+can also differ within each pair of states depending on the direction of
+the change. For k states, we get \(k^2 - k\) rates, which can be a
+pretty large number as k increases.
+
+The \(Q\) matrix for our flying/semi-flightless/flightless example looks
+like this:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+- & flying & semi-flightless & flightless\tabularnewline
+\midrule
+\endhead
+flying & - & 1 & 2\tabularnewline
+semi-flightless & 3 & - & 4\tabularnewline
+flightless & 5 & 6 & -\tabularnewline
+\bottomrule
+\end{longtable}
+
+Biologically, this is a useful model to fit if you think some of your
+states are not reversible, or very difficult to reverse, for example if
+you think the rate of evolution from flightless to flying is likely to
+be close to 0. It often works well for big complex datasets that span a
+variety of different states. For example, if you had a tree of all
+vertebrates and wanted to examine transition rates among different
+dietary strategies, this model would be worth examining.
+
+You may have noticed that there is no analaogous model to ARD in DNA
+evolution. Molecular biologists don't use this kind of model because of
+potential \emph{over-fitting} (see below), which is also a very
+important point to consider when chosing whether or not to fit an ARD
+model . It's also really important for some of the other methods we'll
+use later in the book, so I'll explain what I mean by over-fitting in
+the box below. If you're fitting an ARD model with six rates to a
+phylogeny containing only 30 species, you definitely need to stop and
+think about over-fitting.
+
+\begin{detail}
+\textbf{Over-fitting} occurs where a model has more parameters than can
+be justified by the data. It can mean the model looks like it
+beautifully fits the data, but if you were to add additional data it
+would be useless.
+
+Imagine you have data on the swimming speed of ten penguins (let's call
+them Pingu, Pinga, Misha, Wheezy, Chilly Willy, Mumble, Skipper,
+Kowalski, Rico, Private and Feathers McGraw). You could fit a model (we
+could use a linear regression here) to see if body mass is correlated
+with swimming speed, and get a regression with an \(r^2\) of 0.5. This
+suggests around half of the variance in swimming speed is explained by
+body mass. The other half might be explained by all kinds of things,
+including specific attributes of the particular penguins or errors in
+your measurements. We haven't fully explained variation in swimming
+speed, but it's still a useful model because if we weighed another
+penguin we'd have a reasonable chance of estimating roughly what its
+swimming speed might be from its body mass.
+
+If we wanted to increase the variance explained by the model as much as
+possible, we can start adding more variables. For example, maybe the
+faster penguins also have longer flippers so we add in flipper length.
+This might be sensible, and if we had more penguins in our dataset this
+would be fine. But what if we also add in a variable that accounts for
+Wheezy being slow due to his asthma, and another that accounts for
+Feathers McGraw being faster because he's evil? If we add enough
+variables, eventually we get to a model with an \(r^2\) of 1. This means
+we can perfectly explain the swimming speed of our ten penguins, but
+we've got no hope of applying it to any new penguins we find. This is
+over-fitting, and the model not useful. Visually you can think of it the
+difference between fitting one line of best fit to a regression of X
+against Y, compared to joining all the points up.
+
+There's no hard and fast rule about how much data you need to add
+another variable to your model, but some rules of thumb range from 20-30
+data points for each variable. Complex models are always likely to fit
+data better just because they have more parameters, not necessarily
+because they mean anything biologically meaningful. You can avoid this
+problem by thinking very carefully about the models you chose to fit,
+why you think they are sensible, what you predict you will find, and how
+you will interpret the results, \emph{before} fitting the model.
+\end{detail}
+
+\subsection{A quick note about ancestral state
+estimation}\label{a-quick-note-about-ancestral-state-estimation}
+
+You often hear about using phylogenies for \emph{ancestral state
+reconstruction}, along with suggestions that these reconstructions can
+tell us what the ancestor of a group looked like, how it behaved, what
+it ate for breakfast etc. Sadly this is not as magical as it seems, and
+we should refer to this as ancestral state \emph{estimation} NOT
+\emph{reconstruction}. Ancestral state estimation is probably one of the
+most over-used and uninformative methods in the phylogenetic comparative
+methods toolkit.
+
+There are many reasons to be highly skeptical of ancestral state
+estimates and interpretations of macroevolutionary patterns and process
+that are based on them, not least because we know that phylogenies are
+only \emph{hypotheses} and will often miss out large chunks of extinct
+diversity. Ancestral state estimation methods are based on the models we
+discussed above, meaning that your ancestral states are at best weighted
+averages of your trait based on branch lengths and the model used. How
+much trust you would want to put in such a result is up to you, but
+hopefully you now know enough to be very skeptical! However, certain
+phylogenetic comparative methods require that you define the state of
+the ancestor for them to work. We will return to this later in the book.
+
+\begin{warning}
+Ancestral state estimates (\textbf{not} reconstructions) are, at best,
+weighted averages of your trait based on branch lengths of the phylogeny
+and the model of evolution used. If your phylogeny or traits or model
+have error (and they always will) then your ancestral state estimates
+should be interpretted with care.
+\end{warning}
+
+\section{Phylogenetic variance-covariance
+matrices}\label{phylogenetic-variance-covariance-matrices}
+
+A useful analytical tool that we will use in a number of methods in this
+\emph{Primer} is to represent a phylogeny as a \emph{phylogenetic
+variance--covariance matrix}. First let's think about what we mean by
+variance and covariance in the context of traits on phylogenies. To do
+this we need to go back to the Brownian motion model.
+
+Remember that under Brownian motion, variance in a trait increases
+linearly in proportion to time. So species that diverged recently will
+have similar trait values, and species that diverged a long time ago
+will have very different trait values. In more technical terms we can
+say that the expected \emph{covariance} between species' trait values at
+the tips of the phylogeny is exactly proportional to the shared history
+of the species involved, i.e.~the sum of their shared branch lengths. In
+addition, the expected \emph{variance} of a trait value for a given
+species is proportional to total length of the tree, i.e.~the summed
+branch length from the root to the tip for that species {[}19{]}, also
+refered to as the \emph{root-to-tip} distance.
+
+Figure \ref{fig:roottotip} shows how we get the root-to-tip distances
+from a phylogeny. The letters a-f represent the branch lengths. Because
+this is an \emph{ultrametric} tree, the root-to-tip distance for each
+species will be the same, i.e.~the same amount of time has elapsed. So
+in the example in Figure \ref{fig:roottotip}, a \emph{and} b + c
+\emph{and} b + d + e \emph{and} b + d + f all add up to the same number.
+Likewise, branch c is the same length as branches d + e, and branch e is
+the same length as branch f. Take a good look at the phylogeny in Figure
+\ref{fig:roottotip} to make sure you understand this.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/roottotip-1} 
+
+}
+
+\caption{Phylogeny showing branch lengths and root-to-tip distances for each tip taxon}\label{fig:roottotip}
+\end{figure}
+
+As already mentioned above, these root-to-tip values give us the
+variance of the trait across the tree. But what about the covariances
+among species, i.e.~the shared branch lengths? We can extract these in
+the same way. The shared branch length between the robin and the deer is
+simply b + d (note that we don't include e or f because these branches
+only lead to either the robin \emph{or} the deer). The shared branch
+length between the robin and the spider is b, because this is the only
+branch that leads towards them both. Likewise, the shared branch length
+between the deer and the spider is also b. The slightly tricky one is
+what is the shared branch length between the robin/deer/spider and the
+jellyfish? They don't share a branch at all in this phylogeny so we say
+their shared branch length is zero.
+
+Why spend this time thinking about the trait variances and covariances?
+Because we know these values we can represent the phylogeny as a
+\emph{phylogenetic variance--covariance matrix}. A phylogenetic
+variance--covariance matrix is an n x n matrix, where n is the number of
+species in the phylogeny, and the diagonals are the variances, and the
+off-diagonals are the covariances. For our example in Figure
+\ref{fig:roottotip} the phylogenetic variance--covariance matrix looks
+like this.
+
+-\textbar{}robin\textbar{}deer\textbar{}spider\textbar{}jellyfish\textbar{}
+robin\textbar{}b+d+f\textbar{}b+d\textbar{}b\textbar{}0\textbar{}
+deer\textbar{}b+d\textbar{}b+d+e\textbar{}b\textbar{}0\textbar{}
+spider\textbar{}b\textbar{}b\textbar{}b+c\textbar{}0\textbar{}
+jellyfish\textbar{}0\textbar{}0\textbar{}0\textbar{}a\textbar{}
+
+We will use phylogenetic variance--covariance matrices at various points
+in this \emph{Primer}, including in the next section on phylogenetic
+signal. Often people mention these matrices (sometimes they will be
+referred to as phylogenetic vcvs) without explaining what they are, but
+hopefully the outline above has made them seem a bit less opaque and
+scary!
+
+\begin{info}
+As you may already be aware, variance--covariance matrices are used in
+many statistical methods, not just phylogenetic comparative methods. The
+fact that we can represent a phylogeny in this way will make our lives
+way easier in the next few chapters!
+\end{info}
+
+\section{Phylogenetic signal}\label{phylogenetic-signal}
+
+Phylogenetic signal is one of the most commonly mentioned concepts in
+phylogenetic comparative methods. Unfortunately there's a lot of
+misunderstanding about what it is and what it means! Below we summarise
+what it is, how we can measure it, and how we can (and can't) interpret
+the results.
+
+\subsection{What is phylogenetic
+signal?}\label{what-is-phylogenetic-signal}
+
+Phylogenetic signal is the pattern where close relatives are more
+similar than distant relatives \citep{harvey1991comparative}. Species'
+traits can show high or low phylogenetic signal. If phylogenetic signal
+is high, this means that closely related species have similar trait
+values, and that trait similarity decreases with phylogenetic distance.
+If phylogenetic signal is low, then trait values might vary randomly
+across a phylogeny, with distant relatives sharing similar trait values,
+and close relatives having different trait values
+\citep{kamilar2013phylogenetic}.
+
+\begin{warning}
+You may see papers that use different terms to refer to phylogenetic
+signal, including phylogenetic effects, phylogenetic constraints and
+phylogenetic inertia. Unfortunately these terms are poorly defined and
+mean different things to different people. We therefore recommend that
+these terms are avoided.
+\end{warning}
+
+\subsection{How do we estimate phylogenetic
+signal?}\label{how-do-we-estimate-phylogenetic-signal}
+
+Like many of the methods we explore in this \emph{Primer}, there are
+many different ways to estimate phylogenetic signal, each with their own
+strengths and weaknesses (see reviews by see Munkemuller et al.
+\citep{munkemuller2012measure} and \citep{hardy2012assessing}). Here,
+we'll just focus on the two most commonly used metrics: Pagel's
+\(\lambda\)
+\citep[\citet{pagel1999inferring},\citet{pagel1997inferring}]{freckleton2002phylogenetic}
+and Blomberg's \emph{K} \citep{blomberg2003testing}. These metrics are
+for continuous characters only, so we also include one measure for
+binary data \citep{fritz2010selectivity}, though this is less widely
+used. Practical examples of how to estimate these in R are provided in
+the \emph{online supplement}.
+
+Both \(\lambda\) and \emph{K} use an explicit model of trait evolution -
+our old friend the Brownian motion model. If you've forgotten how this
+model works it might be worth re-reading this section before you begin.
+
+\subsubsection{\texorpdfstring{Pagel's
+\(\lambda\)}{Pagel's \textbackslash{}lambda}}\label{pagels-lambda}
+
+Pagel's \(\lambda\) was introduced by Pagel
+\citep[\citet{pagel1999inferring}]{pagel1997inferring} in the early 90s
+and is probably the most commonly used measure of phylogenetic signal.
+This is in part because \(\lambda\) is not just a measure of
+phylogenetic signal, it is also often used to transform the branch
+lengths of a phylogeny for use in other analyses; we return to this in
+\emph{Chapter 4}.
+
+\(\lambda\) transforms the branches of the phylogeny so that it best
+explains trait variation among species at the tips. For example, if
+species are less similar in their trait values than expected given their
+shared branch lengths, \(\lambda\) transforms the tree so the branches
+are shorter. In practical terms, \(\lambda\) transforms the
+\emph{off-diagonal values}, or the covariances between pairs of species,
+of a phylogenetic variance--covariance matrix (see the section above).
+Remember that the covariances in a phylogenetic variance--covariance
+matrix are equal to the sum of the shared branch lengths of the species.
+In terms of the phylogeny, these covariances represent the internal
+branches of the tree. Importantly, \(\lambda\) does not transform the
+variance of the tree, which we learned in the section above is equal to
+the root-to-tip distance or the total length of the tree. This means
+that the total length of the tree stays constant.
+
+To make this clearer let's use our example from Figure
+\ref{fig:roottotip} but let's add some numbers for the branch lengths
+(Figure \ref{fig:vcv}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/vcv-1} 
+
+}
+
+\caption{Phylogeny showing branch lengths. The root-to-tip distances for each tip taxon are 13.6}\label{fig:vcv}
+\end{figure}
+
+Note that the root-to-tip distance for each species sums to 13.6. This
+is the variance, or diagonal of our phylogenetic variance--covariance
+matrix. The covariances, or off-diagonals, are the shared branch lengths
+between pairs of species. The shared branch length between the robin and
+the deer is 6.3 + 3.1 = 9.4. The shared branch length between the robin
+and the spider (and the deer and the spider) is 6.3. The shared branch
+length between the robin/deer/spider and the jellyfish is zero (see
+section above if this is not clear). Therefore, the phylogenetic
+variance--covariance matrix for this phylogeny is:
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & robin & deer & spider & jellyfish\\
+\hline
+robin & 13.6 & 9.4 & 6.3 & 0.0\\
+\hline
+deer & 9.4 & 13.6 & 6.3 & 0.0\\
+\hline
+spider & 6.3 & 6.3 & 13.6 & 0.0\\
+\hline
+jellyfish & 0.0 & 0.0 & 0.0 & 13.6\\
+\hline
+\end{tabular}
+
+\begin{info}
+\(\lambda\) can be any number between 0 and 1. \(\lambda\) of 0
+indicates that there is no phylogenetic signal in the trait, i.e.~that
+the trait has evolved independently of phylogeny and thus close
+relatives are not more similar on average than distant relatives. If
+\(\lambda\) is 1 this indicates that there is strong phylogenetic
+signal, and the trait has evolved according to the Brownian motion model
+of evolution.
+\end{info}
+
+What do \(\lambda\) values of 0, 1 and anything in between, do to the
+phylogenetic variance--covariance matrix and the phylogeny?
+
+When \(\lambda\) is 0, all of the off-diagonal elements of the
+phylogenetic variance--covariance matrix are also 0 (any number
+multiplied by zero is equal to zero). In our example above (Figure
+\ref{fig:vcv}) the phylogenetic variance--covariance matrix will look
+like this:
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & robin & deer & spider & jellyfish\\
+\hline
+robin & 13.6 & 0.0 & 0.0 & 0.0\\
+\hline
+deer & 0.0 & 13.6 & 0.0 & 0.0\\
+\hline
+spider & 0.0 & 0.0 & 13.6 & 0.0\\
+\hline
+jellyfish & 0.0 & 0.0 & 0.0 & 13.6\\
+\hline
+\end{tabular}
+
+This means all the internal branches now have a length of zero. This
+produces a tree which is just one big polytomy, also refered to as a
+\emph{star phylogeny} (Figure \ref{fig:star}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/star-1} 
+
+}
+
+\caption{Star phylogeny}\label{fig:star}
+\end{figure}
+
+When \(\lambda\) is 1, all of the off-diagonal elements of the
+phylogenetic variance--covariance matrix are exactly the same (any
+number multiplied by 1 remains unchanged). In our example above (Figure
+\ref{fig:vcv}) the phylogenetic variance--covariance matrix will look
+like this, i.e.~the same as before the \(\lambda\) transformation. The
+tree also stays the same as in Figure \ref{fig:vcv}.
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & robin & deer & spider & jellyfish\\
+\hline
+robin & NaN & 0 & 0 & 0\\
+\hline
+deer & 0 & NaN & 0 & 0\\
+\hline
+spider & 0 & 0 & NaN & 0\\
+\hline
+jellyfish & 0 & 0 & 0 & NaN\\
+\hline
+\end{tabular}
+
+\begin{detail}
+Many explanations of Pagel's \(\lambda\) state that the maximum value of
+\(\lambda\) is 1. Actually, it can be bigger than 1 if close relatives
+are \emph{more} similar than expected under the Brownian motion model of
+evolution. However, most tools that allow you to estimate \(\lambda\)
+restrict it to a maximum of 1 because covariances cannot exceed
+variances in a phylogenetic variance--covariance matrix, and this is
+what would happen if \(\lambda\) was bigger than 1.
+\end{detail}
+
+Values of \(\lambda\) between 0 and 1 indicate that although there is
+phylogenetic signal in the trait, it has evolved according to a process
+other than pure Brownian motion \citep{freckleton2002phylogenetic}.
+We'll discuss how to interpret phylogenetic signal in more detail later
+in this section. But to show you how this affects the phylogenetic
+variance--covariance matrix and the tree, let's assume a \(\lambda\) of
+0.5. This will multiply all the off-diagonal elements of the
+phylogenetic variance--covariance matrix by 0.5 resulting in a tree as
+shown in Figure \ref{fig:lambda05}, and a matrix like this:
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & robin & deer & spider & jellyfish\\
+\hline
+robin & 13.60 & 4.70 & 3.15 & 0.0\\
+\hline
+deer & 4.70 & 13.60 & 3.15 & 0.0\\
+\hline
+spider & 3.15 & 3.15 & 13.60 & 0.0\\
+\hline
+jellyfish & 0.00 & 0.00 & 0.00 & 13.6\\
+\hline
+\end{tabular}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/lambda05-1} 
+
+}
+
+\caption{Phylogeny showing branch lengths in the original tree and a transformed tree where lambda = 0.5. The root-to-tip distances for each tip taxon are 13.6}\label{fig:lambda05}
+\end{figure}
+
+Understanding what has happened to the branch lengths in Figure
+\ref{fig:lambda05} is a little tricker. Remember that \(\lambda\) only
+acts on the off-diagonals/covariances of the matrix. These are the
+\emph{internal} branches of the phlyogeny, i.e.~not the branches that
+lead to the tips. If \(\lambda\) is less than 1, this means that those
+branches get shorter. Here The internal branch lengths have all been
+halved because \(\lambda\) = 0.5.
+
+However, we also know that \(\lambda\) does not act on the
+diagonal/variances of the matrix that represents the total tree length.
+If total tree length does not change, but internal branches get shorter,
+then the branches leading to the tips must get longer. Here to ensure
+the root-to-tip distance for each species is still 13.6, the branches
+leading to the robin/deer need to be 8.9 (13.6 - 4.7), and the branch
+leading to the spider needs to be 10.45 (13.6 - 3.15).
+
+We generally estimate \(\lambda\) using Maximum Likelihood. This means
+that for a given trait and phylogeny, we search for the value of
+\(\lambda\) that best explains trait variation among species at the tips
+of the phylogeny, i.e.~the Maximum Likelihood value of \(\lambda\). We
+can test if \(\lambda\) is significantly different from zero (i.e.~no
+phylogenetic signal) or 1 (i.e.~the Brownian motion model expectation)
+using likelihood ratio tests comparing a model with the observed Maximum
+Likelihood value of \(\lambda\) to a model with a fixed \(\lambda\) of
+zero or 1. Some methods that estimate \(\lambda\) will do this for us
+automatically (e.g.~in the \texttt{pgls} function in the R package
+\texttt{caper} \citep{Orme:2013aa}; see \emph{online supplement}).
+
+\subsection{\texorpdfstring{Blomberg's
+\emph{K}}{Blomberg's K}}\label{blombergs-k}
+
+Rather than transforming the tree like \(\lambda\), Blomberg's \emph{K}
+instead measures phylogenetic signal by quantifying the amount of
+observed trait variance relative to the trait variance expected under
+Brownian motion \citep{blomberg2003testing}. It's a little tricky to
+explain how \emph{K} is estimated, especially in advance of
+\emph{Chapter 4} which introduces you to phylogenetic generalised least
+squares (PGLS) models. However, you should be able to understand the
+general concepts without needing to know the mathematical details. We
+will first talk about \emph{K} in very general terms, and then explain
+how it is estimated in more detail. You don't need to understand the
+maths to use \emph{K} in your work, but it's good practice to try.
+
+The equation for Blomberg's \emph{K} is:
+
+\begin{equation} 
+  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
+  \label{eq:K}
+\end{equation}
+
+The important part of the equation to think about initially is the
+\(observed \frac{MSE_0}{MSE}\) part. \(MSE_0\) is the mean squared error
+(MSE) of the tip data in relation to the phylogenetic mean of the data.
+\(MSE\) is the mean squared error of the tip data in relation to the
+phylogenetic variance covariance matrix. We explain both of these in
+more detail below. The important points to take away are:
+
+\begin{itemize}
+\tightlist
+\item
+  if trait similarities are well explained by the phylogeny, observed
+  \(MSE\) will be \emph{small} so the ratio of observed \(MSE_0\) to
+  \(MSE\) will be \emph{large}, and so will \emph{K}.
+\item
+  if trait similarities are \emph{not} well explained by the phylogeny,
+  observed \(MSE\) will be \emph{large} so the ratio of observed
+  \(MSE_0\) to \(MSE\) will be \emph{small}, and so will \emph{K}.
+\item
+  the \(observed \frac{MSE_0}{MSE}\) is divided by the expected value
+  under Brownian motion to standardise it because
+  \(observed \frac{MSE_0}{MSE}\) will vary depending on the trait and
+  the tree.
+\end{itemize}
+
+\begin{info}
+\emph{K} varies continuously from zero to infinity. When \emph{K} is 0,
+this indicates that there is no phylogenetic signal in the trait
+(i.e.~close relatives are not more similar on average than distant
+relatives). This is the equivalent of \(\lambda = 0\). When \emph{K} is
+1, this indicates that the trait has evolved according to the Brownian
+motion model of evolution, just like when \(\lambda\) is 1. Finally,
+where where K is greater than 1 this indicates that close relatives are
+more similar than expected under a Brownian motion model of trait
+evolution (see interpretation notes below). The maximum value of
+\emph{K} will vary depending on the trait and the tree involved.
+\end{info}
+
+We can test whether \emph{K} is significantly different from 0 using
+randomisation tests. These work by randomizing the trait data across the
+phylogeny, calculating \emph{K}, and then repeating this 1000 times. If
+we have phylogenetic signal in our data we expect these random \emph{K}
+values to have lower values than our value of \emph{K}. We can get a p
+value for the randomisations by counting how many times the randomised
+trait data gives a higher value of \emph{K} than our observed value, and
+then dividing this by the total number of randomisations. For example,
+if 10 randomised \emph{K} values are higher than the observed \emph{K}
+then p = 10/100 = 0.01.
+
+\begin{detail}
+\textbf{How do we estimate Blomberg's \emph{K}?}
+
+Let's use a very simple example with just three taxa, A, B and C. For
+more details and proper maths (!) see {[}@blomberg2003testing{]}.
+\end{detail}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{pcm-primer_files/figure-latex/Ktree-1} 
+
+}
+
+\caption{Phylogeny showing branch lengths and body size for each tip taxon}\label{fig:Ktree}
+\end{figure}
+
+\begin{detail}
+As we noted above the equation for Blomberg's \emph{K} is:
+
+\begin{equation} 
+  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
+\end{equation}
+
+Before we think about the equation we should remind ourselves what we
+mean by \emph{mean squared error (MSE)}. MSE is a way of looking at how
+far away the data are from the mean. If we have five species with body
+sizes of 5, 10, 15, 20, 25, the mean body size will be 15
+(\(\frac{5 + 10 + 15 + 20 + 25}{5}\)). The \emph{error} (E) is how far
+from the mean the observed values are (this is equivalent to the
+residuals in a model). Here the errors will be -10 (i.e. \(5 - 15\)),
+-5, 0, 5 and 10. If we sum all of these we end up with 0 as the negative
+and positive numbers cancel each other out, so to solve this problem we
+\emph{square} (S) them to give 100, 25, 0, 25 and 100. Finally we take
+the \emph{mean} (M) of this number to get 50. That's the MSE! If the
+values are clustered around the mean the MSE will be low. If they are
+spread out the MSE will be high.
+
+This calculation might seem familiar, and that's because it's the same
+way we estimate variance!
+
+Note that above when we calculated the mean part of MSE/variance we
+divided by \(n\), where \(n\) is the number of observations. However,
+this is only valid where we are looking at the whole population. If
+instead, as is common in phylogenetic comparative methods, we are
+looking at a \emph{sample} of the whole population, we instead divide by
+\(n - 1\). Why do we do this? In simple terms, if we are looking at a
+sample rather than the whole population, the MSE/variance we calculate
+will contain a little bit of bias. Subtracting 1 from the sample size
+corrects this bias, so you'll usually get a more accurate answer if you
+use \(n - 1\) instead of \(n\) (if you want more details this is known
+as Bessel's correction).
+
+Now let's consider just the observed \(\frac{MSE_0}{MSE}\) part of the
+equation for \emph{K}.
+
+\(MSE_0\) is the mean squared error (MSE) of the tip data in relation to
+the phylogenetic mean of the data. This is exactly the same as the MSE
+described above, but instead of using the mean calculated in the normal
+way, we use the phylogenetic mean, i.e.~the mean value if we account for
+shared evolutionary history of the species involved. A simplified
+equation for this is as follows, where \(X\) is the trait data, \(a\) is
+the phylogenetic mean, and \(n\) is the sample size.
+
+\begin{equation} 
+  MSE_0 = \frac{\Sigma(X - a)^2}{n - 1}
+\end{equation}
+
+The phylogenetic mean of the data is equivalent to the estimated trait
+value at the root, so we can obtain this using ancestral state
+estimation. See \emph{Chapter 4} and the online materials for more
+information on how this works.
+
+For our example, the phylogenetic mean \(a\) is 6.6 kg. Values of \(X\)
+are 2, 4 and 11 kg, and \(n\) is 3. This means that our \(MSE_0\) is
+23.64:
+
+\begin{equation} 
+  MSE_0 = \frac{(2 - 6.6)^2 + (4 - 6.6)^2 + (11 - 6.6)^2}{3 - 1} = 23.64
+\end{equation}
+
+\(MSE_0\) will vary in magnitude depending on how far the data are from
+the phylogenetic mean. But in a situation where close relatives tend to
+be more similar than distant relatives, i.e.~the phylogeny gives us some
+information about the covariances among species trait values, it will be
+larger than \(MSE\).
+
+\(MSE\) is the mean squared error extracted from a phylogenetic
+generalized least-squares (PGLS) model that uses the phylogenetic
+variance--covariance matrix in its error structure. We cover PGLS models
+in \emph{Chapter 4}, but for now it's enough to know that rather than
+using \(X\) we use \(U\) which is the trait values transformed according
+to the phylogenetic variance--covariance matrix.
+
+\begin{equation} 
+  MSE = \frac{\Sigma(U - a)^2}{n - 1}
+\end{equation}
+
+In a PGLS context, \((U - a)\) are equivalent to the phylogenetic
+residuals from a PGLS model.
+
+Here the values of \(U\) are 7.219543, 4.902944 and 8.633757. \(a\) is
+still 6.6, and \(n\) is still 3, thus
+
+\begin{equation} 
+  MSE = \frac{(7.219543 - 6.6)^2 + (4.902944 - 6.6)^2 + (8.633757 - 6.6)^2}{3 - 1} = 3.7
+\end{equation}
+
+As predicted, \(MSE\) is much smaller than \(MSE_0\) because it includes
+the information about the phylogeny.
+
+We can now calculate observed
+\(\frac{MSE_0}{MSE} = \frac{23.64}{3.7} = 6.389189\)
+
+Finally, to make values of K comparable among different phylogenies, the
+observed \(MSE_0\) to \(MSE\) ratio is standardized by dividing it by
+the expected mean squared error ratio under Brownian motion. It is not
+possible to separately extract expected \(MSE_0\) and expected \(MSE\),
+but we can get the overall value using the following equation:
+
+\begin{equation} 
+  expected \frac{MSE_0}{MSE} = \frac{1}{n-1} * (\Sigma V_{diag} - \frac{n}{\Sigma V^{-1}})
+\end{equation}
+
+\(V\) is the phylogenetic variance covariance matrix, and \(V^{-1}\) is
+the inverse of the phylogenetic variance covariance matrix. For our
+simple example these look like this:
+\end{detail}
+
+\begin{tabular}{l|r|r|r}
+\hline
+  & A & B & C\\
+\hline
+A & 5.5 & 3.5 & 0.0\\
+\hline
+B & 3.5 & 5.5 & 0.0\\
+\hline
+C & 0.0 & 0.0 & 5.5\\
+\hline
+\end{tabular}
+
+\begin{tabular}{l|r|r|r}
+\hline
+  & A & B & C\\
+\hline
+A & 0.3055556 & -0.1944444 & 0.0000000\\
+\hline
+B & -0.1944444 & 0.3055556 & 0.0000000\\
+\hline
+C & 0.0000000 & 0.0000000 & 0.1818182\\
+\hline
+\end{tabular}
+
+\begin{detail}
+In the equation, \(\Sigma V_{diag}\) is the sum of diagonal elements of
+\(V\):
+
+\begin{equation} 
+  \Sigma V_{diag} = 5.5 + 5.5 + 5.5 = 16.5
+  \label{eq:Vdiageg}
+\end{equation}
+
+\(\Sigma V^{-1}\) is the sum of all elements of the inverse matrix of
+\(V\):
+
+\begin{equation} 
+  \Sigma V^{-1} = 0.3055556 + -0.1944444 + -0.1944444 + 0.3055556 + 0.1818182 = 0.4040406
+\end{equation}
+
+Therefore\ldots{}
+
+\begin{equation} 
+  expected \frac{MSE_0}{MSE} = \frac{1}{3-1} * (16.5 - \frac{3}{0.4040406}) = 4.537502
+\end{equation}
+
+So overall our \emph{K} value for this simple example is
+
+\begin{equation} 
+K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}} = \frac{6.389189}{4.537502} = 1.408085
+  \label{eq:Kcalceg}
+\end{equation}
+\end{detail}
+
+\subsection{Phylogenetic signal for categorical
+traits}\label{phylogenetic-signal-for-categorical-traits}
+
+Both \(\lambda\) and \emph{K} are only appropriate for continuous
+traits, but many traits are not continuous, they are categorical. For
+example, habitat, growth form, colour etc. As an example let's think
+about frog habitats. Frogs (Anura) can live in a variety of habitats.
+Some live in trees (Scansorial), some live underground (Fossorial), some
+live in water (Aquatic), some live on dry land (Terrestrial), and some
+live in a mixture of dry and wet habitats (Semi-aquatic)
+
+Remember with phylogenetic signal we are looking for the pattern where
+close relatives are more similar to one another than more distant
+relatives. For these categories, it would be sensible to say we had high
+phylogenetic signal if, for example, all toads (Bufonidae) are
+Semi-aquatic, and all tree frogs (Hylidae) are Scansorial. But what if
+some toads are Semi-aquatic but others are Terrestrial? If we don't know
+how species transition from state to state, it's hard to know what we
+might expect to see as evolutionary distance between species increases.
+We might sensibly assume that species easily evolve from Semi-aquatic to
+Aquatic, or from Subfossorial to Fossorial, but what about changes from
+Aquatic to Fossorial? All of this makes phylogenetic signal for
+categorical variables tricky.
+
+There are a couple of, more or less satisfying, solutions\ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Do we actually need to know the phylogenetic signal for these
+  variables? For our models we are interested in phylogenetic signal in
+  the \emph{residuals} (see \emph{Chapter 4} and below), so maybe we
+  don't care about phylogenetic signal in the variables? Unless there is
+  a real need, don't bother! You could visualise what is going on
+  instead by adding colours to the tips of the phylogeny to represent
+  the different categories. This should give you an idea about whether
+  categories cluster in different clades or not.
+\item
+  We could code our categories numerically then use \(\lambda\) or
+  \emph{K}. This is only suitable if the categories are ordered, and if
+  the difference between each pair of categories can be considered
+  equal. For example, a variable that has low, medium and high values
+  could be coded as low = 1, medium = 2, and high = 3. Again this is not
+  ideal, but will give you an answer. We recommend avoiding this if
+  possible.
+\item
+  We could recode these as binary variables and use \emph{D}
+  \citep{fritz2010selectivity}. For example, creating a new variable
+  called Aquatic, and coding each species as 0 = not aquatic; 1 =
+  aquatic. This is probably the best solution, so we explore \emph{D}
+  briefly below.
+\end{enumerate}
+
+\subsection{\texorpdfstring{Calculating \emph{D} for binary
+traits}{Calculating D for binary traits}}\label{calculating-d-for-binary-traits}
+
+The D statistic \citep{fritz2010selectivity} is calculated as follows:
+
+\begin{equation}
+D = \frac{d_{obs} – mean(d_{BM})}{mean(d_{rand}) - mean(d_{BM})}
+\end{equation}
+
+\(d_{obs}\) is the number of character state changes \(d\) (from 0 to 1
+or 1 to 0) required to obtain the observed distribution of character
+states at the tips of the phylogeny. The value of \(d_{obs}\) will
+depend on the phylogenetic signal in the variable, but also on the size
+of the phylogeny and the relative proportion of 0s and 1s. So that we
+can compare results across datasets and trees, we therefore standardise
+\(d_{obs}\) using two different null models. The first is a
+\emph{phylogenetic randomness} null model where trait values are
+randomly assigned to the tips of the phylogeny and then d is calculated.
+This is repeated 1000 times to produce \(d_{rand}\), the expected
+distribution of \(d\) values if character states are randomly
+distributed among species without respect to phylogeny. The second null
+model is a \emph{Brownian threshold} model where we simulate a
+continuous trait along the phylogeny then define the character state at
+each tip according to some threshold value of the continuous trait. The
+threshold is chosen to ensure that the number of tips with each
+character state remains the same as in the observed data. \(d\) is then
+calculated and the process is repeated 1000 times to get \(d_{BM}\), the
+expected distribution of \(d\) values if character states are
+distributed among species under the expectations of Brownian motion
+model of evolution.
+
+\begin{info}
+Where \emph{D} is 1 this indicates that the distribution of the binary
+trait is random with respect to phylogeny, i.e.~there is no phylogenetic
+signal. This is equivalent to \(\lambda\) or \emph{K} of 0 in continuous
+traits. Conversely, where \emph{D} is 0 this indicates that the binary
+trait is distributed as expected under the Brownian motion model of
+evolution, i.e.~equivalent to \(\lambda\) or \emph{K} of 1. \emph{D} can
+also be less than 0 and greater than 1; where \emph{D} is less than 0 it
+indicates that close relatives are more similar than the Brownian motion
+expectation (equivalent to \emph{K} \(>\) 1) and the trait is clustered
+across the tree, and where \emph{D} is greater than 1 it indicates close
+relatives are even more different than the random expectation, and the
+trait is overdispersed across the tree.
+\end{info}
+
+We can also use \(d_{rand}\) and \(d_{BM}\) to determine the
+significance of \(d_{obs}\) values. If \(d_{obs}\) is \emph{higher} than
+over 950 of the 1000 \(d\) values in \(d_{rand}\) (\(p < 0.05\)), then
+the trait is significantly more overdispersed across the tree than
+expected at random. Alternatively, if \(d_{obs}\) is \emph{lower} than
+over 950 of the 1000 \(d\) values in \(d_{BM}\) (\(p < 0.05\)), then the
+trait is significantly more clustered across the tree than expected
+under Brownian motion.
+
+\subsection{How do we interpret phylogenetic
+signal?}\label{how-do-we-interpret-phylogenetic-signal}
+
+Although people will often refer to `high' or `low' phylogenetic signal,
+what people mean by `high' and `low' varies widely. For example, in
+different studies \(\lambda\) of 0.5 might be called low, intermediate
+or high! This can make interpreting phylogenetic signal problematic.
+Additionally, as we noted at the start of this section, phylogenetic
+signal is a \emph{pattern}. Many people however, use it as a way to
+provide information about evolutionary \emph{process}. Interpreting
+underlying process from pattern should be done with care, and is often
+inappropriate.
+
+\begin{warning}
+Phylogenetic signal is a \emph{pattern}, not a \emph{process}. Always be
+very careful when interpreting underlying process from a pattern.
+Different evolutionary processes can produce similar values for
+phylogenetic signal metrics. Phylogenetic signal is also context
+dependent, and may be influenced by sample size, and error in the tree
+or trait (see details below).
+\end{warning}
+
+Traditionally, `low' phylogenetic signal has been interpreted as
+evolutionary lability or plasticity \citep{blomberg2003testing}, or as
+the result of high rates of trait evolution leading to large differences
+among close relatives. Adaptive radiations are expected to be
+characterized by low phylogenetic signal in ecological niche traits
+because in adaptive radiations close relatives rapidly diversify to fill
+new niches. Similarly groups with lots of convergent evolution in a
+trait are expected to have low phylogenetic signal.
+
+`High' phylogenetic signal is interpreted as genetic drift or neutral
+evolution, because these processes should approximate a Brownian motion
+model of evolution (see section above). `Very high' phylogenetic signal
+is often interpreted as evolutionary or phylogenetic conservatism
+\citep{losos2008phylogenetic}, where close relatives have extremely
+similar trait values. The point at which phylogenetic signal is
+considered high enough to be phylogenetic conservatism varies among
+authors (e.g. \(\lambda\) or \emph{K} \(>\) 1,
+\citep{losos2008phylogenetic}; \(\lambda\) or \emph{K} \(=\) 1,
+\citep{cooper2010phylogenetic}). Explanations for phylogenetic
+conservatism also vary, for example it may occur because species
+survival requires specific trait values (e.g.~traits related to drought
+tolerance in desert plants are likely to be highly conserved), or
+because of other mechanisms such as stabilizing selection, pleiotropy,
+high levels of gene flow, limited genetic variation, low rates of
+evolution, physiological constraints or various biotic interactions
+(e.g.~competition) restricting the evolution of new phenotypes
+\citep[\citet{losos2008phylogenetic}]{blomberg2002tempo}.
+
+Unfortunately, as you may already have gathered, interpreting
+phylogenetic signal is not as simple as low values equals trait lability
+and high values equals trait conservatism. Different evolutionary
+processes can produce similar values for phylogenetic signal metrics,
+for example, \(\lambda\) or \emph{K} of 1 may be the result of neutral
+genetic drift, but the same pattern of traits at the tips of the
+phylogeny can also be achieved by (1) a model in which traits are
+evolving to an optimum which itself evolves according to a Brownian
+process (i.e.~the Ornstein--Uhlenbeck model of evolution; see
+\emph{Chapter 6}); (2) a model where traits are evolving under natural
+selection that randomly fluctuates; or (3) a model where selective
+pressures themselves exhibit strong phylogenetic signal, thus producing
+strong phylogenetic signal in the trait(s) on which these selection
+pressures are acting
+\citep[hansen2008comparative]{revell2008phylogenetic}. There is also no
+relationship between measures of phylogenetic signal and evolutionary
+rate under simple evolutionary models \citep{revell2008phylogenetic}.
+
+Phylogenetic signal is also context (i.e.~trait data and phylogeny)
+dependent. The phylogenetic signal in a trait will not be the same at
+all phylogenetic/taxonomic scales. For example, a trait may have high
+phylogenetic signal at the family level but this pattern may break down
+at higher or lower taxonomic levels. Phylogenetic signal can also be
+influenced by convergent evolution, taxonomic inflation and cryptic
+species \citep{losos2008phylogenetic}. Because of this, using
+\(\lambda\) or \emph{K} (or any other measure of phylogenetic signal) to
+infer evolutionary processes or rates must be performed with
+consideration of the traits involved, the hypotheses to be tested and
+any available external information
+\citep[\citet{kamilar2013phylogenetic}]{cooper2010phylogenetic}.
+
+\subsection{Some additional caveats with estimating and interpreting
+phylogenetic
+signal}\label{some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal}
+
+We will come back to many of these issues in later chapters, but it's
+useful to explore these now in the context of phylogenetic signal. When
+reading this, be aware that these issues will influence all phylogenetic
+comparative methods in some way. In fact many of these issues are
+important for any statistical method you use!
+
+\subsubsection{Sample size.}\label{sample-size.}
+
+Small sample sizes tend to have lower \emph{power} to detect significant
+results. What's power in this context? Statistical power is the
+probability of a hypothesis test finding an effect if there is an effect
+to be found. Large sample sizes, on the other hand, are more likely to
+yield statistically significant p-values. Consequently, it is important
+to think about statistical significance versus biological significance
+when sample sizes are extremely high or low. A non-significant result at
+low sample sizes may not mean the effect is unimportant, conversely a
+significant result at high sample sizes does not mean the effect is
+important. This is really important to think about whatever analysis
+you're doing.
+
+In the context of phylogenetic signal, \emph{K} is able to detect
+significant phylogenetic signal when sample sizes are greater than 20
+\citep{blomberg2003testing}, i.e.~it has good power when there are more
+than 20 tips in the tree. For \(\lambda\), power is only good for sample
+sizes greater than 30 \citep{freckleton2002phylogenetic}. As the number
+of tips in the tree increases, the ability to detect significant levels
+of phylogenetic signal also increases.
+
+For large sample sizes, it may be more useful to focus on the value of
+\(\lambda\) or \emph{K}, rather than placing too much emphasis on the
+significance or non-significance of p-values. For small sample sizes,
+finding \(\lambda\) or \emph{K} that is not significantly different from
+0 should not be taken to mean that there is no phylogenetic signal in
+the variable without close examination of the data
+\citep{kamilar2013phylogenetic}.
+
+\subsubsection{Error in the phylogeny and the
+trait}\label{error-in-the-phylogeny-and-the-trait}
+
+As we explored in \emph{Chapter 2}, phylogenies are just hypotheses
+about how species are related, not the truth. Thus all phylogenies
+contain error. Luckily it seems that missing branch length information
+has negligible effects on estimates for \(\lambda\) or \emph{K}
+\citep{munkemuller2012measure}, however, phylogenetic signal may be
+inflated when using \emph{K} if the tree has polytomies (this is not a
+problem for \(\lambda\)) \citep{molina2017revisiting}.
+
+Trait measurements are also likely to include errors, especially when we
+use species averages taken from a number of sources (see \emph{Chapter
+2}). Simulations have shown that measurement error substantially
+decreases the power to detect significant phylogenetic signal using
+\emph{K}, and also decreases values of \emph{K}
+\citep[\citet{blomberg2003testing}]{hardy2012assessing}.
+
+\begin{warning}
+People will sometimes say that they accounted or ``corrected'' for
+phylogeny (see \emph{Chapter 1} and \emph{Chapter 4}) because of the
+phylogenetic signal in their variables. \textbf{This is incorrect}. We
+account for phylogenetic non-independence because the \textbf{residuals}
+from our models show phylogenetic signal (see
+{[}@revell2010phylogenetic{]}). Note that the \(\lambda\) shown in these
+\emph{phylogenetic generalised least squares} (PGLS) models (see
+\emph{Chapter 4}) is the \(\lambda\) for the model residuals
+\textbf{not} the individual variables.
+\end{warning}
+
+\begin{detail}
+\textbf{Correcting for phylogeny}. It is common to come across the term
+``correcting for phylogeny''. However, some feel that by saying that we
+are ``correcting'' for phylogeny, we are suggesting that phylogeny is a
+bad thing that needs to be fixed. In reality, phylogenetic comparative
+methods take phylogenetic relationships into account, and allow us to
+incorporate information about the way evolution happens into our models,
+thus making them more realistic and more useful. Thus we aren't
+correcting anything. Depending on the company you're in, avoiding the
+phrase ``correcting for phylogeny'' is either seen as pedantic, or
+extremely important. We tend to avoid it, but recognise that for some
+people thinking of phylogenetic non-independence as error to be
+corrected in statistical models is very natural and aids their
+understanding.
+\end{detail}
+
+{[}CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS
+THE BOOK{]} \#\# Summary
+
+\section{Online stuff}\label{online-stuff-1}
+
+\section{MCQs}\label{mcqs-1}
+
+\chapter{Dealing with phylogenetic non-independence: a practical
+introduction.}\label{pseudorep}
+
+\begin{info}
+** RPF is writing this at present **
+\end{info}
+
+This chapter will cover the most common use of phylogenetic comparative
+methods -- dealing with phylogenetic non-independence. The focus here is
+on the key methods that will be used in practice and encountered in the
+literature. Practicality will be an overarching theme, with worked
+examples and links to online resources provided to help with this. We
+will also try to set the methods within wider, more familiar statistical
+frameworks (e.g.~mixed models, other forms of non-independence) so that
+users can take advantage of pre-existing statistical understanding. Note
+that this is designed to aid readers familiar with these techniques; if
+readers are unfamiliar with them it will not substantially reduce their
+understanding.
+
+\begin{itemize}
+\tightlist
+\item
+  What is phylogenetic non-independence?
+\item
+  Phylogenetically independent contrasts (PICs) - the historical context
+  of PCMs.
+\item
+  Phylogenetic generalised least squares (PGLS).
+\item
+  Related methods e.g.~mixed models.
+\item
+  Links to other kinds of non-independence, e.g.~spatial, temporal.\\
+\item
+  Emphasising the relationship to familiar statistics, e.g.~regression,
+  GLM, mixed models, meta-analysis.
+\end{itemize}
+
+\chapter{Testing and evaluating comparative models: is my model good
+enough?}\label{evaluating}
+
+\begin{info}
+\textbf{RPF to write}
+\end{info}
+
+Like all statistical methods, comparative methods have their
+limitations. The focus in this chapter will be on succinctly explaining
+the issue in each case, then using practical examples to show how to
+deal with the problem. This chapter encompasses a set of issues that
+commonly arise in comparative studies and have not been reviewed before
+in the comparative literature.
+
+\begin{itemize}
+\tightlist
+\item
+  Sample size and power analysis.
+\item
+  Diagnostics for models.
+\item
+  Model adequacy.
+\item
+  When shouldn't you use PCMs.
+\item
+  Critical evaluation of other PCMs (i.e.~phylogenetic eigenvector
+  regression).
+\end{itemize}
+
+\chapter{More advanced topics, where next?}\label{advanced}
+
+\begin{info}
+\textbf{RPF to write} ** May be combined with the previous chapter if
+appropriate**
+\end{info}
+
+This chapter will introduce how we can harness a range of existing
+powerful statistical tools to add to our comparative methods toolbox.
+For example, phylogenetic uncertainty can be accounted for using the
+same statistics used for meta-analysis; missing data theory is well
+developed in the statistics literature and many tools exist to help deal
+with this.
+
+\begin{itemize}
+\tightlist
+\item
+  Phylogenetic uncertainty (should you trust the phylogeny): how to
+  quantify?
+\item
+  Intraspecific variation: when to average, when to not.
+\item
+  Missing data: does this matter?
+\item
+  Making predictions.
+\end{itemize}
+
+\chapter{Tempo and mode of evolution from comparative
+data.}\label{tempo-mode}
+
+\begin{info}
+\textbf{NC currently writing}
+\end{info}
+
+The emphasis in the literature is often on using comparative methods to
+``fix'' statistical tests so that p-values are valid (see Chapter 4).
+For the past 15 years, however, the cutting-edge of methods development
+has been on using comparative methods to infer the nature of the
+evolutionary process: evolution is the reason that we see phylogenetic
+signal in comparative data, so it makes sense that we should be able to
+use phylogenies and comparative data to infer the evolutionary process.
+Here we distinguish the mode (i.e.~models of evolution, with discrete
+and continuous data) and tempo (i.e.~rates of evolution) of evolution.
+The issues we will cover include:
+
+\begin{itemize}
+\tightlist
+\item
+  More complex Brownian models.
+\item
+  Non-Brownian trait evolution.
+\item
+  The SLOUCH family of models
+\item
+  Speciational evolution.?
+\item
+  Clade dependent rates.?
+\item
+  Trait dependent rates.?
+\item
+  Species-interactions.?
+\item
+  Tree transformations - delta, kappa
+\item
+  OUwie BM with a trend, multiple rates, OU, OU with many peaks, (read
+  our OU paper again), EB/ACDC
+\end{itemize}
+
+\section{Brownian motion recap}\label{brownian-motion-recap}
+
+Remember Brownian motion? If you haven't already read that section of
+the Foundations chapter, now would be a good time to do so. But if you
+already feel fairly comfortable, let's just remind ourselves of the
+summary we produced in that chapter.
+
+The key features of the Brownian motion model are:
+
+\begin{itemize}
+\tightlist
+\item
+  Traits evolve at random, i.e.~by a random walk.
+\item
+  The direction and magnitude of the trait change at one time interval
+  is independent of the direction and magnitude of the trait changes at
+  other time intervals.
+\item
+  There is no overall drift in the direction of evolution.
+\item
+  Traits evolve at a rate \(\sigma^2\).
+\item
+  The rate of evolution is constant.
+\item
+  Variance in traits increase (linearly) in proportion to time.
+\item
+  The overall variance of the Brownian process is the rate of evolution
+  times the amount of time that has elapsed.
+\end{itemize}
+
+In terms of the model parameters:
+
+\begin{itemize}
+\tightlist
+\item
+  The model can be fully described using just two parameters \(z(0)\)
+  and \(\sigma^2\).
+\item
+  \(z(0)\) is the starting value of the trait we are interested in. This
+  is the mean value for the trait seen in the ancestral population
+  before there have been any changes to the trait.
+\item
+  \(\sigma^2\) is the rate at which evolution (i.e.~trait change)
+  occurs. It is also referred to as the Brownian rate parameter.
+\end{itemize}
+
+Some biological implications of the model are:
+
+\begin{itemize}
+\tightlist
+\item
+  Correlation among trait values is proportional to the extent of shared
+  ancestry for pairs of species, i.e.~close relatives are more similar
+  than more distant relatives.
+\item
+  Different lineages evolve at the same rate.
+\end{itemize}
+
+Hopefully this recap has also reminded you of some of the constraints of
+Brownian motion as a model of trait evolution\ldots{}
+
+\chapter{Looking forward, more advanced comparative methods and where
+next.}\label{summary}
+
+\begin{info}
+\textbf{To write at the end}
+\end{info}
+
+Here we will briefly describe additional methods we do not cover in the
+Primer and give interested readers places to go for more information,
+e.g.~diversification analyses.
+
+\begin{itemize}
+\tightlist
+\item
+  A list of more advanced topics, e.g.~diversification analyses.
+\item
+  An overview of current literature and where to look next
+\end{itemize}
+
+\chapter{Glossary}\label{glossary}
+
+\begin{info}
+\textbf{To write at the end}
+\end{info}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{phylogeny}
+\item
+  \textbf{Root}
+\item
+  \textbf{Branch}
+\item
+  \textbf{Tip}
+\item
+  \textbf{Node}
+\item
+  \textbf{Outgroup}
+\item
+  \textbf{ingroup}
+\item
+  \textbf{Speciation}
+\item
+  \textbf{Extinction}
+\item
+  \textbf{Diversification}
+\item
+  \textbf{Polytomy}
+\item
+  \textbf{sister species}
+\item
+  \textbf{Clade}
+\item
+  \textbf{Monophyly}
+\item
+  \textbf{Paraphyly}
+\item
+  \textbf{Cladogram}
+\item
+  \textbf{Ultrametric}
+\item
+  \textbf{Total evidence trees}
+\end{itemize}
+
+\bibliography{book.bib,packages.bib}
+
+\end{document}

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Foundations 1: introduction to phylogenies and comparative data | Primer on Phylogenetic Comparative Methods for the Biological Sciences</title>
+  <meta name="description" content="PCM Primer" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Foundations 1: introduction to phylogenies and comparative data | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="PCM Primer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Foundations 1: introduction to phylogenies and comparative data | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  
+  <meta name="twitter:description" content="PCM Primer" />
+  
+
+<meta name="author" content="Natalie Cooper, Robert P. Freckleton" />
+
+
+<meta name="date" content="2020-12-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="foundations2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCM Primer</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-are-comparative-methods"><i class="fa fa-check"></i>What are comparative methods?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-did-we-write-this-primer"><i class="fa fa-check"></i>Why did we write this Primer?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-is-this-primer-for"><i class="fa fa-check"></i>Who is this Primer for?</a></li>
+<li><a href="index.html#how-is-this-primer-organised">How is this <em>Primer</em> organised?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#online-companion-material"><i class="fa fa-check"></i>Online companion material</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#boxes"><i class="fa fa-check"></i>Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to the comparative method</a></li>
+<li class="chapter" data-level="2" data-path="foundations.html"><a href="foundations.html"><i class="fa fa-check"></i><b>2</b> Foundations 1: introduction to phylogenies and comparative data</a><ul>
+<li class="chapter" data-level="2.1" data-path="foundations.html"><a href="foundations.html#a-basic-introduction-to-phylogenies"><i class="fa fa-check"></i><b>2.1</b> A basic introduction to phylogenies</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="foundations.html"><a href="foundations.html#reading-and-interpreting-phylogenies"><i class="fa fa-check"></i><b>2.1.1</b> Reading and interpreting phylogenies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="foundations.html"><a href="foundations.html#how-do-we-infer-phylogenies"><i class="fa fa-check"></i><b>2.1.2</b> How do we infer phylogenies?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="foundations.html"><a href="foundations.html#where-do-we-get-phylogenies-from-for-comparative-analyses"><i class="fa fa-check"></i><b>2.1.3</b> Where do we get phylogenies from for comparative analyses?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="foundations.html"><a href="foundations.html#comparative-data"><i class="fa fa-check"></i><b>2.2</b> Comparative data</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="foundations.html"><a href="foundations.html#sources-of-comparative-data-and-data-quality"><i class="fa fa-check"></i><b>2.2.1</b> Sources of comparative data and data quality</a></li>
+<li class="chapter" data-level="2.2.2" data-path="foundations.html"><a href="foundations.html#whats-in-a-name"><i class="fa fa-check"></i><b>2.2.2</b> What’s in a name?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="foundations.html"><a href="foundations.html#summary"><i class="fa fa-check"></i><b>2.3</b> Summary</a></li>
+<li class="chapter" data-level="2.4" data-path="foundations.html"><a href="foundations.html#online-materials"><i class="fa fa-check"></i><b>2.4</b> Online materials</a></li>
+<li class="chapter" data-level="2.5" data-path="foundations.html"><a href="foundations.html#mcqs"><i class="fa fa-check"></i><b>2.5</b> MCQs</a></li>
+<li class="chapter" data-level="2.6" data-path="foundations.html"><a href="foundations.html#boxes-1"><i class="fa fa-check"></i><b>2.6</b> BOXES</a></li>
+<li class="chapter" data-level="2.7" data-path="foundations.html"><a href="foundations.html#bigger-picture-panel"><i class="fa fa-check"></i><b>2.7</b> Bigger picture panel</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="foundations2.html"><a href="foundations2.html"><i class="fa fa-check"></i><b>3</b> Foundations 2: Introduction to models of trait evolution and phylogenetic signal</a><ul>
+<li class="chapter" data-level="3.1" data-path="foundations2.html"><a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution"><i class="fa fa-check"></i><b>3.1</b> Modelling continuous traits - the Brownian Motion model of evolution</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="foundations2.html"><a href="foundations2.html#an-introduction-to-brownian-motion"><i class="fa fa-check"></i><b>3.1.1</b> An introduction to Brownian Motion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="foundations2.html"><a href="foundations2.html#modelling-discrete-traits---simple-models"><i class="fa fa-check"></i><b>3.2</b> Modelling discrete traits - simple models</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="foundations2.html"><a href="foundations2.html#mkequal-rates-model-er"><i class="fa fa-check"></i><b>3.2.1</b> M<em>k</em>/Equal Rates model (ER)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="foundations2.html"><a href="foundations2.html#symmetric-rates-model-sym"><i class="fa fa-check"></i><b>3.2.2</b> Symmetric rates model (SYM)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="foundations2.html"><a href="foundations2.html#all-rates-different-ard-model"><i class="fa fa-check"></i><b>3.2.3</b> All Rates Different (ARD) model</a></li>
+<li class="chapter" data-level="3.2.4" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-ancestral-state-estimation"><i class="fa fa-check"></i><b>3.2.4</b> A quick note about ancestral state estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-variance-covariance-matrices"><i class="fa fa-check"></i><b>3.3</b> Phylogenetic variance-covariance matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal"><i class="fa fa-check"></i><b>3.4</b> Phylogenetic signal</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="foundations2.html"><a href="foundations2.html#what-is-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.1</b> What is phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="foundations2.html"><a href="foundations2.html#how-do-we-estimate-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.2</b> How do we estimate phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.3" data-path="foundations2.html"><a href="foundations2.html#blombergs-k"><i class="fa fa-check"></i><b>3.4.3</b> Blomberg’s <em>K</em></a></li>
+<li class="chapter" data-level="3.4.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal-for-categorical-traits"><i class="fa fa-check"></i><b>3.4.4</b> Phylogenetic signal for categorical traits</a></li>
+<li class="chapter" data-level="3.4.5" data-path="foundations2.html"><a href="foundations2.html#calculating-d-for-binary-traits"><i class="fa fa-check"></i><b>3.4.5</b> Calculating <em>D</em> for binary traits</a></li>
+<li class="chapter" data-level="3.4.6" data-path="foundations2.html"><a href="foundations2.html#how-do-we-interpret-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.6</b> How do we interpret phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.7" data-path="foundations2.html"><a href="foundations2.html#some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.7</b> Some additional caveats with estimating and interpreting phylogenetic signal</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="foundations2.html"><a href="foundations2.html#online-materials-1"><i class="fa fa-check"></i><b>3.5</b> Online materials</a></li>
+<li class="chapter" data-level="3.6" data-path="foundations2.html"><a href="foundations2.html#mcqs-1"><i class="fa fa-check"></i><b>3.6</b> MCQs</a></li>
+<li class="chapter" data-level="3.7" data-path="foundations2.html"><a href="foundations2.html#boxes-2"><i class="fa fa-check"></i><b>3.7</b> BOXES</a></li>
+<li class="chapter" data-level="3.8" data-path="foundations2.html"><a href="foundations2.html#case-study-box"><i class="fa fa-check"></i><b>3.8</b> Case study box</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="foundations2.html"><a href="foundations2.html#is-there-phylogenetic-signal-in-how-rhododendron-species-respond-to-climate-change"><i class="fa fa-check"></i><b>3.8.1</b> Is there phylogenetic signal in how <em>Rhododendron</em> species respond to climate change?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="foundations2.html"><a href="foundations2.html#bigger-picture-box"><i class="fa fa-check"></i><b>3.9</b> Bigger picture box</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="foundations2.html"><a href="foundations2.html#is-the-brownian-motion-model-of-evolution-a-realistic-model-of-evolution"><i class="fa fa-check"></i><b>3.9.1</b> Is the Brownian motion model of evolution a realistic model of evolution?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pseudorep.html"><a href="pseudorep.html"><i class="fa fa-check"></i><b>4</b> Dealing with phylogenetic non-independence: a practical introduction.</a></li>
+<li class="chapter" data-level="5" data-path="evaluating.html"><a href="evaluating.html"><i class="fa fa-check"></i><b>5</b> Testing and evaluating comparative models: is my model good enough?</a></li>
+<li class="chapter" data-level="6" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>6</b> More advanced topics, where next?</a></li>
+<li class="chapter" data-level="7" data-path="tempo-mode.html"><a href="tempo-mode.html"><i class="fa fa-check"></i><b>7</b> Tempo and mode of evolution from comparative data.</a><ul>
+<li class="chapter" data-level="7.1" data-path="tempo-mode.html"><a href="tempo-mode.html#brownian-motion-recap"><i class="fa fa-check"></i><b>7.1</b> Brownian motion recap</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="tempo-mode.html"><a href="tempo-mode.html#why-is-brownian-motion-a-poor-model-of-trait-evolution"><i class="fa fa-check"></i><b>7.1.1</b> Why is Brownian motion a poor model of trait evolution?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="tempo-mode.html"><a href="tempo-mode.html#multi-rate-brownian-motion-models"><i class="fa fa-check"></i><b>7.2</b> Multi-rate Brownian motion models</a></li>
+<li class="chapter" data-level="7.3" data-path="tempo-mode.html"><a href="tempo-mode.html#the-ornstein-uhlenbeck-ou-model"><i class="fa fa-check"></i><b>7.3</b> The Ornstein-Uhlenbeck (OU) model</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="tempo-mode.html"><a href="tempo-mode.html#how-stretchy-is-your-rubber-band-parameter"><i class="fa fa-check"></i><b>7.3.1</b> How stretchy is your “rubber band” parameter?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tempo-mode.html"><a href="tempo-mode.html#single-stationary-peak-ssp-versus-more-complex-ou-models"><i class="fa fa-check"></i><b>7.3.2</b> Single stationary peak (SSP) versus more complex OU models</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tempo-mode.html"><a href="tempo-mode.html#here-be-dragonsthings-to-be-aware-of-when-fitting-ou-models"><i class="fa fa-check"></i><b>7.3.3</b> Here be dragons…things to be aware of when fitting OU models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="tempo-mode.html"><a href="tempo-mode.html#fitting-and-assessing-models-of-evolution"><i class="fa fa-check"></i><b>7.4</b> Fitting and assessing models of evolution</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tempo-mode.html"><a href="tempo-mode.html#model-selection-with-aic"><i class="fa fa-check"></i><b>7.4.1</b> Model selection with AIC</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tempo-mode.html"><a href="tempo-mode.html#model-adequacy-with-models-of-trait-evolution."><i class="fa fa-check"></i><b>7.4.2</b> Model adequacy with models of trait evolution.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tempo-mode.html"><a href="tempo-mode.html#summary-1"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+<li class="chapter" data-level="7.6" data-path="tempo-mode.html"><a href="tempo-mode.html#online-materials-2"><i class="fa fa-check"></i><b>7.6</b> Online materials</a></li>
+<li class="chapter" data-level="7.7" data-path="tempo-mode.html"><a href="tempo-mode.html#mcqs-2"><i class="fa fa-check"></i><b>7.7</b> MCQs</a></li>
+<li class="chapter" data-level="7.8" data-path="tempo-mode.html"><a href="tempo-mode.html#boxes-3"><i class="fa fa-check"></i><b>7.8</b> BOXES</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html"><i class="fa fa-check"></i><b>8</b> A very brief introduction to diversification analyses</a><ul>
+<li class="chapter" data-level="8.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#why-do-we-study-species-diversity"><i class="fa fa-check"></i><b>8.1</b> Why do we study species diversity?</a></li>
+<li class="chapter" data-level="8.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#phylogenetic-tree-imbalance"><i class="fa fa-check"></i><b>8.2</b> Phylogenetic tree imbalance</a></li>
+<li class="chapter" data-level="8.3" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#birth-death-models-and-diversification-rates"><i class="fa fa-check"></i><b>8.3</b> Birth death models and diversification rates</a></li>
+<li class="chapter" data-level="8.4" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#lineage-through-time-plots-and-the-gamma-statistic"><i class="fa fa-check"></i><b>8.4</b> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</a></li>
+<li class="chapter" data-level="8.5" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#diversification-rate-variation-across-branches"><i class="fa fa-check"></i><b>8.5</b> Diversification rate variation across branches</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#bamm"><i class="fa fa-check"></i><b>8.5.1</b> BAMM!</a></li>
+<li class="chapter" data-level="8.5.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-bamm"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions and issues with BAMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#state-dependent-diversification"><i class="fa fa-check"></i><b>8.6</b> State-dependent diversification</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-sse-models"><i class="fa fa-check"></i><b>8.6.1</b> Assumptions and issues with SSE models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#summary-2"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+<li class="chapter" data-level="8.8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#online-materials-3"><i class="fa fa-check"></i><b>8.8</b> Online materials</a></li>
+<li class="chapter" data-level="8.9" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#mcqs-3"><i class="fa fa-check"></i><b>8.9</b> MCQs</a></li>
+<li class="chapter" data-level="8.10" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#boxes-4"><i class="fa fa-check"></i><b>8.10</b> BOXES</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html"><i class="fa fa-check"></i><b>9</b> Where do we go from here?</a><ul>
+<li class="chapter" data-level="9.1" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#factors-to-consider-before-using-a-new-phylogenetic-comparative-method"><i class="fa fa-check"></i><b>9.1</b> Factors to consider before using a new phylogenetic comparative method</a></li>
+<li class="chapter" data-level="9.2" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#how-to-critically-evaluate-a-paper-that-uses-phylogenetic-comparative-methods"><i class="fa fa-check"></i><b>9.2</b> How to critically evaluate a paper that uses phylogenetic comparative methods</a><ul>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#logicinterpretation"><i class="fa fa-check"></i>Logic/interpretation</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#moving-forwards"><i class="fa fa-check"></i>Moving forwards</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>10</b> Glossary</a><ul>
+<li class="chapter" data-level="10.1" data-path="glossary.html"><a href="glossary.html#parameters"><i class="fa fa-check"></i><b>10.1</b> Parameters</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="glossary.html"><a href="glossary.html#models-of-trait-evolution"><i class="fa fa-check"></i><b>10.1.1</b> Models of trait evolution</a></li>
+<li class="chapter" data-level="10.1.2" data-path="glossary.html"><a href="glossary.html#phylogenetic-signal-1"><i class="fa fa-check"></i><b>10.1.2</b> Phylogenetic signal</a></li>
+<li class="chapter" data-level="10.1.3" data-path="glossary.html"><a href="glossary.html#diversification-models"><i class="fa fa-check"></i><b>10.1.3</b> Diversification models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="glossary.html"><a href="glossary.html#terms"><i class="fa fa-check"></i><b>10.2</b> Terms</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Primer on Phylogenetic Comparative Methods for the Biological Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="foundations" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Foundations 1: introduction to phylogenies and comparative data</h1>
+<p>[CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY]</p>
+<p>Before we use comparative methods, we need to understand some basic concepts about phylogenies, comparative data, and the models underlying them. In this chapter we will cover:</p>
+<ul>
+<li>Phylogenies.
+<ul>
+<li>Basic introduction.</li>
+<li>How are phylogenies inferred?</li>
+<li>Reading and using phylogenies.</li>
+</ul></li>
+<li>Comparative data
+<ul>
+<li>basics.</li>
+</ul></li>
+</ul>
+<div id="a-basic-introduction-to-phylogenies" class="section level2">
+<h2><span class="header-section-number">2.1</span> A basic introduction to phylogenies</h2>
+<p>At its simplest, a <em>phylogeny</em> or <em>phylogenetic tree</em> is a branching diagram that shows how species are related. The ancestor of all of the species is found at the <em>root</em> of the tree, with the species at the <em>tips</em>. The rest of the tree is made up of <em>nodes</em> and <em>branches</em>. Nodes show us where <em>speciation</em> events have occurred, i.e. where one species has evolved into two (or more) new species. The branches show the relationships among nodes and tips (Figure <a href="foundations.html#fig:basic-tree">2.1</a>).</p>
+<p>Most phylogenies are <em>rooted</em>, meaning that the ancestral node or <em>root</em> is identified. Phylogenies are rooted using an <em>outgroup</em>. The outgroup can be one or more species, and represents a species or group known to lie outside the group of interest, the <em>ingroup</em>. The root lies on the node that joins the outgroup to the ingroup. In an <em>unrooted</em> tree, no root is defined, meaning while we can look at the relationships among species, we cannot identify ancestral characteristics or how species change through time. This limits their usefulness, especially for comparative methods.</p>
+<p>Some phylogenies only show the <em>topology</em>, i.e. the shape of the relationships among the species. Most phylogenies, however, will have some information about the timing of branching events. In these phylogenies, <em>branch lengths</em> can represent absolute or relative time elapsed, or amounts of character change. Most of the phylogenies we use will be <em>dated phylogenies</em> (or <em>chronograms</em>), where the branch lengths represent divergence times.</p>
+<div class="info">
+<p>
+Note that throughout the <em>Primer</em> for simplicity we generally refer to “species” at the tips of phylogenies. In some cases, the tips will actually be <em>genera</em> or <em>populations</em>, or other operational taxonomic units (<em>OTUs</em>). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:basic-tree"></span>
+<img src="pcm-primer_files/figure-html/basic-tree-1.png" alt="A simple phylogeny demonstrating the key features of phylogenetic trees." width="80%" />
+<p class="caption">
+Figure 2.1: A simple phylogeny demonstrating the key features of phylogenetic trees.
+</p>
+</div>
+<p>To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter <a href="glossary.html#glossary">10</a>) if you forget these at any point.</p>
+<p><strong>Ultrametric</strong>. Most of the phylogenies we will use in this book are <em>ultrametric</em> where all the branches end at the same place - the present-day (Figure <a href="foundations.html#fig:ultrametric">2.2</a>A). If you are using phylogenies containing extinct species then the phylogeny will usually be <em>non-ultrametric</em> (Figure <a href="foundations.html#fig:ultrametric">2.2</a>B). A key thing to remember when using phylogenies, especially ultrametric phylogenies of living species only, is that extinct species are missing. Exactly how large a problem this might be for comparative methods is unclear, because we can never know how many extinct species we are missing due to the patchiness of the fossil record. But it something we need to consider.</p>
+<div class="figure" style="text-align: center"><span id="fig:ultrametric"></span>
+<img src="pcm-primer_files/figure-html/ultrametric-1.png" alt="Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the deer and spider have gone extinct before the present day." width="80%" />
+<p class="caption">
+Figure 2.2: Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the deer and spider have gone extinct before the present day.
+</p>
+</div>
+<p><strong>Polytomies</strong>. The phylogenies we will use in this book will be <em>fully resolved</em>, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a <em>polytomy</em> (Figure <a href="foundations.html#fig:polytomy">2.3</a>B). Polytomies can be hard or soft. <em>Hard polytomies</em> represent the true evolutionary history of a group, often occurring where there has been rapid evolution. <em>Soft polytomies</em>, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point.</p>
+<div class="figure" style="text-align: center"><span id="fig:polytomy"></span>
+<img src="pcm-primer_files/figure-html/polytomy-1.png" alt="A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the deer, the robin and the spider are unresolved." width="80%" />
+<p class="caption">
+Figure 2.3: A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the deer, the robin and the spider are unresolved.
+</p>
+</div>
+<p><strong>Monophyly and clades</strong>. A group of species that all share a common ancestor are referred to as a <em>monophyletic group</em> or a <em>clade</em> (Figure <a href="foundations.html#fig:phyly">2.4</a>). Often, common taxonomic groupings e.g. mammals, are also monophyletic groups. Sometimes, taxonomic groups are nested within other taxonomic groups in a phylogeny, for example birds are nested within reptiles so that although birds are a monophyletic group, reptiles are a <em>paraphyletic group</em> (Figure <a href="foundations.html#fig:paraphyly">2.5</a>). We can also have <em>polyphyletic groups</em> where the group members appear in multiple lineages across a phylogeny, for example the group formed by birds and mammals (Figure <a href="foundations.html#fig:paraphyly">2.5</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:phyly"></span>
+<img src="pcm-primer_files/figure-html/phyly-1.png" alt="Phylogeny highlighting the monophyletic groups or clades. A is a clade made up of the deer and the robin. B is the more inclusive clade including the deer, the robin and the spider." width="80%" />
+<p class="caption">
+Figure 2.4: Phylogeny highlighting the monophyletic groups or clades. A is a clade made up of the deer and the robin. B is the more inclusive clade including the deer, the robin and the spider.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:paraphyly"></span>
+<img src="pcm-primer_files/figure-html/paraphyly-1.png" alt="Phylogeny showing the relationships among birds, mammals and reptiles. Reptiles forms a paraphyletic group because birds is nested within it. The group formed by birds and mammals is a polyphyletic group." width="80%" />
+<p class="caption">
+Figure 2.5: Phylogeny showing the relationships among birds, mammals and reptiles. Reptiles forms a paraphyletic group because birds is nested within it. The group formed by birds and mammals is a polyphyletic group.
+</p>
+</div>
+<div id="reading-and-interpreting-phylogenies" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Reading and interpreting phylogenies</h3>
+<p>We can read/interpret the phylogeny in Figure <a href="foundations.html#fig:reading">2.6</a> as follows. <strong>A</strong> and <strong>B</strong> are each others’ closest relatives. They share a <em>common ancestor</em> at node <strong>X</strong>. We can think of the branch leading to node X as the shared evolutionary history of A and B, while the branches leading from node <strong>X</strong> to <strong>A</strong> and <strong>B</strong> represents their independent evolution after speciation. <strong>A</strong> and <strong>B</strong> form a monophyletic group, or clade. They are also <em>sister species</em>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reading"></span>
+<img src="pcm-primer_files/figure-html/reading-1.png" alt="How to read a phylogenetic tree" width="80%" />
+<p class="caption">
+Figure 2.6: How to read a phylogenetic tree
+</p>
+</div>
+<p>Both <strong>A</strong> and <strong>B</strong> are equally closely related to <strong>C</strong>, as they all share a common ancestor at node <strong>Y</strong>. Note that <strong>B</strong> is <strong>not</strong> more closely related to <strong>C</strong> just because it is next to it at the tips. We could also represent the relationship as shown in the second panel with the branch leading to <strong>B</strong> and <strong>A</strong> rotated.</p>
+<p>Reading phylogenies is not always intuitive. Often this is due to how we represent them graphically. For example, each of the phylogenies in Figure <a href="foundations.html#fig:diff-trees">2.7</a> shows the same relationships among species, but in different ways. By convention we usually present phylogenies with the <strong>root at the left or the base of the phylogeny</strong> (like A, C, E, or G in Figure <a href="foundations.html#fig:diff-trees">2.7</a>).</p>
+<div class="figure" style="text-align: left"><span id="fig:diff-trees"></span>
+<img src="pcm-primer_files/figure-html/diff-trees-1.png" alt="All of these phylogenies show the same species relationships, they are just presented in different ways" width="80%" />
+<p class="caption">
+Figure 2.7: All of these phylogenies show the same species relationships, they are just presented in different ways
+</p>
+</div>
+<p>We can also use circular or fan shaped phylogenies (Figure <a href="foundations.html#fig:fan-tree">2.8</a>) when we have large phylogenies that are hard to fit onto a page.</p>
+<div class="figure" style="text-align: left"><span id="fig:fan-tree"></span>
+<img src="pcm-primer_files/figure-html/fan-tree-1.png" alt="An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree." width="80%" />
+<p class="caption">
+Figure 2.8: An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree.
+</p>
+</div>
+<div class="info">
+<p>
+If you find reading and understanding phylogenies difficult, we highly recommend trying the <em>Tree Thinking challenge</em> at <a href="https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf" class="uri">https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf</a> <span class="citation"><span class="citation">(Baum, Smith, and Donovan <a href="#ref-Baum979" role="doc-biblioref">2005</a>)</span></span>, which should help you get the hang of it.
+</p>
+</div>
+</div>
+<div id="how-do-we-infer-phylogenies" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> How do we infer phylogenies?</h3>
+<p>We could write a whole book just about inferring phylogenies. In fact, there already are several e.g. <span class="citation">(Felsenstein <a href="#ref-felsenstein2004inferring" role="doc-biblioref">2004</a>)</span>, and there will be another Primer focusing on this subject if it’s something you need/want more details on! Here we will just cover the basics, focusing on the information you’ll need to be able to understand the rest of the book.</p>
+<div class="warning">
+<p>
+Note that we <strong>infer</strong> phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of most groups until someone invents a time machine!
+</p>
+</div>
+<p>Most phylogenies are built using molecular or morphological data. Molecular data is usually a gene sequence, with the genes used depending on the question, but can also be amino acid or protein sequences. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting molecular data these days might be as simple as downloading it from GenBank, however, the sequences still need to be aligned which can take more time.</p>
+<p>Morphological data is generally in the form of <em>cladistic matrices</em> where each character or trait of a species is coded as an integer. For example, a tail might be coded as 0 (absent) or 1 (present). Selecting characters for morphological phylogenies can be tricky, as they need to encompass the <em>synapomorphies</em> or unique characters that define clades in the tree, but the characters should also be independent of one another. Careful consideration of how characters should be coded is also needed, and this can vary from study to study.</p>
+<p>Once the data have been collected they can be plugged into one of a number of software packages that will apply one or more phylogenetic inference methods to output the “best” tree or trees. Here we will just mention the three most used inference methods: parsimony, Maximum Likelihood and Bayesian.</p>
+<p>Note that one common feature of all phylogenetic inference methods is that they are computationally intensive. Why? If you have three species, there are three possible ways those three species could be related in a fully-resolved tree. If we have ten species there are <span class="math inline">\(34,459,425\)</span> possible trees! If we have 50 species we have <span class="math inline">\(2.75292 × 10^{76}\)</span> possible trees (if you want to work this out for yourself, the equation used is <span class="math inline">\(N_{trees} = (2n-3)!/2^{n-2} * (n-2)!\)</span>; <span class="citation">(Felsenstein <a href="#ref-felsenstein2004inferring" role="doc-biblioref">2004</a>)</span>). To put that in context, that’s more trees than there are stars in the sky, or grains of sand on Earth. That’s a lot of possible trees… This means that no phylogenetic inference method can afford to search all of <em>tree space</em>, i.e. the universe of all possible trees. Instead, each method applies number of analytical tricks to avoid this, although we will not go into detail about this here.</p>
+<div id="parsimony" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Parsimony</h4>
+<p>Parsimony has fallen out of favour as a method of phylogeny building in recent years, but it is still probably the best, and fastest, way to build phylogenies using morphological data. Parsimony works on the basis that the simplest solution is best, so the algorithms select the tree that accounts for the data with the fewest changes in character states across the tree, and outputs the <em>most parsimonious</em> phylogeny or phylogenies that satisfy that criterion.</p>
+<p>Ideally, this will result in one most parsimonious tree, but often more than one phylogeny meets this criterion. In these cases it is usual to create a <em>consensus tree</em>, an average topology across all the most parsimonious trees. There are several ways to construct these, from <em>strict consensus</em> trees that include only relationships shown in all most parsimonious trees, to <em>majority rule consensus</em> trees that include all relationships found in at least 50% of the most parsimonious trees. Consensus trees are one way that polytomies can be introduced into phylogenies (see Figure <a href="foundations.html#fig:polytomy">2.3</a>).</p>
+</div>
+<div id="maximum-likelihood-ml" class="section level4">
+<h4><span class="header-section-number">2.1.2.2</span> Maximum Likelihood (ML)</h4>
+<p>Maximum Likelihood is a statistical method for estimating the unknown parameters of a model. Likelihood is proportional to the probability of observing the data given the model, <em>P(data|model)</em>. The Maximum Likelihood solution is the one that has the highest Likelihood, i.e. the model that best describes the observed data. We will use Maximum Likelihood throughout this book to estimate parameters in many different types of models.</p>
+<p>In the case of phylogenetic inference, our model is the tree and an evolutionary model describing how the trait data (e.g. gene sequences or morphological characters) change. We therefore use Likelihood to calculate the probability of the observed trait data given the phylogeny and evolutionary model. The method selects the tree that best accounts for the data, i.e. the phylogeny or phylogenies with the Maximum Likelihood.</p>
+<p>Maximum Likelihood is considered to be a better phylogenetic inference method than parsimony for molecular data because we can explicitly define the underlying evolutionary model of DNA evolution, rather than just assuming the smallest number of changes gives the best tree. Remember that DNA is made up of four bases (cytosine [C], guanine [G], adenine [A] and thymine [T]), and these can be split into pyrimidines (C and T) and purines (A and G). Changes from C to T (and vice versa), or A to G (and vice versa), are called <em>transitions</em>, and these appear to be easier and thus occur at a higher rate than <em>transversions</em>, i.e. changes from C to A (and vice versa), or C to G (and vice versa), or T to A (and vice versa), or T to G (and vice versa). The frequencies of bases can also vary. Multiple models of DNA sequence evolution exist that take into account these various factors. The most commonly used are:</p>
+<ul>
+<li><strong>JC</strong>. Jukes Cantor <span class="citation">(Jukes, Cantor, and others <a href="#ref-jukes1969evolution" role="doc-biblioref">1969</a>)</span>. This is the simplest model possible. All base changes are equally likely; base frequencies are equal.</li>
+<li><strong>K2P</strong>. Kimura 2 parameter <span class="citation">(Kimura <a href="#ref-kimura1980simple" role="doc-biblioref">1980</a>)</span>. Transitions and transversions have different substitution rates; base frequencies are equal.</li>
+<li><strong>HKY85</strong>. Hasegawa-Kishino-Yano-85 <span class="citation">(Hasegawa, Kishino, and Yano <a href="#ref-hasegawa1985dating" role="doc-biblioref">1985</a>)</span>. Transitions and transversions have different substitution rates; base frequencies can vary.</li>
+<li><strong>GTR</strong>. General Time Reversible <span class="citation">(Lanave et al. <a href="#ref-lanave1984new" role="doc-biblioref">1984</a>)</span>. All six types of base change (A to C, A to G, A to T, C to G, C to T, and G to T) occur at a different rate, and base frequencies vary.</li>
+</ul>
+<p>Maximum Likelihood approaches can use any of these models, or any other model we might want to define. It is harder to come up with sensible, simple models of evolution for morphological data (although they do exist, for example the <em>Mkv</em> model; <span class="citation">(Lewis <a href="#ref-lewis2001likelihood" role="doc-biblioref">2001</a>)</span>), thus Maximum Likelihood approaches are used less often for morphological datasets.</p>
+<p>Maximum Likelihood approaches are very computationally intensive and can be very slow, certainly much slower than parsimony. Like parsimony, often more than one phylogeny has the same Maximum Likelihood so we construct consensus trees.</p>
+</div>
+<div id="bayesian" class="section level4">
+<h4><span class="header-section-number">2.1.2.3</span> Bayesian</h4>
+<p>Bayesian methods calculate the probability of the model given the data, <em>P(model|data)</em>. In the case of Bayesian phylogenetic inference, we calculate the probability of the observed phylogeny given the trait data and the underlying evolutionary model. These models are the same as those used in Maximum Likelihood tree inference.</p>
+<p>The main difference between Bayesian approaches and both Maximum Likelihood and parsimony, is that we are no longer searching tree space for the “best” tree or trees. Instead, Bayesian methods output a <em>posterior distribution</em> of trees. The Bayesian method searches tree space, saving and outputting all trees it finds at regular intervals. This can result in thousands or even millions of possible trees. The user then specifies how many trees they would like to export as a posterior distribution of trees. This will consist of that number of trees, spread across the variety of trees inferred, but with the frequency of their occurrence being based on their probability. For example, if your Bayesian method produces tree topologies A-Z, but topologies A-D are most common, the posterior distribution of trees will mirror that and will contain more trees with topologies A-D, than those with topologies E-Z.</p>
+<p>The reasoning behind this is that phylogenetic inference is complex, so the probability of there being just one (or a few) trees that best represent the relationships among species is unlikely. With Bayesian approaches it is possible to get a clearer idea of <em>phylogenetic uncertainty</em>, and to actually incorporate this into our understanding of species relationships and downstream comparative analyses.</p>
+<p>Because of the way posterior distributions are constructed, consensus trees are not appropriate for Bayesian phylogenies. Instead, we tend to run each analysis on the whole posterior distribution of trees, resulting in a posterior distribution of results. This can be a little more difficult to visualise, but gives a much better understanding of the effect of phylogenetic uncertainty on comparative analyses.</p>
+</div>
+<div id="branch-support" class="section level4">
+<h4><span class="header-section-number">2.1.2.4</span> Branch support</h4>
+<p>The trees produced in all three of the methods above may contain measures of <em>branch support</em>. These will be shown as numbers above or below the nodes of the phylogeny if you’re looking at the published version. Branch support measures tell you how much support there is for a particular branching pattern. There are many ways we can estimate branch support in a phylogeny <span class="citation">(Felsenstein <a href="#ref-felsenstein2004inferring" role="doc-biblioref">2004</a>)</span>, but the details are not important here. The key thing to remember is that the higher the branch support value, the more confidence we have in that particular branch. Usually these methods give numbers that range from 0-100 (e.g. bootstrap values), but other measures (e.g. posterior probabilities) range from 0-1. It should be obvious whether a 0-100 or 0-1 scale is being used from the range of numbers you can see. It’s also common for people to collapse branches with low support leading to polytomies.</p>
+</div>
+</div>
+<div id="where-do-we-get-phylogenies-from-for-comparative-analyses" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Where do we get phylogenies from for comparative analyses?</h3>
+<p>Above we explained how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in <code>.nex</code> or <code>.tre</code>. In the <strong>online materials</strong> we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy. Some researchers also store phylogenies in online databases such as <a href="https://www.treebase.org/">Treebase</a>.</p>
+<p>How do you choose the “best” phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you to the best phylogeny include:</p>
+<ul>
+<li>Given your knowledge of the group, does the taxonomy they have used and the characters used to infer the tree make sense? This may be particularly important for morphological trees, but it is also important to check they used an appropriate gene if using molecular trees.</li>
+<li>How many of your species are included in the phylogeny? You can add or remove species easily in R (see <strong>online materials</strong>), but if many species are missing it may be better to choose an alternative tree. You can also stitch together multiple trees (see <strong>online materials</strong>).</li>
+<li>What kind of method was used to infer the phylogeny? Does it seem appropriate to you? A phylogeny using molecular data but inferred using parsimony may ring alarm bells…</li>
+<li>Are the branches of the phylogeny well-supported? We didn’t talk about branch support above, but you’ll often see numbers above the nodes on a phylogeny. These tell you how well supported the relationships are, and generally range from 0-100 or 0-1. Good values will be close to 100 or 1 depending on the method used.</li>
+<li>Are there lots of polytomies or is the phylogeny well-resolved? The methods we use in R can cope with polytomies (see <strong>online materials</strong>) but if there are more resolved phylogenies available these will be better.</li>
+<li>Can you access several different versions of the phylogeny, or a posterior distribution of phylogenies to account for phylogenetic uncertainty?</li>
+<li>If you don’t know the group, or phylogenetics, well, don’t be afraid to ask the opinion of someone who knows more than you. They may save you hours of pain and indecision!</li>
+</ul>
+<div class="warning">
+<p>
+Inferring phylogenies is really difficult. We make many assumptions and choices at each stage of the process, from data collection to building consensus trees. As such, phylogenies are unlikely to give us the “true” evolutionary history of a group. Instead phylogenies are <strong>hypotheses</strong> about the way evolution happened. It is crucial to remember this when applying and interpreting comparative methods. Even if your comparative method is perfect in every way, you are still basing your analysis on a hypothesis about how species evolved. If this is incorrect, and it almost certainly is (due to missing extinct species etc.), then your results may not be as robust as you imagine.
+</p>
+</div>
+</div>
+</div>
+<div id="comparative-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Comparative data</h2>
+<div id="sources-of-comparative-data-and-data-quality" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Sources of comparative data and data quality</h3>
+<p>We have talked above about where we get phylogenies from, but what about the comparative data itself? There are a number of options and these will vary depending on your question and the data availability for your study group. Most comparative data will come from a range of sources, including peer-reviewed literature, books, field guides, Internet searches, and curated databases. You can also collect some data from species in the field (e.g. behavioural data) or from museum specimens (e.g. morphological data). The quality of data from these different sources will vary, so care is needed.</p>
+<div class="warning">
+<p>
+The results of comparative analyses are <em>only as good as the data you put into them</em>. Any choices you make in summarising the data need to be recorded and reported in your paper/thesis/report/supplementary material.
+</p>
+</div>
+<div id="peer-reviewed-literature-books-field-guides-and-internet-searches." class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Peer-reviewed literature, books, field guides, and internet searches.</h4>
+<p>The easiest way to collect comparative data is to sit in a library and work through all of the books and journals on your study group looking for the data you need. This is often a robust technique, as you can be fairly confident in the legitimacy of these sources, and for some groups these data have not yet been uploaded to the Internet. It is also possible to do all of this using Internet searches instead, but it is important to check the source of any information provided. Journal articles and professional web-pages are likely to be fine, but other web-pages may not always state the source of their information. You should be prepared to make judgement calls about whether you trust a particular source and want to include it in your dataset.</p>
+<p>Collecting data manually reveals several issues common to most comparative data collection. It’s a sensible idea to decide how you will deal with these issues should they arise.</p>
+<ul>
+<li>Some sources will be more up-to-date than others. Should you record all the data from all sources, or just focus on the most recent?</li>
+<li>Some sources will give actual values whereas others will give approximations. Should you record any data you find, or remove approximations?</li>
+<li>Some data will be based on multiple individuals whereas others will be based on only one.</li>
+<li>Some sources will list values as means, others will list values as maxima or minima. Will you record all of these or choose one?</li>
+</ul>
+<p>There are of course many ways to do this, and as long as you <strong>record the decisions you have made</strong> so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don’t forget to record the <strong>units</strong> for each measurement. Finally it is extremely important to <strong>record the sources</strong> for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection.</p>
+<p>After collecting your data you’ll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results.</p>
+</div>
+<div id="curated-databases" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> Curated databases</h4>
+<p>Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. GBIF. Others are static, often because they were released as part of a published paper e.g. Meiri reptile dataset. These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through books and literature manually. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.</p>
+</div>
+</div>
+<div id="whats-in-a-name" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> What’s in a name?</h3>
+<p>You’re probably familiar with using scientific names rather than common names for species so that all know we are talking about the same thing. My personal favourite example of this is the animal below. I’d call it a woodlouse, most people from the USA would call it a pill bug, but they can be called a huge range of things including slaters, roly-polies, cheesey-bugs, butchy boys, chisel bobs and monkey peas. And that’s just in English. Language is a magnificent thing!</p>
+<div class="figure">
+<img src="images/woodlouse.jpg" alt="" />
+<p class="caption">woodlouse</p>
+</div>
+<p>To avoid confusion we use scientific names, for species a “Genus species” pairing that we call the binomial name. You’ll have these scientific names in both your phylogeny and comparative data, and these names will allow you how to link the two together. Great! There is, however, a problem. Scientific names are not static entities, they change regularly. Sometimes species are <em>split</em> and one species becomes two or more species. One will keep the original name, the others will get new names. Sometimes species are <em>lumped</em> and two or more species will be merged into one species. Other times species names are just changed, either to correct a spelling mistake or for more more esoteric reasons related to the rules of taxonomy (the science of naming species). Genera, families, orders etc. may also undergo name changes.</p>
+<p>There are detailed rules about how and why scientific names change, and what they can changed to, but we don’t need to go into this here, you just need to know that names change. If you’re collecting data from a range of sources, this means the names of the species might not be the same in these different sources. Likewise, the names in your data might not match those in your phylogeny. This can have consequences for the sample size of your analyses, as we can only include species that are found in both the data and the phylogeny in our analyes (though see the <em>online materials</em> for ways to add species to a phylogeny where needed).</p>
+<p>For the most part this is fairly easy to fix. The first step is to decide what taxonomy, or list of accepted names, you want to use for your analyses. We’d recommend asking someone who knows a bit about the group, or seeing what other people have done in published papers. Well-studied groups like <a href="https://www.departments.bucknell.edu/biology/resources/msw3/">mammals</a>, <a href="https://www.worldbirdnames.org/">birds</a>, <a href="https://amphibiansoftheworld.amnh.org/">amphibians</a> and <a href="http://www.reptile-database.org/">reptiles</a> have standardised lists that you can easily access online. For other groups you might have to trawl through PDFs.</p>
+<p>Then correct the taxonomy of the species in your data and phylogeny so they match the species in the taxonomy you’ve chosen to use. If the species name you are using is out of date, you’ll normally find it under the <em>synonyms</em> for a species. Synonyms are other names that are used to refer to the species. The name you want is the accepted name that your species name is the synonym of.</p>
+<div class="detail">
+<h3 id="practicalities-of-comparative-data-collection">
+Practicalities of comparative data collection
+</h3>
+<p>
+How do we practically collect and record comparative data? Let’s imagine we have the following three sources of chameleon body length and life history data.
+</p>
+<p>
+<strong>SOURCE 1: Smith et al. 2020.</strong>
+</p>
+<ul>
+<li>
+<em>Chamaeleo chamaeleon</em>. 245 mm, 80 eggs, sexually dimorphic.
+</li>
+<li>
+<em>Brookesia minima</em>. 33 mm, 2 eggs, sexually dimorphic.
+</li>
+<li>
+<em>Calumma parsonii</em>. 650 mm, 50 eggs, sexually dimorphic.
+</li>
+</ul>
+<p>
+<strong>SOURCE 2: Jones et al. 2020.</strong>
+</p>
+<ul>
+<li>
+<em>Chamaeleo chamaeleon</em>. Up to 250 cm, Up to 100 eggs.
+</li>
+<li>
+<em>Brookesia minima</em>. Up to 34 mm, 2 eggs.
+</li>
+<li>
+<em>Calumma parsonii</em>. Up to 695 mm, Up to 50 eggs.
+</li>
+</ul>
+<p>
+<strong>SOURCE 3: Han et al. 2020.</strong>
+</p>
+<ul>
+<li>
+<em>Chamaeleo chamaeleon</em>. Approximately 10 inches.
+</li>
+<li>
+<em>Brookesia minima</em>. Approximately 1 inch.
+</li>
+<li>
+<em>Calumma parsonii</em>. Approximately 24 inches.
+</li>
+</ul>
+<p>
+We would tend to record these data in a table (probably in Excel or another spreadsheet program) like this.
+</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="left">Measurement</th>
+<th align="left">Value</th>
+<th align="left">Data_Type</th>
+<th align="left">Units</th>
+<th align="left">Data_Quality</th>
+<th align="left">Approximation</th>
+<th align="left">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">length</td>
+<td align="left">245</td>
+<td align="left">mean</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">clutch size</td>
+<td align="left">80</td>
+<td align="left">mean</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">dimorphic</td>
+<td align="left">1</td>
+<td align="left">truefalse</td>
+<td align="left">NA</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Brookesia minima</td>
+<td align="left">length</td>
+<td align="left">33</td>
+<td align="left">mean</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Brookesia minima</td>
+<td align="left">clutch size</td>
+<td align="left">2</td>
+<td align="left">mean</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Brookesia minima</td>
+<td align="left">dimorphic</td>
+<td align="left">1</td>
+<td align="left">truefalse</td>
+<td align="left">NA</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Calumma parsonii</td>
+<td align="left">length</td>
+<td align="left">650</td>
+<td align="left">mean</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Calumma parsonii</td>
+<td align="left">clutch size</td>
+<td align="left">50</td>
+<td align="left">mean</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Calumma parsonii</td>
+<td align="left">dimorphic</td>
+<td align="left">1</td>
+<td align="left">truefalse</td>
+<td align="left">NA</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Jones et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">length</td>
+<td align="left">250</td>
+<td align="left">max</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">clutch size</td>
+<td align="left">100</td>
+<td align="left">max</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Brookesia minima</td>
+<td align="left">length</td>
+<td align="left">34</td>
+<td align="left">max</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Brookesia minima</td>
+<td align="left">clutch size</td>
+<td align="left">2</td>
+<td align="left">max</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Calumma parsonii</td>
+<td align="left">length</td>
+<td align="left">695</td>
+<td align="left">max</td>
+<td align="left">mm</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Calumma parsonii</td>
+<td align="left">clutch size</td>
+<td align="left">50</td>
+<td align="left">max</td>
+<td align="left">eggs</td>
+<td align="left">high</td>
+<td align="left">FALSE</td>
+<td align="left">Smith et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">length</td>
+<td align="left">10</td>
+<td align="left">mean</td>
+<td align="left">inches</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+<td align="left">Han et al 2020</td>
+</tr>
+<tr class="odd">
+<td align="left">Brookesia minima</td>
+<td align="left">length</td>
+<td align="left">1</td>
+<td align="left">mean</td>
+<td align="left">inches</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+<td align="left">Han et al 2020</td>
+</tr>
+<tr class="even">
+<td align="left">Calumma parsonii</td>
+<td align="left">length</td>
+<td align="left">24</td>
+<td align="left">mean</td>
+<td align="left">inches</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+<td align="left">Han et al 2020</td>
+</tr>
+</tbody>
+</table>
+<div class="detail">
+<p>
+We would also record the full reference for each source in a separate table. Recording the data like this makes it easy to enter in Excel, and also makes it easy for us to exclude certain types of data or sources should we decide we don’t trust them enough to include in our analyses.
+</p>
+<p>
+Note that this will not be the ideal format for using the data in R, so you will need to manipulate or <em>wrangle</em> the data first. For most analyses, data need to be in a <em>tidy</em> format, meaning:
+</p>
+<ul>
+<li>
+Each variable must have its own column.
+</li>
+<li>
+Each observation must have its own row.
+</li>
+<li>
+Each value must have its own cell.
+</li>
+</ul>
+<p>
+In R, the <code>tidyr</code> and <code>dplyr</code> packages are useful for doing this. Or you could use something like Excel if you are less confident with R. Make sure to keep the raw data too in case you accidentally introduce any errors, and so that you can repeat the data collection and analyses if needed. See <a href="https://r4ds.had.co.nz/tidy-data.html">https://r4ds.had.co.nz/tidy-data.html</a> for more details on what tidy data is and how to do this.
+</p>
+<p>
+To wrangle this data, we would first convert the units to a standard unit for each measurement. Here we have length in mm and inches, so we would convert the inches into mm. The three altered rows are shown below. Note that converting from inches to mm gives us the false impression of precision, i.e. two values are now 25.4 and 609.6, rather than whole numbers making it look like these were measured accurately rather than approximated. It’s worth looking out for this in other data, especially curated databases where this kind of conversion is typical.
+</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="left">Measurement</th>
+<th align="left">Value</th>
+<th align="left">Data_Type</th>
+<th align="left">Data_Quality</th>
+<th align="left">Approximation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">length</td>
+<td align="left">254.0</td>
+<td align="left">mean</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Brookesia minima</td>
+<td align="left">length</td>
+<td align="left">25.4</td>
+<td align="left">mean</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Calumma parsonii</td>
+<td align="left">length</td>
+<td align="left">609.6</td>
+<td align="left">mean</td>
+<td align="left">medium</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<div class="detail">
+<p>
+Next we might decide to exclude low quality records, and remove any approximations. We might need to do something more complicated if we only have one record for a species and it is an approximation. In this case we are going to keep the approximations, and use all the data. But you should choose what is sensible for your dataset.
+</p>
+<p>
+Finally, we want to summarise the data for each species, to get means/medians and possibly also minima and maxima. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs for example here we might want to extract:
+</p>
+<ul>
+<li>
+<em>Median of mean length values</em>. This will tell us about the overall <strong>mean</strong> value for length across all sources.
+</li>
+<li>
+<em>Maximum of maximum length values</em>. This will tell us about the overall <strong>maximum</strong> value for length across all sources.
+</li>
+<li>
+<em>Median of mean clutch size values</em>. This will tell us about the overall <strong>mean</strong> value for clutch size across all sources.
+</li>
+<li>
+<em>Maximum of maximum clutch size values</em>. This will tell us about the overall <strong>maximum</strong> value for clutch size across all sources.
+</li>
+<li>
+<em>Median dimorphism score</em>. This will tell use whether the species is predominantly considered to be dimorphic or not.
+</li>
+</ul>
+<p>
+Our final dataset for analyses might look something like this.
+</p>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="left">median_length</th>
+<th align="left">max_length</th>
+<th align="left">median_clutchsize</th>
+<th align="left">max_clutchsize</th>
+<th align="left">dimorphic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Brookesia minima</td>
+<td align="left">29.2</td>
+<td align="left">34</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Calumma parsonii</td>
+<td align="left">629.8</td>
+<td align="left">695</td>
+<td align="left">50</td>
+<td align="left">50</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Chamaeleo chamaeleon</td>
+<td align="left">249.5</td>
+<td align="left">250</td>
+<td align="left">80</td>
+<td align="left">100</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="detail">
+<p>
+Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to achieve the above can be found in the <em>online materials</em>.
+</p>
+</div>
+<p>[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">2.3</span> Summary</h2>
+</div>
+<div id="online-materials" class="section level2">
+<h2><span class="header-section-number">2.4</span> Online materials</h2>
+<p>Online materials for this chapter are:</p>
+<ul>
+<li>Data wrangling comparative data in R</li>
+<li>Understanding, plotting and manipulating phylogenies in R</li>
+</ul>
+</div>
+<div id="mcqs" class="section level2">
+<h2><span class="header-section-number">2.5</span> MCQs</h2>
+</div>
+<div id="boxes-1" class="section level2">
+<h2><span class="header-section-number">2.6</span> BOXES</h2>
+</div>
+<div id="bigger-picture-panel" class="section level2">
+<h2><span class="header-section-number">2.7</span> Bigger picture panel</h2>
+<p>Something about data quality? Choosing the best tree? Could one of these bits be repurposed as a box here?</p>
+
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-Baum979">
+<p>Baum, David A., Stacey DeWitt Smith, and Samuel S. S. Donovan. 2005. “The Tree-Thinking Challenge.” <em>Science</em> 310 (5750): 979–80. <a href="https://doi.org/10.1126/science.1117727">https://doi.org/10.1126/science.1117727</a>.</p>
+</div>
+<div id="ref-felsenstein2004inferring">
+<p>Felsenstein, Joseph. 2004. <em>Inferring Phylogenies</em>. Vol. 2. Sinauer associates Sunderland, MA.</p>
+</div>
+<div id="ref-hasegawa1985dating">
+<p>Hasegawa, Masami, Hirohisa Kishino, and Taka-aki Yano. 1985. “Dating of the Human-Ape Splitting by a Molecular Clock of Mitochondrial Dna.” <em>Journal of Molecular Evolution</em> 22 (2): 160–74.</p>
+</div>
+<div id="ref-jukes1969evolution">
+<p>Jukes, Thomas H, Charles R Cantor, and others. 1969. “Evolution of Protein Molecules.” <em>Mammalian Protein Metabolism</em> 3 (21): 132.</p>
+</div>
+<div id="ref-kimura1980simple">
+<p>Kimura, Motoo. 1980. “A Simple Method for Estimating Evolutionary Rates of Base Substitutions Through Comparative Studies of Nucleotide Sequences.” <em>Journal of Molecular Evolution</em> 16 (2): 111–20.</p>
+</div>
+<div id="ref-lanave1984new">
+<p>Lanave, Cecilia, Giuliano Preparata, Cecilia Sacone, and Gabriella Serio. 1984. “A New Method for Calculating Evolutionary Substitution Rates.” <em>Journal of Molecular Evolution</em> 20 (1): 86–93.</p>
+</div>
+<div id="ref-lewis2001likelihood">
+<p>Lewis, Paul O. 2001. “A Likelihood Approach to Estimating Phylogeny from Discrete Morphological Character Data.” <em>Systematic Biology</em> 50 (6): 913–25.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="foundations2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-foundations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["pcm-primer.pdf", "pcm-primer.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

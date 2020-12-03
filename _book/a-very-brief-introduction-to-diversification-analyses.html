@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 A very brief introduction to diversification analyses | Primer on Phylogenetic Comparative Methods for the Biological Sciences</title>
+  <meta name="description" content="PCM Primer" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 A very brief introduction to diversification analyses | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="PCM Primer" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 A very brief introduction to diversification analyses | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  
+  <meta name="twitter:description" content="PCM Primer" />
+  
+
+<meta name="author" content="Natalie Cooper, Robert P. Freckleton" />
+
+
+<meta name="date" content="2020-12-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tempo-mode.html"/>
+<link rel="next" href="where-do-we-go-from-here.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCM Primer</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-are-comparative-methods"><i class="fa fa-check"></i>What are comparative methods?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-did-we-write-this-primer"><i class="fa fa-check"></i>Why did we write this Primer?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-is-this-primer-for"><i class="fa fa-check"></i>Who is this Primer for?</a></li>
+<li><a href="index.html#how-is-this-primer-organised">How is this <em>Primer</em> organised?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#online-companion-material"><i class="fa fa-check"></i>Online companion material</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#boxes"><i class="fa fa-check"></i>Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to the comparative method</a></li>
+<li class="chapter" data-level="2" data-path="foundations.html"><a href="foundations.html"><i class="fa fa-check"></i><b>2</b> Foundations 1: introduction to phylogenies and comparative data</a><ul>
+<li class="chapter" data-level="2.1" data-path="foundations.html"><a href="foundations.html#a-basic-introduction-to-phylogenies"><i class="fa fa-check"></i><b>2.1</b> A basic introduction to phylogenies</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="foundations.html"><a href="foundations.html#reading-and-interpreting-phylogenies"><i class="fa fa-check"></i><b>2.1.1</b> Reading and interpreting phylogenies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="foundations.html"><a href="foundations.html#how-do-we-infer-phylogenies"><i class="fa fa-check"></i><b>2.1.2</b> How do we infer phylogenies?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="foundations.html"><a href="foundations.html#where-do-we-get-phylogenies-from-for-comparative-analyses"><i class="fa fa-check"></i><b>2.1.3</b> Where do we get phylogenies from for comparative analyses?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="foundations.html"><a href="foundations.html#comparative-data"><i class="fa fa-check"></i><b>2.2</b> Comparative data</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="foundations.html"><a href="foundations.html#sources-of-comparative-data-and-data-quality"><i class="fa fa-check"></i><b>2.2.1</b> Sources of comparative data and data quality</a></li>
+<li class="chapter" data-level="2.2.2" data-path="foundations.html"><a href="foundations.html#whats-in-a-name"><i class="fa fa-check"></i><b>2.2.2</b> What’s in a name?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="foundations.html"><a href="foundations.html#summary"><i class="fa fa-check"></i><b>2.3</b> Summary</a></li>
+<li class="chapter" data-level="2.4" data-path="foundations.html"><a href="foundations.html#online-materials"><i class="fa fa-check"></i><b>2.4</b> Online materials</a></li>
+<li class="chapter" data-level="2.5" data-path="foundations.html"><a href="foundations.html#mcqs"><i class="fa fa-check"></i><b>2.5</b> MCQs</a></li>
+<li class="chapter" data-level="2.6" data-path="foundations.html"><a href="foundations.html#boxes-1"><i class="fa fa-check"></i><b>2.6</b> BOXES</a></li>
+<li class="chapter" data-level="2.7" data-path="foundations.html"><a href="foundations.html#bigger-picture-panel"><i class="fa fa-check"></i><b>2.7</b> Bigger picture panel</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="foundations2.html"><a href="foundations2.html"><i class="fa fa-check"></i><b>3</b> Foundations 2: Introduction to models of trait evolution and phylogenetic signal</a><ul>
+<li class="chapter" data-level="3.1" data-path="foundations2.html"><a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution"><i class="fa fa-check"></i><b>3.1</b> Modelling continuous traits - the Brownian Motion model of evolution</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="foundations2.html"><a href="foundations2.html#an-introduction-to-brownian-motion"><i class="fa fa-check"></i><b>3.1.1</b> An introduction to Brownian Motion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="foundations2.html"><a href="foundations2.html#modelling-discrete-traits---simple-models"><i class="fa fa-check"></i><b>3.2</b> Modelling discrete traits - simple models</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="foundations2.html"><a href="foundations2.html#mkequal-rates-model-er"><i class="fa fa-check"></i><b>3.2.1</b> M<em>k</em>/Equal Rates model (ER)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="foundations2.html"><a href="foundations2.html#symmetric-rates-model-sym"><i class="fa fa-check"></i><b>3.2.2</b> Symmetric rates model (SYM)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="foundations2.html"><a href="foundations2.html#all-rates-different-ard-model"><i class="fa fa-check"></i><b>3.2.3</b> All Rates Different (ARD) model</a></li>
+<li class="chapter" data-level="3.2.4" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-ancestral-state-estimation"><i class="fa fa-check"></i><b>3.2.4</b> A quick note about ancestral state estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-variance-covariance-matrices"><i class="fa fa-check"></i><b>3.3</b> Phylogenetic variance-covariance matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal"><i class="fa fa-check"></i><b>3.4</b> Phylogenetic signal</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="foundations2.html"><a href="foundations2.html#what-is-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.1</b> What is phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.2" data-path="foundations2.html"><a href="foundations2.html#how-do-we-estimate-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.2</b> How do we estimate phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.3" data-path="foundations2.html"><a href="foundations2.html#blombergs-k"><i class="fa fa-check"></i><b>3.4.3</b> Blomberg’s <em>K</em></a></li>
+<li class="chapter" data-level="3.4.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal-for-categorical-traits"><i class="fa fa-check"></i><b>3.4.4</b> Phylogenetic signal for categorical traits</a></li>
+<li class="chapter" data-level="3.4.5" data-path="foundations2.html"><a href="foundations2.html#calculating-d-for-binary-traits"><i class="fa fa-check"></i><b>3.4.5</b> Calculating <em>D</em> for binary traits</a></li>
+<li class="chapter" data-level="3.4.6" data-path="foundations2.html"><a href="foundations2.html#how-do-we-interpret-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.6</b> How do we interpret phylogenetic signal?</a></li>
+<li class="chapter" data-level="3.4.7" data-path="foundations2.html"><a href="foundations2.html#some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.7</b> Some additional caveats with estimating and interpreting phylogenetic signal</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="foundations2.html"><a href="foundations2.html#online-materials-1"><i class="fa fa-check"></i><b>3.5</b> Online materials</a></li>
+<li class="chapter" data-level="3.6" data-path="foundations2.html"><a href="foundations2.html#mcqs-1"><i class="fa fa-check"></i><b>3.6</b> MCQs</a></li>
+<li class="chapter" data-level="3.7" data-path="foundations2.html"><a href="foundations2.html#boxes-2"><i class="fa fa-check"></i><b>3.7</b> BOXES</a></li>
+<li class="chapter" data-level="3.8" data-path="foundations2.html"><a href="foundations2.html#case-study-box"><i class="fa fa-check"></i><b>3.8</b> Case study box</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="foundations2.html"><a href="foundations2.html#is-there-phylogenetic-signal-in-how-rhododendron-species-respond-to-climate-change"><i class="fa fa-check"></i><b>3.8.1</b> Is there phylogenetic signal in how <em>Rhododendron</em> species respond to climate change?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="foundations2.html"><a href="foundations2.html#bigger-picture-box"><i class="fa fa-check"></i><b>3.9</b> Bigger picture box</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="foundations2.html"><a href="foundations2.html#is-the-brownian-motion-model-of-evolution-a-realistic-model-of-evolution"><i class="fa fa-check"></i><b>3.9.1</b> Is the Brownian motion model of evolution a realistic model of evolution?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pseudorep.html"><a href="pseudorep.html"><i class="fa fa-check"></i><b>4</b> Dealing with phylogenetic non-independence: a practical introduction.</a></li>
+<li class="chapter" data-level="5" data-path="evaluating.html"><a href="evaluating.html"><i class="fa fa-check"></i><b>5</b> Testing and evaluating comparative models: is my model good enough?</a></li>
+<li class="chapter" data-level="6" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>6</b> More advanced topics, where next?</a></li>
+<li class="chapter" data-level="7" data-path="tempo-mode.html"><a href="tempo-mode.html"><i class="fa fa-check"></i><b>7</b> Tempo and mode of evolution from comparative data.</a><ul>
+<li class="chapter" data-level="7.1" data-path="tempo-mode.html"><a href="tempo-mode.html#brownian-motion-recap"><i class="fa fa-check"></i><b>7.1</b> Brownian motion recap</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="tempo-mode.html"><a href="tempo-mode.html#why-is-brownian-motion-a-poor-model-of-trait-evolution"><i class="fa fa-check"></i><b>7.1.1</b> Why is Brownian motion a poor model of trait evolution?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="tempo-mode.html"><a href="tempo-mode.html#multi-rate-brownian-motion-models"><i class="fa fa-check"></i><b>7.2</b> Multi-rate Brownian motion models</a></li>
+<li class="chapter" data-level="7.3" data-path="tempo-mode.html"><a href="tempo-mode.html#the-ornstein-uhlenbeck-ou-model"><i class="fa fa-check"></i><b>7.3</b> The Ornstein-Uhlenbeck (OU) model</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="tempo-mode.html"><a href="tempo-mode.html#how-stretchy-is-your-rubber-band-parameter"><i class="fa fa-check"></i><b>7.3.1</b> How stretchy is your “rubber band” parameter?</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tempo-mode.html"><a href="tempo-mode.html#single-stationary-peak-ssp-versus-more-complex-ou-models"><i class="fa fa-check"></i><b>7.3.2</b> Single stationary peak (SSP) versus more complex OU models</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tempo-mode.html"><a href="tempo-mode.html#here-be-dragonsthings-to-be-aware-of-when-fitting-ou-models"><i class="fa fa-check"></i><b>7.3.3</b> Here be dragons…things to be aware of when fitting OU models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="tempo-mode.html"><a href="tempo-mode.html#fitting-and-assessing-models-of-evolution"><i class="fa fa-check"></i><b>7.4</b> Fitting and assessing models of evolution</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tempo-mode.html"><a href="tempo-mode.html#model-selection-with-aic"><i class="fa fa-check"></i><b>7.4.1</b> Model selection with AIC</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tempo-mode.html"><a href="tempo-mode.html#model-adequacy-with-models-of-trait-evolution."><i class="fa fa-check"></i><b>7.4.2</b> Model adequacy with models of trait evolution.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tempo-mode.html"><a href="tempo-mode.html#summary-1"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+<li class="chapter" data-level="7.6" data-path="tempo-mode.html"><a href="tempo-mode.html#online-materials-2"><i class="fa fa-check"></i><b>7.6</b> Online materials</a></li>
+<li class="chapter" data-level="7.7" data-path="tempo-mode.html"><a href="tempo-mode.html#mcqs-2"><i class="fa fa-check"></i><b>7.7</b> MCQs</a></li>
+<li class="chapter" data-level="7.8" data-path="tempo-mode.html"><a href="tempo-mode.html#boxes-3"><i class="fa fa-check"></i><b>7.8</b> BOXES</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html"><i class="fa fa-check"></i><b>8</b> A very brief introduction to diversification analyses</a><ul>
+<li class="chapter" data-level="8.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#why-do-we-study-species-diversity"><i class="fa fa-check"></i><b>8.1</b> Why do we study species diversity?</a></li>
+<li class="chapter" data-level="8.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#phylogenetic-tree-imbalance"><i class="fa fa-check"></i><b>8.2</b> Phylogenetic tree imbalance</a></li>
+<li class="chapter" data-level="8.3" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#birth-death-models-and-diversification-rates"><i class="fa fa-check"></i><b>8.3</b> Birth death models and diversification rates</a></li>
+<li class="chapter" data-level="8.4" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#lineage-through-time-plots-and-the-gamma-statistic"><i class="fa fa-check"></i><b>8.4</b> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</a></li>
+<li class="chapter" data-level="8.5" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#diversification-rate-variation-across-branches"><i class="fa fa-check"></i><b>8.5</b> Diversification rate variation across branches</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#bamm"><i class="fa fa-check"></i><b>8.5.1</b> BAMM!</a></li>
+<li class="chapter" data-level="8.5.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-bamm"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions and issues with BAMM</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#state-dependent-diversification"><i class="fa fa-check"></i><b>8.6</b> State-dependent diversification</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-sse-models"><i class="fa fa-check"></i><b>8.6.1</b> Assumptions and issues with SSE models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#summary-2"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+<li class="chapter" data-level="8.8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#online-materials-3"><i class="fa fa-check"></i><b>8.8</b> Online materials</a></li>
+<li class="chapter" data-level="8.9" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#mcqs-3"><i class="fa fa-check"></i><b>8.9</b> MCQs</a></li>
+<li class="chapter" data-level="8.10" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#boxes-4"><i class="fa fa-check"></i><b>8.10</b> BOXES</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html"><i class="fa fa-check"></i><b>9</b> Where do we go from here?</a><ul>
+<li class="chapter" data-level="9.1" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#factors-to-consider-before-using-a-new-phylogenetic-comparative-method"><i class="fa fa-check"></i><b>9.1</b> Factors to consider before using a new phylogenetic comparative method</a></li>
+<li class="chapter" data-level="9.2" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#how-to-critically-evaluate-a-paper-that-uses-phylogenetic-comparative-methods"><i class="fa fa-check"></i><b>9.2</b> How to critically evaluate a paper that uses phylogenetic comparative methods</a><ul>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#logicinterpretation"><i class="fa fa-check"></i>Logic/interpretation</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#moving-forwards"><i class="fa fa-check"></i>Moving forwards</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>10</b> Glossary</a><ul>
+<li class="chapter" data-level="10.1" data-path="glossary.html"><a href="glossary.html#parameters"><i class="fa fa-check"></i><b>10.1</b> Parameters</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="glossary.html"><a href="glossary.html#models-of-trait-evolution"><i class="fa fa-check"></i><b>10.1.1</b> Models of trait evolution</a></li>
+<li class="chapter" data-level="10.1.2" data-path="glossary.html"><a href="glossary.html#phylogenetic-signal-1"><i class="fa fa-check"></i><b>10.1.2</b> Phylogenetic signal</a></li>
+<li class="chapter" data-level="10.1.3" data-path="glossary.html"><a href="glossary.html#diversification-models"><i class="fa fa-check"></i><b>10.1.3</b> Diversification models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="glossary.html"><a href="glossary.html#terms"><i class="fa fa-check"></i><b>10.2</b> Terms</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Primer on Phylogenetic Comparative Methods for the Biological Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-very-brief-introduction-to-diversification-analyses" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> A very brief introduction to diversification analyses</h1>
+<p>In this chapter we are going to very briefly introduce you to diversification analyses. Most introductory phylogenetic comparative methods courses cover this at least briefly, but a lot of the nuance lies beyond the scope of this <em>Primer</em>. If you need to use these kinds of methods for your analyses this should be a starting point for further reading and exploration. An excellent introduction can be found in <span class="citation">Harmon (<a href="#ref-harmonbook" role="doc-biblioref">2018</a>)</span>.</p>
+<div id="why-do-we-study-species-diversity" class="section level2">
+<h2><span class="header-section-number">8.1</span> Why do we study species diversity?</h2>
+<p>Diversity, or species richness, is not evenly spread across the Tree of Life. Some groups have lots of species, while others have very few. A classic example is that of the animal phyla, where one single phylum, Arthropoda, has over 1 million species, while other phyla, for example Micrognathozoa (<a href="https://en.wikipedia.org/wiki/Limnognathia" class="uri">https://en.wikipedia.org/wiki/Limnognathia</a>), have only one or a few species. This uneven diversity is found at all taxonomic levels; whether we look at species in phyla, or genera in families etc., we tend to see the same pattern. Some groups are more diverse than others. This has led to many biologists over the years trying to find out why this pattern exists. Is there something special about groups with lots of species?</p>
+<p>Many questions, predictions and hypotheses exist around uneven diversity. These form some of the most interesting and long lasting ideas in evolutionary biology.</p>
+<div id="hypotheses-and-pictures" class="section level6">
+<h6><span class="header-section-number">8.1.0.0.0.1</span> HYPOTHESES and PICTURES????</h6>
+<p>There are many ways to test these kinds of hypotheses using phylogenetic comparative methods. We outline just a few below.</p>
+</div>
+</div>
+<div id="phylogenetic-tree-imbalance" class="section level2">
+<h2><span class="header-section-number">8.2</span> Phylogenetic tree imbalance</h2>
+<p>Although early investigations of diversity looked at how species were divided taxonomically, it’s clear that species don’t just spontaneously appear. Species evolve from other species, so accounting for phylogenetic relationships is really important. One of the easiest ways to investigate diversity on a phylogeny is to look at phylogenetic imbalance.</p>
+<p><em>Phylogenetic imbalance</em> occurs where sister clades on a phylogeny have different numbers of species. Phylogenies can vary from completely imbalanced (Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:imbalance">8.1</a>) where one sister clade has one species and all the others are in the other clade, to fully balanced, where the two clades have an equal number of species (Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:imbalance">8.1</a>). Some degree of imbalance is expected in real phylogenies, so to measure how imbalanced a tree is we can compare it to a simulated trees with the same number of species.</p>
+<div class="figure" style="text-align: center"><span id="fig:imbalance"></span>
+<img src="pcm-primer_files/figure-html/imbalance-1.png" alt="XXX" width="80%" />
+<p class="caption">
+Figure 8.1: XXX
+</p>
+</div>
+<p>There are a bunch of metrics for measuring phylogenetic imbalance reviewed in <span class="citation">Mooers and Heard (<a href="#ref-mooers1997inferring" role="doc-biblioref">1997</a>)</span> which we won’t expand on here.</p>
+</div>
+<div id="birth-death-models-and-diversification-rates" class="section level2">
+<h2><span class="header-section-number">8.3</span> Birth death models and diversification rates</h2>
+<p>In recent years, rather than looking at tree shape to investigate uneven diversity across clades, it has become more common to look at diversification rates. Diversification is the rate of speciation minus the rate of extinction. Phylogenies give us an idea about both of these processes, though they’re better at showing speciation than extinction in most cases <span class="citation">(Rabosky <a href="#ref-rabosky2010extinction" role="doc-biblioref">2010</a>)</span>.</p>
+<p>The simplest models for looking at this are <em>birth death models</em>, where the rate of speciation (birth; <span class="math inline">\(\lambda\)</span>) and rate of extinction (death, <span class="math inline">\(\mu\)</span>) combine to get a rate of diversification. We won’t talk about these in detail here, but if you’re interested there is an excellent introduction in <span class="citation">Harmon (<a href="#ref-harmonbook" role="doc-biblioref">2018</a>)</span>. If diversification rates are high we tend to find phylogenies with lots of species. We often use a <em>pure-birth model</em>, i.e. a model where there is no extinction, just speciation, as a null model in diversification analyses. Under a pure-birth model we expect an exponential increase in the number of species through time. If there are interesting increases or decreases in diversification rate over time, our results should not fit the pure-birth null.</p>
+<div class="info">
+<p>
+Biologists love to reuse the same Greek letters over and over. <span class="math inline"><span class="math inline">\(\lambda\)</span></span> here is speciation rate. This is <strong>not</strong> the same as Pagel’s <span class="math inline"><span class="math inline">\(\lambda\)</span></span>.
+</p>
+</div>
+</div>
+<div id="lineage-through-time-plots-and-the-gamma-statistic" class="section level2">
+<h2><span class="header-section-number">8.4</span> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</h2>
+<p>One simple way to investigate diversification rates is to look at <em>lineage through time</em> or LTT plots. These show the number of lineages in a phylogeny at a given time on the y-axis, and the time on the x-axis. By convention we log transform the y-axis because under a pure-birth (i.e. no extinction) model the number of lineages should increase exponentially over time, so if we log this it gives us a nice straight line. LTT plots can be used to investigate changes in diversification rate in a phylogeny. If the plotted relationship is a straight line this indicates that lineage diversification is occurring at a constant rate through time (Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:ltt">8.2</a>). Alternatively, an exponential curve suggests that diversification rates are increasing through time (Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:ltt">8.2</a>), and an asymptote suggests diversification rates are decreasing through time (Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:ltt">8.2</a>). Generally we’d compare these curves to simulated LTT plots assuming a pure-birth model to check whether the pattern we are seeing is significantly different to a pure-birth null model.</p>
+<div class="figure" style="text-align: left"><span id="fig:ltt"></span>
+<img src="pcm-primer_files/figure-html/ltt-1.png" alt="YYY" width="80%" />
+<p class="caption">
+Figure 8.2: YYY
+</p>
+</div>
+<p>In Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:ltt">8.2</a> we used simulated data to get our LTT plots, but in reality these plots are rarely quite so straightforward to interpret. Rather than relying on an interpretation of these plots, we can use the <span class="math inline">\(\gamma\)</span> (gamma) statistic <span class="citation">(Pybus and Harvey <a href="#ref-pybus2000testing" role="doc-biblioref">2000</a>)</span>. The <span class="math inline">\(\gamma\)</span> statistic is based on the <em>internode distances</em> in a phylogeny, i.e. the distances between the nodes. If the internal nodes are closer to the root than expected under a pure birth model, then <span class="math inline">\(\gamma &lt; 0\)</span>. Conversely, if the internal nodes are closer to the tips than expected under a pure birth model, then <span class="math inline">\(\gamma &gt; 0\)</span>.</p>
+<p>Similarly to other methods discussed in this section, the observed <span class="math inline">\(\gamma\)</span> statistic is compared to values obtained from pure-birth simulations. Significance is determined by seeing where the observed value falls within the distribution of values from the simulations. Significantly negative values of the <span class="math inline">\(\gamma\)</span> statistic suggest that rates of diversification have decreased through time, whereas the significantly positive values suggest that rates of diversification have increased through time.</p>
+<p>More recently developed methods along a similar theme include TESS <span class="citation">(Höhna, May, and Moore <a href="#ref-hohna2016tess" role="doc-biblioref">2016</a>)</span> and TreePar <span class="citation">(Stadler <a href="#ref-stadler2011mammalian" role="doc-biblioref">2011</a>)</span>.</p>
+</div>
+<div id="diversification-rate-variation-across-branches" class="section level2">
+<h2><span class="header-section-number">8.5</span> Diversification rate variation across branches</h2>
+<p>The methods above look across whole phylogenies, but many of the questions we have revolve around individual groups/clades within phylogenies. These simple models also estimate a single rate of speciation and extinction across a whole tree. Obviously this is a huge oversimplification; we expect lots of changes in rates, or <em>rate heterogeneity</em>, through time, especially across fairly large trees.</p>
+<p>A large variety of methods have been developed that attempt to deal with this problem including MEDUSA <span class="citation">(Alfaro et al. <a href="#ref-alfaro2009nine" role="doc-biblioref">2009</a>)</span>, various methods in BayesTraits <span class="citation">(Pagel and Meade <a href="#ref-pagel2007bayestraits" role="doc-biblioref">2007</a>)</span>, BAMM <span class="citation">(Rabosky <a href="#ref-rabosky2014automatic" role="doc-biblioref">2014</a>)</span>, and RevBayes <span class="citation">(Höhna et al. <a href="#ref-hohna2016revbayes" role="doc-biblioref">2016</a>)</span>. The method you are most likely to come across in the literature is BAMM, so we will briefly outline this here.</p>
+<div id="bamm" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> BAMM!</h3>
+<p>BAMM (Bayesian Analysis of Macroevolutionary Mixtures; <span class="citation">Rabosky (<a href="#ref-rabosky2014automatic" role="doc-biblioref">2014</a>)</span>, <span class="citation">Rabosky et al. (<a href="#ref-rabosky2014bamm" role="doc-biblioref">2014</a>)</span>) identifies discrete shifts in diversification rates at nodes of a tree (it can also investigate trait evolution but we will focus on diversification rates here), i.e places where diversification rates speed up or slow down. BAMM looks for rate shifts across the whole tree, so it can find one or more shifts. It does this using <em>reversible jump Markov Chain Monte (MCMC)</em> methods to automatically explore a vast universe of possible models (reversible jump MCMC is a special kind of MCMC algorithm; see <span class="citation">Rabosky (<a href="#ref-rabosky2014automatic" role="doc-biblioref">2014</a>)</span> for details). It is biased towards simpler models (a common tactic in most evolutionary models, e.g. parsimony) so rarely results in lots of rate shifts.</p>
+<div class="info">
+<p>
+<strong>A quick (very simplified) recap of Bayesian models</strong>. Bayesian methods calculate the probability of the model given the data, <em>P(model|data)</em>, whereas Maximum Likelihood models calculate the probability of the data given the model, <em>P(data|model)</em>.
+</p>
+<p>
+To fit Bayesian models we first assign a set of <em>priors</em>. These are our hypotheses about how we think the world works. They provide a starting point for the MCMC (Markov Chain Monte Carlo) algorithm to search model space.
+</p>
+<p>
+You can think of Bayesian MCMC algorithms as a little robot friend wandering about. The robot starts where the priors suggest it should, then searches the virtual space of all possible model fits to find the parameters for your model (e.g. slopes, intercepts, rates of speciation etc.). The first few (hundreds, thousands, sometimes millions depending on the model!) tend to be poor attempts as the robot is still getting oriented, so we exclude these from the output as <em>burnin</em>. The robot keeps going until it’s tried as many models as you asked for (again this can be thousands to millions depending on the model). Because the robot will find very similar results close together due to the nature of the way it searches, we say that the results are autocorrelated. To deal with this, we only sample the results every so often, rather than sampling all of them. This is called <em>thinning</em> and we tell the robot in advance how we want to thin the sample (usually we ask for an answer every couple of thousand attempts).
+</p>
+<p>
+Finally the robot gives us a distribution of results (often thousands or even millions), that we call the <em>posterior</em> distribution (or just the posterior). The posterior is a sample of all possible results across all of models fitted, <em>in proportion to their posterior probability</em>. This means there will be a range of results in the posterior, but those the robot encountered more often will appear more often, and those it encountered rarely will appear less often.
+</p>
+<p>
+Before we look at the results, we need to check that the robot did a good job and <em>converged</em> on a sensible set of results, rather than wandering all over the place like it did during the burnin phase.
+</p>
+<p>
+This is a simplification of course! But the take home is that to fit Bayesian models we need to consider <em>priors</em>, <em>burnin</em>, <em>number of iterations</em>, <em>thinning</em>, <em>convergence</em> and the <em>posterior</em> (in addition to the model, data and phylogeny!). If you want to learn more about Bayesian statistics we highly recommend <span class="citation"><span class="citation">McElreath (<a href="#ref-mcelreath2020statistical" role="doc-biblioref">2020</a>)</span></span> and the accompanying online course.
+</p>
+</div>
+<p>For each MCMC run (generally over 1 million iterations are run in these analyses), BAMM simulates speciation and extinction along the tree, extracts the number of rate shifts, and then works out the probability of that particular combination of rate shifts occurring. The resulting BAMM outputs are a sample of all possible combinations of rates and rate shifts across all models, in <em>proportion to their posterior probability</em>. The posterior, or distribution of results, from BAMM will thus contain lots of different combinations of rates and rate shifts, but those that occur more often across all the models will appear more often than those that occur rarely.</p>
+<p>In the posterior, we call each of these possible combinations <strong>distinct shift configurations</strong>. These are the most probable configuration of shifts from <strong>one model</strong> from the posterior. For example, one shift configuration may be a speed up at node 34 and a slow down at node 22 on model 10000. Each model in the posterior might have a different distinct shift configuration, or they might all be very similar. It depends on the dataset.</p>
+<p>The number of possible distinct shift configurations is huge. Eventually, if you ran BAMM for for long enough you’d find a shift on every branch in the tree (because the branches can show shifts due to the effect of the prior alone).</p>
+<p>We know that all the distinct shift configurations are <em>possible</em> but they aren’t equally <em>probable</em>. As mentioned above some may be common, and others rare. We need some way of summarising thousands of models, and taking this into account. There are two main approaches.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Overall best shift configuration</strong>
+You can get this by looking at the maximum a posteriori (MAP) probability shift configuration, i.e. the one that appeared the most often in the posterior. This is a bit like using a consensus tree in phylogenetics. However, for most real datasets, the best rate shift configuration is merely one of a large number of possible rate shift configurations that have similar probabilities. So this method is not preferred (also if you’ve bothered to fit over 1 million models it seems pointless to just get one result!). The overall best rate shift configuration for dragonflies (see <em>online materials</em> and <span class="citation">(<span class="citeproc-not-found" data-reference-id="letsch2016not"><strong>???</strong></span>)</span>) is shown in Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:best-shift">8.3</a>.</li>
+</ol>
+<pre><code>## Reading event datafile:  data/dragonflies_event_data.txt 
+##      ...........
+## Read a total of 2501 samples from posterior
+## 
+## Discarded as burnin: GENERATIONS &lt;  2490000
+## Analyzing  2252  samples from posterior
+## 
+## Setting recursive sequence on tree...
+## 
+## Done with recursive sequence</code></pre>
+<pre><code>## Processing event data from data.frame
+## 
+## Discarded as burnin: GENERATIONS &lt;  0
+## Analyzing  1  samples from posterior
+## 
+## Setting recursive sequence on tree...
+## 
+## Done with recursive sequence</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:best-shift"></span>
+<img src="pcm-primer_files/figure-html/best-shift-1.png" alt="Best rate shift configuration from BAMM for dragonflies. Data from Letsch et al. 2016" width="80%" />
+<p class="caption">
+Figure 8.3: Best rate shift configuration from BAMM for dragonflies. Data from Letsch et al. 2016
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Credible shift sets</strong>
+An alternative way to present the results is to summarise all the distinct shift configurations. However, not all distinct shift configurations are going to be significant. Therefore, BAMM splits shifts into “important” ones that help explain the data (core shifts) and ones that are less important (or likely just due to priors) using <em>marginal odds ratios</em>. Specifically, BAMM computes the marginal odds ratio for each rate shift for every branch in the phylogeny. It then excludes all shifts that are unimportant using a pre-determined threshold value (usually 5). The remaining shifts are the credible shift set. These are usually reported in papers using BAMM. The top nine shift configurations from the credible shift set for dragonflies (see <em>online materials</em> and <span class="citation">(<span class="citeproc-not-found" data-reference-id="letsch2016not"><strong>???</strong></span>)</span>) is shown in Figure <a href="a-very-brief-introduction-to-diversification-analyses.html#fig:credible-shift">8.4</a>.</li>
+</ol>
+<pre><code>## Omitted 507 plots</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:credible-shift"></span>
+<img src="pcm-primer_files/figure-html/credible-shift-1.png" alt="Top nine distinct rate shift configurations from the credible shift set from BAMM for dragonflies. Data from Letsch et al. 2016" width="80%" />
+<p class="caption">
+Figure 8.4: Top nine distinct rate shift configurations from the credible shift set from BAMM for dragonflies. Data from Letsch et al. 2016
+</p>
+</div>
+<div class="warning">
+<p>
+<strong>Predictions are better than post-hoc stories.</strong> BAMM is great, but it will often give answers you didn’t expect. It is not a good idea to just run a BAMM analysis and see what happens. Most phylogenies will contain some rate shifts, but if you don’t have hypotheses/predictions about what factors may influence diversification rates in your group then you’ll be stuck trying to invent reasons for these rate shifts after the fact. This is not a great way to do science, and can lead to some very odd conclusions if you’re just fishing around for ideas! Instead, thoroughly research your study group, think about why some species/groups/clades might diversify more rapidly than others, <em>then</em> run BAMM to see if your predictions are supported or not.
+</p>
+</div>
+</div>
+<div id="assumptions-and-issues-with-bamm" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> Assumptions and issues with BAMM</h3>
+<p>Like all methods, BAMM has a number of important assumptions and issues. First, it assumes that evolutionary dynamics are described by <em>discrete</em> shifts at nodes. It could equally be gradual changes along branches. BAMM cannot detect this, but neither can any other method (yet!). However it is worth remembering this when interpreting results, especially on long branches.</p>
+<p>Second, the prior for the number of expected shifts will have a large effect on how many shifts are detected, particularly for long branches as the probability of seeing a shift due to the prior alone increases with branch length. To solve this BAMM estimates marginal odds ratios, scaling each marginal shift probability by the prior and branch length. You can (and should) check for this problem if you use BAMM.</p>
+<p>Third, BAMM (and all other similar methods) gives inaccurate results for phylogenies with incomplete sampling, i.e. where you don’t have every species in your phylogeny.
+This may be quite likely if you’re working with invertebrates or plants or pretty much anything other than mammals and birds! If the sampling is non random, for example, you’re missing a whole clade, the results will be even weirder. It’s best to only use BAMM where you’ve got a fairly complete phylogeny.</p>
+<p>Additionally, there has been a quite a lot of debate about the validity of BAMM since 2016. <span class="citation">Moore et al. (<a href="#ref-moore2016critically" role="doc-biblioref">2016</a>)</span> (and others) proposed several serious issues with BAMM, which basically boil down to two main points:</p>
+<ul>
+<li>BAMM outputs are highly sensitive to the priors used</li>
+<li>The likelihood function BAMM uses is wrong</li>
+</ul>
+<p>Rabosky and colleagues have refuted these criticisms here: [<a href="http://bamm-project.org/prior.html" class="uri">http://bamm-project.org/prior.html</a>], [<a href="http://bamm-project.org/replication.html" class="uri">http://bamm-project.org/replication.html</a>], [<a href="http://bamm-project.org/developertoggle.html" class="uri">http://bamm-project.org/developertoggle.html</a>], [<a href="http://bamm-project.org/mea_likelihood.html" class="uri">http://bamm-project.org/mea_likelihood.html</a>], and [<a href="http://ift.tt/2m7qv6T" class="uri">http://ift.tt/2m7qv6T</a>].</p>
+<p>There’s no consensus just yet so use with caution, and be prepared to defend your choice to grumpy supervisors/collaborators/journal reviewers…</p>
+<div class="warning">
+<p>
+<strong>Think about your sampling!</strong> Diversification rate analyses are powerful, exciting, and fairly easy to implement. As such they’re very tempting methods to use without really thinking carefully about the caveats, of which there are many! Incomplete sampling is a really big issue to consider. Sampling is generally incomplete and uneven; we never have every possible species in our phylogenies. If you only use living species, it is important to consider how extinct diversity may effect your conclusions. If you use living and fossil species you need to remember that for most groups the fossil record is patchy at best. If species are missing at random this is less of a problem, but if you’re missing a big chunk of diversity with a certain trait, or in a certain time period, your results may be meaningless at best, misleading at worst.
+</p>
+</div>
+</div>
+</div>
+<div id="state-dependent-diversification" class="section level2">
+<h2><span class="header-section-number">8.6</span> State-dependent diversification</h2>
+<p>Another thing people commonly consider when thinking about variable rates of diversification, is whether certain characteristics or traits might lead some species/groups/clades to be more successful, and thus have more species, than others <span class="citation">(Nee, May, and Harvey <a href="#ref-nee1994reconstructed" role="doc-biblioref">1994</a>)</span>. There are a series of phylogenetic comparative methods that deal with these kinds of questions known as <em>state (or trait or character) dependent diversification models</em>. The simplest, and most commonly used is the binary state speciation and extinction model, BiSSE <span class="citation">(Maddison, Midford, and Otto <a href="#ref-maddison2007estimating" role="doc-biblioref">2007</a>)</span>. These kinds of analyses have been applied extensively in to a variety of taxa and traits <span class="citation">(e.g. Goldberg et al. <a href="#ref-Goldberg22102010" role="doc-biblioref">2010</a>; Price et al. <a href="#ref-Price01052012" role="doc-biblioref">2012</a>; Givnish et al. <a href="#ref-Givnish201455" role="doc-biblioref">2014</a>)</span>.</p>
+<p>In the BiSSE model we work with binary traits, for example in plants we might use woody or herbaceous growth form as our trait. We assume that species with one state of the trait (e.g. woody) are diversifying at a different rate to species with the other state of the trait (e.g. herbaceous). To fit the model we assume that species with the first state (by convention we have state 0 and state 1 in binary traits models) have one speciation and extinction rate (<span class="math inline">\(\lambda_0\)</span> and <span class="math inline">\(\mu_0\)</span>), and species with the second state have a different speciation and extinction rate (<span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\mu_1\)</span>). The model assumes that trait states do not change at speciation events. The models have two additional parameters, one for the transition rate between state 0 and 1 (<span class="math inline">\(q_{01}\)</span>), and one for the transition rate between state 1 and 0 (<span class="math inline">\(q_{10}\)</span>). We use Maximum Likelihood to estimate the optimal values for each of the six parameters in the model. We can then fit a simpler model, where the speciation and extinction rates are the same for each state (i.e. <span class="math inline">\(\lambda_0 = \lambda_1\)</span> and <span class="math inline">\(\mu_0 = \mu_1\)</span>), and compare the two models using likelihood ratio tests. If the more complex model is a significantly better fit, then we conclude that the binary state does indeed influence diversification rates.</p>
+<p>Often the traits we want to investigate are not binary, but luckily these methods have been extended to allow us to use other sort of traits. Most of these models end with SSE so are often referred to as the SSE family of models. They include:</p>
+<ul>
+<li>MuSSE (multi-state speciation and extinction) <span class="citation">(FitzJohn <a href="#ref-FitzJohn:2012aa" role="doc-biblioref">2012</a>)</span></li>
+<li>QuaSSE (quantitative state speciation and extinction) <span class="citation">(FitzJohn <a href="#ref-fitzjohn2010quantitative" role="doc-biblioref">2010</a>)</span></li>
+<li>GeoSSE (geographic-state speciation and extinction) <span class="citation">(Goldberg, Lancaster, and Ree <a href="#ref-goldberg2011phylogenetic" role="doc-biblioref">2011</a>)</span></li>
+<li>BiSSEness (BiSSE-node enhanced state shift) <span class="citation">(Magnuson-Ford and Otto <a href="#ref-magnuson2012linking" role="doc-biblioref">2012</a>)</span></li>
+</ul>
+<div id="assumptions-and-issues-with-sse-models" class="section level3">
+<h3><span class="header-section-number">8.6.1</span> Assumptions and issues with SSE models</h3>
+<p>In recent years there have been some serious criticisms of the SSE family of models. The first is related to rate heterogeneity. Above, and in <em>Chapter 7</em>, we discussed how rates of evolution are unlikely to be constant across a phylogeny. Instead, speciation and extinction rates are likely to vary across the tree. Unfortunately, while SSE models allow for this variation in rates, they assume it is associated with the trait of interest. If this is not the case, you might conclude that your trait is significantly influencing diversification rates when it isn’t!</p>
+<p><span class="citation">Rabosky and Goldberg (<a href="#ref-rabosky2015model" role="doc-biblioref">2015</a>)</span> showed via simulations that a strong correlation between a trait and diversification rate can be inferred from a single diversification rate shift within a tree, <strong>even if the shift is unrelated to the trait of interest</strong>. Their most striking examples involve using the number of letters in a species name as their trait. Their results showed that this “trait” was significantly associated with speciation rates across a variety of real datasets. Oops! In reality the models were just picking up rate variation across the phylogeny, and incorrectly assuming it was related to the length of the species name because the alternative simpler model assumes that rates of speciation and extinction are constant across the tree. <span class="citation">Rabosky and Goldberg (<a href="#ref-rabosky2015model" role="doc-biblioref">2015</a>)</span> suggest that many examples of trait‐dependent diversification actually reflect this rate heterogeneity in trees and thus are biologically meaningless. This caveat was mentioned in the original BiSSE paper <span class="citation">(Maddison, Midford, and Otto <a href="#ref-maddison2007estimating" role="doc-biblioref">2007</a>)</span> but was seemingly not widely understood. More recent papers using these methods attempt to sidestep this issue by comparing their results to simulated results from random data. Another solution might be to use hidden rate models (see <span class="citation">Beaulieu and O’Meara (<a href="#ref-beaulieu2016detecting" role="doc-biblioref">2016</a>)</span> and [boykoMEE paper not out yet for more details]). If you want to use these methods in your work you should read the most recent literature on this to see what the current consensus is, and be ready to take the results of any older analysis using these methods with a large pinch of salt.</p>
+<p>A final, more general, issue is elegantly described by <span class="citation">Maddison and FitzJohn (<a href="#ref-maddison2015unsolved" role="doc-biblioref">2015</a>)</span>. They highlight that some of these models suffer from an <span class="math inline">\(N = 1\)</span> problem, i.e. if there is only one transition from state 0 to state 1 in the phylogeny, then there is effectively no replication. With lots of species and branches we can fool ourselves into thinking we’ve done some proper science, but in reality we can’t say much about something that only happens once (this has always been an issue when trying to analyse the effects of key innovations). We can solve this to an extent by only investigating traits with multiple independent origins across the phylogeny. But for some traits, there genuinely is only one independent origin, meaning that we cannot use these kinds of models to test these questions.</p>
+<div class="info">
+<p>
+<strong>Species selection</strong>. If you’ve ever taken an introductory evolutionary biology class, you probably remember being taught about natural selection, and about how it operates at the level of the <em>individual</em>. Individuals gain beneficial traits via mutations that mean they are more easily able to survive and reproduce than other individuals. These “fitter” individuals pass on more genes to the next generation, meaning eventually the beneficial mutation disperses across the whole population, and eventually the whole species. But for the kinds of analyses in this chapter we are not talking about individual-level traits, we are talking about <em>species-level traits</em>. For example, an individual cannot have a speciation rate or a population size, but a species can.
+</p>
+<p>
+The process underlying these analyses is known as <em>species selection</em> or species sorting <span class="citation"><span class="citation">(Jablonski <a href="#ref-jablonski2008species" role="doc-biblioref">2008</a>)</span></span>. Species selection can be defined as the process where evolutionary patterns are shaped by differences in speciation and extinction rates. Species selection can result in clades that are more diverse than other clades because of their specific traits such as body size or growth form, though in the strictest sense of the term, species selection only occurs when the traits we are interested in are emergent properties of species, such as geographic range size or population size <span class="citation"><span class="citation">(Jablonski <a href="#ref-jablonski2008species" role="doc-biblioref">2008</a>)</span></span>. Oddly, species selection is slightly frowned upon in some academic circles, perhaps because it is confused with group selection. But few would suggest that no traits ever act only at the species-level. For an interesting read on this area see <span class="citation"><span class="citation">Okasha (<a href="#ref-okasha2006evolution" role="doc-biblioref">2006</a>)</span></span>.
+</p>
+</div>
+<p>[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]</p>
+</div>
+</div>
+<div id="summary-2" class="section level2">
+<h2><span class="header-section-number">8.7</span> Summary</h2>
+</div>
+<div id="online-materials-3" class="section level2">
+<h2><span class="header-section-number">8.8</span> Online materials</h2>
+<p>Online materials for this chapter are:</p>
+<ul>
+<li>Diversification analyses</li>
+</ul>
+</div>
+<div id="mcqs-3" class="section level2">
+<h2><span class="header-section-number">8.9</span> MCQs</h2>
+<hr />
+</div>
+<div id="boxes-4" class="section level2">
+<h2><span class="header-section-number">8.10</span> BOXES</h2>
+
+</div>
+</div>
+<h3>Bibliography</h3>
+<div id="refs" class="references">
+<div id="ref-alfaro2009nine">
+<p>Alfaro, Michael E, Francesco Santini, Chad Brock, Hugo Alamillo, Alex Dornburg, Daniel L Rabosky, Giorgio Carnevale, and Luke J Harmon. 2009. “Nine Exceptional Radiations Plus High Turnover Explain Species Diversity in Jawed Vertebrates.” <em>Proceedings of the National Academy of Sciences</em> 106 (32): 13410–4.</p>
+</div>
+<div id="ref-beaulieu2016detecting">
+<p>Beaulieu, Jeremy M, and Brian C O’Meara. 2016. “Detecting Hidden Diversification Shifts in Models of Trait-Dependent Speciation and Extinction.” <em>Systematic Biology</em> 65 (4): 583–601.</p>
+</div>
+<div id="ref-fitzjohn2010quantitative">
+<p>FitzJohn, Richard G. 2010. “Quantitative Traits and Diversification.” <em>Systematic Biology</em>, syq053.</p>
+</div>
+<div id="ref-FitzJohn:2012aa">
+<p>FitzJohn, Richard G. 2012. “Diversitree: Comparative Phylogenetic Analyses of Diversification in R.” Journal Article. <em>Methods in Ecology and Evolution</em> 3 (6): 1084–92.</p>
+</div>
+<div id="ref-Givnish201455">
+<p>Givnish, Thomas J., Michael H. J. Barfuss, Benjamin Van Ee, Ricarda Riina, Katharina Schulte, Ralf Horres, Philip A. Gonsiska, et al. 2014. “Adaptive Radiation, Correlated and Contingent Evolution, and Net Species Diversification in Bromeliaceae.” <em>Molecular Phylogenetics and Evolution</em> 71: 55–78. <a href="https://doi.org/http://dx.doi.org/10.1016/j.ympev.2013.10.010">https://doi.org/http://dx.doi.org/10.1016/j.ympev.2013.10.010</a>.</p>
+</div>
+<div id="ref-Goldberg22102010">
+<p>Goldberg, Emma E., Joshua R. Kohn, Russell Lande, Kelly A. Robertson, Stephen A. Smith, and Boris Igić. 2010. “Species Selection Maintains Self-Incompatibility.” <em>Science</em> 330 (6003): 493–95. <a href="https://doi.org/10.1126/science.1194513">https://doi.org/10.1126/science.1194513</a>.</p>
+</div>
+<div id="ref-goldberg2011phylogenetic">
+<p>Goldberg, Emma E, Lesley T Lancaster, and Richard H Ree. 2011. “Phylogenetic Inference of Reciprocal Effects Between Geographic Range Evolution and Diversification.” <em>Systematic Biology</em> 60 (4): 451–65.</p>
+</div>
+<div id="ref-harmonbook">
+<p>Harmon, Luke J. 2018. <em>Phylogenetic Comparative Methods: Learning from Trees.</em> CreateSpace Independent Publishing Platform.</p>
+</div>
+<div id="ref-hohna2016revbayes">
+<p>Höhna, Sebastian, Michael J Landis, Tracy A Heath, Bastien Boussau, Nicolas Lartillot, Brian R Moore, John P Huelsenbeck, and Fredrik Ronquist. 2016. “RevBayes: Bayesian Phylogenetic Inference Using Graphical Models and an Interactive Model-Specification Language.” <em>Systematic Biology</em> 65 (4): 726–36.</p>
+</div>
+<div id="ref-hohna2016tess">
+<p>Höhna, Sebastian, Michael R May, and Brian R Moore. 2016. “TESS: An R Package for Efficiently Simulating Phylogenetic Trees and Performing Bayesian Inference of Lineage Diversification Rates.” <em>Bioinformatics</em> 32 (5): 789–91.</p>
+</div>
+<div id="ref-jablonski2008species">
+<p>Jablonski, David. 2008. “Species Selection: Theory and Data.” <em>Annual Review of Ecology, Evolution, and Systematics</em> 39: 501–24.</p>
+</div>
+<div id="ref-maddison2015unsolved">
+<p>Maddison, Wayne P, and Richard G FitzJohn. 2015. “The Unsolved Challenge to Phylogenetic Correlation Tests for Categorical Characters.” <em>Systematic Biology</em> 64: 127–36.</p>
+</div>
+<div id="ref-maddison2007estimating">
+<p>Maddison, Wayne P, Peter E Midford, and Sarah P Otto. 2007. “Estimating a Binary Character’s Effect on Speciation and Extinction.” <em>Systematic Biology</em> 56 (5): 701–10.</p>
+</div>
+<div id="ref-magnuson2012linking">
+<p>Magnuson-Ford, Karen, and Sarah P Otto. 2012. “Linking the Investigations of Character Evolution and Species Diversification.” <em>The American Naturalist</em> 180 (2): 225–45.</p>
+</div>
+<div id="ref-mcelreath2020statistical">
+<p>McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>. CRC press.</p>
+</div>
+<div id="ref-mooers1997inferring">
+<p>Mooers, Arne O, and Stephen B Heard. 1997. “Inferring Evolutionary Process from Phylogenetic Tree Shape.” <em>The Quarterly Review of Biology</em> 72 (1): 31–54.</p>
+</div>
+<div id="ref-moore2016critically">
+<p>Moore, Brian R, Sebastian Höhna, Michael R May, Bruce Rannala, and John P Huelsenbeck. 2016. “Critically Evaluating the Theory and Performance of Bayesian Analysis of Macroevolutionary Mixtures.” <em>Proceedings of the National Academy of Sciences</em> 113 (34): 9569–74.</p>
+</div>
+<div id="ref-nee1994reconstructed">
+<p>Nee, Sean, Robert M May, and Paul H Harvey. 1994. “The Reconstructed Evolutionary Process.” <em>Philosophical Transactions of the Royal Society of London Series B: Biological Sciences</em> 344 (1309): 305–11.</p>
+</div>
+<div id="ref-okasha2006evolution">
+<p>Okasha, Samir. 2006. <em>Evolution and the Levels of Selection</em>. Oxford University Press.</p>
+</div>
+<div id="ref-pagel2007bayestraits">
+<p>Pagel, M, and A Meade. 2007. “BayesTraits.” <em>Computer Program and Documentation Available at Http://Www. Evolution. Rdg. Ac. Uk/BayesTraits. Html</em>, 1216–23.</p>
+</div>
+<div id="ref-Price01052012">
+<p>Price, Samantha A., Samantha S. B. Hopkins, Kathleen K. Smith, and V. Louise Roth. 2012. “Tempo of Trophic Evolution and Its Impact on Mammalian Diversification.” <em>Proceedings of the National Academy of Sciences</em> 109 (18): 7008–12. <a href="https://doi.org/10.1073/pnas.1117133109">https://doi.org/10.1073/pnas.1117133109</a>.</p>
+</div>
+<div id="ref-pybus2000testing">
+<p>Pybus, Oliver G, and Paul H Harvey. 2000. “Testing Macro–Evolutionary Models Using Incomplete Molecular Phylogenies.” <em>Proceedings of the Royal Society of London. Series B: Biological Sciences</em> 267 (1459): 2267–72.</p>
+</div>
+<div id="ref-rabosky2010extinction">
+<p>Rabosky, Daniel L. 2010. “Extinction Rates Should Not Be Estimated from Molecular Phylogenies.” <em>Evolution: International Journal of Organic Evolution</em> 64 (6): 1816–24.</p>
+</div>
+<div id="ref-rabosky2014automatic">
+<p>Rabosky, Daniel L. 2014. “Automatic Detection of Key Innovations, Rate Shifts, and Diversity-Dependence on Phylogenetic Trees.” <em>PloS One</em> 9 (2): e89543.</p>
+</div>
+<div id="ref-rabosky2015model">
+<p>Rabosky, Daniel L, and Emma E Goldberg. 2015. “Model Inadequacy and Mistaken Inferences of Trait-Dependent Speciation.” <em>Systematic Biology</em> 64 (2): 340–55.</p>
+</div>
+<div id="ref-rabosky2014bamm">
+<p>Rabosky, Daniel L, Michael Grundler, Carlos Anderson, Pascal Title, Jeff J Shi, Joseph W Brown, Huateng Huang, and Joanna G Larson. 2014. “BAMM Tools: An R Package for the Analysis of Evolutionary Dynamics on Phylogenetic Trees.” <em>Methods in Ecology and Evolution</em> 5 (7): 701–7.</p>
+</div>
+<div id="ref-stadler2011mammalian">
+<p>Stadler, Tanja. 2011. “Mammalian Phylogeny Reveals Recent Diversification Rate Shifts.” <em>Proceedings of the National Academy of Sciences</em> 108 (15): 6187–92.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tempo-mode.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="where-do-we-go-from-here.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-diversification.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["pcm-primer.pdf", "pcm-primer.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
