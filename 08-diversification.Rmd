@@ -8,6 +8,9 @@ library(tidyverse)
 library(patchwork)
 library(ggimage)
 library(phytools)
+library(BAMMtools)
+library(coda)
+library(viridis)
 
 # Helper functions for plotting
 remove_y <- 
@@ -180,13 +183,33 @@ The number of possible distinct shift configurations is huge. Eventually, if you
 
 We know that all the distinct shift configurations are *possible* but they aren't equally *probable*. As mentioned above some may be common, and others rare. We need some way of summarising thousands of models, and taking this into account. There are two main approaches.
 
-##### ADD FIGURES HEREEEEEE of shifts and colour branches etc.
-
 1. __Overall best shift configuration__
-You can get this by looking at the maximum a posteriori (MAP) probability shift configuration, i.e. the one that appeared the most often in the posterior. This is a bit like using a consensus tree in phylogenetics. However, for most real datasets, the best rate shift configuration is merely one of a large number of possible rate shift configurations that have similar probabilities. So this method is not preferred (also if you've bothered to fit over 1 million models it seems pointless to just get one result!).
+You can get this by looking at the maximum a posteriori (MAP) probability shift configuration, i.e. the one that appeared the most often in the posterior. This is a bit like using a consensus tree in phylogenetics. However, for most real datasets, the best rate shift configuration is merely one of a large number of possible rate shift configurations that have similar probabilities. So this method is not preferred (also if you've bothered to fit over 1 million models it seems pointless to just get one result!). The overall best rate shift configuration for dragonflies (see *online materials* and @letsch2016not) is shown in Figure \@ref(fig:best-shift).
+
+```{r best-shift, echo = FALSE, warning = FALSE, fig.cap='Best rate shift configuration from BAMM for dragonflies. Data from Letsch et al. 2016', out.width='80%', fig.asp=.75, fig.align='center'}
+# Read in the tree 
+tree <- read.tree("data/dragonflies-tree.tre")
+# Read in the edata
+edata <- getEventData(tree, eventdata = "data/dragonflies_event_data.txt", burnin = 0.1)
+# What is the single best rate shift configuration?
+best <- getBestShiftConfiguration(edata, expectedNumberOfShifts = 1)
+# Plot mean phylorate plot for single best rate shift configuration
+plot.bammdata(best, lwd = 2, pal = plasma(4))
+# Add the positions of the rate shifts
+addBAMMshifts(best, cex = 1.5, bg = "white")
+```
 
 2. __Credible shift sets__
-An alternative way to present the results is to summarise all the distinct shift configurations. However, not all distinct shift configurations are going to be significant. Therefore, BAMM splits shifts into "important" ones that help explain the data (core shifts) and ones that are less important (or likely just due to priors) using *marginal odds ratios*. Specifically, BAMM computes the marginal odds ratio for each rate shift for every branch in the phylogeny. It then excludes all shifts that are unimportant using a pre-determined threshold value (usually 5). The remaining shifts are the credible shift set. These are usually reported in papers using BAMM.
+An alternative way to present the results is to summarise all the distinct shift configurations. However, not all distinct shift configurations are going to be significant. Therefore, BAMM splits shifts into "important" ones that help explain the data (core shifts) and ones that are less important (or likely just due to priors) using *marginal odds ratios*. Specifically, BAMM computes the marginal odds ratio for each rate shift for every branch in the phylogeny. It then excludes all shifts that are unimportant using a pre-determined threshold value (usually 5). The remaining shifts are the credible shift set. These are usually reported in papers using BAMM. The top nine shift configurations from the credible shift set for dragonflies (see *online materials* and @letsch2016not) is shown in Figure \@ref(fig:credible-shift).
+
+```{r credible-shift, echo = FALSE, warning = FALSE, fig.cap='Top nine distinct rate shift configurations from the credible shift set from BAMM for dragonflies. Data from Letsch et al. 2016', out.width='80%', fig.asp=.75, fig.align='center'}
+# Extract 95 % credible set of rate shift configurations
+css <- credibleShiftSet(edata, expectedNumberOfShifts = 1, 
+                        threshold = 5, set.limit = 0.95)
+# Plot top 9 from 95 % credible set of rate shift configurations
+plot.credibleshiftset(css)
+par(mfrow = c(1,1))
+```
 
 ```{block, type = "warning"}
 **Predictions are better than post-hoc stories.** BAMM is great, but it will often give answers you didn't expect. It is not a good idea to just run a BAMM analysis and see what happens. Most phylogenies will contain some rate shifts, but if you don't have hypotheses/predictions about what factors may influence diversification rates in your group then you'll be stuck trying to invent reasons for these rate shifts after the fact. This is not a great way to do science, and can lead to some very odd conclusions if you're just fishing around for ideas! Instead, thoroughly research your study group, think about why some species/groups/clades might diversify more rapidly than others, *then* run BAMM to see if your predictions are supported or not.
