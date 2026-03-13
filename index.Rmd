@@ -28,6 +28,20 @@ knitr::write_bib(c(
 
 # Preface {-}
 
+## Citing this guide {-}
+
+If you use this guide it would be great if you could cite it:
+
+> Natalie Cooper and Rob P. Freckleton. 2026. Phylogenetic Comparative Methods: A Practical Introduction. WEBSITE. DOI:
+
+[zenodo badge]
+
+If you use the online practical exercises these should be cited as:
+
+> Natalie Cooper. 2026. Phylogenetic Comparative Methods: Online Practical Exercises. WEBSITE. DOI:
+
+[zenodo badge]
+
 ## A potted history of this project {-}
 
 In 2019 Rob Freckleton asked me if I'd like to co-edit a new series of short books with him for REDACTED publisher. We had grand plans; the books would be on topics of importance in ecology and evolution but with a focus on methods. I sold the idea to others as "the book you wish you could give to each new student who starts work in your group". Books that would introduce the basics, providing a solid starting point for further learning and investigation. As part of this, we agreed to write our own book on Phylogenetic Comparative Methods. 
