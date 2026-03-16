@@ -1,0 +1,31 @@
+# Dealing with phylogenetic non-independence: a practical introduction. {#pgls}
+
+```{block, type = "info"}
+** RPF is writing this at present **
+```
+This chapter will cover the most common use of phylogenetic comparative methods – dealing with phylogenetic non-independence. The focus here is on the key methods that will be used in practice and encountered in the literature. Practicality will be an overarching theme, with worked examples and links to online resources provided to help with this. We will also try to set the methods within wider, more familiar statistical frameworks (e.g. mixed models, other forms of non-independence) so that users can take advantage of pre-existing statistical understanding. Note that this is designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding.
+
+- What is phylogenetic non-independence? 
+- Phylogenetically independent contrasts (PICs) - the historical context of PCMs. 
+- Phylogenetic generalised least squares (PGLS). 
+- Related methods e.g. mixed models. 
+- Links to other kinds of non-independence, e.g. spatial, temporal.  
+- Emphasising the relationship to familiar statistics, e.g. regression, GLM, mixed models, meta-analysis. 
+
+## Chapter summary
+- A phylogeny or phylogenetic tree is a branching diagram that shows how species, or other taxonomic units, are related. 
+- Phylogenies have tips, nodes and branches. It is important to learn how to read and interpret them.
+- Phylogenies can be inferred using molecular or morphological data (or both). Most phylogenies are inferred using parsimony, Maximum Likelihood, or Bayesian approaches. Remember that phylogenies are hypotheses about the way evolution happened. They do not show the “true” evolutionary history of a group.
+- For phylogenetic comparative analyses we usually use existing published phylogenies. It is important to choose your phylogeny carefully, and consider things like branch support and whether all the species you are interested in are present in the phylogeny.
+- Comparative data for phylogenetic comparative analyses comes from a range of sources, including peer-reviewed literature, books, Internet searches, and curated databases. Generally these data will need to be cleaned before being used in any analyses. This may include correcting the taxonomy of species names, converting data to common units, and extracting species average values. Species names in the data and the phylogeny will also need to match.
+- It is important to consider the quality of the phylogeny and comparative data you use for phylogenetic comparative analyses. Your results will only be as good as the data you put into the analyses.
+
+## Further reading
+- Tree Thinking Challenge (Baum, Smith, and Donovan 2005). https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf. This provides a set of very useful practice exercises on reading and interpreting phylogenetic trees. 
+- Primer on Phylogenetics (Wright 2023). For readers who wish to learn more about inferring phylogenies we recommend the excellent Primer.
+- A Guide to Data Management in Ecology and Evolution (British Ecological Society, 2014). https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf. If you are likely to be collating a lot of comparative data we highly recommend learning more about data management. This free booklet is a great starting point.
+
+## Online exercises
+- Data wrangling comparative data in R
+- Understanding, plotting and manipulating phylogenies in R
+- Preparing your tree and data for PCMs in R

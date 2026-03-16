@@ -1,0 +1,62 @@
+# Critical thinking {#critical}
+
+In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in (Dark side paper).
+
+## Factors to consider before using a new phylogenetic comparative method
+The field of phylogenetic comparative methods is diverse and fast moving. New methods are being published all the time, so covering them all in this Primer is impossible. Hopefully by now you have a good grasp on the foundations of the methods, and this should provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature and newest methods. But what kinds of things should you consider before using a new phylogenetic comparative method on your data?
+
+Many new phylogenetic comparative methods come with code or an R package or similar that allows you to jump straight into using it. But this is not a great idea, unless playing with the code is the first step in a larger exploration of the method. At a minimum, you should read the original papers describing a method, plus any recent updates, and look carefully for assumptions and caveats that may affect your analyses based on the unique properties of your data and tree.
+
+A good way to check a method is to simulate some data (i.e. invent some data) and see whether the results are what you expected. This can expose hidden assumptions or biases that have not been explored in the papers accompanying the method, or reveal a lack of understanding of the mechanics of the method being used.
+It is also important to determine whether the method will work on your particular dataset and tree. One key consideration is how many species are required for reasonable power. Some methods require more species than are available. Other considerations include whether the method is influenced by polytomies and whether the method is applicable to both ultrametric and non‐ultrametric trees.
+
+It is also important to remember the “Jurassic Park” caveat and avoid retrofitting questions to the newest methods; instead, think carefully about the question, whether the method is appropriate for the question.
+
+## How to critically evaluate a paper that uses phylogenetic comparative methods
+You should never take results from PCMs (or any other statistical analysis) at face value. As the Manic Street Preachers (1996) and our colleague Gavin Thomas puts it, ‘Cynicism is the only thing that keeps me sane’.
+
+When reading any paper it's worth having a check list in your head of things to look out for. Below we've shared our version of this. Although it's aimed at papers using PCMs, most of the questions can be used with any paper.
+
+It's worth remembering that not everything you see in a paper is an author's fault or choice. In some cases, editors and reviewers may suggest using PCMs where they are not appropriate. Glamour journals like Nature and Science will also often encourage authors to oversell their results. And of course we all make mistakes or change our minds from time to time. So remember to be gentle and kind to people at the same time as being brutal and cynical with papers!
+
+### Logic/interpretation {-}
+
+* What questions does the paper address?
+* Do the analyses/data actually answer the questions the paper is meant to be asking, or do they answer a different question?
+* What are the conclusions? Do the analyses/data support the conclusions?
+* Is importance of the conclusions exaggerated?
+* Is the logic of the paper clear and justifiable, given the assumptions?
+* Are there any flaws in the logic of the paper?
+* Do you agree with how the results have been interpretted?
+
+### Data {-}
+
+* What's the sample size? Is it large enough to support the conclusions of the paper?
+* How many species are missing from the analysis? Does this worry you? 
+    * Is two species missing from a group of 50 species a problem?
+    * Can 50 species be used to make conclusions about a group containing thousands of species? 
+* Are species missing in a way which might influence the results?
+    * Would you be concerned if all species from one clade were missing?
+    * Are the species present well distributed across the phylogeny?
+* Are fossil/extinct species considered? Would this influence the results/conclusions?
+* How were the data collected? Could this bias the results at all?
+* Are there biases in the age, sex, geographic locality etc. of species included?
+* Do you think the data quality is high enough?
+* Would other data have been better to answer this question?
+
+### Methods {-}
+
+* Check the text carefully for caveats. These may appear in the introduction, methods, results or discussion. Were these dealt with or just mentioned?
+* What are the assumptions/limitations of the method being used? These may be mentioned in the text, or you may need to dig into the literature to find them.
+* Are the assumptions made reasonable? For example, a big assumption underlying all phylogenetic methods is that the phylogeny is correct. Do you agree?
+* Be aware that some older methods may have been superseded by better methods.
+* Be aware that sometimes there is debate in a community about the best method to use (e.g. the BAMM debate).
+
+### Moving forwards {-}
+
+* What are the good things in the paper? Make sure that you don't ignore the positive in your hunt for the negative!
+* Do these ideas have other applications or extensions that the authors might not have thought of? 
+* How would you fix the flaws in this paper? 
+
+## Chapter summary
+Hopefully this chapter (and *Primer*) has given you a starting point for dealing with papers using PCMs and for choosing which PCMs to use with your own data. Good luck and happy PCM-ing!

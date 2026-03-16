@@ -1,4 +1,4 @@
-# Foundations 2: Introduction to models of trait evolution and phylogenetic signal {#foundations2}
+# Introduction to models of trait evolution {#foundations2}
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Load libraries (hidden)
 library(ggtree)
@@ -21,23 +21,11 @@ remove_y <-
         axis.ticks.y = element_blank())
 ```
 
-[CHAPTER OPENING STYLE STILL TBC AND WILL BE CONSISTENT ACROSS CHAPTERS. CURRENT CONTENT IS PLACEHOLDER ONLY]
-
-The previous chapter introduced you to the basic building blocks of comparative methods; phylogenies and trait data. We are now going to shift gears and think about some of the theory and models underpinning comparative methods.
-
-At the very simplest level, comparative methods are interested in how traits are distributed across trees, and how these traits change through time. Are there clusters in the tree where traits of the species at the tips are similar or identical? Or are traits spread evenly across the tree? How quickly do trait values change through time? etc.
-
-The models we use to describe how traits change will vary depending on whether our traits are *continuous* (e.g. body size, leaf area) or *discrete* (e.g. presence or absence of a tail, growth form, number of legs). 
-
-This chapter will introduce you to the basic ways we work with traits and trees. It will cover:
-
-- Modelling continuous traits.
-    - the Brownian Motion (BM) model of evolution. 
-- Modelling discrete traits.
-    - ARD, ER, SYM
-- Phylogenetic signal
+To apply phylogenetic comparative methods with confidence we need to understand the theory and models underpinning our methods. At the very simplest level, comparative methods are interested in how traits are distributed across phylogenies, and how these traits change through time. The models we use to describe how traits change will vary depending on whether our traits are *continuous* (e.g. body size, leaf area) or *discrete* (e.g. presence or absence of a tail, growth form, number of legs). This chapter introduces the *Brownian motion model of evolution*, which is commonly used to model continuous traits. It also describes simple models of discrete trait evolution, such as the *equal rates* and *all rates different models*. Finally we look at *phylogenetic variance covariance matrices*, a useful tool for future chapters.
 
 ## Modelling continuous traits - the Brownian Motion model of evolution
+
+In section \@ref(section:infer) we explained how most types of phylogenetic inference rely on models of molecular evolution: the model allows us to estimate branch lengths by reconstructing the evolution of molecular changes. Similarly, comparative methods use models to analyse trait variation by expliciting including our understanding of evolution. We know that trait evolution happens through the accumulation of lots of small changes. As time progresses, these changes add up and the outcome is that closely related species tend to be similar, because fewer changes have happened, whereas distantly related species are more different because lots of change has accumulated (see Chapter \@ref(intro). Models of trait evolution are mathematical descriptions of evolutionary change that allow us to measure how fast traits evolve and, when we have several traits, how they coevolve. 
 
 For continuous traits, the most commonly used model of trait evolution is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!
 
@@ -47,7 +35,9 @@ The Brownian model or BM model [@cavalli1967; @felsenstein1973maximum] is assume
 
 $z(0)$ is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait. $\sigma^2$ is the rate at which evolution (i.e. trait change) occurs. Some of you might already be wondering why we use $\sigma^2$ here, as $\sigma^2$ is usually used to signify *variance*. And you'd be right, it is a variance! But how and why?
 
-Here's the explanation. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
+The Brownian model is a simple model of trait evolution and is what is known as a phenomenological model: it describes the evolution of continuous quantitative traits in an empirical way; it does not explicitly include the drivers or mechanisms of evolution, but it mathematically models the outcome in a simple way. The model assumes that traits are changing all of the time because of selective forces that drive changes. However the model assumes that overall selection is neutral in the sense that positive and negative changes in the trait are equally as likely. A common misconception is that this neutrality implies that evolution is not happening: quite the reverse! As you will see below, traits can change a lot when evolving in this way, it is just that there is no overall direction to the change. 
+
+Here's the explanation of how it works. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
 
 ```{r normal, echo = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
 base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
@@ -60,19 +50,19 @@ base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
 norm_0.1 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.3162278), color = "gold" )+
-  labs(tag = "A", size = 2) +
+  labs(tag = "A") +
   annotate("text", label = "variance = 0.1", x = 2.5, y = 1.15, size = 5)
 
 norm_0.25 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.5), colour = "cornflowerblue")+
-  labs(tag = "B", size = 2) +
+  labs(tag = "B") +
   annotate("text", label = "variance = 0.25", x = 2.5, y = 0.75, size = 5)
 
 norm_1 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1), colour = "#fe4a49")+
-  labs(tag = "C", size = 2) +
+  labs(tag = "C") +
   annotate("text", label = "variance = 1", x = 2.5, y = 0.35, size = 5)
 
 (norm_0.1 / norm_0.25 / norm_1)
@@ -185,7 +175,7 @@ base <-
 p1 <-
   base +
   geom_line(data = sim_0.25, alpha = 0.25) +
-  labs(tag = "A", size = 2)
+  labs(tag = "A")
 
 
 # Extract variances
@@ -203,7 +193,7 @@ var_plot <-
   scale_x_continuous(breaks = c(0,25,50,75,100), limits = c(0, 100)) +
   expand_limits(x = 0) +
   geom_line() +
-  labs(tag = "B", size = 2)
+  labs(tag = "B")
 
 p1 / var_plot
 ```
@@ -231,19 +221,19 @@ plot_1 <-
 norm_0.1 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.3162278), color = "gold" )+
-  labs(tag = "A", size = 2) +
+  labs(tag = "A") +
   annotate("text", label = "var = 0.1", x = 2, y = 1.15, size = 5)
 
 norm_0.25 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 0.5), colour = "cornflowerblue")+
-  labs(tag = "B", size = 2) +
+  labs(tag = "B") +
   annotate("text", label = "var = 0.25", x = 2, y = 0.75, size = 5)
 
 norm_1 <- 
   base_norm +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1), colour = "#fe4a49")+
-  labs(tag = "C", size = 2) +
+  labs(tag = "C") +
   annotate("text", label = "var = 1", x = 2, y = 0.35, size = 5)
 
 (norm_0.1 + plot_0.1)/ 
@@ -283,12 +273,12 @@ hist_1 <-
   geom_histogram(bins = 12, fill = "#fe4a49", alpha = 0.8, colour = "black") +
   coord_flip()
 
-(plot_0.1 + ylab("") + labs(tag = "A", size = 2) + hist_0.1 )/ 
-  (plot_0.25 + ylab("body mass") + labs(tag = "B", size = 2) + hist_0.25) / 
-  (plot_1 + ylab("") + labs(tag = "C", size = 2) + hist_1)
+(plot_0.1 + ylab("") + labs(tag = "A") + hist_0.1 )/ 
+  (plot_0.25 + ylab("body mass") + labs(tag = "B") + hist_0.25) / 
+  (plot_1 + ylab("") + labs(tag = "C") + hist_1)
 ```
 
-The examples above ignore the topology of the phylogeny. What if we want to model the evolution of all species in a phylogeny? This is usually how we use the Brownian model, and it is very simple to extend. At each time point where there is speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
+The examples above ignore the topology of the cat phylogeny - we are modelling a series of independent species, and we are not yet accounting for the inter-relationships between them. What if we want to model the evolution of cat body sizes across a branching phylogeny where species originate at different times? This is usually how we use the Brownian model, and it is very simple to extend. At each speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
 
 ```{r, echo = FALSE}
 # Read in cat phylogeny
@@ -360,7 +350,7 @@ cattree + all +
   plot_layout(widths = c(1, 2))
 ```
 
-A few things to note here. 
+There are a few things to note here looking at Figure \@ref(fig:bmcat) 
 
 First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure \@ref(fig:bmcat)). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species. 
 
@@ -379,9 +369,12 @@ x <- fastBM(treex, sig2 = 0.1, a = 20,
 phenogram(treex, x, ftype = "off", ylim = c(0,30))
 ```
 
-What do the body mass values look like at the end of the simulations when we add the phylogeny? The expected distribution of the tips and nodes of the tree under Brownian motion is a __multivariate normal__ distribution with a __variance covariance matrix__, C, that is calculated using the phylogeny (see Section above on variance covariance matrices). This is a really useful result, because it means that if we want to simulate data along a phylogeny under the Brownian motion model we don't need to do it along the branches as we demonstrated above. We can just sample data from the  multivariate normal distribution defined using the starting value, $z0$, $\sigma^2$, and the variance covariance matrix taken from the phylogeny. This speeds things up substantially.
+What do the body mass values look like at the end of the simulations when we add the phylogeny? The expected distribution of the tips and nodes of the tree under Brownian motion is a __multivariate normal__ distribution with a __variance covariance matrix__, C, that is calculated using the phylogeny (see section \@ref(#section:varcovar) on variance covariance matrices). This is a really useful result, because it means that if we want to simulate data along a phylogeny under the Brownian motion model we don't need to do it along the branches as we demonstrated above. We can just sample data from the  multivariate normal distribution defined using the starting value, $z0$, $\sigma^2$, and the variance covariance matrix taken from the phylogeny. This speeds things up substantially.
 
-We also don't fit the models using the simple maths we've shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don't worry about this for now as we will return to it later in the book (see *Chapter 7*).
+Finally note that we don’t fit the models using the simple maths we’ve shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don’t worry about this for now as we will return to it later.
+
+### A quick note about multivariate Brownian motion
+Above we looked at the Brownian motion model of evolution using just one trait. But we’re often interested in how two or more traits evolve together across a phylogenetic tree. To model this we need to use multivariate Brownian motion models. These models are simple extensions of what we’ve discussed above, except we also consider how the two (or more) traits are correlated. As with just one trait, all trait values change randomly in both direction and magnitude. The two (or more) traits can be evolving independently of one another, or be correlated. We estimate the same parameters as for Brownian motion for one trait, and the end result is a set of traits with a multivariate normal distribution (rather than the univariate one shown in Figure \ref@{???}). We cover this in more detail in Chapter ???.
 
 ```{block, type = "info"}
 To summarise the above, the key features of the Brownian motion model are: 
@@ -407,9 +400,11 @@ Some biological implications of the model are:
 ```
 
 ```{block, type = "detail"}
-**What if evolution is non Brownian?**
-You've probably already realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these in *Chapter 7*.
+**Is the Brownian motion model of evolution a realistic model of evolution?**
+In this chapter we put a lot of effort into describing and explaining the Brownian model of evolution. But is it a realistic model of evolution? Before moving on, take some time to think about this. Two biological implications of the model are that (1) close relatives are more similar than more distant relatives; and (2) different species and lineages evolve at the same rate. Are these statements always true? Can you think of biological examples where this might not be the case? Think about adaptive radiations, key innovations, convergent evolution - do you expect evolution in these scenarios to be Brownian? 
+What sorts of scenarios might be well modeled by Brownian motion? You've probably already realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these in *Chapter ?*.
 ```
+
 
 ## Modelling discrete traits - simple models
 
@@ -438,10 +433,10 @@ Here, the 1 in all off-diagonal elements represents the fact that rates are the 
 The diagonal elements $q_ii$ give the rate of not changing and are computed as the negative sum of the non-diagonal row elements. 
 This is so that the rows sum to zero. Here we've just left this as "-". 
 
-### Symmetric rates model (SYM)
-The M*k* model assumes changes between states are equally likely, but we have good reasons for thinking this might not be the case in many biological systems. Some changes in states are likely to be much easier than others, for example losing complex traits like eyes or limbs is likely to be easier than gaining them. The M*k* model can be modified to allow for these more complex situations. The Symmetric rates or SYM model [@paradis2004ape] is one such modification where the rate of change can differ among pairs of states, but within each pair of states the rate of change is the same in both directions. The number of different rates is three for $k = 3$. 
+In terms of biological assumptions, the ER model is probably too unrealistic: there is no good biological reason to expect that the transition between quite different states is the same. The Jukes-Cantor model was originally developed to model nucleotide substitutions, assuming that the frequencies of the nucleotide bases were the same, which seemed at the time (1969) to be a reasonable first assumption. However, subsequent data have shown that this is not the case (e.g. GC or TA biases are common).  Consequently this model probably has limited applicability. 
 
-Using our flying/semi-flightless/flightless example, this means that the rate of change from flying to semi-flightless is exactly the same as the rate of change from semi-flightless to flying. However, these rates differ from the rate of change from flying to flightless (and vice versa), and also differ from the rate of change from semi-flightless to flightless (and vice versa). In terms of the DNA evolution models this is analogous to the GTR model [@lanave1984new]. 
+### Symmetric rates model (SYM)
+In real data we have good reasons for thinking this might not be the case in many biological systems. Some changes in states are likely to be much easier than others, for example losing complex traits like eyes or limbs is likely to be easier than gaining them. The Mk model can be modified to allow for these more complex situations. The Symmetric rates (SYM) model (Paradis, Claude, and Strimmer 2004) is one such modification where the rate of change can differ among pairs of states, but within each pair of states the rate of change is the same in both directions. The number of different rates is three for k = 3. Using our flying/semi-flightless/flightless example, this means that the rate of change from flying to semi-flightless is exactly the same as the rate of change from semi-flightless to flying. However, these rates differ from the rate of change from flying to flightless (and vice versa), and also differ from the rate of change from semi-flightless to flightless (and vice versa). In terms of the DNA evolution models this is analogous to the GTR model (Lanave et al. 1984).
 
 The $Q$ matrix for our flying/semi-flightless/flightless example looks like this:
 
@@ -473,7 +468,12 @@ Biologically, this is a useful model to fit if you think some of your states are
 
 You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting* (see below), which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
 
+Case Study 3.1 gives an example using ER and ARD models to determine the ancestral litter size of bats (Garbino et al 2021).
+
 ```{block, type = "detail"}
+### Beware of overfitting!
+![*Aptenodytes_forsteri*. Credit: Ian Duffy. License: CC-BY](images/penguin.jpg)
+
 **Over-fitting** occurs where a model has more parameters than can be justified by the data. It can mean the model looks like it beautifully fits the data, but if you were to add additional data it would be useless. 
 
 Imagine you have data on the swimming speed of ten penguins (let's call them Pingu, Pinga, Misha, Wheezy, Chilly Willy, Mumble, Skipper, Kowalski, Rico, Private and Feathers McGraw). You could fit a model (we could use a linear regression here) to see if body mass is correlated with swimming speed, and get a regression with an $r^2$ of 0.5. This suggests around half of the variance in swimming speed is explained by body mass. The other half might be explained by all kinds of things, including specific attributes of the particular penguins or errors in your measurements. We haven't fully explained variation in swimming speed, but it's still a useful model because if we weighed another penguin we'd have a reasonable chance of estimating roughly what its swimming speed might be from its body mass. 
@@ -492,7 +492,20 @@ There are many reasons to be highly sceptical of ancestral state estimates and i
 Ancestral state estimates (**not** reconstructions) are, at best, weighted averages of your trait based on branch lengths of the phylogeny and the model of evolution used. If your phylogeny or traits or model have error (and they always will) then your ancestral state estimates should be interpreted with care.
 ```
 
-## Phylogenetic variance-covariance matrices
+```{block, type = "examps"}
+### Case Study: What was the litter size of the ancestral bat?
+Most small mammals have more than one offspring at a time, with average litter sizes ranging from 4-7. Conversely, most bat species have only one offspring at a time (Figure CS3.1A), likely because of difficulties related to flying while pregnant and because offspring mortality is low in bats meaning there is selection for more investment in fewer offspring. Only bats in the Vespertilionidae family regularly have more than one offspring at a time. Garbino et al. (2021) were interested in how this pattern evolved. Did ancestral bats have multiple offspring (polytocy) and evolve to have only one offspring (monotocy)? Or did ancestral bats have one offspring with the Vespertilionidae later evolving to have more than one?
+
+To test this, Garbino et al. (2021) used a phylogeny of 551 species of bats for which they had information on the litter size of the species. They coded litter size as a binary trait (polytocy or monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal Rates (ER) and All Rates Different (ARD) models to the data. They used the Akaike Information Criterion (AIC) (see Chapter 6) to determine which of these models best fitted their data. Then they used the best fitting model to estimate whether polytocy or monotocy was more likely at the root of the tree, and at the root of Vespertilionidae. They also plotted the states onto the tree using stochastic character mapping (Figure CS3.1B).
+
+<Figure CS3.1B near here>
+
+Garbino et al. (2021) found the ARD model was a better fit than the ER model. Evolutionary transitions from monotocy to polytocy were rarer than transitions from polytocy to monotocy. Ancestral state estimations suggested that the ancestral state of modern Chiroptera was monotocy, but that polytocy was the ancestral condition in the family Vespertilionidae. This condition was subsequently lost in the ancestors of both the Myotinae and Kerivoulinae subfamilies.
+
+Note that Garbino et al. (2021) also performed a number of other phylogenetic comparative methods (including tests for phylogenetic signal and PGLS models; see Chapter 4) which we have not tackled yet in this Primer. Check out the paper to find out more and to see their full results.
+```
+
+## Phylogenetic variance-covariance matrices {#section:varcovar}
 
 A useful analytical tool that we will use in a number of methods in this *Primer* is to represent a phylogeny as a *phylogenetic variance–covariance matrix*. First let's think about what we mean by variance and covariance in the context of traits on phylogenies. To do this we need to go back to the Brownian motion model.
 
@@ -552,475 +565,24 @@ deer|b+d|b+d+e|b|0|
 spider|b|b|b+c|0|
 jellyfish|0|0|0|a|
 
-We will use phylogenetic variance–covariance matrices at various points in this *Primer*, including in the next section on phylogenetic signal. Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
+We will use phylogenetic variance–covariance matrices at various points in this *Primer*, including in the next section on phylogenetic signal in Chapter \@ref(signal). Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
 
 ```{block, type = "info"}
 As you may already be aware, variance–covariance matrices are used in many statistical methods, not just phylogenetic comparative methods. The fact that we can represent a phylogeny in this way will make our lives way easier in the next few chapters! 
 ```
 
-## Phylogenetic signal
-
-Phylogenetic signal is one of the most commonly mentioned concepts in phylogenetic comparative methods. Unfortunately there's a lot of misunderstanding about what it is and what it means! Below we summarise what it is, how we can measure it, and how we can (and can't) interpret the results.
-
-### What is phylogenetic signal?
-
-*Phylogenetic signal* is the pattern where close relatives are more similar than distant relatives [@harvey1991comparative]. Species’ traits can show high or low phylogenetic signal. If phylogenetic signal is high, this means that closely related species have similar trait values, and that trait similarity decreases with phylogenetic distance. If phylogenetic signal is low, then trait values might vary randomly across a phylogeny, with distant relatives sharing similar trait values, and close relatives having different trait values [@kamilar2013phylogenetic]. 
-
-```{block, type = "warning"}
-You may see papers that use different terms to refer to phylogenetic signal, including phylogenetic effects, phylogenetic constraints and phylogenetic inertia. Unfortunately these terms are poorly defined and mean different things to different people. We therefore recommend that these terms are avoided.
-```
-
-### How do we estimate phylogenetic signal?
-
-Like many of the methods we explore in this *Primer*, there are many different ways to estimate phylogenetic signal, each with their own strengths and weaknesses (see reviews by Munkemuller et al. [@munkemuller2012measure] and [@hardy2012assessing]). Here, we'll just focus on the two most commonly used metrics: **Pagel’s $\lambda$** [@freckleton2002phylogenetic; @pagel1999inferring; @pagel1997inferring] and **Blomberg’s *K* ** [@blomberg2003testing]. These metrics are for continuous characters only, so we also include one measure for binary data, **D** [@fritz2010selectivity], though this is less widely used. Practical examples of how to estimate these in R are provided in the *online materials*.
-
-Both $\lambda$ and *K* use an explicit model of trait evolution - our old friend the Brownian motion model. If you've forgotten how this model works it might be worth re-reading this section before you begin.
-
-#### Pagel’s $\lambda$
-Pagel’s $\lambda$ was introduced by Pagel [@pagel1997inferring; @pagel1999inferring] in the early 90s and is probably the most commonly used measure of phylogenetic signal. This is in part because $\lambda$ is not just a measure of phylogenetic signal, it is also often used to transform the branch lengths of a phylogeny for use in other analyses; we return to this in *Chapter 4*.
-
-$\lambda$ transforms the branches of the phylogeny so that it best explains trait variation among species at the tips. For example, if species are less similar in their trait values than expected given their shared branch lengths, $\lambda$ transforms the tree so the branches are shorter. In practical terms, $\lambda$ transforms the *off-diagonal values*, or the covariances between pairs of species, of a phylogenetic variance–covariance matrix (see the section above). Remember that the covariances in a phylogenetic variance–covariance matrix are equal to the sum of the shared branch lengths of the species. In terms of the phylogeny, these covariances represent the internal branches of the tree. Importantly, $\lambda$ does not transform the variance of the tree, which we learned in the section above is equal to the root-to-tip distance or the total length of the tree. This means that the total length of the tree stays constant.
-
-To make this clearer let's use our example from Figure \@ref(fig:roottotip) but let's add some numbers for the branch lengths (Figure \@ref(fig:vcv)). 
-
-```{r vcv, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths. The root-to-tip distances for each tip taxon are 13.6', out.width='80%', fig.asp=.75, fig.align='center'}
-
-# Read in basic 4 species phylogeny
-tree <- read.tree("data/basic.tre")
-
-# Plot with images at tips and root to tip distances
-  ggtree(tree) + 
-  theme_tree() +
-  # Change limits so labels fit
-  xlim(0, 25) +
-  #ylim(0, 5) +
-  # Add tip label pictures
-  geom_tiplab(aes(image = c("images/deer.png",
-                            "images/robin.png",
-                            "images/spider.png",
-                            "images/jellyfish.png",
-                            rep(NA, 3))), 
-              geom = "image", align = TRUE, offset = 1, 
-              linetype = NA, size = c(.12, .15, .09, .15)) +
-  # Label branches with lengths
-  geom_nodelab(aes(subset = (node == 5), label = "13.6"), 
-                    nudge_x = 6.5, nudge_y = -1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 5), label = "6.3"), 
-                    nudge_x = 3.5, nudge_y = 1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "7.3"), 
-                    nudge_x = 3.5, nudge_y = -0.85, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "3.1"), 
-                    nudge_x = 1.5, nudge_y = 0.9, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "4.2"), 
-                    nudge_x = 2, nudge_y = -0.6, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "4.2"), 
-                    nudge_x = 2, nudge_y = 0.65, size = 5, col = "#2ab7ca") +
-  # Add root to tip calculations at tips
-  geom_tiplab(aes(label = c("6.3 + 3.1 + 4.2",
-                            "6.3 + 3.1 + 4.2",
-                            "6.3 + 7.3",
-                            "13.6",
-                            rep(NA, 3))), 
-              geom = "text", align = TRUE, offset = 5.5,
-              linetype = NA, size = 8)
-```
-
-Note that the root-to-tip distance for each species sums to 13.6. This is the variance, or diagonal of our phylogenetic variance–covariance matrix. The covariances, or off-diagonals, are the shared branch lengths between pairs of species. The shared branch length between the robin and the deer is 6.3 + 3.1 = 9.4. The shared branch length between the robin and the spider (and the deer and the spider) is 6.3. The shared branch length between the robin/deer/spider and the jellyfish is zero (see section above if this is not clear). Therefore, the phylogenetic variance–covariance matrix for this phylogeny is:
-
-```{r, echo = FALSE}
-kable(vcv(tree))
-```
-
-```{block, type = "info"}
-$\lambda$ can be any number between 0 and 1. $\lambda$ of 0 indicates that there is no phylogenetic signal in the trait, i.e. that the trait has evolved independently of phylogeny and thus close relatives are not more similar on average than distant relatives. If $\lambda$ is 1 this indicates that there is strong phylogenetic signal, and the trait has evolved according to the Brownian motion model of evolution. 
-```
-
-What do $\lambda$ values of 0, 1 and anything in between, do to the phylogenetic variance–covariance matrix and the phylogeny?
-
-When $\lambda$ is 0, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are also 0 (any number multiplied by zero is equal to zero). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this:
-
-```{r, echo = FALSE}
-m1 <- matrix(c(13.6, 0, 0, 0, 0, 13.6, 0, 0, 0, 0, 13.6, 0, 0, 0, 0, 13.6), nrow = 4)
-colnames(m1) <- c("robin","deer", "spider", "jellyfish")
-rownames(m1) <- c("robin","deer", "spider", "jellyfish")
-kable(m1)
-```
-
-This means all the internal branches now have a length of zero. This produces a tree which is just one big polytomy, also refered to as a *star phylogeny* (Figure \@ref(fig:star)).
-
-```{r star, echo = FALSE, warning = FALSE, fig.cap='Star phylogeny', out.width='80%', fig.asp=.75, fig.align='center'}
-
-# Read star phylogeny
-tree <- read.tree("data/star.tre")
-
-# Plot with images at tips and root to tip distances
-  ggtree(tree, layout = "slanted") + 
-  theme_tree() +
-  # Change limits so labels fit
-  xlim(0, 1.5) +
-  #ylim(0, 5) +
-  # Add tip label pictures
-  geom_tiplab(aes(image = c("images/deer.png",
-                            "images/robin.png",
-                            "images/spider.png",
-                            "images/jellyfish.png", 
-                             NA)), 
-              geom = "image", align = TRUE, offset = 0.01, 
-              linetype = NA, size = c(.12, .15, .09, .15))
-```
-
-When $\lambda$ is 1, all of the off-diagonal elements of the phylogenetic variance–covariance matrix are exactly the same (any number multiplied by 1 remains unchanged). In our example above (Figure \@ref(fig:vcv)) the phylogenetic variance–covariance matrix will look like this, i.e. the same as before the $\lambda$ transformation. The tree also stays the same as in Figure \@ref(fig:vcv).
-
-```{r, echo = FALSE}
-kable(vcv(tree))
-```
-
-```{block, type = "detail"}
-Many explanations of Pagel's $\lambda$ state that the maximum value of $\lambda$ is 1. Actually, it can be bigger than 1 if close relatives are *more* similar than expected under the Brownian motion model of evolution. However, most tools that allow you to estimate $\lambda$ restrict it to a maximum of 1 because covariances cannot exceed variances in a phylogenetic variance–covariance matrix, and this is what would happen if $\lambda$ was bigger than 1.
-```
-
-Values of $\lambda$ between 0 and 1 indicate that although there is phylogenetic signal in the trait, it has evolved according to a process other than pure Brownian motion [@freckleton2002phylogenetic]. We'll discuss how to interpret phylogenetic signal in more detail later in this section. But to show you how this affects the phylogenetic variance–covariance matrix and the tree, let's assume a $\lambda$ of 0.5. This will multiply all the off-diagonal elements of the phylogenetic variance–covariance matrix by 0.5 resulting in a tree as shown in Figure \@ref(fig:lambda05), and a matrix like this:
-
-```{r, echo = FALSE}
-m2 <- matrix(c(13.6, 4.7, 3.15, 0, 4.7, 13.6, 3.15, 0, 3.15, 3.15, 13.6, 0, 0, 0, 0, 13.6), nrow = 4)
-colnames(m2) <- c("robin","deer", "spider", "jellyfish")
-rownames(m2) <- c("robin","deer", "spider", "jellyfish")
-kable(m2)
-```
-
-
-```{r lambda05, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths in the original tree and a transformed tree where lambda = 0.5. The root-to-tip distances for each tip taxon are 13.6', out.width='80%', fig.asp=.75, fig.align='center'}
-
-# Read in basic 4 species phylogeny
-tree <- read.tree("data/basic.tre")
-
-# Plot original tree
-original <- 
-  ggtree(tree) + 
-  theme_tree() +
-  # Change limits so labels fit
-  xlim(0, 25) +
-  #ylim(0, 5) +
-  # Add tip label pictures
-  geom_tiplab(aes(image = c("images/deer.png",
-                            "images/robin.png",
-                            "images/spider.png",
-                            "images/jellyfish.png",
-                            rep(NA, 3))), 
-              geom = "image", align = TRUE, offset = 1, 
-              linetype = NA, size = c(.12, .15, .09, .15)) +
-  # Label branches with lengths
-  geom_nodelab(aes(subset = (node == 5), label = "13.6"), 
-                    nudge_x = 6.5, nudge_y = -1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 5), label = "6.3"), 
-                    nudge_x = 3.5, nudge_y = 1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "7.3"), 
-                    nudge_x = 3.5, nudge_y = -0.85, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "3.1"), 
-                    nudge_x = 1.5, nudge_y = 0.9, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "4.2"), 
-                    nudge_x = 2, nudge_y = -0.6, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "4.2"), 
-                    nudge_x = 2, nudge_y = 0.65, size = 5, col = "#2ab7ca")
-
-# Read in phylogeny where lambda = 0.5
-tree <- read.tree("data/lambda05.tre")
-
-# Plot lambda = 0.5 tree
-lambda05 <- 
-  ggtree(tree) + 
-  theme_tree() +
-  # Change limits so labels fit
-  xlim(0, 25) +
-  #ylim(0, 5) +
-  # Add tip label pictures
-  geom_tiplab(aes(image = c("images/deer.png",
-                            "images/robin.png",
-                            "images/spider.png",
-                            "images/jellyfish.png",
-                            rep(NA, 3))), 
-              geom = "image", align = TRUE, offset = 1, 
-              linetype = NA, size = c(.12, .15, .09, .15)) +
-  # Label branches with lengths
-  geom_nodelab(aes(subset = (node == 5), label = "13.6"), 
-                    nudge_x = 6.5, nudge_y = -1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 5), label = "3.15"), 
-                    nudge_x = 1, nudge_y = 1, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "10.45"), 
-                    nudge_x = 5, nudge_y = -0.85, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 6), label = "1.55"), 
-                    nudge_x = -0.5, nudge_y = 0.9, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "8.9"), 
-                    nudge_x = 4, nudge_y = -0.6, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 7), label = "8.9"), 
-                    nudge_x = 4, nudge_y = 0.65, size = 5, col = "#2ab7ca")
-
-original + lambda05
-```
-
-Understanding what has happened to the branch lengths in Figure \@ref(fig:lambda05) is a little tricker. Remember that $\lambda$ only acts on the off-diagonals/covariances of the matrix. These are the *internal* branches of the phlyogeny, i.e. not the branches that lead to the tips. If $\lambda$ is less than 1, this means that those branches get shorter. Here The internal branch lengths have all been halved because $\lambda$ = 0.5. 
-
-However, we also know that $\lambda$ does not act on the diagonal/variances of the matrix that represents the total tree length. If total tree length does not change, but internal branches get shorter, then the branches leading to the tips must get longer. Here to ensure the root-to-tip distance for each species is still 13.6, the branches leading to the robin/deer need to be 8.9 (13.6 - 4.7), and the branch leading to the spider needs to be 10.45 (13.6 - 3.15).
-
-We generally estimate $\lambda$ using Maximum Likelihood. This means that for a given trait and phylogeny, we search for the value of $\lambda$ that best explains trait variation among species at the tips of the phylogeny, i.e. the Maximum Likelihood value of $\lambda$. We can test if $\lambda$ is significantly different from zero (i.e. no phylogenetic signal) or 1 (i.e. the Brownian motion model expectation) using likelihood ratio tests comparing a model with the observed Maximum Likelihood value of $\lambda$ to a model with a fixed $\lambda$ of zero or 1. Some methods that estimate $\lambda$ will do this for us automatically (e.g. in the `pgls` function in the R package `caper` [@Orme:2013aa]; see *online supplement*).
-
-### Blomberg’s *K*
-Rather than transforming the tree like $\lambda$, Blomberg’s *K* instead measures phylogenetic signal by quantifying the amount of observed trait variance relative to the trait variance expected under Brownian motion [@blomberg2003testing]. It's a little tricky to explain how *K* is estimated, especially in advance of *Chapter 4* which introduces you to phylogenetic generalised least squares (PGLS) models. However, you should be able to understand the general concepts without needing to know the mathematical details. We will first talk about *K* in very general terms, and then explain how it is estimated in more detail. You don't need to understand the maths to use *K* in your work, but it's good practice to try. 
-
-The equation for Blomberg’s *K* is:
-
-\begin{equation} 
-  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
-  (\#eq:K)
-\end{equation} 
-
-The important part of the equation to think about initially is the $observed \frac{MSE_0}{MSE}$ part. $MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylogenetic mean of the data. $MSE$ is the mean squared error  of the tip data in relation to the phylogenetic variance covariance matrix. We explain both of these in more detail below. The important points to take away are:
-
-- if trait similarities are well explained by the phylogeny, observed $MSE$ will be *small* so the ratio of observed $MSE_0$ to $MSE$ will be *large*, and so will *K*. 
-- if trait similarities are *not* well explained by the phylogeny, observed $MSE$ will be *large* so the ratio of observed $MSE_0$ to $MSE$ will be *small*, and so will *K*. 
-- the $observed \frac{MSE_0}{MSE}$ is divided by the expected value under Brownian motion to standardise it because $observed \frac{MSE_0}{MSE}$ will vary depending on the trait and the tree.
-
-```{block, type = "info"}
-*K* varies continuously from zero to infinity. When *K* is 0, this indicates that there is no phylogenetic signal in the trait (i.e. close relatives are not more similar on average than distant relatives). This is the equivalent of $\lambda = 0$. When *K* is 1, this indicates that the trait has evolved according to the Brownian motion model of evolution, just like when $\lambda$ is 1. Finally, where where K is greater than 1 this indicates that close relatives are more similar than expected under a Brownian motion model of trait evolution (see interpretation notes below). The maximum value of *K* will vary depending on the trait and the tree involved. 
-```
-
-We can test whether *K* is significantly different from 0 using randomisation tests. These work by randomizing the trait data across the phylogeny, calculating *K*, and then repeating this 1000 times. If we have phylogenetic signal in our data we expect these random *K* values to have lower values than our value of *K*. We can get a p value for the randomisations by counting how many times the randomised trait data gives a higher value of *K* than our observed value, and then dividing this by the total number of randomisations. For example, if 10 randomised *K* values are higher than the observed *K* then p = 10/100 = 0.01. 
-
-```{block, type = "detail"}
-**How do we estimate Blomberg’s *K*?**
-
-Let's use a very simple example with just three taxa, A, B and C. For more details and proper maths (!) see [@blomberg2003testing].
-```
-
-```{r Ktree, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths and body size for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
-
-# Read in Ktree phylogeny
-tree <- read.tree("data/Ktree.tre")
-
-# Plot with images at tips and root to tip distances
-  ggtree(tree) + 
-  theme_tree() +
-  # Change limits so labels fit
-  xlim(0, 10) +
-  #ylim(0, 5) +
-  # Add tip label pictures
-  geom_tiplab(aes(label = c("B = 4 kg", "A = 2 kg", "C = 11 kg", NA, NA)), 
-              geom = "text", align = TRUE, offset = 1, size = 6,
-              linetype = NA) +
-  # Label branches with lengths
-  geom_nodelab(aes(subset = (node == 4), label = "2"), 
-                    nudge_x = 4.5, nudge_y = 1.5, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 4), label = "2"), 
-                    nudge_x = 4.5, nudge_y = 0.45, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 5), label = "5.5"), 
-                    nudge_x = -1.5, nudge_y = -1.25, size = 5, col = "#2ab7ca") +
-  geom_nodelab(aes(subset = (node == 5), label = "3.5"), 
-                    nudge_x = -1.5, nudge_y = 0.25, size = 5, col = "#2ab7ca")
-```
-
-```{block, type = "detail"}
-As we noted above the equation for Blomberg’s *K* is: 
-
-\begin{equation} 
-  K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}}
-\end{equation} 
-
-Before we think about the equation we should remind ourselves what we mean by *mean squared error (MSE)*. MSE is a way of looking at how far away the data are from the mean. If we have five species with body sizes of 5, 10, 15, 20, 25, the mean body size will be 15 ($\frac{5 + 10 + 15 + 20 + 25}{5}$). The *error* (E) is how far from the mean the observed values are (this is equivalent to the residuals in a model). Here the errors will be -10 (i.e. $5 - 15$), -5, 0, 5 and 10. If we sum all of these we end up with 0 as the negative and positive numbers cancel each other out, so to solve this problem we *square* (S) them to give 100, 25, 0, 25 and 100. Finally we take the *mean* (M) of this number to get 50. That's the MSE! If the values are clustered around the mean the MSE will be low. If they are spread out the MSE will be high.
-
-This calculation might seem familiar, and that's because it's the same way we estimate variance! 
-
-Note that above when we calculated the mean part of MSE/variance we divided by $n$, where $n$ is the number of observations. However, this is only valid where we are looking at the whole population. If instead, as is common in phylogenetic comparative methods, we are looking at a *sample* of the whole population, we instead divide by $n - 1$. Why do we do this? In simple terms, if we are looking at a sample rather than the whole population, the MSE/variance we calculate will contain a little bit of bias. Subtracting 1 from the sample size corrects this bias, so you’ll usually get a more accurate answer if you use $n - 1$ instead of $n$ (if you want more details this is known as Bessel’s correction).
-
-Now let's consider just the observed $\frac{MSE_0}{MSE}$ part of the equation for *K*. 
-
-$MSE_0$ is the mean squared error (MSE) of the tip data in relation to the phylogenetic mean of the data. This is exactly the same as the MSE described above, but instead of using the mean calculated in the normal way, we use the phylogenetic mean, i.e. the mean value if we account for shared evolutionary history of the species involved. A simplified equation for this is as follows, where $X$ is the trait data, $a$ is the phylogenetic mean, and $n$ is the sample size.
-
-\begin{equation} 
-  MSE_0 = \frac{\Sigma(X - a)^2}{n - 1}
-\end{equation} 
-
-The phylogenetic mean of the data is equivalent to the estimated trait value at the root, so we can obtain this using ancestral state estimation. See *Chapter 4* and the online materials for more information on how this works. 
-
-For our example, the phylogenetic mean $a$ is 6.6 kg. Values of $X$ are 2, 4 and 11 kg, and $n$ is 3. This means that our $MSE_0$ is 23.64:
-
-\begin{equation} 
-  MSE_0 = \frac{(2 - 6.6)^2 + (4 - 6.6)^2 + (11 - 6.6)^2}{3 - 1} = 23.64
-\end{equation} 
-
-$MSE_0$ will vary in magnitude depending on how far the data are from the phylogenetic mean. But in a situation where close relatives tend to be more similar than distant relatives, i.e. the phylogeny gives us some information about the covariances among species trait values, it will be larger than $MSE$.
-
-$MSE$ is the mean squared error extracted from a *phylogenetic generalized least-squares (PGLS) model* that uses the phylogenetic variance–covariance matrix in its error structure. We cover PGLS models in *Chapter 4*, but for now it's enough to know that rather than using $X$ we use $U$ which is the trait values transformed according to the phylogenetic variance–covariance matrix.
-
-\begin{equation} 
-  MSE = \frac{\Sigma(U - a)^2}{n - 1}
-\end{equation}
-
-In a PGLS context, $(U - a)$ are equivalent to the phylogenetic residuals from a PGLS model. 
-
-Here the values of $U$ are 7.219543, 4.902944 and 8.633757. $a$ is still 6.6, and $n$ is still 3, thus
-
-\begin{equation} 
-  MSE = \frac{(7.219543 - 6.6)^2 + (4.902944 - 6.6)^2 + (8.633757 - 6.6)^2}{3 - 1} = 3.7
-\end{equation} 
-
-As predicted, $MSE$ is much smaller than $MSE_0$ because it includes the information about the phylogeny.
-
-We can now calculate observed $\frac{MSE_0}{MSE} = \frac{23.64}{3.7} = 6.389189$ 
-
-Finally, to make values of *K* comparable among different phylogenies, the observed $MSE_0$ to $MSE$ ratio is standardized by dividing it by the expected mean squared error ratio under Brownian motion. It is not possible to separately extract expected $MSE_0$ and expected $MSE$, but we can get the overall value using the following equation:
-
-\begin{equation} 
-  expected \frac{MSE_0}{MSE} = \frac{1}{n-1} * (\Sigma V_{diag} - \frac{n}{\Sigma V^{-1}})
-\end{equation}
-
-$V$ is the phylogenetic variance covariance matrix, and $V^{-1}$ is the inverse of the phylogenetic variance covariance matrix. For our simple example these look like this:
-```
-
-```{r, echo = FALSE}
-kable(vcv(tree))
-```
-
-```{r, echo = FALSE}
-kable(solve(vcv(tree)))
-```
-
-```{block, type = "detail"}
-In the equation, $\Sigma V_{diag}$ is the sum of diagonal elements of $V$:
-
-\begin{equation} 
-  \Sigma V_{diag} = 5.5 + 5.5 + 5.5 = 16.5
-  (\#eq:Vdiageg)
-\end{equation}
-
-$\Sigma V^{-1}$ is the sum of all elements of the inverse matrix of $V$: 
-
-\begin{equation} 
-  \Sigma V^{-1} = 0.3055556 + -0.1944444 + -0.1944444 + 0.3055556 + 0.1818182 = 0.4040406
-\end{equation}
-
-Therefore... 
-
-\begin{equation} 
-  expected \frac{MSE_0}{MSE} = \frac{1}{3-1} * (16.5 - \frac{3}{0.4040406}) = 4.537502
-\end{equation}
-
-So overall our *K* value for this simple example is 
-
-\begin{equation} 
-K = \frac{observed \frac{MSE_0}{MSE}} {expected \frac{MSE_0}{MSE}} = \frac{6.389189}{4.537502} = 1.408085
-  (\#eq:Kcalceg)
-\end{equation}
-```
-
-### Phylogenetic signal for categorical traits
-
-Both $\lambda$ and *K* are only appropriate for continuous traits, but many traits are not continuous, they are categorical. For example, habitat, growth form, colour etc. As an example let's think about frog habitats. Frogs can live in a variety of habitats. Some live in trees (Scansorial), some live underground (Fossorial), some live in water (Aquatic), some live on dry land (Terrestrial), and some live in a mixture of dry and wet habitats (Semi-aquatic)
-
-Remember with phylogenetic signal we are looking for the pattern where close relatives are more similar to one another than more distant relatives. For these categories, it would be sensible to say we had high phylogenetic signal if, for example, all toads (Bufonidae) are Semi-aquatic, and all tree frogs (Hylidae) are Scansorial. But what if some toads are Semi-aquatic but others are Terrestrial? If we don't know how species transition from state to state, it's hard to know what we might expect to see as evolutionary distance between species increases. We might sensibly assume that species easily evolve from Semi-aquatic to Aquatic, or from Subfossorial to Fossorial, but what about changes from Aquatic to Fossorial? All of this makes phylogenetic signal for categorical variables tricky.
-
-There are a couple of, more or less satisfying, solutions...
-
-1. Do we actually need to know the phylogenetic signal for these variables? For our models we are interested in phylogenetic signal in the *residuals* (see *Chapter 4* and below), so maybe we don't care about phylogenetic signal in the variables? Unless there is a real need, don't bother! You could visualise what is going on instead by adding colours to the tips of the phylogeny to represent the different categories. This should give you an idea about whether categories cluster in different clades or not.
-
-2. We could code our categories numerically then use $\lambda$ or *K*. This is only suitable if the categories are ordered, and if the difference between each pair of categories can be considered equal. For example, a variable that has low, medium and high values could be coded as low = 1, medium = 2, and high = 3. Again this is not ideal, but will give you an answer. We recommend avoiding this if possible.
-
-3. We could recode these as binary variables and use *D* [@fritz2010selectivity]. For example, creating a new variable called Aquatic, and coding each species as 0 = not aquatic; 1 = aquatic. This is probably the best solution, so we explore *D* briefly below.
-
-### Calculating *D* for binary traits
-
-The D statistic [@fritz2010selectivity] is calculated as follows:
-
-\begin{equation}
-D = \frac{d_{obs} – mean(d_{BM})}{mean(d_{rand}) - mean(d_{BM})}
-\end{equation}
-
-$d_{obs}$ is the number of character state changes $d$ (from 0 to 1 or 1 to 0) required to obtain the observed distribution of character states at the tips of the phylogeny. The value of $d_{obs}$ will depend on the phylogenetic signal in the variable, but also on the size of the phylogeny and the relative proportion of 0s and 1s. So that we can compare results across datasets and trees, we therefore standardise $d_{obs}$ using two different null models. The first is a *phylogenetic randomness* null model where trait values are randomly assigned to the tips of the phylogeny and then d is calculated. This is repeated 1000 times to produce $d_{rand}$, the expected distribution of $d$ values if character states are randomly distributed among species without respect to phylogeny. The second null model is a *Brownian threshold* model where we simulate a continuous trait along the phylogeny then define the character state at each tip according to some threshold value of the continuous trait. The threshold is chosen to ensure that the number of tips with each character state remains the same as in the observed data. $d$ is then calculated and the process is repeated 1000 times to get $d_{BM}$, the expected distribution of $d$ values if character states are distributed among species under the expectations of Brownian motion model of evolution.
-
-```{block, type = "info"}
-Where *D* is 1 this indicates that the distribution of the binary trait is random with respect to phylogeny, i.e. there is no phylogenetic signal. This is equivalent to $\lambda$ or *K* of 0 in continuous traits. Conversely, where *D* is 0 this indicates that the binary trait is distributed as expected under the Brownian motion model of evolution, i.e. equivalent to $\lambda$ or *K* of 1. *D* can also be less than 0 and greater than 1; where *D* is less than 0 it indicates that close relatives are more similar than the Brownian motion expectation (equivalent to *K* $>$ 1) and the trait is clustered across the tree, and where *D* is greater than 1 it indicates close relatives are even more different than the random expectation, and the trait is overdispersed across the tree. 
-```
-
-We can also use $d_{rand}$ and $d_{BM}$ to determine the significance of $d_{obs}$ values. If $d_{obs}$ is *higher* than over 950 of the 1000 $d$ values in $d_{rand}$ ($p < 0.05$), then the trait is significantly more overdispersed across the tree than expected at random. Alternatively, if $d_{obs}$ is *lower* than over 950 of the 1000 $d$ values in $d_{BM}$ ($p < 0.05$), then the trait is significantly more clustered across the tree than expected under Brownian motion.
-
-### How do we interpret phylogenetic signal?
-
-Although people will often refer to 'high' or 'low' phylogenetic signal, what people mean by 'high' and 'low' varies widely. For example, in different studies $\lambda$ of 0.5 might be called low, intermediate or high! This can make interpreting phylogenetic signal problematic. Additionally, as we noted at the start of this section, phylogenetic signal is a *pattern*. Many people however, use it as a way to provide information about evolutionary *process*. Interpreting underlying process from pattern should be done with care, and is often inappropriate.
-
-```{block, type = "warning"}
-Phylogenetic signal is a *pattern*, not a *process*. Always be very careful when interpreting underlying process from a pattern. Different evolutionary processes can produce similar values for phylogenetic signal metrics. Phylogenetic signal is also context dependent, and may be influenced by sample size, and error in the tree or trait (see details below).
-```
-
-Traditionally, 'low' phylogenetic signal has been interpreted as *evolutionary lability or plasticity* [@blomberg2003testing], or as the result of high rates of trait evolution leading to large differences among close relatives. Adaptive radiations are expected to be characterized by low phylogenetic signal in ecological niche traits because in adaptive radiations close relatives rapidly diversify to fill new niches. Similarly groups with lots of convergent evolution in a trait are expected to have low phylogenetic signal. 
-
-'High' phylogenetic signal is interpreted as genetic drift or neutral evolution, because these processes should approximate a Brownian motion model of evolution (see section above). 'Very high' phylogenetic signal is often interpreted as *evolutionary or phylogenetic conservatism* [@losos2008phylogenetic], where close relatives have extremely similar trait values. The point at which phylogenetic signal is considered high enough to be phylogenetic conservatism varies among authors (e.g. $\lambda$ or *K* $>$ 1, [@losos2008phylogenetic]; $\lambda$ or *K* $=$ 1, [@cooper2010phylogenetic]). Explanations for phylogenetic conservatism also vary, for example it may occur because species survival requires specific trait values (e.g. traits related to drought tolerance in desert plants are likely to be highly conserved), or because of other mechanisms such as stabilizing selection, pleiotropy, high levels of gene flow, limited genetic variation, low rates of evolution, physiological constraints or various biotic interactions (e.g. competition) restricting the evolution of new phenotypes [@blomberg2002tempo; @losos2008phylogenetic]. 
-
-Unfortunately, as you may already have gathered, interpreting phylogenetic signal is not as simple as low values equals trait lability and high values equals trait conservatism. Different evolutionary processes can produce similar values for phylogenetic signal metrics, for example, $\lambda$ or *K* of 1 may be the result of neutral genetic drift, but the same pattern of traits at the tips of the phylogeny can also be achieved by (1) a model in which traits are evolving to an optimum which itself evolves according to a Brownian process (i.e. the Ornstein–Uhlenbeck model of evolution; see *Chapter 7*); (2) a model where traits are evolving under natural selection that randomly fluctuates; or (3) a model where selective pressures themselves exhibit strong phylogenetic signal, thus producing strong phylogenetic signal in the trait(s) on which these selection pressures are acting [@revell2008phylogenetic; @hansen2008comparative]. There is also no relationship between measures of phylogenetic signal and evolutionary rate under simple evolutionary models [@revell2008phylogenetic].
-
-Phylogenetic signal is also context (i.e. trait data and phylogeny) dependent. The phylogenetic signal in a trait will not be the same at all phylogenetic/taxonomic scales. For example, a trait may have high phylogenetic signal at the family level but this pattern may break down at higher or lower taxonomic levels. Phylogenetic signal can also be influenced by convergent evolution, taxonomic inflation and cryptic species [@losos2008phylogenetic]. Because of this, using $\lambda$ or *K* (or any other measure of phylogenetic signal) to infer evolutionary processes or rates must be performed with consideration of the traits involved, the hypotheses to be tested and any available external information [@cooper2010phylogenetic; @kamilar2013phylogenetic]. 
-
-### Some additional caveats with estimating and interpreting phylogenetic signal
-
-We will come back to many of these issues in later chapters, but it's useful to explore these now in the context of phylogenetic signal. When reading this, be aware that these issues will influence all phylogenetic comparative methods in some way. In fact many of these issues are important for any statistical method you use! 
-
-#### Sample size. 
-Small sample sizes tend to have lower *power* to detect significant results. What's power in this context? Statistical power is the probability of a hypothesis test finding an effect if there is an effect to be found. Large sample sizes, on the other hand, are more likely to yield statistically significant p-values. Consequently, it is important to think about statistical significance versus biological significance when sample sizes are extremely high or low. A non-significant result at low sample sizes may not mean the effect is unimportant, conversely a significant result at high sample sizes does not mean the effect is important. This is really important to think about whatever analysis you're doing.
-
-In the context of phylogenetic signal, *K* is able to detect significant phylogenetic signal when sample sizes are greater than 20 [@blomberg2003testing], i.e. it has good power when there are more than 20 tips in the tree. For $\lambda$, power is only good for sample sizes greater than 30 [@freckleton2002phylogenetic]. As the number of tips in the tree increases, the ability to detect significant levels of phylogenetic signal also increases. 
-
-For large sample sizes, it may be more useful to focus on the value of $\lambda$ or *K*, rather than placing too much emphasis on the significance or non-significance of p-values. For small sample sizes, finding $\lambda$ or *K* that is not significantly different from 0 should not be taken to mean that there is no phylogenetic signal in the variable without close examination of the data [@kamilar2013phylogenetic]. 
-
-#### Error in the phylogeny and the trait
-As we explored in *Chapter 2*, phylogenies are just hypotheses about how species are related, not the truth. Thus all phylogenies contain error. Luckily it seems that missing branch length information has negligible effects on estimates for $\lambda$ or *K* [@munkemuller2012measure], however, phylogenetic signal may be inflated when using *K* if the tree has polytomies (this is not a problem for $\lambda$) [@molina2017revisiting]. 
-
-Trait measurements are also likely to include errors, especially when we use species averages taken from a number of sources (see *Chapter 2*). Simulations have shown that measurement error substantially decreases the power to detect significant phylogenetic signal using *K*, and also decreases values of *K* [@hardy2012assessing; @blomberg2003testing].
-
-```{block, type = "warning"}
-People will sometimes say that they accounted or "corrected" for phylogeny (see *Chapter 1* and *Chapter 4*) because of the phylogenetic signal in their variables. **This is incorrect**. We account for phylogenetic non-independence because the **residuals** from our models show phylogenetic signal [see @revell2010phylogenetic]. Note that the $\lambda$ shown in these *phylogenetic generalised least squares* (PGLS) models (see *Chapter 4*) is the $\lambda$ for the model residuals **not** the individual variables. 
-```
-
-```{block, type = "detail"}
-**Correcting for phylogeny**. It is common to come across the term "correcting for phylogeny". However, some feel that by saying that we are "correcting" for phylogeny, we are suggesting that phylogeny is a bad thing that needs to be fixed. In reality, phylogenetic comparative methods take phylogenetic relationships into account, and allow us to incorporate information about the way evolution happens into our models, thus making them more realistic and more useful. Thus we aren't correcting anything. Depending on the company you're in, avoiding the phrase "correcting for phylogeny" is either seen as pedantic, or extremely important. We tend to avoid it, but recognise that for some people thinking of phylogenetic non-independence as error to be corrected in statistical models is very natural and aids their understanding.
-```
-
-
-[CHAPTER ENDING MATERIAL STYLE STILL TBC BUT WILL BE CONSISTENT ACROSS THE BOOK]
-## Summary
-
-## Online materials
-
-Online materials for this chapter are:
-
-  - Preparing your tree and data for PCMs in R
-  - Phylogenetic Signal in R
-  - Models of evolution for continuous traits (also *Chapter 7*)
-  - Models of evolution for discrete traits (also *Chapter 7*)
-
-## MCQs
-
------
-
-## BOXES
-
-## Case study box
-
-### Is there phylogenetic signal in how *Rhododendron* species respond to climate change?
-
-![rhodos](images/rhododendrons.jpg)
-
-One consequence of the global climate crisis is that the timing of biological events (known as phenology) is changing. You may have seen anecdotal evidence of this in your local area with spring flowers emerging earlier or birds migrating later. This can have serious consequences for the individuals involved. For example, if flowers emerge at a different time to their pollinators they may not get pollinated. Equally, if birds delay their migrations they may miss out on vital food resources or nesting sites.
-
-Shifts in the timing of reproduction have been documented across the globe for diverse plant communities, but not all plants are affected in the same ways. Some plants are reproducing earlier, some later, and others have not changed. Researchers think this may be related to the evolutionary history of the plant species studied. They hypothesise that because the timing of reproduction is controlled by a large range of genetic and physiological factors, it is likely that close relatives will be similarly affected by changes in climate, i.e. we expect to see phylogenetic signal in plant responses to climatic changes.
-
-@basnett2019phenology investigated this in 10 species of *Rhododendron* in the Himalayas, using various reproductive phenology traits including budding, flowering, and fruiting times. As data, they used the three‐year mean day of the year that the phenological event first happened in each species, or the duration of the event. They estimated phylogenetic signal using both Pagel's $\lambda$ and Blomberg's *K*, and tested whether these values were significantly different from zero using likelihood ratio tests ($\lambda$) or randomisation tests (*K*). 
-
-For the timing of phenological events, values of Pagel's $\lambda$ ranged from 0 to 0.954, and Blomberg's *K* ranged from 0.251 to 0.893 (see their Table 1; @basnett2019phenology). Early events such as first budding ($\lambda = 0.954, p < 0.05; K = 0.893, p < 0.01$), first flowering ($\lambda = 0.913, p < 0.05; K = 0.853, p < 0.01$) and first initial fruiting ($\lambda = 0.901, p < 0.05; K = 0.862, p < 0.01$) exhibited stronger phylogenetic signal, whereas later events such as first immature fruiting ($\lambda = 0, p > 0.05; K = 0.386, p > 0.05$), mature fruiting ($\lambda = 0, p > 0.05; K = 0.251, p > 0.05$), and fruit dehiscence, i.e. fruit splitting to release its contents ($\lambda = 0.511, p > 0.05; K = 0.551, p < 0.05$), showed weaker phylogenetic signal. 
-
-For the duration of events, Pagel's $\lambda$ ranged from 0.00 to 0.885, and Blomberg's *K* ranged from 0.256 to 1.080. Only fruit dehiscence duration showed a significant phylogenetic signal for both metrics ($\lambda = 0.885, p < 0.01; K = 1.080, p < 0.01$) and the duration of flowering and fruiting showed a significant phylogenetic signal only for Blomberg's *K* (flowering: $\lambda = 0.567, p > 0.05; K = 0.588, p < 0.05$; fruiting: $\lambda = 0.606, p > 0.05; K = 0.588, p < 0.05$). There was no significant phylogenetic signal in durations of other phenological events (see their Table 1; @basnett2019phenology).
-
-In summary, @basnett2019phenology found that there was phylogenetic signal in budding, flowering, and initial fruiting times in *Rhododendron* species, i.e. these traits were more similar in closely-related species than distantly related species. This was not the case for later events in the reproductive cycle including immature fruiting, mature fruiting, and fruit dehiscence. What does this mean for *Rhododendron* species in the face of global change? The paper does some extra analyses looking at correlations with altitude, day length etc. But from purely the phylogenetic signal results, we can't say much more than that within the 10 species studied here, closely-related *Rhododendron* species are more similar to one another in terms of how their budding, flowering, and initial fruiting times vary with climate change than more distantly-related *Rhododendron* species. See "How do we interpret phylogenetic signal?" section above for more details.
-
-## Bigger picture box
-
-### Is the Brownian motion model of evolution a realistic model of evolution?
-
-In this chapter we put a lot of effort into describing and explaining the Brownian model of evolution. But is it a realistic model of evolution? Before moving on, take some time to think about this. Two biological implications of the model are that (1) close relatives are more similar than more distant relatives; and (2) different species and lineages evolve at the same rate. Are these statements always true? Can you think of biological examples where this might not be the case? Think about adaptive radiations, key innovations, convergent evolution - do you expect evolution in these scenarios to be Brownian? What sorts of scenarios might be well modelled by Brownian motion? Note that there are a number of other models of evolution, and we will return to these in *Chapter 7*.
+## Chapter summary
+- For continuous traits, the most commonly used model of trait evolution is the Brownian motion model.
+- The key features of the Brownian motion model of evolution are (i) traits evolve at random, i.e. by a random walk; (ii) the direction and magnitude of the trait change at one time interval is independent of the direction and magnitude of the trait changes at other time intervals; (iii) there is no overall drift in the direction of evolution; (iv) traits evolve at a rate σ2; (v) the rate of evolution is constant; (vi) variance in traits increase (linearly) in proportion to time,; and (vii) the overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed.
+- There are three basic models for discrete trait evolution: the Mk or Equal Rates model (ER), the Symmetric model (SYM) and the All Rates Different model (ARD). In the ER model, all rates of change between states are the same in both directions. In the SYM model, all rates of change between states are the same but differ according to the direction of change. In the ARD model is a unique rate of evolution for changes between different states in each direction. 
+- Phylogenetic variance-covariance matrices are useful ways to represent phylogenies. A phylogenetic variance-covariance matrix is an n x n matrix, where n is the number of species in the phylogeny, the diagonals of the matrix are the variances, and the off-diagonals are the covariances. In a phylogeny the variance is the root-to-tip length of the tree. The covariances among species are the lengths of their shared branch lengths.
+
+## Further reading
+Classic text on using phylogenies and the Brownian motion model of evolution: Felsenstein, 1985. "Phylogenies and the comparative method." The American Naturalist 125.1: 1-15.
+
+## Online exercises
+
+- Preparing your tree and data for PCMs in R
+- Phylogenetic Signal in R
+- Models of evolution for continuous traits (also Chapter 7)
+- Models of evolution for discrete traits (also Chapter 7)

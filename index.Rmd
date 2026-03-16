@@ -28,6 +28,70 @@ knitr::write_bib(c(
 
 # Preface {-}
 
+## A potted history of this project {-}
+
+In 2019 Rob Freckleton asked me if I'd like to co-edit a new series of short books with him for REDACTED publisher. We had grand plans; the books would be on topics of importance in ecology and evolution but with a focus on methods. I sold the idea to others as "the book you wish you could give to each new student who starts work in your group". Books that would introduce the basics, providing a solid starting point for further learning and investigation. As part of this, we agreed to write our own book on Phylogenetic Comparative Methods. 
+
+Initially things went well. We lined up a great set of authors and possible titles, we submitted proposals, and we got the go ahead for writing this book. We even had a writing retreat in early March 2020 where we made substantial progress. And then COVID-19 took over. 
+
+The COVID-19 pandemic affected this project (like it affected most things) in both expected and unexpected ways. During the lockdown periods, Rob, myself and authors of the other books all found ourselves having to rapidly flip teaching to online, supporting our students and staff, and trying to navigate the new normal at work and beyond. Our reduced productivity during this period was expected. But an unexpected consequence of the pandemic was a change in priorities, with many authors no longer having the time to write a book. This is partly because universities and employers who asked more of us during the pandemic lockdowns continued to ask more of us once things went back to "normal". In addition, people stopped buying physical books so the short books we originally commissioned became e-books, a less exciting prospect for potential authors. Most of the books we commissioned were abandoned, and it became increasingly difficult to find people willing to write a book. I do not blame people at all for this stance, and became increasingly uncomfortable pestering people for drafts, and proposals and inviting them to write things. After much debate, I finally stepped down from my editorial role in 2025 after one final attempt to revitalise the project (Rob stepped down a year earlier).
+
+This book was another COVID casualty. After our initial writing retreat in March 2020, I managed to write my sections and the online exercises as part of flipping my teaching to online. Rob, however, struggled to do any writing as he was Head of Department, and later Head of School, and dealing with the chaos that COVID-19 created. We lost momentum on the project, and despite regular attempts to get it going again, we kept stalling. It didn't help that REDACTED publisher has a specific formatting and mark-up that required a lot of additional work after the writing. Even when we were about two thirds done, the mountain of formatting, image sourcing and checking and additional hoops to jump through felt like an insurmountable challenge given our other commitments and priorities. Finally at the end of 2025 I pulled the plug, mostly because I couldn't bear to see it on my to-do list for the 6th year in a row! Yes we spent a lot of time on this, but the amount of time still required was substantial. It was time to let it go...
+
+Despite the book never being completed, I do want to share what we created as far as it got. It's got some good material and some really handy associated online exercises that I've been sharing with people for years. I thought it'd be good to give them a DOI so people can actually cite the damn things. Thus this gitbook was born. It isn't perfect, in particular its not very well referenced and its focus is on older foundational methods rather than the myriad new methods available, but it's done. I hope some of you find it useful :).
+
+## What are comparative methods? {-}
+
+The comparative approach is one of the oldest and most frequently used methods for answering questions in biology. The rationale of this approach is to test biological hypotheses by comparing organisms that differ in their life history, ecology or evolutionary history. Although originally developed in the 18th century as a qualitative approach for describing biological diversity, the modern comparative method is highly quantitative, drawing together methods from phylogenetics, advanced statistics, and computational biology. The comparative method is used in all areas of biology, including ecology, evolutionary biology, behavioural ecology, conservation biology, anthropology, primatology, epidemiology, and physiology.
+
+The modern comparative method recognises that robust tests of biological hypotheses require that we account for the evolutionary relationships among organisms. Closely related species share adaptations and ecological preferences because they inherited them from their common ancestor, not because of independent evolution (phylogenetic non-independence). The outcome of this is that statistical methods that assume that species data are independent may be compromised. For this reason, the past 40 years has seen a huge effort devoted to developing statistical methods that are robust to this problem. 
+
+Although much of the development of the comparative approach has revolved around statistical tests, more recently the scope of new methods has expanded to consider the mode and nature of evolution. Recognising that the level and nature of phylogenetic non-independence is a function of trait evolution, new methods have been developed that permit the measurement of rates of trait evolution, including time-varying rates, clade dependent evolution and relationships between traits and diversification. 
+
+## Why did we write this guide? {-}
+
+For a novice, the field of comparative methods is a potential minefield. There is >40 years of literature, including a great deal of technically intense methods development. Most potential users of comparative methods are familiar with basic statistics and some advanced methods (e.g. generalised linear models; GLMs), however the comparative method can be daunting and difficult to understand, because the methods are statistically advanced, and require some understanding of phylogenetic concepts that many non-specialists will be unfamiliar with. This guide is designed to help new users understand and use comparative methods.
+
+## Who is this guide for? {-}
+
+This guide is pitched at an audience ranging from advanced undergraduates to early postdoctoral researchers. No previous knowledge of comparative methods is assumed, however we assume a general understanding of evolutionary biology, particularly that we can represent evolutionary relationships as phylogenetic trees. We assume some knowledge of basic statistics such as regressions, and refer to other commonly used statistics, e.g. GLMs, throughout. However, these references are designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding. For those wanting a more thorough coverage of particular methods or models we have included references to further reading. 
+
+## How is this guide organised? {-}
+The guide is divided as follows:
+
+* Chapter 1: Introduction to the comparative method.
+* Chapter 2: Phylogenies and comparative data.
+* Chapter 3: Introduction to models of trait evolution.
+* Chapter 4: Phylogenetic signal.
+* Chapter 5: Dealing with phylogenetic non-independence: a practical introduction. 
+* Chapter 6: Tempo and mode of evolution from comparative data. 
+* Chapter 7: Looking forward, more advanced comparative methods and where next. 
+
+## Online Exercises {-}
+Each chapter of the guide has associated online companion material. This consists of an online book with practical examples of how to perform each analysis in R. 
+
+> Link to the online materials: 
+
+## Boxes {-}
+
+Throughout the guide are boxes of text highlighting particularly important issues:
+
+```{block, type="info"}
+**Note**. These boxes highlight important details that we don't want you to miss!
+```
+
+```{block, type="detail"}
+**Extra details**. These boxes contain detailed explanations of things for readers who like to fully understand the complexities of what they are doing, for example fully worked through examples, or technical details that we have not explained in detail in the text.
+```
+
+```{block, type="warning"}
+**Caveats**. These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should* (thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. 
+```
+
+```{block, type="examps"}
+**Examples**. These boxes provide examples or case studies for a fuller understanding of the topic. 
+```
+
 ## Citing this guide {-}
 
 If you use this guide it would be great if you could cite it:
@@ -41,69 +105,6 @@ If you use the online practical exercises these should be cited as:
 > Natalie Cooper. 2026. Phylogenetic Comparative Methods: Online Practical Exercises. WEBSITE. DOI:
 
 [zenodo badge]
-
-## A potted history of this project {-}
-
-In 2019 Rob Freckleton asked me if I'd like to co-edit a new series of short books with him for REDACTED publisher. We had grand plans; the books would be on topics of importance in ecology and evolution but with a focus on methods. I sold the idea to others as "the book you wish you could give to each new student who starts work in your group". Books that would introduce the basics, providing a solid starting point for further learning and investigation. As part of this, we agreed to write our own book on Phylogenetic Comparative Methods. 
-
-Initially things went well. We lined up a great set of authors and possible titles, we submitted proposals, and we got the go ahead for writing this book. We even had a writing retreat in early March 2020 where we made substantial progress. And then COVID-19 took over. 
-
-The COVID-19 pandemic affected this project (like it affected most things) in both expected and unexpected ways. During the lockdown periods, Rob, myself and authors of the other books all found ourselves having to rapidly flip teaching to online, supporting our students and staff, and trying to navigate the new normal at work and beyond. Our reduced productivity during this period was expected. But an unexpected consequence of the pandemic was a change in priorities, with many authors no longer having the time to write a book. This is partly because universities and employers who asked more of us during the pandemic lockdowns continued to ask more of us once things went back to "normal". In addition, people stopped buying physical books so the short books we originally commissioned became e-books, a less exciting prospect for potential authors. Most of the books we commissioned were abandoned, and it became increasingly difficult to find people willing to write a book. I do not blame people at all for this stance, and became increasingly uncomfortable pestering people for drafts, and proposals and inviting them to write things. After much debate, I finally stepped down from my editorial role in 2025 after one final attempt to revitalise the project (Rob stepped down a year earlier).
-
-This book was another COVID casualty. After our initial writing retreat in March 2020, I managed to write my sections and the online exercises as part of flipping my teaching to online. Rob, however, struggled to do any writing as he was Head of Department, and later Head of School, and dealing with the chaos that COVID-19 created. We lost momentum on the project, and despite regular attempts to get it going again, we kept stalling. It didn't help that REDACTED publisher has a specific formatting and mark-up that required a lot of additional work after the writing. Even when we were about two thirds done, the mountain of formatting, image sourcing and checking and additional hoops to jump through felt like an insurmountable challenge given our other commitments and priorities. Finally at the end of 2025 I pulled the plug, mostly because I couldn't bear to see it on my to-do list for the 6th year in a row! Yes we spent a lot of time on this, but the amount of time still required was substantial. It was time to let it go...
-
-% ut despite my comments above about the sunk costs fallacy, I do want to share what we created as far as it got. It's got %  % some good material and some really hnady online exercises. I've also been sharing these for years so it'd be good to give % % them a DOI so people can actually cite the damn things. Thus this gitbook was born. It isn't perfect, but it's done.
-
-## What are comparative methods? {-}
-
-The comparative approach is one of the oldest and most frequently used methods for answering questions in biology. The rationale of this approach is to test biological hypotheses by comparing organisms that differ in their life history, ecology or evolutionary history. Although originally developed in the 18th century as a qualitative approach for describing biological diversity, the modern comparative method is highly quantitative, drawing together methods from phylogenetics, advanced statistics, and computational biology. The comparative method is used in all areas of biology, including ecology, evolutionary biology, behavioural ecology, conservation biology, anthropology, primatology, epidemiology, and physiology.
-
-The modern comparative method recognises that robust tests of biological hypotheses require that we account for the evolutionary relationships among organisms. Closely related species share adaptations and ecological preferences because they inherited them from their common ancestor, not because of independent evolution (phylogenetic non-independence). The outcome of this is that statistical methods that assume that species data are independent may be compromised. For this reason, the past 40 years has seen a huge effort devoted to developing statistical methods that are robust to this problem. 
-
-Although much of the development of the comparative approach has revolved around statistical tests, more recently the scope of new methods has expanded to consider the mode and nature of evolution. Recognising that the level and nature of phylogenetic non-independence is a function of trait evolution, new methods have been developed that permit the measurement of rates of trait evolution, including time-varying rates, clade dependent evolution and relationships between traits and diversification. 
-## Why did we write this guide? {-}
-
-For a novice, the field of comparative methods is a potential minefield. There is >40 years of literature, including a great deal of technically intense methods development. Most potential users of comparative methods are familiar with basic statistics and some advanced methods (e.g. generalised linear models; GLMs), however the comparative method can be daunting and difficult to understand, because the methods are statistically advanced, and require some understanding of phylogenetic concepts that many non-specialists will be unfamiliar with. This guide is designed to help new users understand and use comparative methods.
-
-## Who is this guide for? {-}
-
-This guide is pitched at an audience ranging from advanced undergraduates to early postdoctoral researchers. No previous knowledge of comparative methods is assumed, however we assume a general understanding of evolutionary biology, particularly that we can represent evolutionary relationships as phylogenetic trees. We assume some knowledge of basic statistics such as regressions, and refer to other commonly used statistics, e.g. GLMs, throughout. However, these references are designed to aid readers familiar with these techniques; if readers are unfamiliar with them it will not substantially reduce their understanding. For those wanting a more thorough coverage of particular methods or models we have included references to further reading. 
-
-## How is this guide organised? {-}
-[TO BE COMPLETED]
-The guide is divided into eight chapters as follows:
-
-* Chapter 1: Introduction to the comparative method.
-* Chapter 2: Foundations 1: .
-* Chapter 3: Foundations 2:
-* Chapter 4: Dealing with phylogenetic non-independence: a practical introduction. 
-* Chapter 5: Testing and evaluating comparative models: is my model good enough?
-* Chapter 6: More advanced topics, where next? 
-* Chapter 7: Tempo and mode of evolution from comparative data. 
-* Chapter 8: Looking forward, more advanced comparative methods and where next. 
-
-## Online Practical Excercises {-}
-[TO BE COMPLETED]
-Each chapter of the guide has associated online companion material. This consists of 
-1. An online book with practical examples of how to perform each analysis in R. 
-2. Multiple choice questions for each chapter so you can test your understanding.
-3. Short videos.
-
-## Boxes {-}
-
-Throughout the guide are boxes of text highlighting particularly important issues:
-
-```{block, type="info"}
-**Note** boxes. These boxes highlight important details that we don't want you to miss!
-```
-
-```{block, type="detail"}
-**Extra details** boxes. These boxes contain detailed explanations of things for readers who like to fully understand the complexities of what they are doing, for example fully worked through examples, or technical details that we have not explained in detail in the text.
-```
-
-```{block, type="warning"}
-**Caveats** boxes. These boxes highlight important points that need to be considered when working through your own analyses. They reveal areas where it is important to be careful and think about what you are doing and **why**. The image is a Jurassic Park era velociraptor to remind you of the "Jurassic Park caveat", i.e. that just because you *can* perform an analysis in R doesn't mean that you *should* (thanks to Dr Ian Malcolm and Dr Michael Crichton)! Always consider the question at hand, your study group, and the quality of the data you are using before embarking on a new comparative analysis. 
-```
 
 ## Acknowledgements {-}
 
