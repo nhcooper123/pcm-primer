@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Introduction to the comparative method | Primer on Phylogenetic Comparative Methods for the Biological Sciences</title>
+  <title>Chapter 1 Introduction to the comparative method | Phylogenetic Comparative Methods</title>
   <meta name="description" content="PCM Primer" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Introduction to the comparative method | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  <meta property="og:title" content="Chapter 1 Introduction to the comparative method | Phylogenetic Comparative Methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="PCM Primer" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Introduction to the comparative method | Primer on Phylogenetic Comparative Methods for the Biological Sciences" />
+  <meta name="twitter:title" content="Chapter 1 Introduction to the comparative method | Phylogenetic Comparative Methods" />
   
   <meta name="twitter:description" content="PCM Primer" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Natalie Cooper, Robert P. Freckleton" />
 
 
-<meta name="date" content="2020-12-03" />
+<meta name="date" content="2026-03-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +31,9 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="foundations.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="foundations1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,12 +49,39 @@
 
 
 
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -72,117 +99,155 @@
 <li><a href="./">PCM Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-potted-history-of-this-project"><i class="fa fa-check"></i>A potted history of this project</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-are-comparative-methods"><i class="fa fa-check"></i>What are comparative methods?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-did-we-write-this-primer"><i class="fa fa-check"></i>Why did we write this Primer?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-is-this-primer-for"><i class="fa fa-check"></i>Who is this Primer for?</a></li>
-<li><a href="index.html#how-is-this-primer-organised">How is this <em>Primer</em> organised?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#online-companion-material"><i class="fa fa-check"></i>Online companion material</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-did-we-write-this-guide"><i class="fa fa-check"></i>Why did we write this guide?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-is-this-guide-for"><i class="fa fa-check"></i>Who is this guide for?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-is-this-guide-organised"><i class="fa fa-check"></i>How is this guide organised?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#online-exercises"><i class="fa fa-check"></i>Online Exercises</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#boxes"><i class="fa fa-check"></i>Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citing-this-guide"><i class="fa fa-check"></i>Citing this guide</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to the comparative method</a></li>
-<li class="chapter" data-level="2" data-path="foundations.html"><a href="foundations.html"><i class="fa fa-check"></i><b>2</b> Foundations 1: introduction to phylogenies and comparative data</a><ul>
-<li class="chapter" data-level="2.1" data-path="foundations.html"><a href="foundations.html#a-basic-introduction-to-phylogenies"><i class="fa fa-check"></i><b>2.1</b> A basic introduction to phylogenies</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="foundations.html"><a href="foundations.html#reading-and-interpreting-phylogenies"><i class="fa fa-check"></i><b>2.1.1</b> Reading and interpreting phylogenies</a></li>
-<li class="chapter" data-level="2.1.2" data-path="foundations.html"><a href="foundations.html#how-do-we-infer-phylogenies"><i class="fa fa-check"></i><b>2.1.2</b> How do we infer phylogenies?</a></li>
-<li class="chapter" data-level="2.1.3" data-path="foundations.html"><a href="foundations.html#where-do-we-get-phylogenies-from-for-comparative-analyses"><i class="fa fa-check"></i><b>2.1.3</b> Where do we get phylogenies from for comparative analyses?</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to the comparative method</a>
+<ul>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#aims-of-this-primer"><i class="fa fa-check"></i>Aims of this Primer</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#historical-context-of-the-comparative-method"><i class="fa fa-check"></i><b>1.1</b> Historical context of the comparative method</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#what-questions-can-we-answer-with-comparative-methods"><i class="fa fa-check"></i><b>1.2</b> What questions can we answer with comparative methods?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#the-problem-of-phylogenetic-non-independence"><i class="fa fa-check"></i><b>1.3</b> The problem of phylogenetic non-independence</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#how-do-comparative-methods-work"><i class="fa fa-check"></i><b>1.4</b> How do comparative methods work?</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#chapter-summary"><i class="fa fa-check"></i><b>1.5</b> ## Chapter summary</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#further-reading"><i class="fa fa-check"></i><b>1.6</b> Further reading</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#online-materials"><i class="fa fa-check"></i><b>1.7</b> Online materials</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="foundations.html"><a href="foundations.html#comparative-data"><i class="fa fa-check"></i><b>2.2</b> Comparative data</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="foundations.html"><a href="foundations.html#sources-of-comparative-data-and-data-quality"><i class="fa fa-check"></i><b>2.2.1</b> Sources of comparative data and data quality</a></li>
-<li class="chapter" data-level="2.2.2" data-path="foundations.html"><a href="foundations.html#whats-in-a-name"><i class="fa fa-check"></i><b>2.2.2</b> What’s in a name?</a></li>
+<li class="chapter" data-level="2" data-path="foundations1.html"><a href="foundations1.html"><i class="fa fa-check"></i><b>2</b> Phylogenies and comparative data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="foundations1.html"><a href="foundations1.html#a-basic-introduction-to-phylogenies"><i class="fa fa-check"></i><b>2.1</b> A basic introduction to phylogenies</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="foundations1.html"><a href="foundations1.html#reading-and-interpreting-phylogenies"><i class="fa fa-check"></i><b>2.1.1</b> Reading and interpreting phylogenies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="foundations1.html"><a href="foundations1.html#section:infer"><i class="fa fa-check"></i><b>2.1.2</b> How do we infer phylogenies?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="foundations1.html"><a href="foundations1.html#where-do-we-get-phylogenies-from-for-comparative-analyses"><i class="fa fa-check"></i><b>2.1.3</b> Where do we get phylogenies from for comparative analyses?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="foundations.html"><a href="foundations.html#summary"><i class="fa fa-check"></i><b>2.3</b> Summary</a></li>
-<li class="chapter" data-level="2.4" data-path="foundations.html"><a href="foundations.html#online-materials"><i class="fa fa-check"></i><b>2.4</b> Online materials</a></li>
-<li class="chapter" data-level="2.5" data-path="foundations.html"><a href="foundations.html#mcqs"><i class="fa fa-check"></i><b>2.5</b> MCQs</a></li>
-<li class="chapter" data-level="2.6" data-path="foundations.html"><a href="foundations.html#boxes-1"><i class="fa fa-check"></i><b>2.6</b> BOXES</a></li>
-<li class="chapter" data-level="2.7" data-path="foundations.html"><a href="foundations.html#bigger-picture-panel"><i class="fa fa-check"></i><b>2.7</b> Bigger picture panel</a></li>
+<li class="chapter" data-level="2.2" data-path="foundations1.html"><a href="foundations1.html#comparative-data"><i class="fa fa-check"></i><b>2.2</b> Comparative data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="foundations1.html"><a href="foundations1.html#how-much-data-is-enough"><i class="fa fa-check"></i><b>2.2.1</b> How much data is enough?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="foundations1.html"><a href="foundations1.html#sources-of-comparative-data-and-data-quality"><i class="fa fa-check"></i><b>2.2.2</b> Sources of comparative data and data quality</a></li>
+<li class="chapter" data-level="2.2.3" data-path="foundations1.html"><a href="foundations1.html#summarising-the-data-for-each-species"><i class="fa fa-check"></i><b>2.2.3</b> Summarising the data for each species</a></li>
+<li class="chapter" data-level="2.2.4" data-path="foundations1.html"><a href="foundations1.html#whats-in-a-name"><i class="fa fa-check"></i><b>2.2.4</b> What’s in a name?</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="foundations2.html"><a href="foundations2.html"><i class="fa fa-check"></i><b>3</b> Foundations 2: Introduction to models of trait evolution and phylogenetic signal</a><ul>
-<li class="chapter" data-level="3.1" data-path="foundations2.html"><a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution"><i class="fa fa-check"></i><b>3.1</b> Modelling continuous traits - the Brownian Motion model of evolution</a><ul>
+<li class="chapter" data-level="2.3" data-path="foundations1.html"><a href="foundations1.html#chapter-summary-1"><i class="fa fa-check"></i><b>2.3</b> Chapter summary</a></li>
+<li class="chapter" data-level="2.4" data-path="foundations1.html"><a href="foundations1.html#further-reading-1"><i class="fa fa-check"></i><b>2.4</b> Further reading</a></li>
+<li class="chapter" data-level="2.5" data-path="foundations1.html"><a href="foundations1.html#online-exercises-1"><i class="fa fa-check"></i><b>2.5</b> Online exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="foundations2.html"><a href="foundations2.html"><i class="fa fa-check"></i><b>3</b> Introduction to models of trait evolution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="foundations2.html"><a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution"><i class="fa fa-check"></i><b>3.1</b> Modelling continuous traits - the Brownian Motion model of evolution</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="foundations2.html"><a href="foundations2.html#an-introduction-to-brownian-motion"><i class="fa fa-check"></i><b>3.1.1</b> An introduction to Brownian Motion</a></li>
+<li class="chapter" data-level="3.1.2" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-multivariate-brownian-motion"><i class="fa fa-check"></i><b>3.1.2</b> A quick note about multivariate Brownian motion</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="foundations2.html"><a href="foundations2.html#modelling-discrete-traits---simple-models"><i class="fa fa-check"></i><b>3.2</b> Modelling discrete traits - simple models</a><ul>
+<li class="chapter" data-level="3.2" data-path="foundations2.html"><a href="foundations2.html#modelling-discrete-traits---simple-models"><i class="fa fa-check"></i><b>3.2</b> Modelling discrete traits - simple models</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="foundations2.html"><a href="foundations2.html#mkequal-rates-model-er"><i class="fa fa-check"></i><b>3.2.1</b> M<em>k</em>/Equal Rates model (ER)</a></li>
 <li class="chapter" data-level="3.2.2" data-path="foundations2.html"><a href="foundations2.html#symmetric-rates-model-sym"><i class="fa fa-check"></i><b>3.2.2</b> Symmetric rates model (SYM)</a></li>
 <li class="chapter" data-level="3.2.3" data-path="foundations2.html"><a href="foundations2.html#all-rates-different-ard-model"><i class="fa fa-check"></i><b>3.2.3</b> All Rates Different (ARD) model</a></li>
 <li class="chapter" data-level="3.2.4" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-ancestral-state-estimation"><i class="fa fa-check"></i><b>3.2.4</b> A quick note about ancestral state estimation</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-variance-covariance-matrices"><i class="fa fa-check"></i><b>3.3</b> Phylogenetic variance-covariance matrices</a></li>
-<li class="chapter" data-level="3.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal"><i class="fa fa-check"></i><b>3.4</b> Phylogenetic signal</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="foundations2.html"><a href="foundations2.html#what-is-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.1</b> What is phylogenetic signal?</a></li>
-<li class="chapter" data-level="3.4.2" data-path="foundations2.html"><a href="foundations2.html#how-do-we-estimate-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.2</b> How do we estimate phylogenetic signal?</a></li>
-<li class="chapter" data-level="3.4.3" data-path="foundations2.html"><a href="foundations2.html#blombergs-k"><i class="fa fa-check"></i><b>3.4.3</b> Blomberg’s <em>K</em></a></li>
-<li class="chapter" data-level="3.4.4" data-path="foundations2.html"><a href="foundations2.html#phylogenetic-signal-for-categorical-traits"><i class="fa fa-check"></i><b>3.4.4</b> Phylogenetic signal for categorical traits</a></li>
-<li class="chapter" data-level="3.4.5" data-path="foundations2.html"><a href="foundations2.html#calculating-d-for-binary-traits"><i class="fa fa-check"></i><b>3.4.5</b> Calculating <em>D</em> for binary traits</a></li>
-<li class="chapter" data-level="3.4.6" data-path="foundations2.html"><a href="foundations2.html#how-do-we-interpret-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.6</b> How do we interpret phylogenetic signal?</a></li>
-<li class="chapter" data-level="3.4.7" data-path="foundations2.html"><a href="foundations2.html#some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal"><i class="fa fa-check"></i><b>3.4.7</b> Some additional caveats with estimating and interpreting phylogenetic signal</a></li>
+<li class="chapter" data-level="3.3" data-path="foundations2.html"><a href="foundations2.html#section:varcovar"><i class="fa fa-check"></i><b>3.3</b> Phylogenetic variance-covariance matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="foundations2.html"><a href="foundations2.html#chapter-summary-2"><i class="fa fa-check"></i><b>3.4</b> Chapter summary</a></li>
+<li class="chapter" data-level="3.5" data-path="foundations2.html"><a href="foundations2.html#further-reading-2"><i class="fa fa-check"></i><b>3.5</b> Further reading</a></li>
+<li class="chapter" data-level="3.6" data-path="foundations2.html"><a href="foundations2.html#online-exercises-2"><i class="fa fa-check"></i><b>3.6</b> Online exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="foundations2.html"><a href="foundations2.html#online-materials-1"><i class="fa fa-check"></i><b>3.5</b> Online materials</a></li>
-<li class="chapter" data-level="3.6" data-path="foundations2.html"><a href="foundations2.html#mcqs-1"><i class="fa fa-check"></i><b>3.6</b> MCQs</a></li>
-<li class="chapter" data-level="3.7" data-path="foundations2.html"><a href="foundations2.html#boxes-2"><i class="fa fa-check"></i><b>3.7</b> BOXES</a></li>
-<li class="chapter" data-level="3.8" data-path="foundations2.html"><a href="foundations2.html#case-study-box"><i class="fa fa-check"></i><b>3.8</b> Case study box</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="foundations2.html"><a href="foundations2.html#is-there-phylogenetic-signal-in-how-rhododendron-species-respond-to-climate-change"><i class="fa fa-check"></i><b>3.8.1</b> Is there phylogenetic signal in how <em>Rhododendron</em> species respond to climate change?</a></li>
+<li class="chapter" data-level="4" data-path="signal.html"><a href="signal.html"><i class="fa fa-check"></i><b>4</b> Phylogenetic signal</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signal.html"><a href="signal.html#what-is-phylogenetic-signal"><i class="fa fa-check"></i><b>4.1</b> What is phylogenetic signal?</a></li>
+<li class="chapter" data-level="4.2" data-path="signal.html"><a href="signal.html#how-do-we-estimate-phylogenetic-signal"><i class="fa fa-check"></i><b>4.2</b> How do we estimate phylogenetic signal?</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="signal.html"><a href="signal.html#pagels-lambda"><i class="fa fa-check"></i><b>4.2.1</b> Pagel’s <span class="math inline">\(\lambda\)</span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="signal.html"><a href="signal.html#blombergs-k"><i class="fa fa-check"></i><b>4.2.2</b> Blomberg’s <em>K</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="signal.html"><a href="signal.html#phylogenetic-signal-for-categorical-traits"><i class="fa fa-check"></i><b>4.2.3</b> Phylogenetic signal for categorical traits</a></li>
+<li class="chapter" data-level="4.2.4" data-path="signal.html"><a href="signal.html#calculating-d-for-binary-traits"><i class="fa fa-check"></i><b>4.2.4</b> Calculating <em>D</em> for binary traits</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="foundations2.html"><a href="foundations2.html#bigger-picture-box"><i class="fa fa-check"></i><b>3.9</b> Bigger picture box</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="foundations2.html"><a href="foundations2.html#is-the-brownian-motion-model-of-evolution-a-realistic-model-of-evolution"><i class="fa fa-check"></i><b>3.9.1</b> Is the Brownian motion model of evolution a realistic model of evolution?</a></li>
+<li class="chapter" data-level="4.3" data-path="signal.html"><a href="signal.html#how-do-we-interpret-phylogenetic-signal"><i class="fa fa-check"></i><b>4.3</b> How do we interpret phylogenetic signal?</a></li>
+<li class="chapter" data-level="4.4" data-path="signal.html"><a href="signal.html#some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal"><i class="fa fa-check"></i><b>4.4</b> Some additional caveats with estimating and interpreting phylogenetic signal</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="signal.html"><a href="signal.html#sample-size"><i class="fa fa-check"></i><b>4.4.1</b> Sample size</a></li>
+<li class="chapter" data-level="4.4.2" data-path="signal.html"><a href="signal.html#error-in-the-phylogeny-and-the-trait"><i class="fa fa-check"></i><b>4.4.2</b> Error in the phylogeny and the trait</a></li>
 </ul></li>
+<li class="chapter" data-level="4.5" data-path="signal.html"><a href="signal.html#chapter-summary-3"><i class="fa fa-check"></i><b>4.5</b> Chapter summary</a></li>
+<li class="chapter" data-level="4.6" data-path="signal.html"><a href="signal.html#further-reading-3"><i class="fa fa-check"></i><b>4.6</b> Further reading</a></li>
+<li class="chapter" data-level="4.7" data-path="signal.html"><a href="signal.html#online-exercises-3"><i class="fa fa-check"></i><b>4.7</b> Online exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="pseudorep.html"><a href="pseudorep.html"><i class="fa fa-check"></i><b>4</b> Dealing with phylogenetic non-independence: a practical introduction.</a></li>
-<li class="chapter" data-level="5" data-path="evaluating.html"><a href="evaluating.html"><i class="fa fa-check"></i><b>5</b> Testing and evaluating comparative models: is my model good enough?</a></li>
-<li class="chapter" data-level="6" data-path="advanced.html"><a href="advanced.html"><i class="fa fa-check"></i><b>6</b> More advanced topics, where next?</a></li>
-<li class="chapter" data-level="7" data-path="tempo-mode.html"><a href="tempo-mode.html"><i class="fa fa-check"></i><b>7</b> Tempo and mode of evolution from comparative data.</a><ul>
-<li class="chapter" data-level="7.1" data-path="tempo-mode.html"><a href="tempo-mode.html#brownian-motion-recap"><i class="fa fa-check"></i><b>7.1</b> Brownian motion recap</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="tempo-mode.html"><a href="tempo-mode.html#why-is-brownian-motion-a-poor-model-of-trait-evolution"><i class="fa fa-check"></i><b>7.1.1</b> Why is Brownian motion a poor model of trait evolution?</a></li>
+<li class="chapter" data-level="5" data-path="pgls.html"><a href="pgls.html"><i class="fa fa-check"></i><b>5</b> Dealing with phylogenetic non-independence: a practical introduction.</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pgls.html"><a href="pgls.html#chapter-summary-4"><i class="fa fa-check"></i><b>5.1</b> Chapter summary</a></li>
+<li class="chapter" data-level="5.2" data-path="pgls.html"><a href="pgls.html#further-reading-4"><i class="fa fa-check"></i><b>5.2</b> Further reading</a></li>
+<li class="chapter" data-level="5.3" data-path="pgls.html"><a href="pgls.html#online-exercises-4"><i class="fa fa-check"></i><b>5.3</b> Online exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="tempo-mode.html"><a href="tempo-mode.html#multi-rate-brownian-motion-models"><i class="fa fa-check"></i><b>7.2</b> Multi-rate Brownian motion models</a></li>
-<li class="chapter" data-level="7.3" data-path="tempo-mode.html"><a href="tempo-mode.html#the-ornstein-uhlenbeck-ou-model"><i class="fa fa-check"></i><b>7.3</b> The Ornstein-Uhlenbeck (OU) model</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="tempo-mode.html"><a href="tempo-mode.html#how-stretchy-is-your-rubber-band-parameter"><i class="fa fa-check"></i><b>7.3.1</b> How stretchy is your “rubber band” parameter?</a></li>
-<li class="chapter" data-level="7.3.2" data-path="tempo-mode.html"><a href="tempo-mode.html#single-stationary-peak-ssp-versus-more-complex-ou-models"><i class="fa fa-check"></i><b>7.3.2</b> Single stationary peak (SSP) versus more complex OU models</a></li>
-<li class="chapter" data-level="7.3.3" data-path="tempo-mode.html"><a href="tempo-mode.html#here-be-dragonsthings-to-be-aware-of-when-fitting-ou-models"><i class="fa fa-check"></i><b>7.3.3</b> Here be dragons…things to be aware of when fitting OU models</a></li>
+<li class="chapter" data-level="6" data-path="tempo-mode.html"><a href="tempo-mode.html"><i class="fa fa-check"></i><b>6</b> Tempo and mode of evolution from comparative data.</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tempo-mode.html"><a href="tempo-mode.html#brownian-motion-recap"><i class="fa fa-check"></i><b>6.1</b> Brownian motion recap</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tempo-mode.html"><a href="tempo-mode.html#why-is-brownian-motion-a-poor-model-of-trait-evolution"><i class="fa fa-check"></i><b>6.1.1</b> Why is Brownian motion a poor model of trait evolution?</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="tempo-mode.html"><a href="tempo-mode.html#fitting-and-assessing-models-of-evolution"><i class="fa fa-check"></i><b>7.4</b> Fitting and assessing models of evolution</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="tempo-mode.html"><a href="tempo-mode.html#model-selection-with-aic"><i class="fa fa-check"></i><b>7.4.1</b> Model selection with AIC</a></li>
-<li class="chapter" data-level="7.4.2" data-path="tempo-mode.html"><a href="tempo-mode.html#model-adequacy-with-models-of-trait-evolution."><i class="fa fa-check"></i><b>7.4.2</b> Model adequacy with models of trait evolution.</a></li>
+<li class="chapter" data-level="6.2" data-path="tempo-mode.html"><a href="tempo-mode.html#multi-rate-brownian-motion-models"><i class="fa fa-check"></i><b>6.2</b> Multi-rate Brownian motion models</a></li>
+<li class="chapter" data-level="6.3" data-path="tempo-mode.html"><a href="tempo-mode.html#the-ornstein-uhlenbeck-ou-model"><i class="fa fa-check"></i><b>6.3</b> The Ornstein-Uhlenbeck (OU) model</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="tempo-mode.html"><a href="tempo-mode.html#how-stretchy-is-your-rubber-band-parameter"><i class="fa fa-check"></i><b>6.3.1</b> How stretchy is your “rubber band” parameter?</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tempo-mode.html"><a href="tempo-mode.html#single-stationary-peak-ssp-versus-more-complex-ou-models"><i class="fa fa-check"></i><b>6.3.2</b> Single stationary peak (SSP) versus more complex OU models</a></li>
+<li class="chapter" data-level="6.3.3" data-path="tempo-mode.html"><a href="tempo-mode.html#here-be-dragonsthings-to-be-aware-of-when-fitting-ou-models"><i class="fa fa-check"></i><b>6.3.3</b> Here be dragons…things to be aware of when fitting OU models</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="tempo-mode.html"><a href="tempo-mode.html#summary-1"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
-<li class="chapter" data-level="7.6" data-path="tempo-mode.html"><a href="tempo-mode.html#online-materials-2"><i class="fa fa-check"></i><b>7.6</b> Online materials</a></li>
-<li class="chapter" data-level="7.7" data-path="tempo-mode.html"><a href="tempo-mode.html#mcqs-2"><i class="fa fa-check"></i><b>7.7</b> MCQs</a></li>
-<li class="chapter" data-level="7.8" data-path="tempo-mode.html"><a href="tempo-mode.html#boxes-3"><i class="fa fa-check"></i><b>7.8</b> BOXES</a></li>
+<li class="chapter" data-level="6.4" data-path="tempo-mode.html"><a href="tempo-mode.html#fitting-and-assessing-models-of-evolution"><i class="fa fa-check"></i><b>6.4</b> Fitting and assessing models of evolution</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="tempo-mode.html"><a href="tempo-mode.html#model-selection-with-aic"><i class="fa fa-check"></i><b>6.4.1</b> Model selection with AIC</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tempo-mode.html"><a href="tempo-mode.html#model-adequacy-with-models-of-trait-evolution."><i class="fa fa-check"></i><b>6.4.2</b> Model adequacy with models of trait evolution.</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html"><i class="fa fa-check"></i><b>8</b> A very brief introduction to diversification analyses</a><ul>
-<li class="chapter" data-level="8.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#why-do-we-study-species-diversity"><i class="fa fa-check"></i><b>8.1</b> Why do we study species diversity?</a></li>
-<li class="chapter" data-level="8.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#phylogenetic-tree-imbalance"><i class="fa fa-check"></i><b>8.2</b> Phylogenetic tree imbalance</a></li>
-<li class="chapter" data-level="8.3" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#birth-death-models-and-diversification-rates"><i class="fa fa-check"></i><b>8.3</b> Birth death models and diversification rates</a></li>
-<li class="chapter" data-level="8.4" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#lineage-through-time-plots-and-the-gamma-statistic"><i class="fa fa-check"></i><b>8.4</b> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</a></li>
-<li class="chapter" data-level="8.5" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#diversification-rate-variation-across-branches"><i class="fa fa-check"></i><b>8.5</b> Diversification rate variation across branches</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#bamm"><i class="fa fa-check"></i><b>8.5.1</b> BAMM!</a></li>
-<li class="chapter" data-level="8.5.2" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-bamm"><i class="fa fa-check"></i><b>8.5.2</b> Assumptions and issues with BAMM</a></li>
+<li class="chapter" data-level="6.5" data-path="tempo-mode.html"><a href="tempo-mode.html#chapter-summary-5"><i class="fa fa-check"></i><b>6.5</b> Chapter summary</a></li>
+<li class="chapter" data-level="6.6" data-path="tempo-mode.html"><a href="tempo-mode.html#further-reading-5"><i class="fa fa-check"></i><b>6.6</b> Further reading</a></li>
+<li class="chapter" data-level="6.7" data-path="tempo-mode.html"><a href="tempo-mode.html#online-exercises-5"><i class="fa fa-check"></i><b>6.7</b> Online exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#state-dependent-diversification"><i class="fa fa-check"></i><b>8.6</b> State-dependent diversification</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#assumptions-and-issues-with-sse-models"><i class="fa fa-check"></i><b>8.6.1</b> Assumptions and issues with SSE models</a></li>
+<li class="chapter" data-level="7" data-path="diversification.html"><a href="diversification.html"><i class="fa fa-check"></i><b>7</b> A very brief introduction to diversification analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diversification.html"><a href="diversification.html#why-do-we-study-species-diversity"><i class="fa fa-check"></i><b>7.1</b> Why do we study species diversity?</a></li>
+<li class="chapter" data-level="7.2" data-path="diversification.html"><a href="diversification.html#phylogenetic-tree-imbalance"><i class="fa fa-check"></i><b>7.2</b> Phylogenetic tree imbalance</a></li>
+<li class="chapter" data-level="7.3" data-path="diversification.html"><a href="diversification.html#birth-death-models-and-diversification-rates"><i class="fa fa-check"></i><b>7.3</b> Birth death models and diversification rates</a></li>
+<li class="chapter" data-level="7.4" data-path="diversification.html"><a href="diversification.html#lineage-through-time-plots-and-the-gamma-statistic"><i class="fa fa-check"></i><b>7.4</b> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</a></li>
+<li class="chapter" data-level="7.5" data-path="diversification.html"><a href="diversification.html#diversification-rate-variation-across-branches"><i class="fa fa-check"></i><b>7.5</b> Diversification rate variation across branches</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="diversification.html"><a href="diversification.html#bamm"><i class="fa fa-check"></i><b>7.5.1</b> BAMM!</a></li>
+<li class="chapter" data-level="7.5.2" data-path="diversification.html"><a href="diversification.html#assumptions-and-issues-with-bamm"><i class="fa fa-check"></i><b>7.5.2</b> Assumptions and issues with BAMM</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#summary-2"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
-<li class="chapter" data-level="8.8" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#online-materials-3"><i class="fa fa-check"></i><b>8.8</b> Online materials</a></li>
-<li class="chapter" data-level="8.9" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#mcqs-3"><i class="fa fa-check"></i><b>8.9</b> MCQs</a></li>
-<li class="chapter" data-level="8.10" data-path="a-very-brief-introduction-to-diversification-analyses.html"><a href="a-very-brief-introduction-to-diversification-analyses.html#boxes-4"><i class="fa fa-check"></i><b>8.10</b> BOXES</a></li>
+<li class="chapter" data-level="7.6" data-path="diversification.html"><a href="diversification.html#state-dependent-diversification"><i class="fa fa-check"></i><b>7.6</b> State-dependent diversification</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="diversification.html"><a href="diversification.html#assumptions-and-issues-with-sse-models"><i class="fa fa-check"></i><b>7.6.1</b> Assumptions and issues with SSE models</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html"><i class="fa fa-check"></i><b>9</b> Where do we go from here?</a><ul>
-<li class="chapter" data-level="9.1" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#factors-to-consider-before-using-a-new-phylogenetic-comparative-method"><i class="fa fa-check"></i><b>9.1</b> Factors to consider before using a new phylogenetic comparative method</a></li>
-<li class="chapter" data-level="9.2" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#how-to-critically-evaluate-a-paper-that-uses-phylogenetic-comparative-methods"><i class="fa fa-check"></i><b>9.2</b> How to critically evaluate a paper that uses phylogenetic comparative methods</a><ul>
-<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#logicinterpretation"><i class="fa fa-check"></i>Logic/interpretation</a></li>
-<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#methods"><i class="fa fa-check"></i>Methods</a></li>
-<li class="chapter" data-level="" data-path="where-do-we-go-from-here.html"><a href="where-do-we-go-from-here.html#moving-forwards"><i class="fa fa-check"></i>Moving forwards</a></li>
+<li class="chapter" data-level="7.7" data-path="diversification.html"><a href="diversification.html#chapter-summary-6"><i class="fa fa-check"></i><b>7.7</b> ## Chapter summary</a></li>
+<li class="chapter" data-level="7.8" data-path="diversification.html"><a href="diversification.html#further-reading-6"><i class="fa fa-check"></i><b>7.8</b> Further reading</a></li>
+<li class="chapter" data-level="7.9" data-path="diversification.html"><a href="diversification.html#online-materials-1"><i class="fa fa-check"></i><b>7.9</b> Online materials</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="critical.html"><a href="critical.html"><i class="fa fa-check"></i><b>8</b> Critical thinking</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="critical.html"><a href="critical.html#factors-to-consider-before-using-a-new-phylogenetic-comparative-method"><i class="fa fa-check"></i><b>8.1</b> Factors to consider before using a new phylogenetic comparative method</a></li>
+<li class="chapter" data-level="8.2" data-path="critical.html"><a href="critical.html#how-to-critically-evaluate-a-paper-that-uses-phylogenetic-comparative-methods"><i class="fa fa-check"></i><b>8.2</b> How to critically evaluate a paper that uses phylogenetic comparative methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#logicinterpretation"><i class="fa fa-check"></i>Logic/interpretation</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#moving-forwards"><i class="fa fa-check"></i>Moving forwards</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>10</b> Glossary</a><ul>
-<li class="chapter" data-level="10.1" data-path="glossary.html"><a href="glossary.html#parameters"><i class="fa fa-check"></i><b>10.1</b> Parameters</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="glossary.html"><a href="glossary.html#models-of-trait-evolution"><i class="fa fa-check"></i><b>10.1.1</b> Models of trait evolution</a></li>
-<li class="chapter" data-level="10.1.2" data-path="glossary.html"><a href="glossary.html#phylogenetic-signal-1"><i class="fa fa-check"></i><b>10.1.2</b> Phylogenetic signal</a></li>
-<li class="chapter" data-level="10.1.3" data-path="glossary.html"><a href="glossary.html#diversification-models"><i class="fa fa-check"></i><b>10.1.3</b> Diversification models</a></li>
+<li class="chapter" data-level="8.3" data-path="critical.html"><a href="critical.html#chapter-summary-7"><i class="fa fa-check"></i><b>8.3</b> Chapter summary</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="glossary.html"><a href="glossary.html#terms"><i class="fa fa-check"></i><b>10.2</b> Terms</a></li>
+<li class="chapter" data-level="9" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i><b>9</b> Glossary</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="glossary.html"><a href="glossary.html#parameters"><i class="fa fa-check"></i><b>9.1</b> Parameters</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="glossary.html"><a href="glossary.html#models-of-trait-evolution"><i class="fa fa-check"></i><b>9.1.1</b> Models of trait evolution</a></li>
+<li class="chapter" data-level="9.1.2" data-path="glossary.html"><a href="glossary.html#phylogenetic-signal"><i class="fa fa-check"></i><b>9.1.2</b> Phylogenetic signal</a></li>
+<li class="chapter" data-level="9.1.3" data-path="glossary.html"><a href="glossary.html#diversification-models"><i class="fa fa-check"></i><b>9.1.3</b> Diversification models</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="glossary.html"><a href="glossary.html#terms"><i class="fa fa-check"></i><b>9.2</b> Terms</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -197,7 +262,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Primer on Phylogenetic Comparative Methods for the Biological Sciences</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phylogenetic Comparative Methods</a>
           </h1>
         </div>
 
@@ -205,23 +270,107 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction to the comparative method</h1>
-<div class="info">
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction to the comparative method<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The comparative method is one of the oldest and most widely used approaches in biology (Harvey and Pagel 1991). Despite this, the approach may initially be unfamiliar to many because it is frequently not taught as one of the main approaches in research. As we will see in the rest of this primer, the comparative method encompasses a family of powerful techniques that can be used to test a wide range of theories, and has applications across the biological sciences.</p>
+<p>It is useful to think of there being three ways to address scientific questions: experimental, theoretical or observational (Maynard Smith 1978). Sometimes described as the ‘gold standard’ (Newman, Bergelson, and Grafen 1997), experiments test hypotheses by manipulating a small number of factors, whilst other possibly confounding ones are controlled through careful experimental design. This approach has the great advantage that we can be sure that the treatments being varied are definitely the ones that are having an effect on what we measure because the experiment has factored out all unwanted variation. The downsides of experiments are that they can usually only manipulate a small number of factors, they are expensive, and are likely time consuming. For some systems, they may not even be practical: for example we can’t manipulate a whole ecosystem, or we can’t go back in time to do experiments on species that don’t exist any more.</p>
+<p>Theory uses mathematical or computer models to create representations of reality. As in a computer game, we can interact with the model to observe the outcomes as we change different parameters. We can undertake virtual experiments, by systematically changing the variables that we are interested in. Models and theory are faster and potentially cheap: a mathematician needs only a pencil, paper and an eraser (a really good one doesn’t even need the eraser…), and the power of modern computers means that we can perform complex simulations that mimic the real world in great detail. However, theory is dependent on our understanding of the system: if we don’t know how a system works, or if we can’t accurately measure the parameters that drive it, then we can’t create a model. In fact, a theory is actually a hypothesis that, at some point, needs to be confronted with hard data.</p>
+<p>Observational methods rely on collecting data without changing the system being studied. In some areas of science this is the only possible approach. For example, astronomy is almost entirely dependent on observation as the mechanism for collecting data, because most objects of study are so remote. Similarly, palaeontology is reliant on observations taken of fossils because the study organisms are long dead. Observational methods are potentially extremely powerful, because they are based on data taken directly from natural systems. However, there are pitfalls because they don’t directly account for possible confounding variables in the same way as experiments do, and because it is often not possible to change the system (e.g. astronomy only became an experimental science following the invention of the Death Star).</p>
+<p>The Comparative Method is an observational method. It relies on observations and data taken from multiple species in order to test theories. The idea is that a group of species contains more variation than we can observe in a single species, or than we can create in an experiment. Consequently, we can use data on groups of species to test hypotheses using wider range of variation than we could ever generate in a single one. The problem, however, is that whilst factors we are interested in measuring will vary across species, there will also be variation in many other variables and this can lead to considerable problems. This aim of this primer is to explain this problem and how we can use clever statistical methods to deal with it.
+There is now an extensive and potentially confusing literature on comparative methods (Cooper, Thomas, and FitzJohn 2016). The literature on the ‘modern’ comparative method extends over 40 years. Some of the literature is highly technical, including advance mathematics and statistics. At face value it is a daunting prospect to master this body of work and start to use it in practice.</p>
+<p>Having said that, the principles that underpin comparative methods are relatively simple to understand. Moreover, despite the plethora of methods, many of them are closely related and linked by similar statistical and evolutionary models. The rationale for our primer is that by understanding a few key concepts and methods, it is possible to enter this outwardly daunting field and quickly work on real problems. The structure of the primer is as follows. In this chapter we provide an overview of the method and the problems associated with it. Chapter <a href="foundations1.html#foundations1">2</a> introduces some key concepts in phylogenetics and data handling. Chapter <a href="foundations2.html#foundations2">3</a> outlines some of the most important statistical approaches for practical data analysis, whilst Chapter <a href="foundations1.html#foundations1">2</a> highlights the diagnostic tools that can be used to ensure that fitted models are fit for purpose.</p>
+<div id="aims-of-this-primer" class="section level3 unnumbered hasAnchor">
+<h3>Aims of this Primer<a href="intro.html#aims-of-this-primer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Give a practical overview of the key phylogenetic comparative methods, linking them as closely as possible to familiar statistical approaches.</li>
+<li>Clearly describe the objectives, assumptions, and key interpretation of the major phylogenetic comparative methods.</li>
+<li>Provide pointers to enable readers to navigate the wider phylogenetic comparative methods literature. The primer will thus be a stepping off point for further research.</li>
+</ul>
+</div>
+<div id="historical-context-of-the-comparative-method" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Historical context of the comparative method<a href="intro.html#historical-context-of-the-comparative-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As we mentioned above the comparative method is old: arguably the first example of comparisons was by Edward Tyson in 1699 who looked at the similarities and differences between different apes and hominids (Tyson 1699). Using these comparisons, he was able to demonstrate that there is more similarity between chimpanzees (Pan sp.) and humans (Homo sapiens) than between chimpanzees and humans. Even in the absence of Darwinian evolutionary theory, this work was clearly instrumental in generating the underpinnings of our subsequent understanding of evolutionary relationships. Subsequently, the field of comparative anatomy emerged, which was probably the dominant approach for studying whole organism biology in the 18th and 19th centuries.</p>
+<p>The modern era of the comparative method perhaps begins with the pioneering work of Tinbergen. Tinbergen was interested in the eggshell removal behaviour of black-headed gulls (<em>Chroicocephalus ridibundus</em>). Tinbergen hypothesised that removal of eggshells from their ground nests was an adaptive behaviour to reduce predation by other gulls. This hypothesis was supported by observations on black-legged kittiwakes (<em>Rissa tridactyla</em>) which do not remove eggshells because they nest on cliffs, thereby avoiding predators.</p>
+<p>Tinbergen’s work was influential and exemplifies comparative ideas in framing and testing hypotheses. However, there are two obvious limitations. First, the study only considers two species and second, the analysis is qualitative. Nowadays comparative studies use observations from many more species. Indeed, it is not unusual to see modern comparative analyses applied to thousands of species: comparative analyses of birds, for example, can now be be conducted on all ~11000 species of birds because of the availability of data and a comprehensive phylogeny for this group. As the comparative method has evolved, studies have progressed from using simple familiar methods such as correlation and regression, through more complex methods such as nested ANOVAs, to the current suite of tests that take advantage of developments at the forefront of statistical science.</p>
+<p>This evolution of the methods reflects a recognition of the inherent complexity of datasets, as well as increasingly sophisticated thinking about the way that evolution shapes comparative data. However, the underpinning logic of testing ideas by looking at patterns across different species is very well established.</p>
+</div>
+<div id="what-questions-can-we-answer-with-comparative-methods" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> What questions can we answer with comparative methods?<a href="intro.html#what-questions-can-we-answer-with-comparative-methods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What types of question can we answer using comparative approaches? The answer is ‘almost any’! We outline some that we will fouc on later in this Primer in Case Study 1.1. As we mentioned above, comparative methods are especially useful when it is not possible to perform an experiment. Any group of species will exhibit more variation in life-history, ecology or behaviour that any single species, or that we could artificially create in an experiment. Comparative methods are therefore powerful alternatives that permit us to test extremely broad hypotheses.
+Comparative approaches can exploit ‘natural experiments’. Tinbergen’s work on black-headed gulls and kittiwakes is a good example of this. By choosing species that differ in a few key respects, but are similar in others, it is possible to analyse what amounts to an experiment, but using natural variation.
+The comparative method is best suited for testing existing hypotheses that have been stated in advance. As we shall see, comparative approaches generate large datasets with many variables. Analysing large complex datasets in the absence of pre-defined hypotheses is fraught with potential dangers and can be prone to data-dredging and p-hacking. For example, if we conduct 20 statistical tests using the conventional threshold of P&lt;0.05, one test will be statistically significant on average, even if there are no relationships or effects in our dataset. If our dataset contains 20 variables then we could perform as many as 180 pairwise correlations. The null expectation is that these would yield 9 significant results just by chance. Data-dredging is the practice of trawling through datasets looking for such results and presenting them as if these were the hypotheses we sought to test at the outset.
+This multiplicity of results is particularly a problem if the process is not described completely. For example, if we report that we have tested 180 correlations and found statistical significance for 9 of them, then the strength of belief in the result would be low. However, if we presented these 9 results without fully explaining that these are the tip of a statistical iceberg, then the impression would be created that the strength of evidence is much stronger. The practice of ‘p-hacking’ is a known problem in such analyses.
+Although data-mining approaches may have a place (e.g. see Chapter <a href="foundations1.html#foundations1">2</a> 7?) in most comparative analyses the best approach is to focus on pre-defined theories and hypotheses. That is, a set of hypotheses are proposed, the required data are collected, and statistical tests are performed to test the hypotheses as they were envisaged.</p>
+<div class="examps">
+<h3 id="what-questions-can-we-answer-with-pcms">
+What questions can we
+answer with PCMs?
+</h3>
 <p>
-** RPF is writing this at present **
+This Primer features many examples of questions we can tackle using
+phylogenetic comparative methods. We’ve listed these below. We think it
+is important to highlight diverse contributions to science, so our Case
+Study examples highlight work by a diverse range of authors working in
+the field today. Check these out in later chapters!
+</p>
+<p>
+Chapter <span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(foundations1): Are eye size and ecology related in frogs
+and toads? Thomas et al. (2020). Chapter <span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(foundations2): What was
+the litter size of the ancestral bat? Garbino et al. (2021). Chapter
+<span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(signal): Is there phylogenetic signal in how Rhododendron species
+respond to climate change? Basnett et al. (2019). Chapter <span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(signal):
+Do ticks transmit trypanosomes? Koual et al. (2023). Chapter
+<span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(signal): How did the lower jaw of sculpins evolve? Roberts et
+al. (2018). Chapter <span class="citation">(<a href="#ref-ref"><strong>ref?</strong></a>)</span>(signa): Are jewel beetle colours related to
+climate? Wang et al. (2023).
 </p>
 </div>
-<p>Here we will lay the conceptual framework for the comparative method. The idea behind the comparative method will be introduced, and examples given of the types of analysis that can be undertaken. The problem of phylogenetic non-independence will be introduced and a range of methodological approaches described in brief.</p>
-<ul>
-<li>Comparison as a method to test hypotheses.</li>
-<li>Historical context of the comparative method (i.e. pre Darwin to today).</li>
-<li>What questions can we answer?</li>
-<li>The problem of phylogenetic non-independence: understanding the conceptual problem caused by the way evolution occurs, as well as the statistical consequences.</li>
-<li>Key examples (e.g. early examples; examples where phylogeny makes a difference).</li>
-<li>A taxonomy of methods: Table of methods with links to further reading.</li>
-</ul>
+</div>
+<div id="the-problem-of-phylogenetic-non-independence" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> The problem of phylogenetic non-independence<a href="intro.html#the-problem-of-phylogenetic-non-independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We highlighted above that in experiments we use careful design to control for unwanted confounding variation. This cannot be controlled directly in observational approaches. Consequently there is a danger that observational methods could generate misleading results.</p>
+<p>The naive way to perform a comparative analysis would be to collect data across a group of species, conduct a statistical analysis and then interpret the results. In data collected on groups of species, there is a special problem that data are expected to be statistically non-independent (see Box 1) because of phylogenetic relationships among the species. As explained in Box 1, non-independent data are a problem for conventional statistical methods, and break one of the key assumptions of most statistical tests.</p>
+<p>Phylogenetic non-independence is a special case of non-independent data that arises because of the evolutionary relationships between species. Two species that have evolved from a common ancestor share many characteristics because of common ancestry, not because of independent evolution. Figure 1.1 gives a hypothetical example (after Harvey and Pagel 1991).</p>
+<p>Imagine that we study two species of bears, white bears and black ones. We might reasonably hypothesise that white colouration is an adaptation to snowy environments and black colouration is an adaptation to dark forest environments. If we find that the white bears are found in snowy conditions and black bears live in forests, we might think that the hypothesis is supported. However, as shown in Figure 1.1 there could be two evolutionary paths by which we arrive at the current state: it could be that the extant species evolved from either a black or a white ancestral parent species. Our belief in the hypothesis then depends on where the ancestor lived. For instance, if the ancestor was white and lived in snowy conditions, or if the ancestor were black and lived in forests, then the hypothesis would still be supported. In the former case, the black coat might have evolved as an adaptation during the move to forests and in the latter case the white coat evolved along with the move to snowy conditions.</p>
+<p>However, if the ancestor lived in different conditions then our conclusion may not be so certain. On the assumption that this species was perfectly well adapted to their environment, if it were white and lived in the forest, or were black and lived in snowy conditions, or if both black and white species occur in both environments, we would be less sure that current coat colour was the outcome of selection. It could be that coat colour evolves in response to some other factor that we haven’t measured or considered.</p>
+<p>This is an example of the problem of phylogeny in comparative analyses. We cannot assume that current patterns reflect evolutionary processes. The traits that species currently possess are inherited from their ancestors in addition to being shaped by more recent selective pressures. Treating the traits from present-day species as if they had evolved completely independently could lead to misleading conclusions.</p>
+<p>How could we overcome the problem in this case? There are a couple of options: if fossil data are available then it might be possible to look at the ancestors and retrace the evolution of coat colour. This is unlikely, however, as the fossil record is usually very patchy and incomplete. Taking a comparative approach, and alternative solution might be to look for further species pairs: e.g. Mountain Hares Arctic Foxes, and Stoats have white coats (at least in winter) and these could be contrasted with closely related species that do not. If we see the same pattern repeated across several independent taxa, we may become more confident in the coat-colouration hypothesis. This solution is very much the philosophy of the comparative approach: variation across lots of species allows us to test hypotheses more robustly. The issue of phylogenetic non-independence is dealt with by choosing pairs of species that are similar in most respects (e.g. ecology, life history, diet) except the one we are interested in (coat colour). This is akin to the tactic of ‘blocking’ in experimental design.<br />
+Figure 1.1 Hypothetical pathways for the evolution of coat colour in two species of bear.</p>
+<p>In this example, we need to understand the distribution of traits in the ancestors, as well as where they lived, in order to robustly test the hypothesis in question. Species inherit traits from ancestors and the traits of ancestors shape the traits of their descendants. The most important lesson from this example is that even in very simple comparative analyses we need to understand the evolutionary relationships among species. This insight applies to any comparative analysis: we cannot regard species as being evolutionarily independent and we have to account for this non-independence when analysing comparative data.
+The example shown in Figure 1.1 is very simple and the problem of phylogeny is that it impedes the interpretation of the data. However there can also be statistical problems resulting from phylogenetic non-independence (e.g. Box 1) and this becomes apparent when we try to perform more sophisticated statistical analysis. Figure 1.2 shows another hypothetical example to illustrate this. Figure 1.2(a) presents a phylogeny of 21 species. A naive comparative analysis would ignore the relationship represented by this phylogeny and treat all of the species as if they are equal. However, Figures 1.2(b) and (c) show the problem of doing this when we analyse trait data. In both cases, data has been collected on two traits (‘X’ and ‘Y’) for each of the species. This is a very typical comparative analysis, and we would usually use linear regression or correlation to look for evidence of a correlation between the two traits. In both of these figures, the thick bold line is the relationship we obtain by doing this and performing a simple analysis that treats all species as equal, ignoring the evolutionary relationships between them.</p>
+<p>&lt;Figure 1.2 near here&gt;
+Figure 1.2 Problems of phylogenetic non-independence in hypothetical datasets.</p>
+<p>In both cases the analysis indicates that there is a strong positive relationship between the two traits. However, when we recognise that species are related according to the phylogeny in Figure 1.2(a), it is evident that the situation is more complex. In Figure 1.2(a) we can recognise 3 distinct clades (coloured separately). Looking at Figure 1.2(b) and (c), it is clear that within any of the clades the relationship between X and Y is very different from the picture we obtain overall. In Figure 1.2(b) the relationships are quite weak, while in Figure 1.2(c) the relationships between X and Y are negative within the clades although positive overall.</p>
+<p>Although Figure 1.2 shows a hypothetical scenario, such patterns can emerge in real data. Figure 1.3 shows some real data in which the phylogenetic structure of the dataset influences the overall conclusion. The data show the relationship between testes size and sperm length in mammals (note that all data have been log transformed). The reason for looking at this relationship was to test hypotheses about sperm competition and sexual selection (we don’t have the space to go into this, but this reference provides more background: XXX).</p>
+<p>Figure 1.3(a) and 1.3(b) show the relationships between sperm length and testes size (Figure 1.3(a)) and between sperm length and relative teste size (testes size relative to body mass; Figure 1.3(b)). Linear regression (the solid lines) suggest that there is a strong negative relationship between sperm length and testes size (Figure 1.3(a)) and conversely that there is strong positive relationship between sperm length and relative testes size (Figure 1.3(b)).
+Although these relationships look reasonably convincing, unfortunately there is a strong influence of phylogeny in the data. In Figures 1.3 (c) and (d) the same data are plotted, but the colours indicate the phylogenetic structure of the data. The red points show data from rodents (order Rodentia), whilst the black points are data from all other mammals. It is very clear that the patterns are very different in the rodents: there is a strong positive correlation between sperm length and testes size in rodents and no relationship in the others mammals (Figure 1.3(c)); similarly there is also a strong positive correlation between sperm length and relative testes size in rodents, but no relationship in the other mammals (Figure 1.3(d)).</p>
+<p>&lt;Figure 1.3 near here&gt;</p>
+<p>Figure 1.3 The importance of phylogeny when performing comparative analyses. These graphs show the relationship between sperm length and testes size (Figure 1(a) and (c)), and between sperm length and relative testes size (Figure 1(b) and (d)). In (a) and (b), the data are plotted for all species in the dataset and the solid lines show the linear regressions. In (c) and (d) the red points and lines represent the rodents, whereas the black points and lines are the other mammals.
+In this example the problems are several-fold. Clearly the evolution of sperm length with testes size has been very different in the rodents compared with other mammals. If we treat each data point as if it were statistically independent (as in Figure 1.3(a) and (b)), this overlooks this difference and we get an incorrect conclusion.</p>
+<p>There is also a more general issue, what is sometimes called the ‘degrees of freedom’ problem (Box1 ). The problem here is, even if the relationship between the two traits were the same for both of these clades we cannot treat the data as being statistically independent, meaning that each point does not contribute an independent degree of freedom to the analysis. Species that are closely related are likely to have similar values of both traits, simply because they share common ancestry. The outcome of this is akin to assuming ‘too many’ degrees of freedom in the analysis: if we have data on 100 species, because of phylogenetic relatedness we probably have less than 100 independent data points. However, conventional statistical analyses assume that the points are independent of each other and this will lead to incorrec statistical outputs and conclusions. This issue has motivated a lot of research on comparative methods over the past 40 years.</p>
+</div>
+<div id="how-do-comparative-methods-work" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> How do comparative methods work?<a href="intro.html#how-do-comparative-methods-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here make the point that comparative analyses rely on models for trait evolution - Set up the introduction to the Brownian Model in Chapter 3.</p>
+<p>The problem of phylogeny is that species inherit their traits from their ancestors, meaning that we cannot assume that current patterns of trait variation reflect independent evolution. We need to understand the phylogenetic pattern of trait evolution in order to properly test hypotheses about the current distribution of values. For instance, in Figure 1.1 we need to know by which route coat colour evolved as well as the corresponding habitats in which species lived.
+Of course, we typically don’t have any information at all on the traits of the ancestral species. As mentioned above, fossil data are patchy at best so that we can rarely directly trace the evolution of traits from ancestors to descendents. However, we have a phylogeny for many groups of species, which means that we do know how closely or distantly the species are related to each other in an evolutionary sense.</p>
+<p>We can reasonably expect that species that are closely related to each other are more similar than to distantly related ones. Figure 1.4 gives an example of this: This plays out across a phylogeny, so that we expect to see a clear imprint of phylogeny in the distribution of trait values, called phylogenetic signal. In Chapter 4 we go into more detail about this. For now, the important thing is this signal can be used to help us to overcome the problem of phylogeny in comparative analyses. The 28 species shown in Figure 1.4 are all close relatives that share common ancestry. Given the degree of similarity between them, it would not be hard to make a guess about what the ancestors were like: in all probability they all had brown coats for example! But we can go further</p>
+<p>&lt;Figure 1.4 near here&gt;</p>
+<p>Figure 1.4 Phylogenetic signal in action: Closely related species tend to be very similar to each other.</p>
+<p>In the absence of fossil data, we use an evolutionary model to achieve this. A model for trait evolution is a mathematical description of the changes in traits over evolutionary time. Using such a model we can take data on extant species and work backwards through the phylogeny to infer what the traits of the ancestors would have been. The model is essentially a statistical description of the ancestral values that are most likely to have given rise to the current trait values, given specific assumptions about the way that evolution proceeds. This may seem somewhat nebulous at this point, in Chapter 3 we start to flesh this out in more detail.</p>
+<p>Effectively, comparative methods work by using this phylogenetic information to fill in the gaps in our knowledge of ancestral trait values. What all comparative methods do, either explicitly or implicitly, is to estimate values for the ancestors in order to map the evolution of traits through the phylogenetic tree. When we look at several traits, we then examine the correlation between the changes in traits across the phylogeny to test whether their evolution is linked.</p>
+</div>
+<div id="chapter-summary" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> ## Chapter summary<a href="intro.html#chapter-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="further-reading" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Further reading<a href="intro.html#further-reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="online-materials" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Online materials<a href="intro.html#online-materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>None for this chapter specifically</p>
 
+</div>
 </div>
             </section>
 
@@ -229,11 +378,10 @@
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="foundations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="foundations1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -244,37 +392,42 @@
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["pcm-primer.pdf", "pcm-primer.epub"],
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["pcm-primer.pdf", "pcm-primer.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
@@ -285,7 +438,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
