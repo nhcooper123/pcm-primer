@@ -468,11 +468,16 @@ Biologically, this is a useful model to fit if you think some of your states are
 
 You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting* (see below), which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
 
-Case Study 3.1 gives an example using ER and ARD models to determine the ancestral litter size of bats (Garbino et al 2021).
+Case Study 3.1 gives an example using ER and ARD models to determine the ancestral litter size of bats from Garbino et al (2021) [@garbino2021evolution].
 
 ```{block, type = "detail"}
 ### Beware of overfitting!
+
+<center>
 ![*Aptenodytes_forsteri*. Credit: Ian Duffy. License: CC-BY](images/penguin.jpg)
+</center>
+
+$$\\[0.5cm]$$
 
 **Over-fitting** occurs where a model has more parameters than can be justified by the data. It can mean the model looks like it beautifully fits the data, but if you were to add additional data it would be useless. 
 
@@ -494,15 +499,15 @@ Ancestral state estimates (**not** reconstructions) are, at best, weighted avera
 
 ```{block, type = "examps"}
 ### Case Study: What was the litter size of the ancestral bat?
-Most small mammals have more than one offspring at a time, with average litter sizes ranging from 4-7. Conversely, most bat species have only one offspring at a time (Figure CS3.1A), likely because of difficulties related to flying while pregnant and because offspring mortality is low in bats meaning there is selection for more investment in fewer offspring. Only bats in the Vespertilionidae family regularly have more than one offspring at a time. Garbino et al. (2021) were interested in how this pattern evolved. Did ancestral bats have multiple offspring (polytocy) and evolve to have only one offspring (monotocy)? Or did ancestral bats have one offspring with the Vespertilionidae later evolving to have more than one?
+Most small mammals have more than one offspring at a time, with average litter sizes ranging from 4-7. Conversely, most bat species have only one offspring at a time (Figure CS3.1A), likely because of difficulties related to flying while pregnant and because offspring mortality is low in bats meaning there is selection for more investment in fewer offspring. Only bats in the Vespertilionidae family regularly have more than one offspring at a time. Garbino et al. [@garbino2021evolution] were interested in how this pattern evolved. Did ancestral bats have multiple offspring (polytocy) and evolve to have only one offspring (monotocy)? Or did ancestral bats have one offspring with the Vespertilionidae later evolving to have more than one?
 
-To test this, Garbino et al. (2021) used a phylogeny of 551 species of bats for which they had information on the litter size of the species. They coded litter size as a binary trait (polytocy or monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal Rates (ER) and All Rates Different (ARD) models to the data. They used the Akaike Information Criterion (AIC) (see Chapter 6) to determine which of these models best fitted their data. Then they used the best fitting model to estimate whether polytocy or monotocy was more likely at the root of the tree, and at the root of Vespertilionidae. They also plotted the states onto the tree using stochastic character mapping (Figure CS3.1B).
+To test this, Garbino et al. [@garbino2021evolution] used a phylogeny of 551 species of bats for which they had information on the litter size of the species. They coded litter size as a binary trait (polytocy or monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal Rates (ER) and All Rates Different (ARD) models to the data. They used the Akaike Information Criterion (AIC) (see Chapter 6) to determine which of these models best fitted their data. Then they used the best fitting model to estimate whether polytocy or monotocy was more likely at the root of the tree, and at the root of Vespertilionidae. They also plotted the states onto the tree using stochastic character mapping (Figure CS3.1B).
 
 <Figure CS3.1B near here>
 
-Garbino et al. (2021) found the ARD model was a better fit than the ER model. Evolutionary transitions from monotocy to polytocy were rarer than transitions from polytocy to monotocy. Ancestral state estimations suggested that the ancestral state of modern Chiroptera was monotocy, but that polytocy was the ancestral condition in the family Vespertilionidae. This condition was subsequently lost in the ancestors of both the Myotinae and Kerivoulinae subfamilies.
+Garbino et al. [@garbino2021evolution] found the ARD model was a better fit than the ER model. Evolutionary transitions from monotocy to polytocy were rarer than transitions from polytocy to monotocy. Ancestral state estimations suggested that the ancestral state of modern Chiroptera was monotocy, but that polytocy was the ancestral condition in the family Vespertilionidae. This condition was subsequently lost in the ancestors of both the Myotinae and Kerivoulinae subfamilies.
 
-Note that Garbino et al. (2021) also performed a number of other phylogenetic comparative methods (including tests for phylogenetic signal and PGLS models; see Chapter 4) which we have not tackled yet in this Primer. Check out the paper to find out more and to see their full results.
+Note that Garbino et al. [@garbino2021evolution] also performed a number of other phylogenetic comparative methods (including tests for phylogenetic signal and PGLS models; see Chapter 4) which we have not tackled yet in this Primer. Check out the paper to find out more and to see their full results.
 ```
 
 ## Phylogenetic variance-covariance matrices {#section:varcovar}
@@ -578,11 +583,11 @@ As you may already be aware, variance–covariance matrices are used in many sta
 - Phylogenetic variance-covariance matrices are useful ways to represent phylogenies. A phylogenetic variance-covariance matrix is an n x n matrix, where n is the number of species in the phylogeny, the diagonals of the matrix are the variances, and the off-diagonals are the covariances. In a phylogeny the variance is the root-to-tip length of the tree. The covariances among species are the lengths of their shared branch lengths.
 
 ## Further reading
-Classic text on using phylogenies and the Brownian motion model of evolution: Felsenstein, 1985. "Phylogenies and the comparative method." The American Naturalist 125.1: 1-15.
+Classic text on using phylogenies and the Brownian motion model of evolution: Felsenstein, 1985. "Phylogenies and the comparative method." The American Naturalist 125.1: 1-15. [@felsenstein1985phylogenies]
 
 ## Online exercises
 
-- Preparing your tree and data for PCMs in R
-- Phylogenetic Signal in R
-- Models of evolution for continuous traits (also Chapter 7)
-- Models of evolution for discrete traits (also Chapter 7)
+- [Preparing your tree and data for PCMs in R](https://nhcooper123.github.io/pcm-primer-online/prep.html)
+- [Phylogenetic Signal in R](https://nhcooper123.github.io/pcm-primer-online/signal.html) (also Chapter \@ref(signal))
+- [Models of evolution for continuous traits](https://nhcooper123.github.io/pcm-primer-online/cont.html) (also Chapter \@ref(tempo-mode))
+- [Models of evolution for discrete traits](https://nhcooper123.github.io/pcm-primer-online/discrete.html) (also Chapter \@ref(tempo-mode))

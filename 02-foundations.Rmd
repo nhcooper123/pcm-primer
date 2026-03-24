@@ -31,10 +31,10 @@ Most phylogenies are *rooted*, meaning that the ancestral node or *root* is iden
 Some phylogenies only show the *topology*, i.e. the shape of the relationships among the species. We call these *cladograms*. Most phylogenies, however, will have some information encoded in the branch lengths too. Depending on the data used to build the tree (see section \@ref(section:infer)), branch lengths can represent amounts of trait change, molecular distances, or absolute or relative divergence times. Most phylogenetic comparative methods require phylogenies to be *dated phylogenies* (or *chronograms*), where the branch lengths represent divergence times.
 
 ```{block, type = "info"}
-Note that throughout the *Primer* for simplicity we generally refer to "species" at the tips of phylogenies. In some cases, the tips will actually be *genera* or *populations*, or other operational taxonomic units (*OTUs*). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
+Note that throughout the book for simplicity we generally refer to "species" at the tips of phylogenies. In some cases, the tips will actually be *genera* or *populations*, or other operational taxonomic units (*OTUs*). Before beginning a comparative study, remember to check what the tips are in the phylogeny you are using.
 ```
 
-```{r basic-tree, echo = FALSE, warning = FALSE, fig.cap='A simple phylogeny demonstrating the key features of phylogenetic trees.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r basic-tree, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='A simple phylogeny demonstrating the key features of phylogenetic trees.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -101,7 +101,7 @@ To use phylogenies we need to understand a few more terms. These are also descri
 
 **Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric*, like the one in Figure \@ref(fig:ultrametric)A, where all the branches end at the same place - the present-day . If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric*, like the one in Figure \@ref(fig:ultrametric)B. Note that phylogenies based on molecular data will also be non-ultrametric unless they have been dated. 
 
-```{r ultrametric, echo = FALSE, fig.cap='Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the mammal and spider have gone extinct before the present day.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r ultrametric, echo = FALSE, message = FALSE, warning = FALSE, fig.cap='Ultrametric (A) and non-ultrametric (B) phylogenies. In (B) the mammal and spider have gone extinct before the present day.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -146,7 +146,7 @@ p1 + p2
 
 **Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy* Yo can see and exmaple of a polytomy in Figure \@ref(fig:polytomy)B. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
 
-```{r polytomy, echo = FALSE, fig.cap='A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the mammal, the bird and the spider are unresolved.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r polytomy, echo = FALSE, message = FALSE, warning = FALSE, fig.cap='A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the mammal, the bird and the spider are unresolved.', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -268,7 +268,7 @@ groupOTU(p, grp, 'Species') +
 ### Reading and interpreting phylogenies
 We can read/interpret the phylogeny in Figure \@ref(fig:reading) as follows. **A** and **B** are each others' closest relatives. They share a *common ancestor* at node **X**. We can think of the branch leading to node X as the shared evolutionary history of A and B, while the branch leading from node **X** to **A** represents A’s evolution independent of B after they speciated, and the branch leading from node **X** to **B** represents B’s evolution independent of A. **A** and **B** form a monophyletic group. They are also *sister species*. Note that in real world examples it is virtually impossible to know the identity of the species at node X. The fossil record is not fine-grained enough.
 
-```{r reading, echo = FALSE, fig.cap='How to read a phylogenetic tree', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r reading, echo = FALSE, message = FALSE, warning = FALSE, fig.cap='How to read a phylogenetic tree', out.width='80%', fig.asp=.75, fig.align='center'}
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
 
@@ -347,7 +347,7 @@ Both **A** and **B** are equally closely-related to **C**, as they all share a c
 
 Reading phylogenies is not always intuitive. Often this is due to how we represent them graphically. For example, each of the phylogenies in Figure \@ref(fig:diff-trees) shows the same relationships among species, but in different ways. By convention we usually present phylogenies with the root at the left or the base of the phylogeny (like A, C, E, or G in Figure \@ref(fig:diff-trees)). 
 
-```{r diff-trees, echo = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'left'}
+```{r diff-trees, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'left'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -499,7 +499,7 @@ p1xxx <-
 
 We can also use circular or fan shaped phylogenies like Figure \@ref(fig:fan-tree) when we have large phylogenies that are hard to fit onto a page.
 
-```{r fan-tree, echo = FALSE, fig.cap = 'An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree.', out.width='80%', fig.asp=.75, fig.align = 'center'}
+```{r fan-tree, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'An example of a fan or circular phylogeny. Tip labels have been omitted to make it easier to see the shape of the tree.', out.width='80%', fig.asp=.75, fig.align = 'center'}
 
 # Read 
 data(shorebird)
@@ -509,7 +509,7 @@ plot(shorebird.tree, type = "fan", no.margin = TRUE, show.tip.label = FALSE)
 ```
 
 ```{block, type = "info"}
-If you find reading and understanding phylogenies difficult, we highly recommend trying the *Tree Thinking challenge* at https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf [@Baum979], which should help you get the hang of it.
+If you find reading and understanding phylogenies difficult, we highly recommend trying the [Tree Thinking Challenge](https://www.science.org/doi/10.1126/science.1117727) [@Baum979], which should help you get the hang of it.
 ```
 
 ### How do we infer phylogenies?{#section:infer}
@@ -519,7 +519,7 @@ We could write a whole book just about inferring phylogenies. In fact, there alr
 Note that we **infer** phylogenies. We do not build or create them. This is because whatever clever methods we use, we can never truly know the evolutionary history of most groups until someone invents a time machine!
 ```
 
-Most phylogenies are inferred using molecular or morphological data. Molecular data is usually a gene sequence, with the genes used depending on the question/group of interest, but can also be amino acid or protein sequences. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting molecular data these days might be as simple as downloading it from GenBank (https://www.ncbi.nlm.nih.gov/genbank/), however, the sequences still need to be aligned which can take more time.
+Most phylogenies are inferred using molecular or morphological data. Molecular data is usually a gene sequence, with the genes used depending on the question/group of interest, but can also be amino acid or protein sequences. For distinguishing relationships among close relatives, fast-evolving genes such as those in mitochondria or chloroplasts might be used, whereas protein-coding genes or whole genomes might be more appropriate for looking at relationships among ancient lineages. Collecting molecular data these days might be as simple as downloading it from [GenBank](https://www.ncbi.nlm.nih.gov/genbank/), however, the sequences still need to be aligned which can take more time.
 
 Morphological data is generally in the form of *cladistic matrices* where each character or trait of a species is coded as an integer. For example, a tail might be coded as 0 (absent) or 1 (present). Selecting characters for morphological phylogenies can be tricky, as they need to encompass the *synapomorphies* or unique characters that define clades in the tree, but the characters should also be independent of one another. Careful consideration of how characters should be coded is also needed, and this can vary from study to study.
 
@@ -561,15 +561,15 @@ Because of the way posterior distributions are constructed, consensus trees are 
 The trees produced in all three of the methods above may contain measures of *branch support* (note that people often, incorrectly, refer to this as node support but they mean the same thing). These will be shown as numbers above or below the nodes of the phylogeny if you're looking at the published version. Branch support measures tell you how much support there is for a particular branching pattern. There are many ways we can estimate branch support in a phylogeny [@felsenstein2004inferring], but the details are not important here. The key thing to remember is that the higher the branch support value, the more confidence we have in that particular branch. Usually these methods give numbers that range from 0-100 (e.g. bootstrap values), but other measures (e.g. posterior probabilities) range from 0-1. It should be obvious whether a 0-100 or 0-1 scale is being used from the range of numbers you can see. It's also common for people to collapse branches with low support leading to polytomies.
 
 ### Where do we get phylogenies from for comparative analyses?
-Above we explained how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the **online materials** we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy, or try a tool like TreeSnatcher (http://www.cibiv.at/software/treesnatcher/). Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
+Above we explained how phylogenies are inferred, but you have probably gathered by now that we are not experts in phylogenetic inference! So where do we get phylogenies from for comparative methods? The simple answer is the Internet! Less flippantly, we get them from the published literature. Generally people publishing phylogenies will provide a NEXUS or Newick file containing their phylogeny as part of their supplementary materials. This is often a file ending in `.nex` or `.tre`. In the [online materials](https://nhcooper123.github.io/pcm-primer-online/phylogenies.html) we show you how to read these files into R, and explain more about how these files are structured. If an author has not provided their phylogeny in a format you can read into R (for example they may just have provided a PDF of the topology) you can email them and see if they are willing/able to give you a copy, or try a tool like [TreeSnatcher](http://www.cibiv.at/software/treesnatcher/). Some researchers also store phylogenies in online databases such as [Treebase](https://www.treebase.org/). 
 
 How do you choose the "best" phylogeny for your group? There is no hard or fast rule here, but we do recommend taking some time to think about this carefully. In some taxonomic groups you will have no choice as there may only be one existing phylogeny. In other groups you may be spoiled for choice. How you make the decision will also depend on how much you already know about the group in question. Some questions to ask that may guide you to the best phylogeny include:
 
 - Given your knowledge of the group, does the taxonomy they have used and the characters used to infer the tree make sense? This may be particularly important for morphological trees, but it is also important to check they used an appropriate gene if using molecular trees.
-- How many of your species are included in the phylogeny? You can add or remove species easily in R (see **online materials**), but if many species are missing it may be better to choose an alternative tree. You can also stitch together multiple trees (see **online materials**).
+- How many of your species are included in the phylogeny? You can add or remove species easily in R (see [online materials](https://nhcooper123.github.io/pcm-primer-online/prep.html#matching-your-data-to-your-phylogeny)), but if many species are missing it may be better to choose an alternative tree. You can also stitch together multiple trees (see [online materials](https://nhcooper123.github.io/pcm-primer-online/prep.html#matching-your-data-to-your-phylogeny)).
 - What kind of method was used to infer the phylogeny? Does it seem appropriate to you? A phylogeny using molecular data but inferred using parsimony may ring alarm bells...
 - Are the branches of the phylogeny well-supported? Good values will be close to 100 or 1 depending on the method used. 
-- Are there lots of polytomies or is the phylogeny well-resolved? The methods we use in R can cope with polytomies (see **online materials**) but if there are more resolved phylogenies available these will be better.
+- Are there lots of polytomies or is the phylogeny well-resolved? The methods we use in R can cope with polytomies but if there are more resolved phylogenies available these will be better.
 - Can you access several different versions of the phylogeny, or a posterior distribution of phylogenies to account for phylogenetic uncertainty?
 - If you don't know the group, or phylogenetics, well, don't be afraid to ask the opinion of someone who knows more than you. They may save you hours of pain and indecision!
 
@@ -589,11 +589,13 @@ The results of comparative analyses are *only as good as the data you put into t
 Before you begin collecting data, it’s sensible to determine how much data you need to answer your question. In addition, data collection is an open ended process, so an issue when collecting any kind of data is when should you stop? Ideally we’d want as complete a dataset as possible but it’s rarely possible to collect data on every species within your group of interest. You can’t keep collecting data forever - people need to finish theses/papers to progress. In addition, data for certain variables simply doesn’t exist for some species so continuing to look for it might be time consuming and ultimately futile. It’s therefore really important to make a plan for how you will target your data collection before you start to ensure you have enough data to answer your questions. 
 
 There are a couple of things that can help with this, and we recommend a combination of these. Remember to modify timings depending on the length of the project.
+
 1. Create a structured sampling plan
 2. Limit the size of the group you are working on then build up. Making your sampling protocol modular is very helpful for this.
 3. Use availability of other data to guide your choices. If you require multiple data sources for your analyses
 
-In Case Study 2.1, Thomas et al. (2020) used a combination of these tactics to decide what to sample.
+Thomas et al. (2020) [@thomas2020eye] (see example below) used a combination of these tactics to decide what to sample.
+
 You should also determine whether it is more important to have data on fewer individuals for each species, but more species overall, or if you should limit the number of species but include more individuals for each species to incorporate more intraspecific variation. Your decisions should be based on what you know about the variation in the system. 
 
 ### Sources of comparative data and data quality
@@ -607,16 +609,17 @@ Collecting data manually reveals several issues common to most comparative data 
 - Some data will be based on multiple individuals whereas others will be based on only one. 
 - Some sources will list values as means, others will list values as maxima or minima. Will you record all of these or choose one?
 
-There are of course many ways to do this, and as long as you *record the decisions you have made* so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don’t forget to record the **units** for each measurement. Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection. Note that there are formal approaches for making sure your data are reproducible (e.g. PRISMA; http://prisma-statement.org/) though these are not commonly used in comparative data collection.
+There are of course many ways to do this, and as long as you *record the decisions you have made* so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don’t forget to record the **units** for each measurement. Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection. Note that there are formal approaches for making sure your data are reproducible (e.g. [PRISMA](http://prisma-statement.org/) though these are not commonly used in comparative data collection.
 
 After collecting your data you'll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results.
 
 #### Curated databases
-Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. the Global Biodiversity Information Facility (GBIF; www.gbif.org). Others are static, often because they were released as part of a published paper e.g. datasets on the Global Assessment of Reptile Distributions website (GARD; http://www.gardinitiative.org/data.html). These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through the literature one species at a time. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
+Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. the Global Biodiversity Information Facility ( [GBIF](www.gbif.org)). Others are static, often because they were released as part of a published paper e.g. datasets on the Global Assessment of Reptile Distributions website ([GARD](http://www.gardinitiative.org/data.html)). These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through the literature one species at a time. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
 
 #### Collecting your own comparative data
 Above we talked about collating existing data, but many comparative researchers (including ourselves!) collect our own cross species datasets either in the field, the laboratory or from natural history museum collections (e.g. Cooney et al. 2017, Thomas et al. 2020, Goswami et al. 2022, Burin et al. 2023)
-The considerations required when collecting these data will vary depending on the type of data you’re collecting, so make sure to follow standard protocols and error checking procedures. Covering all of these is beyond the scope of this Primer. 
+
+The considerations required when collecting these data will vary depending on the type of data you’re collecting, so make sure to follow standard protocols and error checking procedures. Covering all of these is beyond the scope of this book. 
 
 ### Summarising the data for each species
 After collecting your data you’ll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results. We provide a simple example below. Remember that it is really important to have a clear link from the original data to the actual numbers used in the analyses, and to keep (and share) both the raw data and the final summarised data.
@@ -624,7 +627,11 @@ After collecting your data you’ll likely need to summarise these data for each
 ```{block, type = "detail"}
 ### Practicalities of comparative data collection
 
+<center>
 ![*Chamaeleo zeylanicus*. Credit: Girish Gowda. License: CC BY-SA](images/Indian_chameleon_From_Kanakpura,_Karnataka.jpg)
+</center>
+
+$$\\[0.5cm]$$
 
 How do we practically collect and record comparative data? Let’s imagine we are interested in studying chameleon life history. We have the following three sources of chameleon body length and life history data. Each source has a variable amount of data for the species. Note that we’re lucky here because each source uses the same taxonomy to name the species.
 
@@ -699,7 +706,7 @@ kable(tail(x2, n = 3), align = 'l', caption = 'Converting chameleon data from in
 
 Remember to think carefully about how you summarise your data and how it might influence your analyses. Note that some comparative methods can incorporate *intraspecific variation* so you would not need to summarise your data if using these methods. 
 
-Our final dataset for analyses might look something like Table 2.3. Each variable has its own column. Note that it often makes it easier to work with your data in analysis programs like R if the column headers do not have spaces in their names. You can use underscores (_) or dots (.) instead of spaces. It’s also a good idea to make sure the names make sense so you’re not constantly looking up abbreviations. R code to achieve the above can be found in the *online materials*.
+Our final dataset for analyses might look something like Table 2.3. Each variable has its own column. Note that it often makes it easier to work with your data in analysis programs like R if the column headers do not have spaces in their names. You can use underscores (_) or dots (.) instead of spaces. It’s also a good idea to make sure the names make sense so you’re not constantly looking up abbreviations. R code to achieve the above can be found in the [online materials](https://nhcooper123.github.io/pcm-primer-online/data-wrangling-comparative-data-in-r.html).
 ```
 
 ```{r cham3, echo = FALSE}
@@ -718,12 +725,17 @@ kable(x3, align = 'l', caption = 'Final cleaned chameleon life history data set 
 ```  
 
 ```{block, type = "detail"}
-Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to achieve the above can be found in the *online materials*.
+Note that each variable is now its own column. This will help us when using the data in analysis programs like R. R code to achieve the above can be found in the [online materials](https://nhcooper123.github.io/pcm-primer-online/data-wrangling-comparative-data-in-r.html).
 ```
 
 
 ### What's in a name?
+
+<center>
 ![Common pill woodlouse (*Armadillidium vulgare*). Credit: Ryan Hodnett.  License: CC BY-SA](images/Common_Pill_Woodlouse_(Armadillidium_vulgare)_-_Guelph,_Ontario_01.jpg)
+</center>
+
+$$\\[0.5cm]$$
 
 You're probably familiar with using scientific names rather than common names for species so that all know we are talking about the same thing. My personal favourite example of this is the animal above. I'd call it a woodlouse, most people from the USA would call it a pill bug, but they can be called a huge range of things including slaters, roly-polies, cheesey-bugs, butchy boys, chisel bobs and monkey peas. And that's just in English. Language is a magnificent thing!
 
@@ -738,15 +750,22 @@ Then correct the taxonomy of the species in your data and phylogeny so they matc
 ```{block, type = "examps"}
 ### Case Study: Sourcing data on eye size and ecology in frogs and toads 
 
-In the *online materials* we work with three key datasets. The first of these comes from Thomas et al. [@thomas2020eye] and looks at eye evolution in frogs and toads. Frogs and toads display a huge array of ecologies and behaviours, from aquatic clawed frogs to acrobatic tree frogs; from camouflaged toads to colourful poison dart frogs. They also have a diversity of eye sizes and shapes. Thomas et al. (2020) hypothesised this might be related to their ecology. In this case study we highlight some of the data considerations the authors used to construct their dataset. For details of their results see Thomas et al. (2020). 
+<center>
+![Frog eyes are really variable. Two tree frogs with large eyes and a burrowing frog and an aquatic frog with tiny eyes. Image credits: hehaden/Flickr CC BY-NC 2.0; Brian Gratwicke/Flickr CC BY 2.0, Rushen/Flickr CC BY-SA 2.0, Sue Cro/Flickr CC BY-NC 2.0](images/frogs.jpg)
 
-To investigate their question Thomas et al. (2020) needed three types of data.
+</center>
+
+$$\\[0.5cm]$$
+
+In the [online materials](https://nhcooper123.github.io/pcm-primer-online/) we work with three key datasets. The first of these comes from Thomas et al. [@thomas2020eye] and looks at eye evolution in frogs and toads. Frogs and toads display a huge array of ecologies and behaviours, from aquatic clawed frogs to acrobatic tree frogs; from camouflaged toads to colourful poison dart frogs. They also have a diversity of eye sizes and shapes. Thomas et al. [@thomas2020eye] hypothesised this might be related to their ecology. In this case study we highlight some of the data considerations the authors used to construct their dataset. For details of their results see Thomas et al. [@thomas2020eye]. 
+
+To investigate their question Thomas et al. [@thomas2020eye] needed three types of data.
 
 1. Eye size data from frogs and toads. These were taken directly from natural history museum specimens and from some fresh specimens using callipers. They selected 1-7 individuals for each species to account for intraspecific variation, and used species means for the analyses.
 2. Ecology and life history data. These were species-level data and came from the literature.
-3. Phylogeny. This was a previously published phylogeny by Feng et al. (2017) with some modifications (see below).
+3. Phylogeny. This was a previously published phylogeny by Feng et al. [@feng2017] with some modifications (see below).
 
-They also needed a taxonomy to standardise all of the species names. They used Frost (2019; https://amphibiansoftheworld.amnh.org/).
+They also needed a taxonomy to standardise all of the species names. They used Frost ([2019]( https://amphibiansoftheworld.amnh.org/)).
 
 ### How did they choose which species to include? 
 There are 55 families of frogs and toads, so the authors designed a strategic sampling protocol and sampled species from each of these families to get a broad taxonomic spread of data. To choose species to sample, they used a practical approach and chose species where they had available specimens and where the species were within the phylogeny. In total they sampled 640 individuals across 220 species.
@@ -755,9 +774,9 @@ There are 55 families of frogs and toads, so the authors designed a strategic sa
 The authors first had to determine what categories they would place their species into for each of their six discrete variables. They decided to use the following: adult habitat (scansorial, ground-dwelling, subfossorial, fossorial, aquatic, semiaquatic), adult activity period (diurnal, nocturnal, both), mating habitat (lotic water, lentic water, plants, ground), life-history strategy (presence or absence of free-living larvae), larval habitat (lotic water, lentic water, on land, obscured) and sexual dichromatism (present or absent). Then then used the sources we’ve discussed (field guides, published literature etc.) to collate the data for each species. They recorded all their data, and the sources of their data in the supplemental information for the paper. Note that they could not get data for every species, so put an NA (not applicable) into the data and excluded the species from any analysis that required that variable.
 
 ### How did they modify the phylogeny to match their data?
-Feng et al’s (2017) phylogeny contained 309 species. But only 164 of the 220 species in the eye data were in this tree. For 47 species the authors were able to replace the names of their closest known relatives in the tree with their species names. For nine of their species simply changing the names was not possible because all the closest relatives of the species were also within the dataset. In these cases Thomas et al. (2020) added the species as polytomies to the branch uniting their closest relatives. During the analysis these polytomies were randomly resolved using branches of length zero (see *online materials*).
+Feng et al.’s [@feng2017] phylogeny contained 309 species. But only 164 of the 220 species in the eye data were in this tree. For 47 species the authors were able to replace the names of their closest known relatives in the tree with their species names. For nine of their species simply changing the names was not possible because all the closest relatives of the species were also within the dataset. In these cases Thomas et al. [@thomas2020eye] added the species as polytomies to the branch uniting their closest relatives. During the analysis these polytomies were randomly resolved using branches of length zero (see [online materials](https://nhcooper123.github.io/pcm-primer-online/phylogenies.html#phylogeny-manipulation)).
 
-In case this is confusing, here is a simpler example. Imagine we have the species in Table 2.2 and Figure 2.9A. We have two genera (Frog and Toad) each of which contains three species. Some species are in the tree and the dataset (e.g. Frog a), some are in only one or the other. Frog a, b and c are in the same genus and closely related, as are Toad a, b and c (imagine we’ve checked this in the literature). The simplest way to ensure all species in the data are in the tree is to 1) rename Frog b to Frog c; and 2) add Toad c as a polytomy with Toad a and b. Note that we cannot just rename one of the Toad tips because we need them all in the phylogeny. The modified phylogeny is shown in Figure 2.9B. We show you how to add species to trees in practice using R in the *online materials*.
+In case this is confusing, here is a simpler example. Imagine we have the species in Table 2.2 and Figure 2.9A. We have two genera (Frog and Toad) each of which contains three species. Some species are in the tree and the dataset (e.g. Frog a), some are in only one or the other. Frog a, b and c are in the same genus and closely related, as are Toad a, b and c (imagine we’ve checked this in the literature). The simplest way to ensure all species in the data are in the tree is to 1) rename Frog b to Frog c; and 2) add Toad c as a polytomy with Toad a and b. Note that we cannot just rename one of the Toad tips because we need them all in the phylogeny. The modified phylogeny is shown in Figure 2.9B. We show you how to add species to trees in practice using R in the [online materials](https://nhcooper123.github.io/pcm-primer-online/phylogenies.html#phylogeny-manipulation).
 ```
 
 ```{r, echo = FALSE}
@@ -796,7 +815,7 @@ tree1x + tree2x
 
 
 ```{block, type = "examps"}
-For more details check out the paper and the dataset on Dryad (https://doi.org/10.5061/dryad.1zcrjdfq7). It gives an excellent outline of how to collate data for comparative analyses and how to report these details in your paper.
+For more details check out the paper [@thomas2020eye] and the dataset on [Dryad](https://doi.org/10.5061/dryad.1zcrjdfq7). It gives an excellent outline of how to collate data for comparative analyses and how to report these details in your paper.
 ```
 
 ## Chapter summary
@@ -808,11 +827,10 @@ For more details check out the paper and the dataset on Dryad (https://doi.org/1
 - It is important to consider the quality of the phylogeny and comparative data you use for phylogenetic comparative analyses. Your results will only be as good as the data you put into the analyses.
 
 ## Further reading
-- Tree Thinking Challenge (Baum, Smith, and Donovan 2005). https://science.sciencemag.org/content/sci/suppl/2005/11/07/310.5750.979.DC1/Baum.SOM.pdf. This provides a set of very useful practice exercises on reading and interpreting phylogenetic trees. 
-- Primer on Phylogenetics (Wright 2023). For readers who wish to learn more about inferring phylogenies we recommend the excellent Primer.
-- A Guide to Data Management in Ecology and Evolution (British Ecological Society, 2014). https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf. If you are likely to be collating a lot of comparative data we highly recommend learning more about data management. This free booklet is a great starting point.
+- [Tree Thinking Challenge](https://www.science.org/doi/10.1126/science.1117727) [@Baum979]. This provides a set of very useful practice exercises on reading and interpreting phylogenetic trees. 
+- Phylogenetics (Wright 2023) [@wright2026]. For readers who wish to learn more about inferring phylogenies we recommend this excellent [primer](https://global.oup.com/ukhe/product/phylogenetics-9780192647993?cc=gb&lang=en&).
 
 ## Online exercises
-- Data wrangling comparative data in R
-- Understanding, plotting and manipulating phylogenies in R
-- Preparing your tree and data for PCMs in R
+- [Data wrangling comparative data in R](https://nhcooper123.github.io/pcm-primer-online/data-wrangling-comparative-data-in-r.html)
+- [Understanding, plotting and manipulating phylogenies in R](https://nhcooper123.github.io/pcm-primer-online/phylogenies.html)
+- [Preparing your tree and data for PCMs in R](https://nhcooper123.github.io/pcm-primer-online/prep.html)
