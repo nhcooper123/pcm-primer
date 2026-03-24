@@ -19,7 +19,7 @@ pre code {
   background: #99E1D9;
 }
 
-.rmdexample {
+.rmdexamps{
   padding: 1em 1em 1em 1em;
   margin-bottom: 10px;
   background: #EDC9FF;
@@ -32,7 +32,7 @@ pre code {
 }
 
 .rmdwarning {
-  background-image: url("../images/warning.jpg");
+  background-image: url("images/warning.jpg");
 }
 
 .rmddetail {
