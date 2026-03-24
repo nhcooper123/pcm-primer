@@ -2,29 +2,20 @@
 title: "Phylogenetic Comparative Methods"
 subtitle: "A Practical Introduction."
 author: "Natalie Cooper, Robert P. Freckleton"
-date: "`r Sys.Date()`"
-output: 
+site: bookdown::bookdown_site
+output:
+  pdf_document:
+    citation_package: natbib
+    pandoc_args: [ "--csl", "ieee.csl" ]
   bookdown::pdf_book:
-    toc: true
-    includes:
-      in_header: latex/preamble.tex
-      before_body: latex/before_body.tex
+    citation_package: biblatex
+    pandoc_args: [ "--csl", "ieee.csl" ]
 documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
+bibliography: [book.bib]
+csl: ieee.csl
 link-citations: yes
 colorlinks: yes
-description: "PCM Primer"
 ---
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggtree',
-                'ape', 'caper', 'reshape2', 'tidyverse',
-                'patchwork', 'ggimage', 'knitr', 'measurements', 
-                'cowplot', 'reshape2'), 'packages.bib')
-```
 
 # Preface {-}
 
@@ -70,7 +61,7 @@ The guide is divided as follows:
 ## Online Exercises {-}
 Each chapter of the guide has associated online companion material. This consists of an online book with practical examples of how to perform each analysis in R. 
 
-> Link to the online materials: 
+> Natalie Cooper. 2026. Introduction to Phylogenetic Comparative Methods in R. https://nhcooper123.github.io/pcm-primer-online. DOI: 10.5281/zenodo.19134985.
 
 ## Boxes {-}
 
@@ -96,15 +87,13 @@ Throughout the guide are boxes of text highlighting particularly important issue
 
 If you use this guide it would be great if you could cite it:
 
-> Natalie Cooper and Rob P. Freckleton. 2026. Phylogenetic Comparative Methods: A Practical Introduction. WEBSITE. DOI:
+> Natalie Cooper and Rob P. Freckleton. 2026. Phylogenetic Comparative Methods: A Practical Introduction. > Natalie Cooper. 2026. Introduction to Phylogenetic Comparative Methods in R. https://nhcooper123.github.io/pcm-primer. DOI: 10.5281/zenodo.xxxxxx.
 
-[zenodo badge]
 
 If you use the online practical exercises these should be cited as:
 
-> Natalie Cooper. 2026. Phylogenetic Comparative Methods: Online Practical Exercises. WEBSITE. DOI:
+> Natalie Cooper. 2026. Introduction to Phylogenetic Comparative Methods in R. https://nhcooper123.github.io/pcm-primer-online. DOI: 10.5281/zenodo.19134985.
 
-[zenodo badge]
 
 ## Acknowledgements {-}
 
