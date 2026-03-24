@@ -1,6 +1,6 @@
 /images/spare/
 _book/*
-_pcm-primer_files/*
+pcm-primer_files/*
 
 # Mac files
 .DS_Store
