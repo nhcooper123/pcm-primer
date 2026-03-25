@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Introduction to models of trait evolution | Phylogenetic Comparative Methods</title>
+  <meta name="description" content="3 Introduction to models of trait evolution | Phylogenetic Comparative Methods" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Introduction to models of trait evolution | Phylogenetic Comparative Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Introduction to models of trait evolution | Phylogenetic Comparative Methods" />
+  
+  
+  
+
+<meta name="author" content="Natalie Cooper, Robert P. Freckleton" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="foundations1.html"/>
+<link rel="next" href="signal.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PCM Primer</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#a-potted-history-of-this-project"><i class="fa fa-check"></i>A potted history of this project</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-are-comparative-methods"><i class="fa fa-check"></i>What are comparative methods?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-did-we-write-this-book"><i class="fa fa-check"></i>Why did we write this book?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-is-this-book-for"><i class="fa fa-check"></i>Who is this book for?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-is-this-book-organised"><i class="fa fa-check"></i>How is this book organised?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#online-exercises"><i class="fa fa-check"></i>Online Exercises</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#boxes"><i class="fa fa-check"></i>Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citing-this-book"><i class="fa fa-check"></i>Citing this book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to the comparative method</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#historical-context-of-the-comparative-method"><i class="fa fa-check"></i><b>1.1</b> Historical context of the comparative method</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#what-questions-can-we-answer-with-comparative-methods"><i class="fa fa-check"></i><b>1.2</b> What questions can we answer with comparative methods?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#the-problem-of-phylogenetic-non-independence"><i class="fa fa-check"></i><b>1.3</b> The problem of phylogenetic non-independence</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#how-do-comparative-methods-work"><i class="fa fa-check"></i><b>1.4</b> How do comparative methods work?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="foundations1.html"><a href="foundations1.html"><i class="fa fa-check"></i><b>2</b> Phylogenies and comparative data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="foundations1.html"><a href="foundations1.html#a-basic-introduction-to-phylogenies"><i class="fa fa-check"></i><b>2.1</b> A basic introduction to phylogenies</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="foundations1.html"><a href="foundations1.html#reading-and-interpreting-phylogenies"><i class="fa fa-check"></i><b>2.1.1</b> Reading and interpreting phylogenies</a></li>
+<li class="chapter" data-level="2.1.2" data-path="foundations1.html"><a href="foundations1.html#section:infer"><i class="fa fa-check"></i><b>2.1.2</b> How do we infer phylogenies?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="foundations1.html"><a href="foundations1.html#where-do-we-get-phylogenies-from-for-comparative-analyses"><i class="fa fa-check"></i><b>2.1.3</b> Where do we get phylogenies from for comparative analyses?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="foundations1.html"><a href="foundations1.html#comparative-data"><i class="fa fa-check"></i><b>2.2</b> Comparative data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="foundations1.html"><a href="foundations1.html#how-much-data-is-enough"><i class="fa fa-check"></i><b>2.2.1</b> How much data is enough?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="foundations1.html"><a href="foundations1.html#sources-of-comparative-data-and-data-quality"><i class="fa fa-check"></i><b>2.2.2</b> Sources of comparative data and data quality</a></li>
+<li class="chapter" data-level="2.2.3" data-path="foundations1.html"><a href="foundations1.html#summarising-the-data-for-each-species"><i class="fa fa-check"></i><b>2.2.3</b> Summarising the data for each species</a></li>
+<li class="chapter" data-level="2.2.4" data-path="foundations1.html"><a href="foundations1.html#whats-in-a-name"><i class="fa fa-check"></i><b>2.2.4</b> What’s in a name?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="foundations1.html"><a href="foundations1.html#chapter-summary"><i class="fa fa-check"></i><b>2.3</b> Chapter summary</a></li>
+<li class="chapter" data-level="2.4" data-path="foundations1.html"><a href="foundations1.html#further-reading"><i class="fa fa-check"></i><b>2.4</b> Further reading</a></li>
+<li class="chapter" data-level="2.5" data-path="foundations1.html"><a href="foundations1.html#online-exercises-1"><i class="fa fa-check"></i><b>2.5</b> Online exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="foundations2.html"><a href="foundations2.html"><i class="fa fa-check"></i><b>3</b> Introduction to models of trait evolution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="foundations2.html"><a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution"><i class="fa fa-check"></i><b>3.1</b> Modelling continuous traits - the Brownian Motion model of evolution</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="foundations2.html"><a href="foundations2.html#intro-bm"><i class="fa fa-check"></i><b>3.1.1</b> An introduction to Brownian Motion</a></li>
+<li class="chapter" data-level="3.1.2" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-multivariate-brownian-motion"><i class="fa fa-check"></i><b>3.1.2</b> A quick note about multivariate Brownian motion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="foundations2.html"><a href="foundations2.html#modelling-discrete-traits---simple-models"><i class="fa fa-check"></i><b>3.2</b> Modelling discrete traits - simple models</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="foundations2.html"><a href="foundations2.html#mkequal-rates-model-er"><i class="fa fa-check"></i><b>3.2.1</b> M<em>k</em>/Equal Rates model (ER)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="foundations2.html"><a href="foundations2.html#symmetric-rates-model-sym"><i class="fa fa-check"></i><b>3.2.2</b> Symmetric rates model (SYM)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="foundations2.html"><a href="foundations2.html#all-rates-different-ard-model"><i class="fa fa-check"></i><b>3.2.3</b> All Rates Different (ARD) model</a></li>
+<li class="chapter" data-level="3.2.4" data-path="foundations2.html"><a href="foundations2.html#a-quick-note-about-ancestral-state-estimation"><i class="fa fa-check"></i><b>3.2.4</b> A quick note about ancestral state estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="foundations2.html"><a href="foundations2.html#section:varcovar"><i class="fa fa-check"></i><b>3.3</b> Phylogenetic variance-covariance matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="foundations2.html"><a href="foundations2.html#chapter-summary-1"><i class="fa fa-check"></i><b>3.4</b> Chapter summary</a></li>
+<li class="chapter" data-level="3.5" data-path="foundations2.html"><a href="foundations2.html#further-reading-1"><i class="fa fa-check"></i><b>3.5</b> Further reading</a></li>
+<li class="chapter" data-level="3.6" data-path="foundations2.html"><a href="foundations2.html#online-exercises-2"><i class="fa fa-check"></i><b>3.6</b> Online exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signal.html"><a href="signal.html"><i class="fa fa-check"></i><b>4</b> Phylogenetic signal</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signal.html"><a href="signal.html#what-is-phylogenetic-signal"><i class="fa fa-check"></i><b>4.1</b> What is phylogenetic signal?</a></li>
+<li class="chapter" data-level="4.2" data-path="signal.html"><a href="signal.html#how-do-we-estimate-phylogenetic-signal"><i class="fa fa-check"></i><b>4.2</b> How do we estimate phylogenetic signal?</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="signal.html"><a href="signal.html#pagels-lambda"><i class="fa fa-check"></i><b>4.2.1</b> Pagel’s <span class="math inline">\(\lambda\)</span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="signal.html"><a href="signal.html#blombergs-k"><i class="fa fa-check"></i><b>4.2.2</b> Blomberg’s <em>K</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="signal.html"><a href="signal.html#phylogenetic-signal-for-categorical-traits"><i class="fa fa-check"></i><b>4.2.3</b> Phylogenetic signal for categorical traits</a></li>
+<li class="chapter" data-level="4.2.4" data-path="signal.html"><a href="signal.html#calculating-d-for-binary-traits"><i class="fa fa-check"></i><b>4.2.4</b> Calculating <em>D</em> for binary traits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="signal.html"><a href="signal.html#how-do-we-interpret-phylogenetic-signal"><i class="fa fa-check"></i><b>4.3</b> How do we interpret phylogenetic signal?</a></li>
+<li class="chapter" data-level="4.4" data-path="signal.html"><a href="signal.html#some-additional-caveats-with-estimating-and-interpreting-phylogenetic-signal"><i class="fa fa-check"></i><b>4.4</b> Some additional caveats with estimating and interpreting phylogenetic signal</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="signal.html"><a href="signal.html#sample-size"><i class="fa fa-check"></i><b>4.4.1</b> Sample size</a></li>
+<li class="chapter" data-level="4.4.2" data-path="signal.html"><a href="signal.html#error-in-the-phylogeny-and-the-trait"><i class="fa fa-check"></i><b>4.4.2</b> Error in the phylogeny and the trait</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="signal.html"><a href="signal.html#chapter-summary-2"><i class="fa fa-check"></i><b>4.5</b> Chapter summary</a></li>
+<li class="chapter" data-level="4.6" data-path="signal.html"><a href="signal.html#further-reading-2"><i class="fa fa-check"></i><b>4.6</b> Further reading</a></li>
+<li class="chapter" data-level="4.7" data-path="signal.html"><a href="signal.html#online-exercises-3"><i class="fa fa-check"></i><b>4.7</b> Online exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tempo-mode.html"><a href="tempo-mode.html"><i class="fa fa-check"></i><b>5</b> Moving beyond the simplest model of evolution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tempo-mode.html"><a href="tempo-mode.html#what-is-wrong-with-the-brownian-model"><i class="fa fa-check"></i><b>5.1</b> What is wrong with the Brownian model?</a></li>
+<li class="chapter" data-level="5.2" data-path="tempo-mode.html"><a href="tempo-mode.html#brownian-motion-recap"><i class="fa fa-check"></i><b>5.2</b> Brownian motion recap</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tempo-mode.html"><a href="tempo-mode.html#why-might-the-brownian-motion-be-a-poor-model-of-trait-evolution"><i class="fa fa-check"></i><b>5.2.1</b> Why might the Brownian motion be a poor model of trait evolution?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tempo-mode.html"><a href="tempo-mode.html#alternative-models"><i class="fa fa-check"></i><b>5.3</b> Alternative models</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tempo-mode.html"><a href="tempo-mode.html#varying-rates-of-evolution"><i class="fa fa-check"></i><b>5.3.1</b> Varying rates of evolution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tempo-mode.html"><a href="tempo-mode.html#the-ornstein-uhlenbeck-ou-model"><i class="fa fa-check"></i><b>5.4</b> The Ornstein-Uhlenbeck (OU) model</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tempo-mode.html"><a href="tempo-mode.html#how-stretchy-is-your-rubber-band-parameter"><i class="fa fa-check"></i><b>5.4.1</b> How stretchy is your “rubber band” parameter?</a></li>
+<li class="chapter" data-level="5.4.2" data-path="tempo-mode.html"><a href="tempo-mode.html#single-stationary-peak-ssp-versus-more-complex-ou-models"><i class="fa fa-check"></i><b>5.4.2</b> Single stationary peak (SSP) versus more complex OU models</a></li>
+<li class="chapter" data-level="5.4.3" data-path="tempo-mode.html"><a href="tempo-mode.html#here-be-dragonsthings-to-be-aware-of-when-fitting-ou-models"><i class="fa fa-check"></i><b>5.4.3</b> Here be dragons…things to be aware of when fitting OU models</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tempo-mode.html"><a href="tempo-mode.html#niche-filling-models"><i class="fa fa-check"></i><b>5.5</b> Niche-filling models</a></li>
+<li class="chapter" data-level="5.6" data-path="tempo-mode.html"><a href="tempo-mode.html#the-brownian-model-is-dead-long-live-the-brownian-model"><i class="fa fa-check"></i><b>5.6</b> The Brownian model is dead… long live the Brownian model!</a></li>
+<li class="chapter" data-level="5.7" data-path="tempo-mode.html"><a href="tempo-mode.html#fitting-and-assessing-models-of-evolution"><i class="fa fa-check"></i><b>5.7</b> Fitting and assessing models of evolution</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="tempo-mode.html"><a href="tempo-mode.html#model-selection-with-aic"><i class="fa fa-check"></i><b>5.7.1</b> Model selection with AIC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="tempo-mode.html"><a href="tempo-mode.html#chapter-summary-3"><i class="fa fa-check"></i><b>5.8</b> Chapter summary</a></li>
+<li class="chapter" data-level="5.9" data-path="tempo-mode.html"><a href="tempo-mode.html#further-reading-3"><i class="fa fa-check"></i><b>5.9</b> Further reading</a></li>
+<li class="chapter" data-level="5.10" data-path="tempo-mode.html"><a href="tempo-mode.html#online-exercises-4"><i class="fa fa-check"></i><b>5.10</b> Online exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="diversification.html"><a href="diversification.html"><i class="fa fa-check"></i><b>6</b> A very brief introduction to diversification analyses</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="diversification.html"><a href="diversification.html#why-do-we-study-species-diversity"><i class="fa fa-check"></i><b>6.1</b> Why do we study species diversity?</a></li>
+<li class="chapter" data-level="6.2" data-path="diversification.html"><a href="diversification.html#phylogenetic-tree-imbalance"><i class="fa fa-check"></i><b>6.2</b> Phylogenetic tree imbalance</a></li>
+<li class="chapter" data-level="6.3" data-path="diversification.html"><a href="diversification.html#birth-death-models-and-diversification-rates"><i class="fa fa-check"></i><b>6.3</b> Birth death models and diversification rates</a></li>
+<li class="chapter" data-level="6.4" data-path="diversification.html"><a href="diversification.html#lineage-through-time-plots-and-the-gamma-statistic"><i class="fa fa-check"></i><b>6.4</b> Lineage through time plots and the <span class="math inline">\(\gamma\)</span> statistic</a></li>
+<li class="chapter" data-level="6.5" data-path="diversification.html"><a href="diversification.html#diversification-rate-variation-across-branches"><i class="fa fa-check"></i><b>6.5</b> Diversification rate variation across branches</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="diversification.html"><a href="diversification.html#bamm"><i class="fa fa-check"></i><b>6.5.1</b> BAMM!</a></li>
+<li class="chapter" data-level="6.5.2" data-path="diversification.html"><a href="diversification.html#assumptions-and-issues-with-bamm"><i class="fa fa-check"></i><b>6.5.2</b> Assumptions and issues with BAMM</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="diversification.html"><a href="diversification.html#state-dependent-diversification"><i class="fa fa-check"></i><b>6.6</b> State-dependent diversification</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="diversification.html"><a href="diversification.html#assumptions-and-issues-with-sse-models"><i class="fa fa-check"></i><b>6.6.1</b> Assumptions and issues with SSE models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="diversification.html"><a href="diversification.html#further-reading-4"><i class="fa fa-check"></i><b>6.7</b> Further reading</a></li>
+<li class="chapter" data-level="6.8" data-path="diversification.html"><a href="diversification.html#online-materials"><i class="fa fa-check"></i><b>6.8</b> Online materials</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="critical.html"><a href="critical.html"><i class="fa fa-check"></i><b>7</b> Critical thinking</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="critical.html"><a href="critical.html#factors-to-consider-before-using-a-new-phylogenetic-comparative-method"><i class="fa fa-check"></i><b>7.1</b> Factors to consider before using a new phylogenetic comparative method</a></li>
+<li class="chapter" data-level="7.2" data-path="critical.html"><a href="critical.html#how-to-critically-evaluate-a-paper-that-uses-phylogenetic-comparative-methods"><i class="fa fa-check"></i><b>7.2</b> How to critically evaluate a paper that uses phylogenetic comparative methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#logicinterpretation"><i class="fa fa-check"></i>Logic/interpretation</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#methods"><i class="fa fa-check"></i>Methods</a></li>
+<li class="chapter" data-level="" data-path="critical.html"><a href="critical.html#moving-forwards"><i class="fa fa-check"></i>Moving forwards</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="critical.html"><a href="critical.html#chapter-summary-4"><i class="fa fa-check"></i><b>7.3</b> Chapter summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phylogenetic Comparative Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="foundations2" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Introduction to models of trait evolution<a href="foundations2.html#foundations2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><em>Natalie Cooper</em></p>
+<p>To apply phylogenetic comparative methods with confidence we need to understand the theory and models underpinning our methods. At the very simplest level, comparative methods are interested in how traits are distributed across phylogenies, and how these traits change through time. The models we use to describe how traits change will vary depending on whether our traits are <em>continuous</em> (e.g. body size, leaf area) or <em>discrete</em> (e.g. presence or absence of a tail, growth form, number of legs). This chapter introduces the <em>Brownian motion model of evolution</em>, which is commonly used to model continuous traits. It also describes simple models of discrete trait evolution, such as the <em>equal rates</em> and <em>all rates different models</em>. Finally we look at <em>phylogenetic variance covariance matrices</em>, a useful tool for future chapters.</p>
+<div id="modelling-continuous-traits---the-brownian-motion-model-of-evolution" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Modelling continuous traits - the Brownian Motion model of evolution<a href="foundations2.html#modelling-continuous-traits---the-brownian-motion-model-of-evolution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In section <a href="foundations1.html#section:infer">2.1.2</a> we explained how most types of phylogenetic inference rely on models of molecular evolution: the model allows us to estimate branch lengths by reconstructing the evolution of molecular changes. Similarly, comparative methods use models to analyse trait variation by expliciting including our understanding of evolution. We know that trait evolution happens through the accumulation of lots of small changes. As time progresses, these changes add up and the outcome is that closely related species tend to be similar, because fewer changes have happened, whereas distantly related species are more different because lots of change has accumulated (see Chapter <a href="intro.html#intro">1</a>. Models of trait evolution are mathematical descriptions of evolutionary change that allow us to measure how fast traits evolve and, when we have several traits, how they coevolve.</p>
+<p>For continuous traits, the most commonly used model of trait evolution is the <em>Brownian motion model</em>, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you’re already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!</p>
+<div id="intro-bm" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> An introduction to Brownian Motion<a href="foundations2.html#intro-bm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Brownian model or BM model <span class="citation"><a href="#ref-cavalli1967">[24]</a>, <a href="#ref-felsenstein1973maximum">[25]</a></span> is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods [though this assumption is rarely tested; <span class="citation"><a href="#ref-freckleton2006detecting">[26]</a></span>]. It can be fully described using just two parameters <span class="math inline">\(z(0)\)</span> and <span class="math inline">\(\sigma^2\)</span> (sigma squared).</p>
+<p><span class="math inline">\(z(0)\)</span> is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait. <span class="math inline">\(\sigma^2\)</span> is the rate at which evolution (i.e. trait change) occurs. Some of you might already be wondering why we use <span class="math inline">\(\sigma^2\)</span> here, as <span class="math inline">\(\sigma^2\)</span> is usually used to signify <em>variance</em>. And you’d be right, it is a variance! But how and why?</p>
+<p>The Brownian model is a simple model of trait evolution and is what is known as a phenomenological model: it describes the evolution of continuous quantitative traits in an empirical way; it does not explicitly include the drivers or mechanisms of evolution, but it mathematically models the outcome in a simple way. The model assumes that traits are changing all of the time because of selective forces that drive changes. However the model assumes that overall selection is neutral in the sense that positive and negative changes in the trait are equally as likely. A common misconception is that this neutrality implies that evolution is not happening: quite the reverse! As you will see below, traits can change a lot when evolving in this way, it is just that there is no overall direction to the change.</p>
+<p>Here’s the explanation of how it works. At the core of Brownian motion is the normal distribution (Figure <a href="foundations2.html#fig:normal">3.1</a>). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a <strong>mean of 0</strong> and a <strong>variance of <span class="math inline">\(\sigma^2\)</span></strong>. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of <span class="math inline">\(\sigma^2\)</span>. In Figure <a href="foundations2.html#fig:normal">3.1</a> you can see that as <span class="math inline">\(\sigma^2\)</span> gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as <span class="math inline">\(\sigma^2\)</span> increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when <span class="math inline">\(\sigma^2\)</span> is larger. Because of this, <span class="math inline">\(\sigma^2\)</span> represents the <em>rate of evolution</em>, and is referred to as the <em>Brownian rate parameter</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normal"></span>
+<img src="pcm-book_files/figure-html/normal-1.png" alt="Three normal distributions with the same mean (0) but different variances." width="80%" />
+<p class="caption">
+Figure 3.1: Three normal distributions with the same mean (0) but different variances.
+</p>
+</div>
+<p>Because the direction of change in trait values at each step is random, Brownian motion is often described as a <em>random walk</em>.</p>
+<p>Let’s run a quick example simulation to see what is going on. Our trait can be any continuous feature of an organism, but for simplicity let’s use body mass in (imaginary!) cats. First let’s run one simulation to show how the body mass of one cat lineage changes through time under the Brownian model.</p>
+<ol style="list-style-type: decimal">
+<li><p>At the start, the trait value is <span class="math inline">\(z(0)\)</span>. Here we’ll start at <span class="math inline">\(time = 0\)</span> with an ancestral cat that weighs 4 kg. The rate of evolution, or Brownian rate parameter, <span class="math inline">\(\sigma^2\)</span>, is 0.25 (like the normal distribution in Figure <a href="foundations2.html#fig:normal">3.1</a>B).</p></li>
+<li><p>To determine the value for body mass at <span class="math inline">\(time = 1\)</span>, we draw a random number from the normal distribution with <span class="math inline">\(mean = 0\)</span> and <span class="math inline">\(\sigma^2 = 0.25\)</span>. In this example the value is <span class="math inline">\(-0.1533193\)</span>. So the body mass of a cat at <span class="math inline">\(time = 1\)</span> is <span class="math inline">\(4 + -0.1533193 = 3.84668\)</span>.</p></li>
+<li><p>To determine the value for body mass at <span class="math inline">\(time = 2\)</span>, we draw a random number from the normal distribution with <span class="math inline">\(mean = 0\)</span> and <span class="math inline">\(\sigma^2 = 0.25\)</span>. In this example the value is <span class="math inline">\(-0.89065422\)</span>. So the body mass of a cat at <span class="math inline">\(time = 2\)</span> is <span class="math inline">\(3.84668 + -0.89065422 = 2.95603\)</span>, recall that <span class="math inline">\(3.84668\)</span> is the body mass at <span class="math inline">\(time = 1\)</span>.</p></li>
+<li><p>If we continue this until we get to <span class="math inline">\(time = 10\)</span> we get a graph that shows the evolution of the trait through time that looks like Figure <a href="foundations2.html#fig:cat1">3.2</a> (the numbers are the body mass values, rounded to two decimal places).</p></li>
+</ol>
+<div class="detail">
+<p>
+Hang on, where are we getting these random numbers from? We are just
+using R to extract numbers from a normal distribution with mean of 0 and
+variance of 0.25. If you want to try this out got to R and type in
+<code>rnorm(1, mean = 0, sd = sqrt(0.01))</code>. <code>sd</code> is
+standard deviation, which is the square root of variance. Note that
+these numbers are drawn at random so will not be the same as the values
+used above.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cat1"></span>
+<img src="pcm-book_files/figure-html/cat1-1.png" alt="A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$." width="80%" />
+<p class="caption">
+Figure 3.2: A simple simulation showing how the body mass of cats changes through time under a Brownian model with <span class="math inline">\(z(0) = 4 kg\)</span> and <span class="math inline">\(sigma^2 = 0.25\)</span>.
+</p>
+</div>
+<p>A few things to note. First, the direction of change is random, there is no trend towards increasing or decreasing body mass. Second, the changes do not depend on the changes that happened previously, i.e. an increase in body mass at time 1 does not mean an increase (or decrease) at time 2 is more or less likely. The random nature of trait changes is why the Brownian model is often referred to as a <strong>random walk</strong>. We sometimes describe it as being like a drunk person walking down the road, wobbling about but in no particular direction…</p>
+<div class="info">
+<p>
+Although our examples here use t = 1, t = 2 etc. to illustrate what
+is happening, Brownian motion is a continuous time process, and so time
+does not have discrete steps in the model.
+</p>
+</div>
+<p>The example above includes only one simulation to give you a basic idea of what is going on. To get a better idea of the patterns we expect to see, let’s run 100 simulations instead, over a longer time period. Because the Brownian model is a random walk, we expect each simulation to be slightly different depending on the values drawn out of the normal distribution each time.</p>
+<p>As above, we will start at <span class="math inline">\(time = 0\)</span> with an ancestral cat that weighs 4 kg (i.e. <span class="math inline">\(z(0) = 4\)</span>), and use <span class="math inline">\(\sigma^2\)</span> of 0.25 as the rate of evolution (Figure <a href="foundations2.html#fig:bm100">3.3</a>A).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bm100"></span>
+<img src="pcm-book_files/figure-html/bm100-1.png" alt="100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B)." width="80%" />
+<p class="caption">
+Figure 3.3: 100 simulations showing how the body mass of cats changes through time under a Brownian model with <span class="math inline">\(z(0) = 4 kg\)</span> and <span class="math inline">\(sigma^2 = 0.25\)</span> (A); and a plot showing how variance in body mass across the simulations increases linearly through time (B).
+</p>
+</div>
+<p>Notice how the variance in body mass (i.e. the spread of different values of body mass) <em>increases linearly with time</em> (it’s not perfectly linear here, but it would be if we ran more simulations; Figure <a href="foundations2.html#fig:bm100">3.3</a>B). Meaning that body mass variance is greatest over the longest time intervals. In biological terms this means we expect to see more variance in the trait values of groups that have been evolving for longer.</p>
+<p>If we vary the value of <span class="math inline">\(\sigma^2\)</span> we can look at the effect of changing the rate of evolution on the values of body mass we evolve in our cat simulations. If the rate of evolution is lower, then variance in body mass accumulates more slowly (Figure <a href="foundations2.html#fig:bmplots">3.4</a>A); if the rate of evolution is higher, then variance in body mass accumulates more quickly (Figure <a href="foundations2.html#fig:bmplots">3.4</a>C). The overall variance of the Brownian process is equal to the rate of evolution multiplied by the amount of time that has elapsed.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmplots"></span>
+<img src="pcm-book_files/figure-html/bmplots-1.png" alt="100 simulations showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and (A) $sigma^2 = 0.1$; (B) $sigma^2 = 0.25$; (C) $sigma^2 = 1$." width="80%" />
+<p class="caption">
+Figure 3.4: 100 simulations showing how the body mass of cats changes through time under a Brownian model with <span class="math inline">\(z(0) = 4 kg\)</span> and (A) <span class="math inline">\(sigma^2 = 0.1\)</span>; (B) <span class="math inline">\(sigma^2 = 0.25\)</span>; (C) <span class="math inline">\(sigma^2 = 1\)</span>.
+</p>
+</div>
+<p>One final feature to highlight is what the body mass values look like at the end of the simulations, i.e. where <span class="math inline">\(t = 100\)</span>. If we assume that the present-day is <span class="math inline">\(t = 100\)</span>, we can imagine that these values are equivalent to the body mass values for the species at the tips of our phylogeny.</p>
+<p>Because trait changes are drawn from a normal distribution with a mean of 0, on average we expect no change in body mass through time. So if we run enough simulations, the mean of the trait values at the end of the simulations should be equal to the starting value <span class="math inline">\(z(0)\)</span>, in this case 4 kg. The rest of the values should be evenly distributed around the mean, so we expect the body mass values to be normally distributed.</p>
+<p>As demonstrated above, the variance of these normal distributions of body masses will depend on the rate of evolution (low rates result in smaller variances; high rates result in larger variances; Figure <a href="foundations2.html#fig:bmhist">3.5</a>) <em>and</em> the time elapsed (shorter times result in smaller variances; greater times result in larger variances; Figure <a href="foundations2.html#fig:bm100">3.3</a>). More precisely, we can define the overall variance of the Brownian process as the rate of evolution multiplied by the amount of time that has elapsed.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmhist"></span>
+<img src="pcm-book_files/figure-html/bmhist-1.png" alt="Three Brownian motion simulations (left) with different values of sigma (A = 0.1, B = 0.25, C = 1) and the resulting trait distributions at the end of the simulation (right)." width="80%" />
+<p class="caption">
+Figure 3.5: Three Brownian motion simulations (left) with different values of sigma (A = 0.1, B = 0.25, C = 1) and the resulting trait distributions at the end of the simulation (right).
+</p>
+</div>
+<p>The examples above ignore the topology of the cat phylogeny - we are modelling a series of independent species, and we are not yet accounting for the inter-relationships between them. What if we want to model the evolution of cat body sizes across a branching phylogeny where species originate at different times? This is usually how we use the Brownian model, and it is very simple to extend. At each speciation event, we simply start a new Brownian simulation for the two new species. Let’s do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure <a href="foundations2.html#fig:bmcat">3.6</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bmcat"></span>
+<img src="pcm-book_files/figure-html/bmcat-1.png" alt="A simulation showing how the body mass of four lineages of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$ (A), and the phylogeny of the cats (B). The size of the cats indicates the final body size of the lineage in the simulation." width="80%" />
+<p class="caption">
+Figure 3.6: A simulation showing how the body mass of four lineages of cats changes through time under a Brownian model with <span class="math inline">\(z(0) = 4 kg\)</span> and <span class="math inline">\(sigma^2 = 0.25\)</span> (A), and the phylogeny of the cats (B). The size of the cats indicates the final body size of the lineage in the simulation.
+</p>
+</div>
+<p>There are a few things to note here looking at Figure <a href="foundations2.html#fig:bmcat">3.6</a></p>
+<p>First, when a lineage speciates, the new lineages start at the same trait value, and over time they can evolve away from each other. This means that close relatives will be more similar in their trait values than more distant relatives, and differences in trait values between species will depend on how long ago they diverged from a common ancestor. For example, here we expect cat A and cat B to be more similar to one another than they are to cat C and cat D, and that cat A and cat B should be more similar to one another than cat C and cat D are to one another, because cat A and cat B diverged more recently than cat C and cat D (Figure <a href="foundations2.html#fig:bmcat">3.6</a>). More precisely, the correlation among trait values is proportional to the extent of shared ancestry for pairs of species.</p>
+<p>Second, we used the same normal distribution throughout to randomly draw our trait change values. This means that <span class="math inline">\(\sigma^2\)</span> was also the same throughout. This means that the <em>rate of evolution across the tree is constant</em>, i.e. it is the same for all the lineages. This is a big assumption of the Brownian model, and it is often broken in real life scenarios (for example the rapid evolution of clades in an <em>adaptive radiation</em>). We will return to this later in the book.</p>
+<p>Finally, it’s rare to see such simple examples of Brownian motion across trees as we’ve shown here. You’re much more likely to see something like Figure <a href="foundations2.html#fig:phytools">3.7</a>, drawn using the <code>phytools</code> R package.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:phytools"></span>
+<img src="pcm-book_files/figure-html/phytools-1.png" alt="A more complex simulation using 50 species, where z0 = 20, and sigma2 = 0.1." width="80%" />
+<p class="caption">
+Figure 3.7: A more complex simulation using 50 species, where z0 = 20, and sigma2 = 0.1.
+</p>
+</div>
+<p>What do the body mass values look like at the end of the simulations when we add the phylogeny? The expected distribution of the tips and nodes of the tree under Brownian motion is a <strong>multivariate normal</strong> distribution with a <strong>variance covariance matrix</strong>, C, that is calculated using the phylogeny (see section @ref(#section:varcovar) on variance covariance matrices). This is a really useful result, because it means that if we want to simulate data along a phylogeny under the Brownian motion model we don’t need to do it along the branches as we demonstrated above. We can just sample data from the multivariate normal distribution defined using the starting value, <span class="math inline">\(z0\)</span>, <span class="math inline">\(\sigma^2\)</span>, and the variance covariance matrix taken from the phylogeny. This speeds things up substantially.</p>
+<p>Finally note that we don’t fit the models using the simple maths we’ve shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don’t worry about this for now as we will return to it later.</p>
+</div>
+<div id="a-quick-note-about-multivariate-brownian-motion" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> A quick note about multivariate Brownian motion<a href="foundations2.html#a-quick-note-about-multivariate-brownian-motion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Above we looked at the Brownian motion model of evolution using just one trait. But we’re often interested in how two or more traits evolve together across a phylogenetic tree. To model this we need to use multivariate Brownian motion models. These models are simple extensions of what we’ve discussed above, except we also consider how the two (or more) traits are correlated. As with just one trait, all trait values change randomly in both direction and magnitude. The two (or more) traits can be evolving independently of one another, or be correlated. We estimate the same parameters as for Brownian motion for one trait, and the end result is a set of traits with a multivariate normal distribution (rather than the univariate one shown in Figure (fig:normal)). We cover this in more detail in Chapter <a href="tempo-mode.html#tempo-mode">5</a>.</p>
+<div class="info">
+<p>
+To summarise the above, the key features of the Brownian motion model
+are:
+</p>
+<ul>
+<li>
+Traits evolve at random, i.e. by a random walk.
+</li>
+<li>
+The direction and magnitude of the trait change at one time interval
+is independent of the direction and magnitude of the trait changes at
+other time intervals.
+</li>
+<li>
+There is no overall drift in the direction of evolution.
+</li>
+<li>
+Traits evolve at a rate <span class="math inline"><span class="math inline">\(\sigma^2\)</span></span>.
+</li>
+<li>
+The rate of evolution is constant.
+</li>
+<li>
+Variance in traits increase (linearly) in proportion to time.
+</li>
+<li>
+The overall variance of the Brownian process is the rate of
+evolution times the amount of time that has elapsed.
+</li>
+</ul>
+<p>
+In terms of the model parameters:
+</p>
+<ul>
+<li>
+The model can be fully described using just two parameters <span class="math inline"><span class="math inline">\(z(0)\)</span></span> and <span class="math inline"><span class="math inline">\(\sigma^2\)</span></span>.
+</li>
+<li>
+<span class="math inline"><span class="math inline">\(z(0)\)</span></span> is the starting value of
+the trait we are interested in. This is the mean value for the trait
+seen in the ancestral population before there have been any changes to
+the trait.
+</li>
+<li>
+<span class="math inline"><span class="math inline">\(\sigma^2\)</span></span> is the rate at which
+evolution (i.e. trait change) occurs. It is also referred to as the
+Brownian rate parameter.
+</li>
+</ul>
+<p>
+Some biological implications of the model are:
+</p>
+<ul>
+<li>
+Correlation among trait values is proportional to the extent of
+shared ancestry for pairs of species, i.e. close relatives are more
+similar than more distant relatives.
+</li>
+<li>
+Different lineages evolve at the same rate.
+</li>
+</ul>
+</div>
+<div class="detail">
+<center>
+<h3 id="is-the-brownian-motion-model-of-evolution-a-realistic-model-of-evolution">
+Is
+the Brownian motion model of evolution a realistic model of
+evolution?
+</h3>
+<div class="float">
+<img src="images/brownie.png"
+alt="A Brownie in Motion. Brownie Credit: Ɱ. License: CC BY-SA 3.0" />
+<div class="figcaption">
+A Brownie in Motion. Brownie Credit: Ɱ. License:
+CC BY-SA 3.0
+</div>
+</div>
+</center>
+<p>
+<span class="math display"><span class="math display">\[\\[0.5cm]\]</span></span>
+</p>
+<p>
+In this chapter we put a lot of effort into describing and explaining
+the Brownian model of evolution. But is it a realistic model of
+evolution? Before moving on, take some time to think about this. Two
+biological implications of the model are that (1) close relatives are
+more similar than more distant relatives; and (2) different species and
+lineages evolve at the same rate. Are these statements always true? Can
+you think of biological examples where this might not be the case? Think
+about adaptive radiations, key innovations, convergent evolution - do
+you expect evolution in these scenarios to be Brownian?
+</p>
+<p>
+What sorts of scenarios might be well modeled by Brownian motion?
+You’ve probably already realised that evolution is not always going to
+be Brownian. There are a number of other models of evolution, and we
+will return to these later in the book.
+</p>
+</div>
+</div>
+</div>
+<div id="modelling-discrete-traits---simple-models" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Modelling discrete traits - simple models<a href="foundations2.html#modelling-discrete-traits---simple-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Many traits we are interested in studying are not continuous traits, instead they can be lumped into distinct categories, so we refer to them as discrete traits. Discrete traits have a number of states, and comparative methods can be used to investigate changes between states across a phylogeny. For example, if we are interested in the evolution of flightlessness in birds, we might want to know how many times this has evolved across the phylogeny, whether flying birds are more likely to evolve to be flightless, or whether flightless birds are more likely to evolve to fly, and whether flightless birds can ever evolve to fly again once they have lost the ability.</p>
+<p>In the flightlessness in birds example, we have two states: flying and flightless. We could also have intermediate states, e.g. semi-flightless. Traits can be ordered or unordered. Ordered traits have a set order of state changes, for example flying to semi-flightless to flightless. Unordered traits can change in any way. Traits can also be reversible or non-reversible, for example, if flightless bird lineages can never go on to evolve flight again, the trait is irreversible. The most simple way to model discrete traits is to assume that changes are unordered and reversible, so we will stick to this here.</p>
+<p>We’ve actually already met some models of discrete trait evolution over trees. Back when we discussed phylogenetic inference we mentioned several models of DNA sequence evolution, including the Jukes Cantor <span class="citation"><a href="#ref-jukes1969evolution">[14]</a></span>, and General Time Reversible (GTR) <span class="citation"><a href="#ref-lanave1984new">[17]</a></span> models. The most basic models for discrete character evolution are analogues of these models.</p>
+<div id="mkequal-rates-model-er" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> M<em>k</em>/Equal Rates model (ER)<a href="foundations2.html#mkequal-rates-model-er" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The simplest model for discrete trait evolution is a direct analogue of the Jukes Cantor model. Except instead of changes in base pairs, we model changes in character states. We call this the M<em>k</em> model <span class="citation"><a href="#ref-lewis2001likelihood">[18]</a>, <a href="#ref-pagel1994detecting">[27]</a></span>. The M stands for Markov, because the M<em>k</em> model assumes states change according to a Markov process, i.e. the probability of changing from one state to another is independent of what has happened previously, it only depends on the current state of the trait. The <em>k</em> is there because we generally use <em>k</em> to represent the number of parameters in a model. In models of discrete trait evolution, <em>k</em> is the number of states. For our flying/flightless example <span class="math inline">\(k = 2\)</span>, for the flying/ semi-flightless/flightless example <span class="math inline">\(k = 3\)</span>.</p>
+<p>In the M<em>k</em> model, all trait changes are equally likely, and all occur at the same rate. Because of this we often call the M<em>k</em> model the Equal Rates or ER model.</p>
+<p>We can visualize the <span class="math inline">\(Q\)</span> (rate) matrix for an M<em>k</em> model of our flightlessness example like this:</p>
+<center>
+<img src="images/q1.png" />
+</center>
+<p>The off-diagonals are the transition rates from state 1 to 2, 1 to 3, 2 to 1 and so on (read rows then columns).
+We typically designate individual transition rates in the form <span class="math inline">\(q_ij\)</span>, which means the rate of going from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span>.
+Here, the 1 in all off-diagonal elements represents the fact that rates are the same regardless of what state <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are, and the direction of that change.
+The diagonal elements <span class="math inline">\(q_ii\)</span> give the rate of not changing and are computed as the negative sum of the non-diagonal row elements.
+This is so that the rows sum to zero. Here we’ve just left this as “-”.</p>
+<p>In terms of biological assumptions, the ER model is probably too unrealistic: there is no good biological reason to expect that the transition between quite different states is the same. The Jukes-Cantor model was originally developed to model nucleotide substitutions, assuming that the frequencies of the nucleotide bases were the same, which seemed at the time (1969) to be a reasonable first assumption. However, subsequent data have shown that this is not the case (e.g. GC or TA biases are common). Consequently this model probably has limited applicability.</p>
+</div>
+<div id="symmetric-rates-model-sym" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Symmetric rates model (SYM)<a href="foundations2.html#symmetric-rates-model-sym" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In real data we have good reasons for thinking this might not be the case in many biological systems. Some changes in states are likely to be much easier than others, for example losing complex traits like eyes or limbs is likely to be easier than gaining them. The Mk model can be modified to allow for these more complex situations. The Symmetric rates (SYM) model (Paradis, Claude, and Strimmer 2004) is one such modification where the rate of change can differ among pairs of states, but within each pair of states the rate of change is the same in both directions. The number of different rates is three for k = 3. Using our flying/semi-flightless/flightless example, this means that the rate of change from flying to semi-flightless is exactly the same as the rate of change from semi-flightless to flying. However, these rates differ from the rate of change from flying to flightless (and vice versa), and also differ from the rate of change from semi-flightless to flightless (and vice versa). In terms of the DNA evolution models this is analogous to the GTR model (Lanave et al. 1984).</p>
+<p>The <span class="math inline">\(Q\)</span> matrix for our flying/semi-flightless/flightless example looks like this:</p>
+<center>
+<img src="images/q2.png" />
+</center>
+<p>It’s worth noting that if you only have two states, i.e. <span class="math inline">\(k = 2\)</span>, then the Symmetric model is exactly the same as the M<em>k</em>/Equal Rates model.</p>
+<center>
+<img src="images/q3.png" />
+</center>
+</div>
+<div id="all-rates-different-ard-model" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> All Rates Different (ARD) model<a href="foundations2.html#all-rates-different-ard-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The final modification of the M<em>k</em> model we’re going to cover here is the All Rates Different or ARD model <span class="citation"><a href="#ref-paradis2004ape">[28]</a></span>. In this model not only does the rate of change differ among pairs of states, it can also differ within each pair of states depending on the direction of the change. For k states, we get <span class="math inline">\(k^2 - k\)</span> rates, which can be a pretty large number as k increases.</p>
+<p>The <span class="math inline">\(Q\)</span> matrix for our flying/semi-flightless/flightless example looks like this:</p>
+<center>
+<img src="images/q4.png" />
+</center>
+<p>Biologically, this is a useful model to fit if you think some of your states are not reversible, or very difficult to reverse, for example if you think the rate of evolution from flightless to flying is likely to be close to 0. It often works well for big complex datasets that span a variety of different states. For example, if you had a tree of all vertebrates and wanted to examine transition rates among different dietary strategies, this model would be worth examining.</p>
+<p>You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don’t use this kind of model because of potential <em>over-fitting</em> (see below), which is also a very important point to consider when chosing whether or not to fit an ARD model . It’s also really important for some of the other methods we’ll use later in the book, so I’ll explain what I mean by over-fitting in the box below. If you’re fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting.</p>
+<p>The case study below gives an example using ER and ARD models to determine the ancestral litter size of bats from Garbino et al (2021) <span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span>.</p>
+<div class="detail">
+<center>
+<h3 id="beware-of-overfitting">
+Beware of overfitting!
+</h3>
+<div class="float">
+<img src="images/penguin.jpg"
+alt="Aptenodytes forsteri. Credit: Ian Duffy. License: CC BY" />
+<div class="figcaption">
+<em>Aptenodytes forsteri</em>. Credit: Ian
+Duffy. License: CC BY
+</div>
+</div>
+</center>
+<p>
+<span class="math display"><span class="math display">\[\\[0.5cm]\]</span></span>
+</p>
+<p>
+<strong>Over-fitting</strong> occurs where a model has more
+parameters than can be justified by the data. It can mean the model
+looks like it beautifully fits the data, but if you were to add
+additional data it would be useless.
+</p>
+<p>
+Imagine you have data on the swimming speed of ten penguins (let’s
+call them Pingu, Pinga, Misha, Wheezy, Chilly Willy, Mumble, Skipper,
+Kowalski, Rico, Private and Feathers McGraw). You could fit a model (we
+could use a linear regression here) to see if body mass is correlated
+with swimming speed, and get a regression with an <span class="math inline"><span class="math inline">\(r^2\)</span></span> of 0.5. This suggests around half of
+the variance in swimming speed is explained by body mass. The other half
+might be explained by all kinds of things, including specific attributes
+of the particular penguins or errors in your measurements. We haven’t
+fully explained variation in swimming speed, but it’s still a useful
+model because if we weighed another penguin we’d have a reasonable
+chance of estimating roughly what its swimming speed might be from its
+body mass.
+</p>
+<p>
+If we wanted to increase the variance explained by the model as much
+as possible, we can start adding more variables. For example, maybe the
+faster penguins also have longer flippers so we add in flipper length.
+This might be sensible, and if we had more penguins in our dataset this
+would be fine. But what if we also add in a variable that accounts for
+Wheezy being slow due to his asthma, and another that accounts for
+Feathers McGraw being faster because he’s evil? If we add enough
+variables, eventually we get to a model with an <span class="math inline"><span class="math inline">\(r^2\)</span></span> of 1. This means we can perfectly
+explain the swimming speed of our ten penguins, but we’ve got no hope of
+applying it to any new penguins we find. This is over-fitting, and the
+model not useful. Visually you can think of it the difference between
+fitting one line of best fit to a regression of X against Y, compared to
+joining all the points up.
+</p>
+<p>
+There’s no hard and fast rule about how much data you need to add
+another variable to your model, but some rules of thumb range from 20-30
+data points for each variable. Complex models are always likely to fit
+data better just because they have more parameters, not necessarily
+because they mean anything biologically meaningful. You can avoid this
+problem by thinking very carefully about the models you chose to fit,
+why you think they are sensible, what you predict you will find, and how
+you will interpret the results, <em>before</em> fitting the model.
+</p>
+</div>
+</div>
+<div id="a-quick-note-about-ancestral-state-estimation" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> A quick note about ancestral state estimation<a href="foundations2.html#a-quick-note-about-ancestral-state-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You often hear about using phylogenies for <em>ancestral state reconstruction</em>, along with suggestions that these reconstructions can tell us what the ancestor of a group looked like, how it behaved, what it ate for breakfast etc. Sadly this is not as magical as it seems, and we should refer to this as ancestral state <em>estimation</em> NOT <em>reconstruction</em>. Ancestral state estimation is probably one of the most over-used and uninformative methods in the phylogenetic comparative methods toolkit.</p>
+<p>There are many reasons to be highly sceptical of ancestral state estimates and interpretations of macroevolutionary patterns and process that are based on them, not least because we know that phylogenies are only <em>hypotheses</em> and will often miss out large chunks of extinct diversity. Ancestral state estimation methods are based on the models we discussed above, meaning that your ancestral states are at best weighted averages of your trait based on branch lengths and the model used. How much trust you would want to put in such a result is up to you, but hopefully you now know enough to be very sceptical! However, certain phylogenetic comparative methods require that you define the state of the ancestor for them to work. We will return to this later in the book.</p>
+<div class="warning">
+<p>
+Ancestral state estimates (<strong>not</strong> reconstructions) are,
+at best, weighted averages of your trait based on branch lengths of the
+phylogeny and the model of evolution used. If your phylogeny or traits
+or model have error (and they always will) then your ancestral state
+estimates should be interpreted with care.
+</p>
+</div>
+<div class="examps">
+<center>
+<h3 id="case-study-what-was-the-litter-size-of-the-ancestral-bat">
+Case
+Study: What was the litter size of the ancestral bat?
+</h3>
+<div class="float">
+<img src="images/myotis.webp"
+alt="Myotis crypticus. Credit: Manuel Ruedi. License: CC BY-SA 4.0" />
+<div class="figcaption">
+<em>Myotis crypticus</em>. Credit: Manuel Ruedi.
+License: CC BY-SA 4.0
+</div>
+</div>
+</center>
+<p>
+<span class="math display"><span class="math display">\[\\[0.5cm]\]</span></span>
+</p>
+<p>
+Most small mammals have more than one offspring at a time, with
+average litter sizes ranging from 4-7. Conversely, most bat species have
+only one offspring at a time (see figure below; Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span> <a
+href="https://academic.oup.com/biolinnean/article/132/3/676/6090169">Figure
+2A</a>), likely because of difficulties related to flying while pregnant
+and because offspring mortality is low in bats meaning there is
+selection for more investment in fewer offspring. Only bats in the
+Vespertilionidae family regularly have more than one offspring at a
+time. Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span> were interested in how
+this pattern evolved. Did ancestral bats have multiple offspring
+(polytocy) and evolve to have only one offspring (monotocy)? Or did
+ancestral bats have one offspring with the Vespertilionidae later
+evolving to have more than one?
+</p>
+<p>
+<span class="math display"><span class="math display">\[\\[0.5cm]\]</span></span>
+</p>
+<center>
+<div class="float">
+<img src="images/vesper.png"
+alt="Garbino et al. 2021’s Figure 2A. Estimated pattern of the evolution of polytocy across Chiroptera using an All Rates Different (ARD) model of evolution." />
+<div class="figcaption">
+Garbino et al. 2021’s Figure 2A. Estimated
+pattern of the evolution of polytocy across Chiroptera using an All
+Rates Different (ARD) model of evolution.
+</div>
+</div>
+</center>
+<p>
+<span class="math display"><span class="math display">\[\\[0.5cm]\]</span></span>
+</p>
+<p>
+To test this, Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span> used a phylogeny of 551
+species of bats for which they had information on the litter size of the
+species. They coded litter size as a binary trait (polytocy or
+monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were
+polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal
+Rates (ER) and All Rates Different (ARD) models to the data. They used
+the Akaike Information Criterion (AIC) (see later chapters) to determine
+which of these models best fitted their data. Then they used the best
+fitting model to estimate whether polytocy or monotocy was more likely
+at the root of the tree, and at the root of Vespertilionidae. They also
+plotted the states onto the tree using stochastic character mapping (see
+Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span> <a
+href="https://academic.oup.com/biolinnean/article/132/3/676/6090169">Figure
+2B</a>).
+</p>
+<p>
+Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span>
+found the ARD model was a better fit than the ER model. Evolutionary
+transitions from monotocy to polytocy were rarer than transitions from
+polytocy to monotocy. Ancestral state estimations suggested that the
+ancestral state of modern Chiroptera was monotocy, but that polytocy was
+the ancestral condition in the family Vespertilionidae. This condition
+was subsequently lost in the ancestors of both the Myotinae and
+Kerivoulinae subfamilies.
+</p>
+<p>
+Note that Garbino et al. <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span> also performed a number
+of other phylogenetic comparative methods (including tests for
+phylogenetic signal and PGLS models; see Chapter 4) which we have not
+tackled yet in this book. Check out the paper to find out more and to
+see their full results <span class="citation"><span class="citation"><a href="#ref-garbino2021evolution">[7]</a></span></span>.
+</p>
+</div>
+</div>
+</div>
+<div id="section:varcovar" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Phylogenetic variance-covariance matrices<a href="foundations2.html#section:varcovar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A useful analytical tool that we will use in a number of methods in this book is to represent a phylogeny as a <em>phylogenetic variance–covariance matrix</em>. First let’s think about what we mean by variance and covariance in the context of traits on phylogenies. To do this we need to go back to the Brownian motion model.</p>
+<p>Remember that under Brownian motion, variance in a trait increases linearly in proportion to time. So species that diverged recently will have similar trait values, and species that diverged a long time ago will have very different trait values. In more technical terms we can say that the expected <em>covariance</em> between species’ trait values at the tips of the phylogeny is exactly proportional to the shared history of the species involved, i.e. the sum of their shared branch lengths. In addition, the expected <em>variance</em> of a trait value for a given species is proportional to total length of the tree, i.e. the summed branch length from the root to the tip for that species [19], also refered to as the <em>root-to-tip</em> distance.</p>
+<p>Figure <a href="foundations2.html#fig:roottotip">3.8</a> shows how we get the root-to-tip distances from a phylogeny. The letters a-f represent the branch lengths. Because this is an <em>ultrametric</em> tree, the root-to-tip distance for each species will be the same, i.e. the same amount of time has elapsed. So in the example in Figure <a href="foundations2.html#fig:roottotip">3.8</a>, a <em>and</em> b + c <em>and</em> b + d + e <em>and</em> b + d + f all add up to the same number. Likewise, branch c is the same length as branches d + e, and branch e is the same length as branch f. Take a good look at the phylogeny in Figure <a href="foundations2.html#fig:roottotip">3.8</a> to make sure you understand this.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:roottotip"></span>
+<img src="pcm-book_files/figure-html/roottotip-1.png" alt="Phylogeny showing branch lengths and root-to-tip distances for each tip taxon" width="80%" />
+<p class="caption">
+Figure 3.8: Phylogeny showing branch lengths and root-to-tip distances for each tip taxon
+</p>
+</div>
+<p>As already mentioned above, these root-to-tip values give us the variance of the trait across the tree. But what about the covariances among species, i.e. the shared branch lengths? We can extract these in the same way. The shared branch length between the robin and the deer is simply b + d (note that we don’t include e or f because these branches only lead to either the robin <em>or</em> the deer). The shared branch length between the robin and the spider is b, because this is the only branch that leads towards them both. Likewise, the shared branch length between the deer and the spider is also b. The slightly tricky one is what is the shared branch length between the robin/deer/spider and the jellyfish? They don’t share a branch at all in this phylogeny so we say their shared branch length is zero.</p>
+<p>Why spend this time thinking about the trait variances and covariances? Because we know these values we can represent the phylogeny as a <em>phylogenetic variance–covariance matrix</em>. A phylogenetic variance–covariance matrix is an n x n matrix, where n is the number of species in the phylogeny, and the diagonals are the variances, and the off-diagonals are the covariances. For our example in Figure <a href="foundations2.html#fig:roottotip">3.8</a> the phylogenetic variance–covariance matrix looks like this.</p>
+<center>
+<img src="images/vcv.png" />
+</center>
+<p>We will use phylogenetic variance–covariance matrices at various points in this book, including in the next section on phylogenetic signal in Chapter <a href="signal.html#signal">4</a>. Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!</p>
+<div class="info">
+<p>
+As you may already be aware, variance–covariance matrices are used in
+many statistical methods, not just phylogenetic comparative methods. The
+fact that we can represent a phylogeny in this way will make our lives
+way easier in the next few chapters!
+</p>
+</div>
+</div>
+<div id="chapter-summary-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Chapter summary<a href="foundations2.html#chapter-summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>For continuous traits, the most commonly used model of trait evolution is the Brownian motion model.</li>
+<li>The key features of the Brownian motion model of evolution are (i) traits evolve at random, i.e. by a random walk; (ii) the direction and magnitude of the trait change at one time interval is independent of the direction and magnitude of the trait changes at other time intervals; (iii) there is no overall drift in the direction of evolution; (iv) traits evolve at a rate σ2; (v) the rate of evolution is constant; (vi) variance in traits increase (linearly) in proportion to time,; and (vii) the overall variance of the Brownian process is the rate of evolution times the amount of time that has elapsed.</li>
+<li>There are three basic models for discrete trait evolution: the Mk or Equal Rates model (ER), the Symmetric model (SYM) and the All Rates Different model (ARD). In the ER model, all rates of change between states are the same in both directions. In the SYM model, all rates of change between states are the same but differ according to the direction of change. In the ARD model is a unique rate of evolution for changes between different states in each direction.</li>
+<li>Phylogenetic variance-covariance matrices are useful ways to represent phylogenies. A phylogenetic variance-covariance matrix is an n x n matrix, where n is the number of species in the phylogeny, the diagonals of the matrix are the variances, and the off-diagonals are the covariances. In a phylogeny the variance is the root-to-tip length of the tree. The covariances among species are the lengths of their shared branch lengths.</li>
+</ul>
+</div>
+<div id="further-reading-1" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Further reading<a href="foundations2.html#further-reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Classic text on using phylogenies and the Brownian motion model of evolution: Felsenstein, 1985. “Phylogenies and the comparative method.” The American Naturalist 125.1: 1-15. <span class="citation"><a href="#ref-felsenstein1985phylogenies">[29]</a></span></p>
+</div>
+<div id="online-exercises-2" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Online exercises<a href="foundations2.html#online-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://nhcooper123.github.io/pcm-primer-online/prep.html">Preparing your tree and data for PCMs in R</a></li>
+<li><a href="https://nhcooper123.github.io/pcm-primer-online/signal.html">Phylogenetic Signal in R</a> (also Chapter <a href="signal.html#signal">4</a>)</li>
+<li><a href="https://nhcooper123.github.io/pcm-primer-online/cont.html">Models of evolution for continuous traits</a> (also Chapter <a href="tempo-mode.html#tempo-mode">5</a>)</li>
+<li><a href="https://nhcooper123.github.io/pcm-primer-online/discrete.html">Models of evolution for discrete traits</a> (also Chapter <a href="tempo-mode.html#tempo-mode">5</a>)</li>
+</ul>
+
+</div>
+</div>
+<h3>Bibliography<a href="bibliography.html#bibliography" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body" entry-spacing="0">
+<div id="ref-garbino2021evolution" class="csl-entry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">G. S. T. Garbino, A. Feijo, R. Beltrao-Mendes, and P. A. Da Rocha, <span>“Evolution of litter size in bats and its influence on longevity and roosting ecology,”</span> <em>Biological Journal of the Linnean Society</em>, vol. 132, no. 3, pp. 676–684, 2021.</div>
+</div>
+<div id="ref-jukes1969evolution" class="csl-entry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">T. H. Jukes, C. R. Cantor, <em>et al.</em>, <span>“Evolution of protein molecules,”</span> <em>Mammalian protein metabolism</em>, vol. 3, no. 21, p. 132, 1969.</div>
+</div>
+<div id="ref-lanave1984new" class="csl-entry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">C. Lanave, G. Preparata, C. Sacone, and G. Serio, <span>“A new method for calculating evolutionary substitution rates,”</span> <em>Journal of molecular evolution</em>, vol. 20, no. 1, pp. 86–93, 1984.</div>
+</div>
+<div id="ref-lewis2001likelihood" class="csl-entry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">P. O. Lewis, <span>“A likelihood approach to estimating phylogeny from discrete morphological character data,”</span> <em>Systematic biology</em>, vol. 50, no. 6, pp. 913–925, 2001.</div>
+</div>
+<div id="ref-cavalli1967" class="csl-entry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">L. L. Cavalli-Sforza and A. W. F. Edwards, <span>“Phylogenetic analysis. Models and estimation procedures,”</span> <em>American Journal of Human Genetics</em>, vol. 19, pp. 233–257, 1967.</div>
+</div>
+<div id="ref-felsenstein1973maximum" class="csl-entry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">J. Felsenstein, <span>“Maximum-likelihood estimation of evolutionary trees from continuous characters.”</span> <em>American Journal of Human Genetics</em>, vol. 25, no. 5, pp. 471–492, 1973.</div>
+</div>
+<div id="ref-freckleton2006detecting" class="csl-entry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">R. P. Freckleton and P. H. Harvey, <span>“Detecting non-brownian trait evolution in adaptive radiations,”</span> <em>PLoS Biology</em>, vol. 4, no. 11, p. e373, 2006.</div>
+</div>
+<div id="ref-pagel1994detecting" class="csl-entry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">M. Pagel, <span>“Detecting correlated evolution on phylogenies: A general method for the comparative analysis of discrete characters,”</span> <em>Proceedings of the Royal Society of London. Series B: Biological Sciences</em>, vol. 255, no. 1342, pp. 37–45, 1994.</div>
+</div>
+<div id="ref-paradis2004ape" class="csl-entry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">E. Paradis, J. Claude, and K. Strimmer, <span>“APE: Analyses of phylogenetics and evolution in r language,”</span> <em>Bioinformatics</em>, vol. 20, no. 2, pp. 289–290, 2004.</div>
+</div>
+<div id="ref-felsenstein1985phylogenies" class="csl-entry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">J. Felsenstein, <span>“Phylogenies and the comparative method,”</span> <em>The American Naturalist</em>, vol. 125, pp. 1–15, 1985.</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="foundations1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="signal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-foundations2.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["pcm-book.pdf", "pcm-book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
