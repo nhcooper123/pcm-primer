@@ -1,4 +1,7 @@
 # Introduction to models of trait evolution {#foundations2}
+
+*Natalie Cooper*
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Load libraries (hidden)
 library(ggtree)
@@ -29,9 +32,9 @@ In section \@ref(section:infer) we explained how most types of phylogenetic infe
 
 For continuous traits, the most commonly used model of trait evolution is the *Brownian motion model*, and many more complex models have been built upon it. Therefore we will spend some time discussing it here. If you're already familiar with the Brownian model you might want to skip to the summary at the end of the section just to check that you recall all the key features of the model. Otherwise, join me on an exploration of imaginary cats!
 
-### An introduction to Brownian Motion
+### An introduction to Brownian Motion {#intro-bm}
 
-The Brownian model or BM model [@cavalli1967; @felsenstein1973maximum] is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods [though this assumption is rarely tested; @freckelton2006detecting]. It can be fully described using just two parameters $z(0)$ and $\sigma^2$ (sigma squared).
+The Brownian model or BM model [@cavalli1967; @felsenstein1973maximum] is assumed to be the underlying mode of evolution in the majority of phylogenetic comparative methods [though this assumption is rarely tested; @freckleton2006detecting]. It can be fully described using just two parameters $z(0)$ and $\sigma^2$ (sigma squared).
 
 $z(0)$ is the starting value of the trait we are interested in. This is the mean value for the trait seen in the ancestral population before there have been any changes to the trait. $\sigma^2$ is the rate at which evolution (i.e. trait change) occurs. Some of you might already be wondering why we use $\sigma^2$ here, as $\sigma^2$ is usually used to signify *variance*. And you'd be right, it is a variance! But how and why?
 
@@ -39,7 +42,7 @@ The Brownian model is a simple model of trait evolution and is what is known as 
 
 Here's the explanation of how it works. At the core of Brownian motion is the normal distribution (Figure \@ref(fig:normal)). In the Brownian motion model of evolution, the amount that a trait changes over any time interval is drawn at random from a normal distribution with a **mean of 0** and a **variance of $\sigma^2$**. Because the mean is 0, we can draw positive numbers causing the trait to increase, we can draw negative numbers causing the trait to decrease, and we expect the mean change in the trait over time to also be 0. How large these changes are depends on the value of $\sigma^2$. In Figure \@ref(fig:normal) you can see that as $\sigma^2$ gets larger, so does the spread of the normal distribution, meaning that large values are more likely to get drawn from the distribution as $\sigma^2$ increases, leading to larger increases or decreases in the value of the trait. This means evolution will be faster when $\sigma^2$ is larger. Because of this, $\sigma^2$ represents the *rate of evolution*, and is referred to as the *Brownian rate parameter*.
 
-```{r normal, echo = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r normal, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='Three normal distributions with the same mean (0) but different variances.', out.width='80%', fig.asp=.75, fig.align='center'}
 base_norm <- ggplot(data = data.frame(X = c(-3, 3)), aes(X)) +
   labs(x = "", y = "") +
   scale_y_continuous(breaks = NULL) +
@@ -85,7 +88,7 @@ Let's run a quick example simulation to see what is going on. Our trait can be a
 Hang on, where are we getting these random numbers from? We are just using R to extract numbers from a normal distribution with mean of 0 and variance of 0.25. If you want to try this out got to R and type in `rnorm(1, mean = 0, sd = sqrt(0.01))`. `sd` is standard deviation, which is the square root of variance. Note that these numbers are drawn at random so will not be the same as the values used above.
 ```
 
-```{r cat1, echo = FALSE, fig.cap='A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$.', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r cat1, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='A simple simulation showing how the body mass of cats changes through time under a Brownian model with $z(0) = 4 kg$ and $sigma^2 = 0.25$.', out.width='80%', fig.asp=.75, fig.align='center'}
 # Create Brownian simulation data
 #x <- c(20, rnorm(mean = 0, sd = 0.5, 10))
 # Here we set the values so it always looks the same:
@@ -176,7 +179,6 @@ p1 <-
   base +
   geom_line(data = sim_0.25, alpha = 0.25) +
   labs(tag = "A")
-
 
 # Extract variances
 vars <- 
@@ -280,7 +282,7 @@ hist_1 <-
 
 The examples above ignore the topology of the cat phylogeny - we are modelling a series of independent species, and we are not yet accounting for the inter-relationships between them. What if we want to model the evolution of cat body sizes across a branching phylogeny where species originate at different times? This is usually how we use the Brownian model, and it is very simple to extend. At each speciation event, we simply start a new Brownian simulation for the two new species. Let's do this with the cat example, assuming there are speciation events at time 3, 5, and 7, creating a phylogeny like the one in Figure \@ref(fig:bmcat). 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 # Read in cat phylogeny
 tree <- read.tree("data/cat.tre")
 
@@ -374,7 +376,7 @@ What do the body mass values look like at the end of the simulations when we add
 Finally note that we don’t fit the models using the simple maths we’ve shown you above as it gets quite time consuming, instead we use Maximum Likelihood. Don’t worry about this for now as we will return to it later.
 
 ### A quick note about multivariate Brownian motion
-Above we looked at the Brownian motion model of evolution using just one trait. But we’re often interested in how two or more traits evolve together across a phylogenetic tree. To model this we need to use multivariate Brownian motion models. These models are simple extensions of what we’ve discussed above, except we also consider how the two (or more) traits are correlated. As with just one trait, all trait values change randomly in both direction and magnitude. The two (or more) traits can be evolving independently of one another, or be correlated. We estimate the same parameters as for Brownian motion for one trait, and the end result is a set of traits with a multivariate normal distribution (rather than the univariate one shown in Figure \ref@{???}). We cover this in more detail in Chapter ???.
+Above we looked at the Brownian motion model of evolution using just one trait. But we’re often interested in how two or more traits evolve together across a phylogenetic tree. To model this we need to use multivariate Brownian motion models. These models are simple extensions of what we’ve discussed above, except we also consider how the two (or more) traits are correlated. As with just one trait, all trait values change randomly in both direction and magnitude. The two (or more) traits can be evolving independently of one another, or be correlated. We estimate the same parameters as for Brownian motion for one trait, and the end result is a set of traits with a multivariate normal distribution (rather than the univariate one shown in Figure \ref(fig:normal)). We cover this in more detail in Chapter \@ref(tempo-mode).
 
 ```{block, type = "info"}
 To summarise the above, the key features of the Brownian motion model are: 
@@ -400,9 +402,17 @@ Some biological implications of the model are:
 ```
 
 ```{block, type = "detail"}
-**Is the Brownian motion model of evolution a realistic model of evolution?**
+<center>
+### Is the Brownian motion model of evolution a realistic model of evolution?
+
+![A Brownie in Motion. Brownie Credit: Ɱ. License: CC BY-SA 3.0](images/brownie.png)
+</center>
+
+$$\\[0.5cm]$$
+
 In this chapter we put a lot of effort into describing and explaining the Brownian model of evolution. But is it a realistic model of evolution? Before moving on, take some time to think about this. Two biological implications of the model are that (1) close relatives are more similar than more distant relatives; and (2) different species and lineages evolve at the same rate. Are these statements always true? Can you think of biological examples where this might not be the case? Think about adaptive radiations, key innovations, convergent evolution - do you expect evolution in these scenarios to be Brownian? 
-What sorts of scenarios might be well modeled by Brownian motion? You've probably already realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these in *Chapter ?*.
+
+What sorts of scenarios might be well modeled by Brownian motion? You've probably already realised that evolution is not always going to be Brownian. There are a number of other models of evolution, and we will return to these later in the book.
 ```
 
 
@@ -421,11 +431,10 @@ In the M*k* model, all trait changes are equally likely, and all occur at the sa
 
 We can visualize the $Q$ (rate) matrix for an M*k* model of our flightlessness example like this:
 
--|flying|semi-flightless|flightless
---|--|--|--
-flying|-|1|1
-semi-flightless|1|-|1
-flightless|1|1|-
+<center>
+![](images/q1.png)
+</center>
+
 
 The off-diagonals are the transition rates from state 1 to 2, 1 to 3, 2 to 1 and so on (read rows then columns). 
 We typically designate individual transition rates in the form $q_ij$, which means the rate of going from state $i$ to state $j$. 
@@ -440,41 +449,36 @@ In real data we have good reasons for thinking this might not be the case in man
 
 The $Q$ matrix for our flying/semi-flightless/flightless example looks like this:
 
--|flying|semi-flightless|flightless
---|--|--|--
-flying|-|1|2
-semi-flightless|1|-|3
-flightless|2|3|-
+<center>
+![](images/q2.png)
+</center>
 
 It's worth noting that if you only have two states, i.e. $k = 2$, then the Symmetric model is exactly the same as the M*k*/Equal Rates model.
 
--|flying|flightless
---|--|--
-flying|-|1
-flightless|1|-
+<center>
+![](images/q3.png)
+</center>
 
 ### All Rates Different (ARD) model
 The final modification of the M*k* model we're going to cover here is the All Rates Different or ARD model [@paradis2004ape]. In this model not only does the rate of change differ among pairs of states, it can also differ within each pair of states depending on the direction of the change. For k states, we get $k^2 - k$ rates, which can be a pretty large number as k increases.
 
 The $Q$ matrix for our flying/semi-flightless/flightless example looks like this:
 
--|flying|semi-flightless|flightless
---|--|--|--
-flying|-|1|2
-semi-flightless|3|-|4
-flightless|5|6|-
+<center>
+![](images/q4.png)
+</center>
 
 Biologically, this is a useful model to fit if you think some of your states are not reversible, or very difficult to reverse, for example if you think the rate of evolution from flightless to flying is likely to be close to 0. It often works well for big complex datasets that span a variety of different states. For example, if you had a tree of all vertebrates and wanted to examine transition rates among different dietary strategies, this model would be worth examining.
 
 You may have noticed that there is no analaogous model to ARD in DNA evolution. Molecular biologists don't use this kind of model because of potential *over-fitting* (see below), which is also a very important point to consider when chosing whether or not to fit an ARD model . It's also really important for some of the other methods we'll use later in the book, so I'll explain what I mean by over-fitting in the box below. If you're fitting an ARD model with six rates to a phylogeny containing only 30 species, you definitely need to stop and think about over-fitting. 
 
-Case Study 3.1 gives an example using ER and ARD models to determine the ancestral litter size of bats from Garbino et al (2021) [@garbino2021evolution].
+The case study below gives an example using ER and ARD models to determine the ancestral litter size of bats from Garbino et al (2021) [@garbino2021evolution].
 
 ```{block, type = "detail"}
+<center>
 ### Beware of overfitting!
 
-<center>
-![*Aptenodytes_forsteri*. Credit: Ian Duffy. License: CC-BY](images/penguin.jpg)
+![*Aptenodytes forsteri*. Credit: Ian Duffy. License: CC BY](images/penguin.jpg)
 </center>
 
 $$\\[0.5cm]$$
@@ -498,27 +502,42 @@ Ancestral state estimates (**not** reconstructions) are, at best, weighted avera
 ```
 
 ```{block, type = "examps"}
+<center>
 ### Case Study: What was the litter size of the ancestral bat?
-Most small mammals have more than one offspring at a time, with average litter sizes ranging from 4-7. Conversely, most bat species have only one offspring at a time (Figure CS3.1A), likely because of difficulties related to flying while pregnant and because offspring mortality is low in bats meaning there is selection for more investment in fewer offspring. Only bats in the Vespertilionidae family regularly have more than one offspring at a time. Garbino et al. [@garbino2021evolution] were interested in how this pattern evolved. Did ancestral bats have multiple offspring (polytocy) and evolve to have only one offspring (monotocy)? Or did ancestral bats have one offspring with the Vespertilionidae later evolving to have more than one?
 
-To test this, Garbino et al. [@garbino2021evolution] used a phylogeny of 551 species of bats for which they had information on the litter size of the species. They coded litter size as a binary trait (polytocy or monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal Rates (ER) and All Rates Different (ARD) models to the data. They used the Akaike Information Criterion (AIC) (see Chapter 6) to determine which of these models best fitted their data. Then they used the best fitting model to estimate whether polytocy or monotocy was more likely at the root of the tree, and at the root of Vespertilionidae. They also plotted the states onto the tree using stochastic character mapping (Figure CS3.1B).
+![*Myotis crypticus*. Credit:  Manuel Ruedi. License: CC BY-SA 4.0](images/myotis.webp)
+</center>
 
-<Figure CS3.1B near here>
+$$\\[0.5cm]$$
+
+Most small mammals have more than one offspring at a time, with average litter sizes ranging from 4-7. Conversely, most bat species have only one offspring at a time (see figure below; Garbino et al. [@garbino2021evolution] [Figure 2A](https://academic.oup.com/biolinnean/article/132/3/676/6090169)), likely because of difficulties related to flying while pregnant and because offspring mortality is low in bats meaning there is selection for more investment in fewer offspring. Only bats in the Vespertilionidae family regularly have more than one offspring at a time. Garbino et al. [@garbino2021evolution] were interested in how this pattern evolved. Did ancestral bats have multiple offspring (polytocy) and evolve to have only one offspring (monotocy)? Or did ancestral bats have one offspring with the Vespertilionidae later evolving to have more than one?
+
+$$\\[0.5cm]$$
+
+<center>
+
+![Garbino et al. 2021's Figure 2A. Estimated pattern of the evolution of polytocy across Chiroptera using an All Rates Different (ARD) model of evolution.](images/vesper.png)
+
+</center>
+
+$$\\[0.5cm]$$
+
+To test this, Garbino et al. [@garbino2021evolution] used a phylogeny of 551 species of bats for which they had information on the litter size of the species. They coded litter size as a binary trait (polytocy or monotocy). Of the 551 bat species in the dataset, 74 (13.5%) were polytocous and 477 (86.5%) were monotocous. Next, they fitted Equal Rates (ER) and All Rates Different (ARD) models to the data. They used the Akaike Information Criterion (AIC) (see later chapters) to determine which of these models best fitted their data. Then they used the best fitting model to estimate whether polytocy or monotocy was more likely at the root of the tree, and at the root of Vespertilionidae. They also plotted the states onto the tree using stochastic character mapping (see Garbino et al. [@garbino2021evolution] [Figure 2B](https://academic.oup.com/biolinnean/article/132/3/676/6090169)).
 
 Garbino et al. [@garbino2021evolution] found the ARD model was a better fit than the ER model. Evolutionary transitions from monotocy to polytocy were rarer than transitions from polytocy to monotocy. Ancestral state estimations suggested that the ancestral state of modern Chiroptera was monotocy, but that polytocy was the ancestral condition in the family Vespertilionidae. This condition was subsequently lost in the ancestors of both the Myotinae and Kerivoulinae subfamilies.
 
-Note that Garbino et al. [@garbino2021evolution] also performed a number of other phylogenetic comparative methods (including tests for phylogenetic signal and PGLS models; see Chapter 4) which we have not tackled yet in this Primer. Check out the paper to find out more and to see their full results.
+Note that Garbino et al. [@garbino2021evolution] also performed a number of other phylogenetic comparative methods (including tests for phylogenetic signal and PGLS models; see Chapter 4) which we have not tackled yet in this book. Check out the paper to find out more and to see their full results [@garbino2021evolution].
 ```
 
 ## Phylogenetic variance-covariance matrices {#section:varcovar}
 
-A useful analytical tool that we will use in a number of methods in this *Primer* is to represent a phylogeny as a *phylogenetic variance–covariance matrix*. First let's think about what we mean by variance and covariance in the context of traits on phylogenies. To do this we need to go back to the Brownian motion model.
+A useful analytical tool that we will use in a number of methods in this book is to represent a phylogeny as a *phylogenetic variance–covariance matrix*. First let's think about what we mean by variance and covariance in the context of traits on phylogenies. To do this we need to go back to the Brownian motion model.
 
 Remember that under Brownian motion, variance in a trait increases linearly in proportion to time. So species that diverged recently will have similar trait values, and species that diverged a long time ago will have very different trait values. In more technical terms we can say that the expected *covariance* between species’ trait values at the tips of the phylogeny is exactly proportional to the shared history of the species involved, i.e. the sum of their shared branch lengths. In addition, the expected *variance* of a trait value for a given species is proportional to total length of the tree, i.e. the summed branch length from the root to the tip for that species [19], also refered to as the *root-to-tip* distance. 
 
 Figure \@ref(fig:roottotip) shows how we get the root-to-tip distances from a phylogeny. The letters a-f represent the branch lengths. Because this is an *ultrametric* tree, the root-to-tip distance for each species will be the same, i.e. the same amount of time has elapsed. So in the example in Figure \@ref(fig:roottotip), a *and* b + c *and* b + d + e *and* b + d + f all add up to the same number. Likewise, branch c is the same length as branches d + e, and branch e is the same length as branch f. Take a good look at the phylogeny in Figure \@ref(fig:roottotip) to make sure you understand this.
 
-```{r roottotip, echo = FALSE, warning = FALSE, fig.cap='Phylogeny showing branch lengths and root-to-tip distances for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r roottotip, echo = FALSE, warning = FALSE, message = FALSE, fig.cap='Phylogeny showing branch lengths and root-to-tip distances for each tip taxon', out.width='80%', fig.asp=.75, fig.align='center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -564,13 +583,11 @@ As already mentioned above, these root-to-tip values give us the variance of the
 
 Why spend this time thinking about the trait variances and covariances? Because we know these values we can represent the phylogeny as a *phylogenetic variance–covariance matrix*. A phylogenetic variance–covariance matrix is an n x n matrix, where n is the number of species in the phylogeny, and the diagonals are the variances, and the off-diagonals are the covariances. For our example in Figure \@ref(fig:roottotip) the phylogenetic variance–covariance matrix looks like this.
 
--|robin|deer|spider|jellyfish|
-robin|b+d+f|b+d|b|0|
-deer|b+d|b+d+e|b|0|
-spider|b|b|b+c|0|
-jellyfish|0|0|0|a|
+<center>
+![](images/vcv.png)
+</center>
 
-We will use phylogenetic variance–covariance matrices at various points in this *Primer*, including in the next section on phylogenetic signal in Chapter \@ref(signal). Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
+We will use phylogenetic variance–covariance matrices at various points in this book, including in the next section on phylogenetic signal in Chapter \@ref(signal). Often people mention these matrices (sometimes they will be referred to as phylogenetic vcvs) without explaining what they are, but hopefully the outline above has made them seem a bit less opaque and scary!
 
 ```{block, type = "info"}
 As you may already be aware, variance–covariance matrices are used in many statistical methods, not just phylogenetic comparative methods. The fact that we can represent a phylogeny in this way will make our lives way easier in the next few chapters! 

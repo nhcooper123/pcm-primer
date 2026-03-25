@@ -39,14 +39,12 @@ Although data-mining approaches may have a place, in most comparative analyses t
 ### What questions can we answer with PCMs?
 This book features many examples of questions we can tackle using phylogenetic comparative methods. We’ve listed these below. We think it is important to highlight diverse contributions to science, so our examples highlight work by a diverse range of authors working in the field today. Check these out in later chapters!
 
-Chapter \@ref(foundations1): Are eye size and ecology related in frogs and toads? Thomas et al. (2020) [@thomas2020eye]. 
-Chapter \@ref(foundations2): What was the litter size of the ancestral bat? Garbino et al. (2021) [@garbino2021evolution]. 
-Chapter \@ref(signal): Is there phylogenetic signal in how Rhododendron species respond to climate change? Basnett et al. (2019) [@basnett2019influence].
-Chapter \@ref(signal): Do ticks transmit trypanosomes? Koual et al. (2023) [@koual2023phylogenetic].
-Chapter \@ref(signal): How did the lower jaw of sculpins evolve? Roberts et al. (2018) [@roberts2018evolution].
-Chapter \@ref(signal): Are jewel beetle colours related to climate? Wang et al. (2023) [@wang2023disentangling].
-Chapter \@ref(tempo-mode): Do rates of body size evolution in mammals with different foot postures? Kubo et al. (2019) [@kubo2019].
-Chapter \@ref(tempo-mode): What are the ecological mechanisms underpinning the adaptive radiation of *Phylloscopus* warblers? Price et al. (1997) [@price1997]. CHECK REF
+- Chapter 2: Are eye size and ecology related in frogs and toads? Thomas et al. (2020) [@thomas2020eye]. 
+- Chapter 3: What was the litter size of the ancestral bat? Garbino et al. (2021) [@garbino2021evolution]. 
+- Chapter 4: Is there phylogenetic signal in how Rhododendron species respond to climate change? Basnett et al. (2019) [@basnett2019influence].
+- Chapter 4: Do ticks transmit trypanosomes? Koual et al. (2023) [@koual2023phylogenetic].
+- Chapter 5: Do rates of body size evolution in mammals with different foot postures? Kubo et al. (2019) [@kubo2019].
+- Chapter 5: What are the ecological mechanisms underpinning the adaptive radiation of *Phylloscopus* warblers? Price et al. (1997) [@price1997].
 ```
 
 ## The problem of phylogenetic non-independence

@@ -1,5 +1,7 @@
 # Phylogenies and comparative data {#foundations1}
 
+*Natalie Cooper*
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 # Load libraries (hidden)
 library(ggtree)
@@ -97,7 +99,7 @@ ggtree(tree) +
 
 ```
 
-To use phylogenies we need to understand a few more terms. These are also described in the Glossary (Chapter \@ref(glossary)) if you forget these at any point.
+To use phylogenies we need to understand a few more terms.
 
 **Ultrametric**. Most of the phylogenies we will use in this book are *ultrametric*, like the one in Figure \@ref(fig:ultrametric)A, where all the branches end at the same place - the present-day . If you are using phylogenies containing extinct species then the phylogeny will usually be *non-ultrametric*, like the one in Figure \@ref(fig:ultrametric)B. Note that phylogenies based on molecular data will also be non-ultrametric unless they have been dated. 
 
@@ -144,7 +146,7 @@ p2 <-
 p1 + p2
 ```
 
-**Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy* Yo can see and exmaple of a polytomy in Figure \@ref(fig:polytomy)B. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
+**Polytomies**. The phylogenies we will use in this book will be *fully resolved*, i.e. each node will lead to two branches. This might not always be the case, however. When more than two branches originate from a node we call this a *polytomy*. You can see an example of a polytomy in Figure \@ref(fig:polytomy)B. Polytomies can be hard or soft. *Hard polytomies* represent the true evolutionary history of a group, often occurring where there has been rapid evolution. *Soft polytomies*, on the other hand, represent problems in phylogenetic inference (see below) where the methods cannot resolve the relationships among the species at that point. 
 
 ```{r polytomy, echo = FALSE, message = FALSE, warning = FALSE, fig.cap='A fully resolved phylogeny (A) versus one with a polytomy (B). This polytomy suggests that the relationships among the mammal, the bird and the spider are unresolved.', out.width='80%', fig.asp=.75, fig.align='center'}
 
@@ -347,7 +349,7 @@ Both **A** and **B** are equally closely-related to **C**, as they all share a c
 
 Reading phylogenies is not always intuitive. Often this is due to how we represent them graphically. For example, each of the phylogenies in Figure \@ref(fig:diff-trees) shows the same relationships among species, but in different ways. By convention we usually present phylogenies with the root at the left or the base of the phylogeny (like A, C, E, or G in Figure \@ref(fig:diff-trees)). 
 
-```{r diff-trees, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'left'}
+```{r diff-trees, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'All of these phylogenies show the same species relationships, they are just presented in different ways', out.width='80%', fig.asp=.75, fig.align = 'center'}
 
 # Read in basic 4 species phylogeny
 tree <- read.tree("data/basic.tre")
@@ -548,7 +550,7 @@ Maximum Likelihood approaches can use any of these models, or any other model we
 
 Maximum Likelihood approaches are very computationally intensive and can be very slow, certainly much slower than parsimony. Like parsimony, it is common for more than one phylogeny to have the same Maximum Likelihood so we need to construct consensus trees. Maximum Likelihood can yield biased solutions, and can also lead us to put undue faith in one ‘best’ solution even though others might be nearly as good. Apart from very simple analyses (e.g. calculating the confidence interval for a mean), the analytical and computational complexity of Likelihood methods mean that they don’t readily allow us to accommodate uncertainty in our estimates.
 
-#### Bayesian
+#### Bayesian inference
 Bayesian methods deal with some of the limitations of Maximum Likelihood methods. Bayesian methods calculate the probability of the model given the data, *P(model|data)*. In the case of Bayesian phylogenetic inference, we calculate the probability of the observed phylogeny given the trait data and the underlying evolutionary model. These models are the same as those used in Maximum Likelihood tree inference. 
 
 The main difference between Bayesian approaches and both Maximum Likelihood and parsimony, is that we are no longer searching tree space for the "best" tree or trees. Instead, Bayesian methods output a *posterior distribution* of trees. The Bayesian method searches tree space, saving and outputting all trees it finds at regular intervals. This can result in thousands or even millions of possible trees. The user then specifies how many trees they would like to export as a posterior distribution of trees. This will consist of that number of trees, spread across the variety of trees inferred, but with the frequency of their occurrence being based on their probability. For example, if your Bayesian method produces tree topologies A-Z, but topologies A-D are most common, the posterior distribution of trees will mirror that and will contain more trees with topologies A-D, than those with topologies E-Z.
@@ -609,15 +611,15 @@ Collecting data manually reveals several issues common to most comparative data 
 - Some data will be based on multiple individuals whereas others will be based on only one. 
 - Some sources will list values as means, others will list values as maxima or minima. Will you record all of these or choose one?
 
-There are of course many ways to do this, and as long as you *record the decisions you have made* so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don’t forget to record the **units** for each measurement. Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection. Note that there are formal approaches for making sure your data are reproducible (e.g. [PRISMA](http://prisma-statement.org/) though these are not commonly used in comparative data collection.
+There are of course many ways to do this, and as long as you *record the decisions you have made* so that someone could repeat the process if necessary, this is not a problem. Our recommendation is to record all data initially, along with some measure of data quality (low, medium or high is sufficient). You can still include this data either by incorporating measures of data quality into your analyses, or by excluding data below a certain data quality threshold when calculating summary data for the species. And don’t forget to record the **units** for each measurement. Finally it is extremely important to record the sources for each datum you add to your dataset, so that you are able to repeat the process if needed. This also allows you to remove data from any sources you later decide not to trust, and allows you to check individual data points if there are any issues, for example if one species appears as a large outlier in your comparative analyses this may reflect an error in data collection. Note that there are formal approaches for making sure your data are reproducible (e.g. [PRISMA](http://prisma-statement.org/)) though these are not commonly used in comparative data collection.
 
 After collecting your data you'll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results.
 
 #### Curated databases
-Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. the Global Biodiversity Information Facility ( [GBIF](www.gbif.org)). Others are static, often because they were released as part of a published paper e.g. datasets on the Global Assessment of Reptile Distributions website ([GARD](http://www.gardinitiative.org/data.html)). These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through the literature one species at a time. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
+Curated databases are popular sources of comparative data. Some will be constantly added to as more data become available e.g. the Global Biodiversity Information Facility ([GBIF](www.gbif.org)). Others are static, often because they were released as part of a published paper e.g. datasets on the Global Assessment of Reptile Distributions website ([GARD](http://www.gardinitiative.org/data.html)). These sources are popular because you can rapidly download data for a large number of species, making it much faster than going through the literature one species at a time. But just because a value is published in a database does not mean that it is reliable. The issues noted above still apply, and it is a good idea to check the data and sources of a database in the same way as for books or Internet searches.
 
 #### Collecting your own comparative data
-Above we talked about collating existing data, but many comparative researchers (including ourselves!) collect our own cross species datasets either in the field, the laboratory or from natural history museum collections (e.g. Cooney et al. 2017, Thomas et al. 2020, Goswami et al. 2022, Burin et al. 2023)
+Above we talked about collating existing data, but many comparative researchers (including ourselves!) collect our own cross species datasets either in the field, the laboratory or from natural history museum collections (e.g. Cooney et al. 2017 [@cooney2017mega], Thomas et al. 2020 [@thomas2020eye], Guillerme et al. 2023 [@guillerme2023innovation], Burin et al. 2023 [@burin2023dynamic])
 
 The considerations required when collecting these data will vary depending on the type of data you’re collecting, so make sure to follow standard protocols and error checking procedures. Covering all of these is beyond the scope of this book. 
 
@@ -625,9 +627,9 @@ The considerations required when collecting these data will vary depending on th
 After collecting your data you’ll likely need to summarise these data for each species or taxon, i.e. take the mean, median, minimum, maximum etc. It is up to you whether you use means or medians. Often we choose the median because it is less influenced by outliers. The summary data you use and how you calculate it will vary depending on your inputs, for example, if we have maximum values for a variable, we might want to take the overall maximum for the species, but if we have mean values, we might want to take the median for the species (see below). This process may seem trivial, but can have a large influence on your results. We provide a simple example below. Remember that it is really important to have a clear link from the original data to the actual numbers used in the analyses, and to keep (and share) both the raw data and the final summarised data.
 
 ```{block, type = "detail"}
+<center>
 ### Practicalities of comparative data collection
 
-<center>
 ![*Chamaeleo zeylanicus*. Credit: Girish Gowda. License: CC BY-SA](images/Indian_chameleon_From_Kanakpura,_Karnataka.jpg)
 </center>
 
@@ -741,16 +743,16 @@ You're probably familiar with using scientific names rather than common names fo
 
 To avoid confusion we use scientific names, for species a "Genus species" pairing that we call the *binomial* name. You'll have these scientific names in both your phylogeny and comparative data, and these names will allow you how to link the two together. Great! There is, however, a problem. Scientific names are not static entities, they change regularly. Sometimes species are *split* and one species becomes two or more species. One will keep the original name, the others will get new names. Sometimes species are *lumped* and two or more species will be merged into one species. Other times species names are just changed, either to correct a spelling mistake or for more more esoteric reasons related to the rules of taxonomy (the science of naming species). Genera, families, orders etc. may also undergo name changes. In some groups with rapidly changing taxonomy like plants, you may also need to record the naming authority (the person or persons that originally published the name) to distinguish between them. *Grassius maximus* Linnaeus, 1758 is not the same as *Grassius maximus* Freckleton, 2023. One was named by Linnaeus in 1758, one by Freckleton in 2023 (both are invented!). 
 
-There are detailed rules about how and why scientific names change, and what they can changed to, but we don't need to go into this here, you just need to know that names change. If you're collecting data from a range of sources, this means the names of the species might not be the same in these different sources. Likewise, the names in your data might not match those in your phylogeny. This can have consequences for the sample size of your analyses, as we can only include species that are found in both the data and the phylogeny in our analyses (though see the *online materials* for ways to add species to a phylogeny where needed).
+There are detailed rules about how and why scientific names change, and what they can changed to, but we don't need to go into this here, you just need to know that names change. If you're collecting data from a range of sources, this means the names of the species might not be the same in these different sources. Likewise, the names in your data might not match those in your phylogeny. This can have consequences for the sample size of your analyses, as we can only include species that are found in both the data and the phylogeny in our analyses (though see the [online materials](https://nhcooper123.github.io/pcm-primer-online/phylogenies.html#phylogeny-manipulation) for ways to add species to a phylogeny where needed).
 
 For the most part this is fairly easy to fix. The first step is to decide what taxonomy, or list of accepted names, you want to use for your analyses. We'd recommend asking someone who knows a bit about the group, or seeing what other people have done in published papers. Well-studied groups like [mammals](https://www.departments.bucknell.edu/biology/resources/msw3/), [birds](https://www.worldbirdnames.org/), [amphibians](https://amphibiansoftheworld.amnh.org/) and [reptiles](http://www.reptile-database.org/) have standardised lists that you can easily access online. For other groups you might have to trawl through PDFs.  
 
 Then correct the taxonomy of the species in your data and phylogeny so they match the species in the taxonomy you've chosen to use. If the species name you are using is out of date, you'll normally find it under the *synonyms* for a species. Synonyms are other names that are used to refer to the species. The name you want is the accepted name that your species name is the synonym of. However, you will probably need to search the literature using the accepted name and the old synonyms to get a full dataset for your species.  
 
 ```{block, type = "examps"}
+<center>
 ### Case Study: Sourcing data on eye size and ecology in frogs and toads 
 
-<center>
 ![Frog eyes are really variable. Two tree frogs with large eyes and a burrowing frog and an aquatic frog with tiny eyes. Image credits: hehaden/Flickr CC BY-NC 2.0; Brian Gratwicke/Flickr CC BY 2.0, Rushen/Flickr CC BY-SA 2.0, Sue Cro/Flickr CC BY-NC 2.0](images/frogs.jpg)
 
 </center>

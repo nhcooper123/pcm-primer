@@ -1,16 +1,23 @@
 # Critical thinking {#critical}
 
-In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in (Dark side paper).
+*Natalie Cooper*
+
+In this final chapter, we talk briefly about what factors to consider before using a new method work with your data, and consider how to critically evaluate papers using PCMs. More details can be found in [@coopermeedata].
 
 ## Factors to consider before using a new phylogenetic comparative method
-The field of phylogenetic comparative methods is diverse and fast moving. New methods are being published all the time, so covering them all in this Primer is impossible. Hopefully by now you have a good grasp on the foundations of the methods, and this should provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature and newest methods. But what kinds of things should you consider before using a new phylogenetic comparative method on your data?
+The field of phylogenetic comparative methods is diverse and fast moving. New methods are being published all the time, so covering them all in this book is impossible. Hopefully by now you have a good grasp on the foundations of the methods, and this should provide a solid starting point for you to understand extensions of these methods, and to begin working with the newer literature and newest methods. But what kinds of things should you consider before using a new phylogenetic comparative method on your data?
 
 Many new phylogenetic comparative methods come with code or an R package or similar that allows you to jump straight into using it. But this is not a great idea, unless playing with the code is the first step in a larger exploration of the method. At a minimum, you should read the original papers describing a method, plus any recent updates, and look carefully for assumptions and caveats that may affect your analyses based on the unique properties of your data and tree.
 
 A good way to check a method is to simulate some data (i.e. invent some data) and see whether the results are what you expected. This can expose hidden assumptions or biases that have not been explored in the papers accompanying the method, or reveal a lack of understanding of the mechanics of the method being used.
+
 It is also important to determine whether the method will work on your particular dataset and tree. One key consideration is how many species are required for reasonable power. Some methods require more species than are available. Other considerations include whether the method is influenced by polytomies and whether the method is applicable to both ultrametric and non‐ultrametric trees.
 
 It is also important to remember the “Jurassic Park” caveat and avoid retrofitting questions to the newest methods; instead, think carefully about the question, whether the method is appropriate for the question.
+
+<center>
+![](images/warning.jpg)
+</center>
 
 ## How to critically evaluate a paper that uses phylogenetic comparative methods
 You should never take results from PCMs (or any other statistical analysis) at face value. As the Manic Street Preachers (1996) and our colleague Gavin Thomas puts it, ‘Cynicism is the only thing that keeps me sane’.
@@ -59,4 +66,6 @@ It's worth remembering that not everything you see in a paper is an author's fau
 * How would you fix the flaws in this paper? 
 
 ## Chapter summary
-Hopefully this chapter (and *Primer*) has given you a starting point for dealing with papers using PCMs and for choosing which PCMs to use with your own data. Good luck and happy PCM-ing!
+Hopefully this chapter (and book) has given you a starting point for dealing with papers using PCMs and for choosing which PCMs to use with your own data. 
+
+Good luck and happy PCM-ing!
